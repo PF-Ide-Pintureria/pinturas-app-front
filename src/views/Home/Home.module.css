@@ -1,0 +1,13 @@
+.banner{
+    max-width: 100%;
+}
+
+.bannerContainer{
+    display: flex;
+    justify-content: center;
+}
+
+.about{
+    display: flex;
+    justify-content: center;
+}

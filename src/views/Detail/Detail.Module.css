@@ -1,0 +1,57 @@
+.button {
+  background-color: var(--primary-color);
+  color: white;
+  border: 1px solid var(--secondary-color);
+  /* Estilos adicionales */
+}
+.container {
+  color: black;
+}
+.containerImage {
+  color: black;
+}
+.preImage {
+  color: black;
+}
+.containerDetail {
+  color: black;
+}
+.h1 {
+  color: black;
+}
+.h2 {
+  color: black;
+}
+.h3 {
+  color: black;
+}
+.containerDescription {
+  color: black;
+}
+.detail {
+  color: black;
+}
+.containerOptions {
+  color: black;
+}
+.containerSize {
+  color: black;
+}
+.containerQuantity {
+  color: black;
+}
+.buttonQuantity {
+  color: black;
+}
+.quantity {
+  color: black;
+}
+.buttonBuy {
+  color: black;
+}
+.containerRating {
+  color: black;
+}
+.containerBestSellers {
+  color: black;
+}
