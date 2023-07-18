@@ -3,7 +3,7 @@ import img2 from "../../img/about2.png";
 import imgAbout from "../../img/about.png";
 import Footer from "../../components/Footer/Footer";
 import NavBar from "../../components/NavBar/NavBar";
-import React from 'react';
+import React from "react";
 
 const About = () => {
   return (
@@ -24,8 +24,9 @@ const About = () => {
           est molestiae<br></br> facere ut enim voluptas eos harum eligendi. At
           exercitationem velit est porro <br></br>obcaecati eum corporis
           possimus id delectus eius 33 ullam harum auteligendi <br></br>placeat
-          vel doloribus veritatis.
+          vel doloribus veritatis. 😁
         </p>
+        <div>holaaaaa</div>
       </div>
 
       <div className="container2">
