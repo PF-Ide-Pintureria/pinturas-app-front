@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../SearchBar/SearchBar.module.css";
 
 const SearchBar = () => {
+
   const [searchText, setSearchText] = useState("");
 
   const handleChange = (event) => {
@@ -58,6 +59,7 @@ const SearchBar = () => {
               </svg>
             </button>
           </form>
+
         </div>
       </div>
     </div>
