@@ -3,6 +3,7 @@ import img from '../../img/pintura.png';
 import featuredBanner from '../../img/featured-banner.png'
 import React from 'react'
 import SearchBar from '../SearchBar/SearchBar';
+import Paginated from '../Paginated/Paginated';
 
 
 
@@ -18,6 +19,7 @@ const FeaturedContainer = () => {
                     <Featured image={img} name="Lorem Ipsum" price="$ 3.660" prodpackage="5 Litros"/>
                     <Featured image={img} name="Lorem Ipsum" price="$ 890" prodpackage="0,5 Litros"/>
                 </div>
+                <Paginated className="paginated" />
             </div>
 
         </div>
