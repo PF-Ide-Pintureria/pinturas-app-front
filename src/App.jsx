@@ -9,6 +9,9 @@ import Footer from "./components/Footer/Footer";
 import Cart from "./views/Cart/Cart";
 import Blog from "./views/Blog/Blog";
 import Login from "./views/Login/Login";
+import Products from "./views/Products/Products";
+import AdminDashboard from "./views/AdminDashboard/AdminDashboard"
+
 
 function App() {
   return (
@@ -19,10 +22,12 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/account" element={<Login />} />
         <Route path="/about" element={<About />} />
+        <Route path="/products" element={<Products />} />
         <Route path="/products/id" element={<Detail />} />
       </Routes>
       <footer>
