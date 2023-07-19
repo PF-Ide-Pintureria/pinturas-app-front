@@ -10,7 +10,7 @@ const Blog = () => {
     return ( 
         <div className={style.container}>
             <div className={style.background}>
-                <h1 className='text-3xl font-bold flex items-center justify-center'>Blog</h1>
+                <h1 className='text-3xl font-bold flex items-center justify-center'>BLOG</h1>
                 <div className=' flex flex-wrap items-center justify-center m-10'>
                     <BlogCard image={img} title="Lorem Ipsum" date="April 03, 2022" description={loremIpsu}/>
                     <BlogCard image={img} title="Lorem Ipsum" date="April 03, 2022" description={loremIpsu}/>
