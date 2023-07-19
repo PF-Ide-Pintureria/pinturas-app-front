@@ -1,4 +1,3 @@
-import style from "./Home.module.css";
 import banner from "../../img/banner-home.png";
 import featuredBanner from "../../img/featured-banner.png";
 import AboutCard from "../../components/AboutCard/AboutCard";
@@ -16,10 +15,6 @@ const Home = () => {
         </div>
 
         <div>
-          <img src={featuredBanner} alt="banner" className="w-full" />
-          <Paginated className="paginated" />
-          <SearchBar />
-
           <FeaturedContainer />
         </div>
         <div>
