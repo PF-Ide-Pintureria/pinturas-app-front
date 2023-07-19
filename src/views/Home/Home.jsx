@@ -10,19 +10,19 @@ import React from "react";
 const Home = () => {
   return (
     <div>
-      <main className={style.container}>
-        <div className={style.bannerContainer}>
+      <main>
+        <div>
           <img src={banner} alt="banner" className="max-width: fit-content;" />
         </div>
 
-        <div className={style.featured}>
+        <div>
           <img src={featuredBanner} alt="banner" className="w-full" />
           <Paginated className="paginated" />
           <SearchBar />
 
           <FeaturedContainer />
         </div>
-        <div className={style.about}>
+        <div>
           <AboutCard />
         </div>
       </main>
