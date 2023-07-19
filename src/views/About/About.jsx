@@ -149,13 +149,13 @@ const About = () => {
       </div>
       {/* ------------------------------------------------------------------------------------------------------------------ */}
 
-      <div className="general-card">
+      <div className="general-card mb-11">
         <div>
           <img src={imgAbout2} alt="img2" className="img2" />
         </div>
 
         <div className="square">
-          <div className="texts">
+          <div className="texts mb-11 pb-11">
             <div>
               <p className="blue-text">Lorem Ipsum is simply dummy</p>
             </div>
