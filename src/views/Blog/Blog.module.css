@@ -1,11 +1,11 @@
-.container {
+.container{
     height: 100%;
 }
 
-.background {
+.background{
     height: max-content;
     padding: 3em 0;
     background-image: url('../../img//gradientBackground.png');
     background-attachment: fixed;
-    background-size: cover;
+    background-size: 100% 100%;
 }

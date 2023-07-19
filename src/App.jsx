@@ -1,10 +1,16 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./views/Home/Home";
-import About from "./views/About/About.jsx";
-import NavBar from './components/NavBar/NavBar'
+import About from "./views/About/About";
+import NavBar from "./components/NavBar/NavBar";
 import Contact from "./views/Contact/Contact";
+import Detail from "./views/Detail/Detail";
 import Footer from "./components/Footer/Footer";
+import Cart from "./views/Cart/Cart";
+import Blog from "./views/Blog/Blog";
+import Login from "./views/Login/Login";
+import Products from "./views/Products/Products";
+import AdminDashboard from "./views/AdminDashboard/AdminDashboard"
 
 
 function App() {
@@ -16,13 +22,16 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/blog" element={<Home />} />
-        <Route path="/cart" element={<Home />} />
-        <Route path="/account" element={<Home />} />
+        <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/account" element={<Login />} />
         <Route path="/about" element={<About />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/products/id" element={<Detail />} />
       </Routes>
       <footer>
-        <Footer/>
+        <Footer />
       </footer>
     </BrowserRouter>
   );
