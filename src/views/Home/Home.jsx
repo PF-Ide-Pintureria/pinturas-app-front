@@ -1,4 +1,3 @@
-import style from "./Home.module.css";
 import banner from '../../img/banner-home.png';
 import featuredBanner from '../../img/featured-banner.png';
 import AboutCard from "../../components/AboutCard/AboutCard";
@@ -9,16 +8,14 @@ import React from "react";
 const Home = () => {
     return (
         <div>
-            <main className={style.container}>
-                <div className={style.bannerContainer}>
-                <img src={banner} alt="banner" className='max-width: fit-content;' />
+            <main className=''>
+                <div className=''>
+                <img src={banner} alt="banner" className='w-full' />
                 </div>
-                <div className={style.featured}>
-                    <img src={featuredBanner} alt="banner" className="w-full"/>
-                    <SearchBar />
+                <div className=''>
                     <FeaturedContainer />
                 </div>
-                <div className={style.about}>
+                <div className=''>
                     <AboutCard />
                 </div>
             </main>

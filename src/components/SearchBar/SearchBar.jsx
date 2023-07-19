@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../SearchBar/SearchBar.module.css";
+
 
 const SearchBar = () => {
 
@@ -16,7 +16,7 @@ const SearchBar = () => {
     };
 
     return (
-        <div className="min-h-screen bg-white flex flex-col justify-center">
+        <div className="h-32 bg-white flex flex-col justify-center">
             <div className="relative p-12 w-full sm:max-w-2xl sm:mx-auto">
                 <div className="overflow-hidden z-0 rounded-full relative p-3">
                     <form
