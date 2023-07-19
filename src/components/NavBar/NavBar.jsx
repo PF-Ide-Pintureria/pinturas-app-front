@@ -5,7 +5,7 @@ import logo from '../../img/logoIde.png'
 const Nav = ()  => {
     return (
         <div className='w-full h-48 flex justify-around items-center font-mono'>
-            <NavLink to="/contact" className="bg-yellow-400 bg-opacity-75 rounded-lg px-3 font-mono"> Pinturas </NavLink>
+            <NavLink to="/products" className="bg-yellow-400 bg-opacity-75 rounded-lg px-3 font-mono"> Pinturas </NavLink>
             <NavLink to="/contact" className="font-mono"> Contacto </NavLink>
             <NavLink to="/about" className="bg-yellow-400 bg-opacity-75 rounded-lg px-3 font-mono"> Sobre Nosotros </NavLink>
             <NavLink to="/" > <img src={logo} alt="logo Ide Pinturerias" className="w-40 "/></NavLink>
