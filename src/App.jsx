@@ -5,6 +5,9 @@ import About from "./views/About/About";
 import NavBar from "./components/NavBar/NavBar";
 import Contact from "./views/Contact/Contact";
 import Footer from "./components/Footer/Footer";
+import Cart from "./views/Cart/Cart";
+import Blog from "./views/Blog/Blog";
+import Login from "./views/Login/Login";
 
 function App() {
   return (
@@ -15,9 +18,9 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/blog" element={<Home />} />
-        <Route path="/cart" element={<Home />} />
-        <Route path="/account" element={<Home />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/account" element={<Login />} />
         <Route path="/about" element={<About />} />
       </Routes>
       <footer>
