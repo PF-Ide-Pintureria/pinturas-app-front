@@ -4,6 +4,7 @@ import Home from "./views/Home/Home";
 import About from "./views/About/About";
 import NavBar from "./components/NavBar/NavBar";
 import Contact from "./views/Contact/Contact";
+import Detail from "./views/Detail/Detail";
 import Footer from "./components/Footer/Footer";
 import Cart from "./views/Cart/Cart";
 import Blog from "./views/Blog/Blog";
@@ -22,6 +23,7 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/account" element={<Login />} />
         <Route path="/about" element={<About />} />
+        <Route path="/products/id" element={<Detail />} />
       </Routes>
       <footer>
         <Footer />
