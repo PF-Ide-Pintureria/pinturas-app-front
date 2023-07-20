@@ -36,7 +36,6 @@ const FeaturedContainer = () => {
             prodpackage="0,5 Litros"
           />
         </div>
-        <Paginated />
       </div>
     </div>
   );
