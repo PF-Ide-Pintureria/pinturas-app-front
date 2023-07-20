@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import style from "./Detail.module.css";
+import DeleteButton from "../../components/DeleteButton/DeleteButton";
 //import { Link, useParams } from "react-router-dom";
 
 const Detail = () => {
@@ -183,6 +184,9 @@ const Detail = () => {
             capacidades de 1; 4; 10 y 20 litros.
             {/* {product?.description}. */}
           </p>
+        </div>
+        <div className="flax justify-end">
+          <DeleteButton />
         </div>
       </div>
     </section>
