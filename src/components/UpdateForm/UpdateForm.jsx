@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { GET_ALL_CATEGORIES } from "../../redux/action-type";
+import { allCategories } from "../../redux/actions/allCategories";
 import validations from "./validations";
 
 
 const UpdateForm = () => {
 
-    // const dispatch = useDispatch();
-    // useEffect(() => {
-    //     dispatch({type: 'GET_ALL_CATEGORIES'})
-    // }, [dispatch])
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(allCategories())
+    }, [dispatch])
     const [selectedCategory, setSelectedCategory] = useState("")
     const [inputsForm, setInputsForm] = useState({
         id: "",
@@ -55,7 +55,7 @@ const UpdateForm = () => {
         alert('Se deberia modificar un producto')
     };
     
-    // const categories = useSelector(state => state.products)
+    const categories = useSelector(state => state.categories)
     return (
 
 
@@ -63,7 +63,7 @@ const UpdateForm = () => {
             <h2 className="text-primary uppercase font-bold">Actualizar producto</h2>
             <form className="justify-start" onSubmit={handleSubmit}>
                 <div className="m-8">
-                    <label htmlFor="name" className='bg-quaternary rounded-xl w-40 h-8'>ID:</label>
+                    <label htmlFor="id" className='bg-quaternary rounded-xl w-4'>ID:</label>
                     <input className='bg-formBg rounded-r-lg w-72 h-8' type="text" name="id" value={inputsForm.id} onChange={handleInputChange}/>
                 </div>
                 <div className="m-8">
@@ -77,17 +77,17 @@ const UpdateForm = () => {
                 <div className="m-8">
                     <label htmlFor="category" className='bg-quaternary rounded-xl w-40 h-8'>Categoría:</label>
                     <select value={selectedCategory} onChange={handleSelectedCategory}>
-                        {/* {categories.map((category, index) => (
+                        {categories.map((category, index) => (
                             <option key={index} value={category}>
                         {category}
                     </option>
-                        ))} */}
-                        <option value="">
+                        ))}
+                        {/* <option value="">
                             Selecciona una categoria...
                         </option>
                         <option value="categoria1">Categoría 1</option>
                         <option value="categoria2">Categoría 2</option>
-                        <option value="categoria3">Categoría 3</option>
+                        <option value="categoria3">Categoría 3</option> */}
                     </select>
                 </div>
                 <div className="m-8">

@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { GET_ALL_CATEGORIES } from "../../redux/action-type";
+import { allCategories } from "../../redux/actions/allCategories";
 import validations from "./validations";
 
 
 const CreateForm = () => {
 
-    // const dispatch = useDispatch();
-    // useEffect(() => {
-    //     dispatch({type: 'GET_ALL_CATEGORIES'})
-    // }, [dispatch])
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(allCategories())
+    }, [dispatch])
     const [selectedCategory, setSelectedCategory] = useState("")
     const [inputsForm, setInputsForm] = useState({
         name: "",
@@ -45,10 +45,7 @@ const CreateForm = () => {
 
     const handleSelectedCategory = (event) => {
         const selectedOption = event.target.value;
-        
-        const uniqueOptions = new Set(selectedCategory); 
-        uniqueOptions.add(selectedOption);
-        return uniqueOptions;
+        setSelectedCategory(selectedOption);
     };
 
     const handleSubmit = (event) => {
@@ -56,7 +53,7 @@ const CreateForm = () => {
         alert('Se deberia crear un producto')
     };
     
-    // const categories = useSelector(state => state.products)
+    const categories = useSelector(state => state.categories)
     return (
 
 
@@ -78,15 +75,15 @@ const CreateForm = () => {
                 <div className="m-4">
                     <label htmlFor="category" className='bg-quaternary rounded-xl w-40 h-8'>Categoría:</label>
                     <select value={selectedCategory} onChange={handleSelectedCategory}>
-                        {/* {categories.map((category, index) => (
+                        {categories.map((category, index) => (
                             <option key={index} value={category}>
                         {category}
                     </option>
-                        ))} */}
-                        <option>Seleccione una categoria...</option>
+                        ))}
+                        {/* <option>Seleccione una categoria...</option>
                         <option>Categoría 1</option>
                         <option>Categoría 2</option>
-                        <option>Categoría 3</option>
+                        <option>Categoría 3</option> */}
                     </select>
                 </div>
                 <div className="m-4">
