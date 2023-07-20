@@ -8,7 +8,7 @@ import {
 } from "../action-type";
 
 const initialState = {
-    products: [],
+    products: ['category 1', 'category 2'],
     detail: {}
 }
 
