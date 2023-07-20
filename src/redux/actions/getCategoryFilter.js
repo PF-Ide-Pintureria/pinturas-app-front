@@ -1,7 +1,7 @@
 import { GET_PRODUCT } from "../action-type";
 import axios from "axios";
 
-export const getProduct = (category, lowPrice, highPrice) => {
+export const getCategoryFilter = (category, lowPrice, highPrice) => {
     return async (dispatch) => {
         if (category && lowPrice && highPrice) {
             const product = (await axios.get(`http://localhost:3000/products?category=${category}&lowPrice=${lowPrice}&highPrice=${highPrice}`)).data.product;
