@@ -4,6 +4,7 @@ import { productById } from "../../redux/actions/productById";
 import React from "react";
 
 const Products = ({ idProduct, name, image, price, prodpackage }) => {
+  console.log(idProduct)
   const dispatch = useDispatch();
     const navigate = useNavigate();
     const handleDetailClick = () => {

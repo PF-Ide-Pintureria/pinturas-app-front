@@ -7,6 +7,8 @@ import { useSelector } from "react-redux";
 const ProductsContainer = () => {
   const products = useSelector((state) => state.products)
   console.log(products.totalPages);
+  console.log(products.idProduct);
+  
 
   return (
     <div className="flex w-full m-auto">
