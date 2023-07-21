@@ -1,156 +1,32 @@
-import React, { useState } from "react";
+import React from "react";
 import Products from "../Products/Products";
+import Paginated from "../Paginated/Paginated"
 import img from "../../img/pintura.png";
-// import Paginated from "../Paginated/Paginated"; // Asegúrate de que la ruta sea correcta
+import { useSelector } from "react-redux";
 
 const ProductsContainer = () => {
-  // Datos de los productos
-  const productsData = [
-    {
-      image: img,
-      name: "Lorem Ipsum 1",
-      price: "$ 2.340",
-      prodpackage: "20 Litros",
-    },
-    {
-      image: img,
-      name: "Lorem Ipsum 2",
-      price: "$ 2.340",
-      prodpackage: "20 Litros",
-    },
-    {
-      image: img,
-      name: "Lorem Ipsum 3",
-      price: "$ 2.340",
-      prodpackage: "20 Litros",
-    },
-    {
-      image: img,
-      name: "Lorem Ipsum 4",
-      price: "$ 2.340",
-      prodpackage: "20 Litros",
-    },
-    {
-      image: img,
-      name: "Lorem Ipsum 5",
-      price: "$ 2.340",
-      prodpackage: "20 Litros",
-    },
-    {
-      image: img,
-      name: "Lorem Ipsum 6",
-      price: "$ 2.340",
-      prodpackage: "20 Litros",
-    },
-    {
-      image: img,
-      name: "Lorem Ipsum 7",
-      price: "$ 2.340",
-      prodpackage: "20 Litros",
-    },
-    {
-      image: img,
-      name: "Lorem Ipsum 8",
-      price: "$ 2.340",
-      prodpackage: "20 Litros",
-    },
-    {
-      image: img,
-      name: "Lorem Ipsum 9",
-      price: "$ 2.340",
-      prodpackage: "20 Litros",
-    },
-    {
-      image: img,
-      name: "Lorem Ipsum 10",
-      price: "$ 2.340",
-      prodpackage: "20 Litros",
-    },
-    {
-      image: img,
-      name: "Lorem Ipsum 11",
-      price: "$ 2.340",
-      prodpackage: "20 Litros",
-    },
-    {
-      image: img,
-      name: "Lorem Ipsum 12",
-      price: "$ 2.340",
-      prodpackage: "20 Litros",
-    },
-    {
-      image: img,
-      name: "Lorem Ipsum 13",
-      price: "$ 2.340",
-      prodpackage: "20 Litros",
-    },
-    {
-      image: img,
-      name: "Lorem Ipsum 14",
-      price: "$ 2.340",
-      prodpackage: "20 Litros",
-    },
-    {
-      image: img,
-      name: "Lorem Ipsum 15",
-      price: "$ 2.340",
-      prodpackage: "20 Litros",
-    },
-    {
-      image: img,
-      name: "Lorem Ipsum 16",
-      price: "$ 2.340",
-      prodpackage: "20 Litros",
-    },
-    {
-      image: img,
-      name: "Lorem Ipsum 17",
-      price: "$ 2.340",
-      prodpackage: "20 Litros",
-    },
-    // Agrega más productos aquí...
-  ];
-
-  const itemsPerPage = 8; // Número de productos por página
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const indexOfLastProduct = currentPage * itemsPerPage;
-  const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
-  const currentProducts = productsData.slice(
-    indexOfFirstProduct,
-    indexOfLastProduct
-  );
-
-  // const totalPages = Math.ceil(productsData.length / itemsPerPage);
-
-  // const goToPage = (pageNumber) => {
-  //   setCurrentPage(pageNumber);
-  // };
+  const products = useSelector((state) => state.products)
+  console.log(products.totalPages);
+  console.log(products.idProduct);
+  
 
   return (
     <div className="flex w-full m-auto">
-      <div className="flex flex-col justify-center m-0 w-full">
-        <div className="flex flex-wrap w-4/5 mt-4 self-center justify-around object-center">
-          {currentProducts.map((product, index) => (
+      <div className="w-full flex flex-col justify-center">
+        <div className="w-11/12 grid grid-cols-4 gap-5">
+          {products.map((product) => (
             <Products
-              key={index}
+              key={product.idProduct}
+              id = {product.idProduct}
               image={product.image}
               name={product.name}
               price={product.price}
-              prodpackage={product.prodpackage}
+              package={product.package}
             />
           ))}
         </div>
-        <div className="flex w-full m-auto   mb-8">
-          <div className="flex flex-col justify-center m-0 w-full">
-            {/* <div className="flex justify-center">
-              <Paginated
-                currentPage={currentPage}
-                totalPages={totalPages}
-                goToPage={goToPage}
-              />
-            </div> */}
-          </div>
+        <div className="w-full flex justify-center items-center ">
+          <Paginated currentPage={1} totalPages={products.totalPages} goToPage={19}/>
         </div>
       </div>
     </div>

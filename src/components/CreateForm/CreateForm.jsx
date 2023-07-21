@@ -1,37 +1,39 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { GET_ALL_CATEGORIES } from "../../redux/action-type";
+import { allCategories } from "../../redux/actions/allCategories";
 import validations from "./validations";
+import { formatAndPost } from "./formatAndPost";
+import { BASE_URL } from "../../redux/action-type";
 
 const CreateForm = () => {
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //     dispatch({type: 'GET_ALL_CATEGORIES'})
-  // }, [dispatch])
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const [inputsForm, setInputsForm] = useState({
-    name: "",
-    price: "",
-    code: "",
-    category: "",
-    patent: "",
-    image: "",
-    color: "",
-    package: "",
-    stock: "",
-  });
+  const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(allCategories())
+    }, [dispatch])
+  
+    const [inputsForm, setInputsForm] = useState({
+        name: "",
+        price: "",
+        code: "",
+        category: "",
+        patent: "",
+        imagen: "",
+        color: "",
+        package: "",
+        stock: ""
+    });
 
-  const [errors, setErrors] = useState({
-    name: "",
-    price: "",
-    code: "",
-    category: "",
-    patent: "",
-    image: "",
-    color: "",
-    package: "",
-    stock: "",
-  });
+    const [errors, setErrors] = useState({
+        name: "",
+        price: "",
+        code: "",
+        category: "",
+        patent: "",
+        imagen: "",
+        color: "",
+        package: "",
+        stock: ""
+    });
 
   const handleInputChange = (event) => {
     const property = event.target.name;
@@ -41,20 +43,23 @@ const CreateForm = () => {
     setErrors(validations({ ...inputsForm, [property]: value }));
   };
 
-  const handleSelectedCategory = (event) => {
-    const selectedOption = event.target.value;
 
-    const uniqueOptions = new Set(selectedCategory);
-    uniqueOptions.add(selectedOption);
-    return uniqueOptions;
-  };
+    const handleSelectedCategory = (event) => {
+        const selectedOption = event.target.value;
+        setSelectedCategory(selectedOption);
+    };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    alert("Se deberia crear un producto");
-  };
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        response = await axios.post(`${BASE_URL}products`, inputsForm)
+        console.log('Respuesta axios ', response)
+        // formatAndPost(inputsForm, selectedCategory, dispatch);
+        alert('Producto Creado con exito?')
+    };
+    
 
-  // const categories = useSelector(state => state.products)
+
+  const categories = useSelector(state => state.categories)
   return (
     <div className="justify-start">
       <h2 className="text-primary uppercase font-bold  flex items-center justify-center">
@@ -115,20 +120,17 @@ const CreateForm = () => {
           </label>
           <select
             className="bg-formBg rounded-r-lg w-72 h-8"
-            value={selectedCategory}
-            onChange={handleSelectedCategory}
+            value={inputsForm.category}
+            onChange={handleInputChange}
           >
-            {/* {categories.map((category, index) => (
-                            <option key={index} value={category}>
+            <option style={{ textAlign: "center" }} value="">
+                Selecciona una categoria
+            </option>
+            {categories.map((category, index) => (
+                            <option key={index} name='category' value={category}>
                         {category}
                     </option>
-                        ))} */}
-            <option style={{ textAlign: "center" }} value="">
-              Selecciona una categoria
-            </option>
-            <option>Categoría 1</option>
-            <option>Categoría 2</option>
-            <option>Categoría 3</option>
+                        ))}
           </select>
         </div>
         <div className="flex m-8">
@@ -148,20 +150,20 @@ const CreateForm = () => {
         </div>
         <div className="flex m-8">
           <label
-            htmlFor="image"
+            htmlFor="imagen"
             className="bg-quaternary rounded-l-xl w-40 h-8 flex items-center justify-center cursor-pointer"
           >
             Selecciona tu img:
             <input
               className="opacity-0 absolute"
               type="file"
-              name="name"
+              name="imagen"
               accept="image/*"
               onChange={handleInputChange}
             />
           </label>
           <span className="bg-formBg rounded-r-lg w-72 h-8 flex items-center px-3">
-            {inputsForm.image && `Imagen seleccionada: ${inputsForm.image}`}
+            {inputsForm.imagen && `Imagen seleccionada: ${inputsForm.imagen}`}
           </span>
         </div>
         <div className="flex m-8">
@@ -221,6 +223,7 @@ const CreateForm = () => {
               CREAR PRODUCTO
             </h2>
           </button>
+
         </div>
       </form>
     </div>
