@@ -1,9 +1,9 @@
 import axios from "axios";
-import { POST_PRODUCT } from '../action-type';
+import { POST_PRODUCT, BASE_URL } from '../action-type';
 
-export const postProduct = (form) => {
+export const postProduct = (productCreate) => {
     return async (dispatch) => {
-        const newProduct = (await axios.post("http://localhost:3000/products", form)).data;
+        const newProduct = (await axios.post(`${BASE_URL}/products`, form)).data.products;
         dispatch({ type: POST_PRODUCT, payload: newProduct });
     }
 }

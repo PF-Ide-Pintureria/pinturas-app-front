@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { GET_ALL_CATEGORIES } from "../../redux/action-type";
+import { allCategories } from "../../redux/actions/allCategories";
 import validations from "./validations";
 
 const UpdateForm = () => {
@@ -21,16 +21,34 @@ const UpdateForm = () => {
     stock: "",
   });
 
-  const [errors, setErrors] = useState({
-    name: "",
-    price: "",
-    category: "",
-    patent: "",
-    image: "",
-    color: "",
-    package: "",
-    stock: "",
-  });
+
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(allCategories())
+    }, [dispatch])
+    const [selectedCategory, setSelectedCategory] = useState("")
+    const [inputsForm, setInputsForm] = useState({
+        id: "",
+        name: "",
+        price: "",
+        category: "",
+        patent: "",
+        image: "",
+        color: "",
+        package: "",
+        stock: ""
+    });
+
+    const [errors, setErrors] = useState({
+        name: "",
+        price: "",
+        category: "",
+        patent: "",
+        image: "",
+        color: "",
+        package: "",
+        stock: ""
+    });
 
   const handleInputChange = (event) => {
     const property = event.target.name;
@@ -43,15 +61,20 @@ const UpdateForm = () => {
   const handleSelectedCategory = (event) => {
     const selectedOption = event.target.value;
 
-    const uniqueOptions = new Set(selectedCategory);
-    uniqueOptions.add(selectedOption);
-    return uniqueOptions;
-  };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        alert('Se deberia modificar un producto')
+    };
+    
+    const categories = useSelector(state => state.categories)
+    return (
 
   const handleSubmit = (event) => {
     event.preventDefault();
     alert("Se deberia modificar un producto");
   };
+
 
   // const categories = useSelector(state => state.products)
   return (
@@ -117,17 +140,11 @@ const UpdateForm = () => {
             value={selectedCategory}
             onChange={handleSelectedCategory}
           >
-            {/* {categories.map((category, index) => (
-                            <option key={index} value={category}>
-                        {category}
-                    </option>
-                        ))} */}
-            <option style={{ textAlign: "center" }} value="">
-              Selecciona una categoria
-            </option>
-            <option value="categoria1">Categoría 1</option>
-            <option value="categoria2">Categoría 2</option>
-            <option value="categoria3">Categoría 3</option>
+            {categories.map((category, index) => (
+                <option key={index} value={category}>
+                  {category}
+                </option>
+             ))}
           </select>
         </div>
         <div className="flex m-8">
