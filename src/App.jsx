@@ -10,8 +10,7 @@ import Cart from "./views/Cart/Cart";
 import Blog from "./views/Blog/Blog";
 import Login from "./views/Login/Login";
 import Products from "./views/Products/Products";
-import AdminDashboard from "./views/AdminDashboard/AdminDashboard"
-
+import AdminDashboard from "./views/AdminDashboard/AdminDashboard";
 
 function App() {
   return (
@@ -28,7 +27,7 @@ function App() {
         <Route path="/account" element={<Login />} />
         <Route path="/about" element={<About />} />
         <Route path="/products" element={<Products />} />
-        <Route path="/products/:id" element={<Detail />} />
+        <Route path="/products/:idProduct" element={<Detail />} />
       </Routes>
       <footer>
         <Footer />
