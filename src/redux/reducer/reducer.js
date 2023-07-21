@@ -2,7 +2,7 @@ import {
     GET_ALL_PRODUCTS,
     GET_ALL_CATEGORIES,
     DELETE_PRODUCT,
-    GET_CATEGORY_FILTER,
+    GET_PRODUCT_FILTER,
     POST_PRODUCT,
     GET_PRODUCT_BY_ID,
     GET_PRODUCT_BY_NAME,
@@ -23,7 +23,7 @@ const reducer = (state = initialState, {type, payload}) => {
             return {...state, categories: payload}
         case DELETE_PRODUCT:
             return {...state, products: payload}
-        case GET_CATEGORY_FILTER:
+        case GET_PRODUCT_FILTER:
             return {...state, products: payload}
         case POST_PRODUCT:
             return {...state, products: payload}
