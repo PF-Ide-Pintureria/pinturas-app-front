@@ -11,6 +11,7 @@ import Blog from "./views/Blog/Blog";
 import Login from "./views/Login/Login";
 import Products from "./views/Products/Products";
 import AdminDashboard from "./views/AdminDashboard/AdminDashboard"
+import Account from "./views/Account/Account";
 
 
 function App() {
@@ -25,10 +26,10 @@ function App() {
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/account" element={<Login />} />
+        <Route path="/account" element={<AdminDashboard/>} />
         <Route path="/about" element={<About />} />
         <Route path="/products" element={<Products />} />
-        <Route path="/products/:id" element={<Detail />} />
+        <Route path="/products/:idProduct" element={<Detail />} />
       </Routes>
       <footer>
         <Footer />
