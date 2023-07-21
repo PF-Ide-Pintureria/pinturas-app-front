@@ -3,8 +3,14 @@ import industrial from "../../img/industrial.png";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import "../Products/Products.css";
 import ProductsContainer from "../../components/ProductsContainer/ProductsContainer";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { allProducts } from "../../redux/actions/allProducts";
 
 const ProductsPage = () => {
+
+  const dispatch = useDispatch();
+
   const [esMarcaAbierto, setEsMarcaAbierto] = useState(false);
   const [esPresentacionAbierto, setEsPresentacionAbierto] = useState(false);
   const [esPrecioAbierto, setEsPrecioAbierto] = useState(false);
@@ -24,6 +30,10 @@ const ProductsPage = () => {
         break;
     }
   };
+
+  useEffect(() => {
+    dispatch(allProducts());  
+    }, [dispatch]);
 
   return (
     <div>
