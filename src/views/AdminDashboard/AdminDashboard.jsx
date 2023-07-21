@@ -1,20 +1,24 @@
 import React from "react";
 import CreateForm from "../../components/CreateForm/CreateForm";
 import UpdateForm from "../../components/UpdateForm/UpdateForm";
+import "../AdminDashboard/AdminDashboard.css";
 
 const AdmindDashboard = () => {
-    return (
-        <div className="border-4 border-solid border-primary m-10 rounded-2xl p-6">
-            <div className="flex self-center justify-around">
-                <div className="m-5 border-2 border-solid border-primary rounded-xl p-5">
-                    <CreateForm />
-                </div>
-                <div className="m-5 border-2 border-solid border-primary rounded-xl p-5">
-                    <UpdateForm/>
-                </div>
-            </div>
+  return (
+    <div>
+      <div className="background">
+        {" "}
+        <div className="flex self-center justify-around">
+          <div className="form">
+            <CreateForm />
+          </div>
+          <div className="form">
+            <UpdateForm />
+          </div>
         </div>
-    )
-}
+      </div>
+    </div>
+  );
+};
 
 export default AdmindDashboard;
