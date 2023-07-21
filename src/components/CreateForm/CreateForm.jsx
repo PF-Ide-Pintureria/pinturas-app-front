@@ -9,23 +9,8 @@ const CreateForm = () => {
     useEffect(() => {
         dispatch(allCategories())
     }, [dispatch])
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const [inputsForm, setInputsForm] = useState({
-    name: "",
-    price: "",
-    code: "",
-    category: "",
-    patent: "",
-    image: "",
-    color: "",
-    package: "",
-    stock: "",
-  });
+  
 
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(allCategories())
-    }, [dispatch])
     const [selectedCategory, setSelectedCategory] = useState("")
     const [inputsForm, setInputsForm] = useState({
         name: "",
