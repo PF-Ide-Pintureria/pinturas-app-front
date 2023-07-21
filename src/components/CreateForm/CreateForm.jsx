@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { allCategories } from "../../redux/actions/allCategories";
 import validations from "./validations";
+import { formatAndPost } from "./formatAndPost";
 
 
 const CreateForm = () => {
@@ -49,12 +50,14 @@ const CreateForm = () => {
     };
 
     const handleSubmit = (event) => {
-        event.preventDefault();
-        alert('Se deberia crear un producto')
+    event.preventDefault();
+        formatAndPost(inputsForm, selectedCategory);
     };
+
     
     const categories = useSelector(state => state.categories)
-    return (
+    
+        return (
 
 
         <div className="justify-start">
@@ -92,7 +95,7 @@ const CreateForm = () => {
                 </div>
                 <div className="m-4">
                     <label htmlFor="image" className='bg-quaternary rounded-xl w-40 h-8'>Image:</label>
-                    <input className='bg-formBg rounded-r-lg w-72 h-8' type="file" name="name" accept="image/*" value={inputsForm.image} onChange={handleInputChange}/>
+                    <input className='bg-formBg rounded-r-lg w-72 h-8' type="file" name="image" accept="image/*" value={inputsForm.image} onChange={handleInputChange}/>
                 </div>
                 <div className="m-4">
                     <label htmlFor="package" className='bg-quaternary rounded-xl w-40 h-8'>Package:</label>
