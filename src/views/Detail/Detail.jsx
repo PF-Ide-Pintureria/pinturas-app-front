@@ -1,27 +1,17 @@
-import React, { useState } from "react";
-import style from "./Detail.module.css";
 import DeleteButton from "../../components/DeleteButton/DeleteButton";
-//import { Link, useParams } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+import { productById } from "../../redux/actions/productById";
 
 const Detail = () => {
-  //   const [quantity, setQuantity] = useState(1);
+  const dispatch = useDispatch();
+  const { idProduct } = useParams();
+  const product = useSelector((state) => state.detail);
 
-  //   // Función para disminuir la cantidad
-  //   const decreaseQuantity = () => {
-  //     if (quantity > 1) {
-  //       setQuantity(quantity - 1);
-  //     }
-  //   };
-  //   // Función para aumentar la cantidad
-  //   const increaseQuantity = () => {
-  //     setQuantity(quantity + 1);
-  //   };
-
-  //   const [setSelectedImage] = useState < string > "";
-
-  //   const handleImageClick = (image) => {
-  //     setSelectedImage(image);
-  //   };
+  useEffect(() => {
+    dispatch(productById(idProduct));
+  }, [dispatch, idProduct]);
 
   return (
     <section className="py-4 sm:py-4">
@@ -55,13 +45,12 @@ const Detail = () => {
               <div className="flex items-center">
                 <span className="mx-2 text-gray-400">/</span>
                 <div className="-m-1">
-                  {/* <a
+                  <a
                     href="/products"
                     className="rounded-md p-1 text-sm font-medium text-gray-600 focus:text-gray-900 focus:shadow hover:text-gray-800"
                     aria-current="page">
-                    {product?.category?.map((el) => el.name)}{" "}
-                  </a> */}{" "}
-                  Categoria
+                    {product?.category}
+                  </a>
                 </div>
               </div>
             </li>
@@ -74,10 +63,8 @@ const Detail = () => {
                 <div className="max-w-xl overflow-hidden rounded-lg">
                   <img
                     className="w-full h-80 max-w-full object-cover"
-                    src="https://http2.mlstatic.com/D_NQ_NP_2X_985510-MLA52398336866_112022-F.jpg"
-                    // {product?.image}
-                    alt="imagen"
-                    // {product?.name}
+                    src={product?.image}
+                    alt={product?.name}
                   />
                 </div>
               </div>
@@ -88,15 +75,18 @@ const Detail = () => {
 
           <div className="lg:col-span-2 lg:row-span-2 lg:row-end-2">
             <h1 className="sm: text-2xl font-bold text-gray-900 sm:text-3xl">
-              Pinturilla de prueba Blanca 20 Lts
-              {/* {product?.name} */}
+              {product?.name}
             </h1>
+            <p className=" mt-2 ml-2 text-sm font-medium text-gray-500">
+              Marca:
+              {product?.patent}
+            </p>
             <div className="mt-5 flex items-center">
               <div className="flex items-center mt-2">
                 <div className="rating-stars flex mr-3">Rating ⭐⭐⭐⭐⭐</div>
               </div>
               <span className="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-auto ">
-                4.8
+                {product?.rating}
               </span>
             </div>
             <p className=" mt-2 ml-2 text-sm font-medium text-gray-500">
@@ -104,14 +94,19 @@ const Detail = () => {
             </p>
             <p className=" mt-2 ml-2 text-sm font-medium text-gray-500">
               Cantidades disponibles:
-              {/* {product?.stock || 0} */} 4
+              {product?.stock || 0}
+            </p>
+            <p className=" mt-2 ml-2 text-sm font-medium text-gray-500">
+              Presentación:
+              {product?.package}
+            </p>
+            <p className=" mt-2 ml-2 text-sm font-medium text-gray-500">
+              Color:
+              {product?.color}
             </p>
             <div className="mt-10 flex flex-col items-center justify-between space-y-4 border-t border-b py-4 sm:flex-row sm:space-y-0">
               <div className="flex items-end">
-                <h1 className="text-3xl font-bold">
-                  $ 2199.99
-                  {/* {product?.price} */}
-                </h1>
+                <h1 className="text-3xl font-bold">$ {product?.price}</h1>
               </div>
               <button
                 // onClick={handleClick}
@@ -145,45 +140,7 @@ const Detail = () => {
           </div>
         </div>
         <div className="mt-8 flow-root sm:mt-12">
-          <p className="mt-4">
-            Pintura elaborada a base de polímeros acrílicos en dispersión
-            acuosa, que contiene dióxido de titanio como pigmento. Proporciona
-            un hermoso acabado mate aterciopelado de máxima resistencia al
-            lavado y al desgaste y además presenta buena hidrorrepelencia. Su
-            principal función es ser Lavable en Interior. Descripción y
-            Composición Pintura elaborada a base de polímeros acrílicos en
-            dispersión acuosa, que contiene dióxido de titanio como pigmento.
-            Proporciona un hermoso acabado mate aterciopelado de máxima
-            resistencia al lavado y al desgaste. Este producto presenta buena
-            hidrorrepelencia sin ser barrera al vapor de agua, por lo que
-            resulta ideal para todos los trabajos donde se exija el mejor
-            desempeño en acabado y durabilidad. Altamente lavable.
-            Características Generales Empleo preferente: Ideal para ser
-            utilizada en superficies Interiores y Exteriores. Es totalmente
-            lavable en interior. Acabado: Mate. Colores: Se provee en color
-            blanco. Con el agregado de entonador hasta un máximo de 35 cm³ por
-            litro se puede obtener una amplia gama de colores. Propiedades
-            Físico-químicas Consistencia o viscosidad: 95 - 100 UK Viscosímetro
-            Stormer a 25º C. Vida útil: El producto en el envase mantiene sus
-            propiedades durante por lo menos 2 años. Poder cubriente: Muy bueno.
-            Puesta en Obra Preparación previa de las superficies Es
-            indispensable que las superficies a pintar estén limpias, secas,
-            desengrasadas, libres de partículas de polvo y pintura vieja mal
-            adherida. Si en la superficie hay hongos es imprescindible
-            eliminarlos. Uso de Fondos Superficies Nuevas Debe aplicarse una
-            mano de SELLADOR - FIJADOR CONCENTRADO correctamente diluido (1:2)
-            en agua. Superficies Pintadas Aplicar el mismo procedimiento que en
-            las nuevas, eliminando las partes flojas. Modo de Aplicación Se
-            aplica a pincel, rodillo o soplete airless ya sea con su
-            consistencia normal o diluido con la mínima cantidad de agua posible
-            (5 - 10%). Los elementos usados deben limpiarse con agua
-            inmediatamente después de haber terminado el trabajo. Rendimiento: 8
-            - 15 m² por litro y por mano (según la superficie). Tiempo de secado
-            al tacto: 1 hora. Tiempo de secado entre manos: 4 horas. Tiempo de
-            secado final: 7 dias. Datos Comerciales Envases: Se provee en
-            capacidades de 1; 4; 10 y 20 litros.
-            {/* {product?.description}. */}
-          </p>
+          <p className="mt-4">{product?.description}</p>
         </div>
         <div className="flax justify-end">
           <DeleteButton />
