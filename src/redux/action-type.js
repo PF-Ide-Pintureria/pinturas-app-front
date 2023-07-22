@@ -14,6 +14,10 @@ export const GET_PRODUCT_BY_NAME = 'GET_PRODUCT_BY_NAME';
 
 export const PUT_PRODUCT = 'PUT_PRODUCT';
 
-export const GET_BEST_SELL = "GET_BEST_SELL"
+export const GET_BEST_SELL = "GET_BEST_SELL";
+
+export const SET_TOTAL_PAGES = "SET_TOTAL_PAGES";
+
+export const  SET_PAGE = "SET_PAGE";
 
 export const BASE_URL = "https://back-server-pinturas-app.onrender.com/";

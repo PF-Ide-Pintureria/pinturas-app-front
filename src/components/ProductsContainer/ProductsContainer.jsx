@@ -1,12 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Products from "../Products/Products";
 import Paginated from "../Paginated/Paginated"
-import img from "../../img/pintura.png";
-import { useSelector } from "react-redux";
+import { setPage } from "../../redux/actions/setPage";
+// import img from "../../img/pintura.png";
+import { useSelector, useDispatch } from "react-redux";
+import { allProducts } from "../../redux/actions/allProducts";
+import { useNavigate } from "react-router-dom";
 
 const ProductsContainer = () => {
+    const navigate = useNavigate()
+    const dispatch = useDispatch();
 
-    const products = useSelector((state) => state.products);
+    const { products, totalPages, thisPage } = useSelector((state) => state);
+    
+    const handlePageChange = (page) => {
+        dispatch(setPage(page));
+        dispatch(allProducts(page))
+        // navigate(`/products?page=${page}`)
+        console.log(page);
+    };
+
+    useEffect(() => {
+        dispatch(setPage(1));
+    }, [])
 
     return (
         <div className="flex w-full m-auto">
@@ -23,9 +39,12 @@ const ProductsContainer = () => {
                         />
                     ))}
                 </div>
-                <div className="w-full flex justify-center items-center ">
-                    <Paginated currentPage={1}
-                        totalPages={products.totalPages} goToPage={19} />
+                <div className="w-full flex justify-center items-center my-7">
+                    <Paginated 
+                        totalPages={totalPages}
+                        thisPage={thisPage}
+                        pageChange={handlePageChange}
+                    />
                 </div>
             </div>
 

@@ -1,38 +1,88 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-const Paginated = ({ currentPage, totalPages, goToPage }) => {
-  const renderPageNumbers = () => {
-    const pageNumbers = [];
-    for (let i = 1; i <= totalPages; i++) {
-      pageNumbers.push(
-        <li key={i}>
-          <button
-            className={`px-6 py-2 mx-0 font-bold text-white bg-gray-700 ${
-              currentPage === i
-                ? "bg-gray-700"
-                : "bg-gray-700 hover:bg-purple-700"
-            }`}
-            onClick={() => goToPage(i)}
-          >
-            {i}
-          </button>
-        </li>
-      );
+const Paginated = ({ thisPage, totalPages, pageChange }) => {
+  const totalPagesToShow = 7;
+  const [startPage, setStartPage] = useState(1);
+  const [endPage, setEndPage] = useState(Math.min(totalPages, totalPagesToShow));
+
+  useEffect(() => {
+    // Calculamos el rango de páginas a mostrar
+    let newStartPage = Math.max(1, thisPage - Math.floor(totalPagesToShow / 2));
+    let newEndPage = Math.min(totalPages, newStartPage + totalPagesToShow - 1);
+
+    // Si el rango calculado es menor que totalPagesToShow, lo ajustamos para que siempre se muestren totalPagesToShow botones
+    if (newEndPage - newStartPage < totalPagesToShow - 1) {
+      newEndPage = Math.min(totalPages, newStartPage + totalPagesToShow - 1);
+      newStartPage = Math.max(1, newEndPage - totalPagesToShow + 1);
     }
-    return pageNumbers;
+
+    setStartPage(newStartPage);
+    setEndPage(newEndPage);
+  }, [thisPage, totalPagesToShow, totalPages]);
+
+
+  const prevPage = () => {
+    if (thisPage > 1) {
+      pageChange(thisPage - 1);
+    }
   };
 
+  const nextPage = () => {
+    if (thisPage < totalPages) {
+      pageChange(thisPage + 1);
+    }
+  };
+
+  const firstPage = () => {
+    pageChange(1);
+  };
+
+  const lastPage = () => {
+    pageChange(totalPages);
+  };
+
+  const renderPageNumbers = () => {
+  const pageNumbers = [];
+  for (let i = startPage; i <= endPage; i++) {
+    pageNumbers.push(
+      <li key={i}>
+        <button
+          className={`px-6 py-2 mx-0 font-bold text-white bg-gray-700 ${
+            thisPage === i ? "bg-gray-900" : "bg-gray-700 hover:bg-purple-700"
+          }`}
+          onClick={() => pageChange(i)}
+          disabled={thisPage === i} // Agregar esta línea para desactivar el botón de la página actual
+        >
+          {i}
+        </button>
+      </li>
+    );
+  }
+  return pageNumbers;
+};
+
   return (
-    <div className="mt-6">
+    <div className="my-11">
       <nav aria-label="Page navigation example">
         <ul className="inline-flex -space-x-px text-base h-10">
           <li>
             <button
+              className={`flex items-center justify-center px-4 h-10 mx-2.5 leading-tight text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white ${
+                thisPage === 1 ? "cursor-not-allowed" : "hover:bg-gray-100"
+              } `}
+              onClick={() => firstPage()}
+              disabled={thisPage === 1}
+            >
+              First Page
+            </button>
+          </li>
+          <li>
+            <button
               className={`flex items-center justify-center px-4 h-10 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white ${
-                currentPage === 1 ? "cursor-not-allowed" : "hover:bg-gray-100"
+                thisPage === 1 ? "cursor-not-allowed" : "hover:bg-gray-100"
               }`}
-              onClick={() => goToPage(currentPage - 1)}
-              disabled={currentPage === 1}
+              onClick={() => prevPage()}
+              disabled={thisPage === 1}
             >
               Previous
             </button>
@@ -41,14 +91,23 @@ const Paginated = ({ currentPage, totalPages, goToPage }) => {
           <li>
             <button
               className={`flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white ${
-                currentPage === totalPages
+                thisPage === totalPages
                   ? "cursor-not-allowed"
                   : "hover:bg-gray-100"
               }`}
-              onClick={() => goToPage(currentPage + 1)}
-              disabled={currentPage === totalPages}
+              onClick={() => nextPage()}
+              disabled={thisPage === totalPages}
             >
               Next
+            </button>
+          </li>
+          <li>
+            <button
+              className={`flex items-center justify-center px-4 h-10 mx-2.5 leading-tight text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white `}
+              onClick={() => lastPage()}
+              disabled={thisPage === totalPages}
+            >
+              Last Page
             </button>
           </li>
         </ul>
