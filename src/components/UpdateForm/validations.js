@@ -3,7 +3,7 @@ const reNums = /^\d{1,2}$/; //solo permite el ingreso de numeros
 const validations = ({price, color, stock}) => {
 
     const errors = {}
-    if (!reName.test(color)) errors.name = "El color no debe contener numeros"
+    if (!reName.test(color)) errors.color = "El color no debe contener numeros"
 
     if (!reNums.test(price)) errors.price = "solo ingresar números"
 

@@ -1,8 +1,6 @@
 import Featured from "../Featured/Featured";
-import img from "../../img/pintura.png";
 import featuredBanner from "../../img/featured-banner.png";
 import React from "react";
-import SearchBar from "../SearchBar/SearchBar";
 import { useSelector } from "react-redux";
 
 const FeaturedContainer = () => {
