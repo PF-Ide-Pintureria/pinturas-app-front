@@ -1,33 +1,38 @@
 import React, { useState } from "react";
-
+import { useLocation } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import {useDispatch} from 'react-redux';
+import { productByName } from '../../redux/actions/productByName'
+import { allProducts } from '../../redux/actions/allProducts';
+import { useSelector } from "react-redux";
 
 const SearchBar = () => {
-  const [searchText, setSearchText] = useState("");
+  const [search, setSearch] = useState("");
+  const location = useLocation();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const products = useSelector((state) => state.products)
 
   const handleChange = (event) => {
-    setSearchText(event.target.value);
+    // event.preventDefault();
+    setSearch(event.target.value);
+      event.target.value.length 
+      ? dispatch(productByName(event.target.value))
+      : dispatch(allProducts())
   };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // lógica de búsqueda utilizando el valor de searchText
-    console.log("Realizar búsqueda con el texto:", searchText);
-  };
-
+  
   return (
     <div className="h-32 bg-white flex flex-col justify-center">
       <div className="relative p-12 w-full sm:max-w-2xl sm:mx-auto">
         <div className="overflow-hidden z-0 rounded-full relative p-3">
-          <form
-            role="form"
+          <div
             className="relative flex z-50 bg-white rounded-full border-2 border-purple-600"
-            onSubmit={handleSubmit}
           >
             <input
-              type="text"
-              placeholder="Busca tu pintura"
-              className="rounded-full flex-1 px-6 py-4 text-white-700 focus:outline-none"
-              value={searchText}
+              type="search"
+              placeholder="Busca tu producto"
+              className=" cursor-text rounded-full flex-1 px-6 py-4 text-white-700 focus:outline-none"
+              value={search}
               onChange={handleChange}
               style={{ border: "none" }}
             />
@@ -59,7 +64,7 @@ const SearchBar = () => {
                 />
               </svg>
             </button>
-          </form>
+          </div>
         </div>
       </div>
     </div>

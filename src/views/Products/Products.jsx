@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import industrial from "../../img/industrial.png";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import "../Products/Products.css";
 import ProductsContainer from "../../components/ProductsContainer/ProductsContainer";
-import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { allProducts } from "../../redux/actions/allProducts";
 

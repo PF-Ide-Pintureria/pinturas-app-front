@@ -28,6 +28,7 @@ const ProductsContainer = () => {
                         totalPages={products.totalPages} goToPage={19} />
                 </div>
             </div>
+
         </div>
     );
 

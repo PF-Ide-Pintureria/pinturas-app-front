@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { productById } from "../../redux/actions/productById";
 import React from "react";
 
+
 const Products = ({ idProduct, name, image, price, prodpackage }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -26,6 +27,7 @@ const Products = ({ idProduct, name, image, price, prodpackage }) => {
             </div>
         </div>
     );
+
 };
 
 export default Products;
