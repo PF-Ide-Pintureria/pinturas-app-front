@@ -8,7 +8,7 @@ const FeaturedContainer = () => {
   return (
     <div className="flex  w-full m-auto">
       <div className="flex flex-col justify-center m-0 w-full">
-        <SearchBar />
+        
         <img src={featuredBanner} alt="banner" className="w-full" />
         <div className="flex w-4/5 column-4 mt-4 self-center justify-around object-center">
           <Featured

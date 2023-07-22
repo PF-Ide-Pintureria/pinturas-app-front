@@ -13,7 +13,7 @@ const Home = () => {
         <div>
           <img src={banner} alt="banner" className="max-width: fit-content;" />
         </div>
-
+        <SearchBar />
         <div>
           <FeaturedContainer />
         </div>
