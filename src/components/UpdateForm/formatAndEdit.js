@@ -1,17 +1,17 @@
 
-import { postProduct } from "../../redux/actions/postProduct";
+import putProducts from '../../redux/actions/putProducts';
 import React from "react";
 
 
-export const formatAndPost = async (inputsForm, dispatch) => {
+export const formatAndEdit = async (inputsForm, dispatch) => {
     try {
-        const newProduct = {
+        const editedProduct = {
             ...inputsForm,
         };
-        await postProduct(newProduct)(dispatch).then((res) => {
+        await putProducts(editedProduct)(dispatch).then((res) => {
             if (res.status === 201) {
-                console.log('Producto creado correctamente');
-                alert(`Producto creado correctamente con el id: ${res.data.product.idProduct}`);
+                console.log('Producto modificado correctamente');
+                alert(`Producto ${res.data.product.idProduct} modificado correctamente`);
             }else{
                 console.log('res.status', res.status);
             }
