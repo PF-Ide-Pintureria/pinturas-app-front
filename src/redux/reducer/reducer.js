@@ -7,14 +7,18 @@ import {
     GET_BEST_SELL,
     DELETE_PRODUCT,
     POST_PRODUCT,
-    PUT_PRODUCT
+    PUT_PRODUCT,
+    SET_TOTAL_PAGES,
+    SET_PAGE
 } from "../action-type";
 
 const initialState = {
     products: [],
     categories: [],
     detail: {},
-    bestSell: []
+    bestSell: [],
+    totalPages: 0,
+    thisPage: 1,
 }
 
 const reducer = (state = initialState, {type, payload}) => {
@@ -37,6 +41,10 @@ const reducer = (state = initialState, {type, payload}) => {
             return {...state, products: payload}
         case GET_BEST_SELL:
             return { ...state, bestSell: payload}
+        case SET_TOTAL_PAGES:
+            return {...state, totalPages: payload}
+        case SET_PAGE:
+            return { ...state, thisPage: payload}
         default:
             return { ...state }
     }

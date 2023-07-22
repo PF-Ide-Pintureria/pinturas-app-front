@@ -1,10 +1,18 @@
-import { GET_ALL_PRODUCTS, BASE_URL } from "../action-type";
+import { GET_ALL_PRODUCTS, SET_TOTAL_PAGES, BASE_URL } from "../action-type";
 import axios from "axios";
 
-export const allProducts = () => {
+export const allProducts = (page) => {
     return async (dispatch) => {
-        const all = (await axios.get(`${BASE_URL}products/`)).data.results.rows;
-        dispatch({ type: GET_ALL_PRODUCTS, payload: all })
+        const pages = (await axios.get(`${BASE_URL}products/`)).data.pages
+        dispatch({ type: SET_TOTAL_PAGES, payload: pages })
+        if (!page){
+            const products = (await axios.get(`${BASE_URL}products`)).data.results.rows;
+            return dispatch({ type: GET_ALL_PRODUCTS, payload: products })
+        }
+        else {
+            const products = (await axios.get(`${BASE_URL}products?page=${page}`)).data.results.rows;
+            return dispatch({ type: GET_ALL_PRODUCTS, payload: products })
+        }
     }
 }
 
