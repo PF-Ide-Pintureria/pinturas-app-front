@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { allCategories } from "../../redux/actions/allCategories";
 import validations from "./validations";
 import { formatAndPost } from "./formatAndPost";
+import { BASE_URL } from "../../redux/action-type";
 
 const CreateForm = () => {
   const dispatch = useDispatch();
@@ -10,15 +11,13 @@ const CreateForm = () => {
         dispatch(allCategories())
     }, [dispatch])
   
-
-    const [selectedCategory, setSelectedCategory] = useState("")
     const [inputsForm, setInputsForm] = useState({
         name: "",
         price: "",
         code: "",
         category: "",
         patent: "",
-        image: "",
+        imagen: "",
         color: "",
         package: "",
         stock: ""
@@ -30,7 +29,7 @@ const CreateForm = () => {
         code: "",
         category: "",
         patent: "",
-        image: "",
+        imagen: "",
         color: "",
         package: "",
         stock: ""
@@ -50,9 +49,12 @@ const CreateForm = () => {
         setSelectedCategory(selectedOption);
     };
 
-    const handleSubmit = (event) => {
-    event.preventDefault();
-        formatAndPost(inputsForm, selectedCategory);
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        response = await axios.post(`${BASE_URL}products`, inputsForm)
+        console.log('Respuesta axios ', response)
+        // formatAndPost(inputsForm, selectedCategory, dispatch);
+        alert('Producto Creado con exito?')
     };
     
 
@@ -118,14 +120,14 @@ const CreateForm = () => {
           </label>
           <select
             className="bg-formBg rounded-r-lg w-72 h-8"
-            value={selectedCategory}
-            onChange={handleSelectedCategory}
+            value={inputsForm.category}
+            onChange={handleInputChange}
           >
             <option style={{ textAlign: "center" }} value="">
                 Selecciona una categoria
             </option>
             {categories.map((category, index) => (
-                            <option key={index} value={category}>
+                            <option key={index} name='category' value={category}>
                         {category}
                     </option>
                         ))}
@@ -148,20 +150,20 @@ const CreateForm = () => {
         </div>
         <div className="flex m-8">
           <label
-            htmlFor="image"
+            htmlFor="imagen"
             className="bg-quaternary rounded-l-xl w-40 h-8 flex items-center justify-center cursor-pointer"
           >
             Selecciona tu img:
             <input
               className="opacity-0 absolute"
               type="file"
-              name="image"
+              name="imagen"
               accept="image/*"
               onChange={handleInputChange}
             />
           </label>
           <span className="bg-formBg rounded-r-lg w-72 h-8 flex items-center px-3">
-            {inputsForm.image && `Imagen seleccionada: ${inputsForm.image}`}
+            {inputsForm.imagen && `Imagen seleccionada: ${inputsForm.imagen}`}
           </span>
         </div>
         <div className="flex m-8">

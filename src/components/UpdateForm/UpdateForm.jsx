@@ -59,22 +59,7 @@ const UpdateForm = () => {
                 <h2 className="text-primary uppercase font-bold  flex items-center justify-center">
                     Actualizar producto
                 </h2>
-                <form className="justify-start" onSubmit={handleSubmit}>
-                    <div className="flex m-8">
-                        <label
-                            htmlFor="name"
-                            className="bg-quaternary rounded-l-xl w-40 h-8 flex-shrink-0 flex-grow-0 flex-basis-20 flex items-center justify-center"
-                        >
-                            ID:
-                        </label>
-                        <input
-                            className="bg-formBg rounded-r-lg flex-grow h-8"
-                            type="text"
-                            name="id"
-                            value={inputsForm.id}
-                            onChange={handleInputChange}
-                        />
-                    </div>
+                <form className="justify-start" onSubmit={handleSubmit} enctype="multipart/form-data">
                     <div className="flex m-8">
                         <label
                             htmlFor="name"
@@ -151,8 +136,9 @@ const UpdateForm = () => {
                                 className="opacity-0 absolute"
                                 type="file"
                                 name="name"
-                                accept="image/*"
+                                accept="image/png, .jpeg, .jpg, image/gif"
                                 onChange={handleInputChange}
+                                
                             />
                         </label>
                         <span className="bg-formBg rounded-r-lg w-72 h-8 flex items-center px-3">

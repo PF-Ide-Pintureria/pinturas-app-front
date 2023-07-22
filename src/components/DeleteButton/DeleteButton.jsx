@@ -1,10 +1,13 @@
 import React from "react";
+import { deleteProduct } from "../../redux/actions/deleteProduct";
+import { useDispatch } from "react-redux";
 
 
-const DeleteButton = () => {
-
+const DeleteButton = ({idProduct}) => {
+    const dispatch = useDispatch()
     const handleClick = () => {
-        alert('Borrado de producto')
+        dispatch(deleteProduct(idProduct));
+        alert('Borrado de producto:' + idProduct)
     }
 
     return (
