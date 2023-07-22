@@ -12,6 +12,8 @@ const Footer = () => {
         <a
           href="https://www.facebook.com/"
           className="w-8 h-8 mx-2 flex items-center justify-center bg-white bg-opacity-20 rounded-md"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -27,8 +29,10 @@ const Footer = () => {
           </svg>
         </a>
         <a
-          href="https://www.instagram.com/"
+          href="https://www.instagram.com/ide.pintureria.ok/"
           className="w-8 h-8 mx-2 flex items-center justify-center bg-white bg-opacity-20 rounded-md"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -46,6 +50,8 @@ const Footer = () => {
         <a
           href="https://www.linkedin.com/"
           className="w-8 h-8 mx-2 flex items-center justify-center bg-white bg-opacity-20 rounded-md"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -63,6 +69,8 @@ const Footer = () => {
         <a
           href="https://twitter.com/"
           className="w-8 h-8 mx-2 flex items-center justify-center bg-white bg-opacity-20 rounded-md"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -84,7 +92,7 @@ const Footer = () => {
           PRODUCTOS{" "}
         </NavLink>
         <p className="text-white"> | </p>
-        <NavLink to="/company" className="font-sans mx-2 text-white">
+        <NavLink to="/about" className="font-sans mx-2 text-white">
           {" "}
           EMPRESA{" "}
         </NavLink>

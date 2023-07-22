@@ -48,16 +48,10 @@ const Contact = () => {
     <div className={style.container}>
       <div className={style.background}>
         <div
-          className="container my-24 mx-auto  flex flex-wrap  rounded-lg bg-[hsla(0,0%,100%,0.8)] px-6 py-12 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]   @media (prefers-color-scheme: dark) {
+          className="container my-24 mx-auto  flex flex-wrap  rounded-lg bg-formBg  px-6 py-12 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]   @media (prefers-color-scheme: dark) {
     background-color: transparent;
   }
 }
-Con esta regla CSS, el fondo del <div> con la clase background se establecerá como blanco (#ffffff) en el modo claro, y como transparente en el modo oscuro, permitiendo que se muestre el fondo del <div> padre u otros elementos que puedan estar detrás del mismo.
-
-Es importante tener en cuenta que prefers-color-scheme es una media query que se basa en la configuración de preferencia de color del sistema o dispositivo. Cuando el usuario tenga configurado el modo oscuro en su sistema, el fondo del <div> con la clase background será transparente, y en caso contrario, será blanco.
-
-
-
 
 
 
@@ -73,7 +67,7 @@ Es importante tener en cuenta que prefers-color-scheme es una media query que se
                   Nombre:
                 </label>
                 <input
-                  className="bg-formBg rounded-r-lg w-72 h-8  "
+                  className=" rounded-r-lg w-72 h-8  "
                   id="name"
                   name="name"
                   value={inputs.name}
@@ -90,7 +84,7 @@ Es importante tener en cuenta que prefers-color-scheme es una media query que se
                   Correo Electrónico:
                 </label>
                 <input
-                  className="bg-formBg rounded-r-lg w-72 h-8"
+                  className=" rounded-r-lg w-72 h-8"
                   id="email"
                   name="email"
                   value={inputs.email}
@@ -107,7 +101,7 @@ Es importante tener en cuenta que prefers-color-scheme es una media query que se
                   Tu Mensaje:
                 </label>
                 <input
-                  className="bg-formBg rounded-r-lg w-72 h-8"
+                  className=" rounded-r-lg w-72 h-8"
                   id="message"
                   name="message"
                   rows="3"
@@ -118,7 +112,7 @@ Es importante tener en cuenta que prefers-color-scheme es una media query que se
               </div>
               <button
                 type="submit"
-                className="rounded-xl w-4/5 h-12 hover:translate-y-1.5 bg-primary text-tertiary border border-solid border-black m-5 font-bold flex items-center justify-center"
+                className="rounded-xl w-4/5 h-12 hover:translate-y-1.5 bg-primary text-tertiary border border-solid border-black m-5 font-bold flex  items-center justify-center"
               >
                 <h2
                   className="text-primary uppercase font-bold flex items-center justify-center"
@@ -153,13 +147,13 @@ Es importante tener en cuenta que prefers-color-scheme es una media query que se
                     </div>
                   </div>
                   <div className="ml-6 grow">
-                    <p className="mb-2 font-bold dark:text-white">
+                    <p className="mb-2 font-bold dark:text-balck">
                       Soporte técnico
                     </p>
-                    <p className="text-neutral-500 dark:text-neutral-200">
+                    <p className="text-neutral-500 dark:text-black-200">
                       support@example.com
                     </p>
-                    <p className="text-neutral-500 dark:text-neutral-200">
+                    <p className="text-neutral-500 dark:text-black-200">
                       +1 234-567-89
                     </p>
                   </div>
@@ -189,13 +183,13 @@ Es importante tener en cuenta que prefers-color-scheme es una media query que se
                     </div>
                   </div>
                   <div className="ml-6 grow">
-                    <p className="mb-2 font-bold dark:text-white">
+                    <p className="mb-2 font-bold dark:text-black">
                       Soporte técnico
                     </p>
-                    <p className="text-neutral-500 dark:text-neutral-200">
+                    <p className="text-neutral-500 dark:text-black-200">
                       support@example.com
                     </p>
-                    <p className="text-neutral-500 dark:text-neutral-200">
+                    <p className="text-neutral-500 dark:text-black-200">
                       +1 234-567-89
                     </p>
                   </div>
@@ -226,13 +220,13 @@ Es importante tener en cuenta que prefers-color-scheme es una media query que se
                     </div>
                   </div>
                   <div className="ml-6 grow">
-                    <p className="mb-2 font-bold dark:text-white">
+                    <p className="mb-2 font-bold dark:text-black">
                       Soporte técnico
                     </p>
-                    <p className="text-neutral-500 dark:text-neutral-200">
+                    <p className="text-neutral-500 dark:text-black-200">
                       support@example.com
                     </p>
-                    <p className="text-neutral-500 dark:text-neutral-200">
+                    <p className="text-neutral-500 dark:text-black-200">
                       +1 234-567-89
                     </p>
                   </div>
@@ -261,13 +255,13 @@ Es importante tener en cuenta que prefers-color-scheme es una media query que se
                     </div>
                   </div>
                   <div className="ml-6 grow">
-                    <p className="mb-2 font-bold dark:text-white">
+                    <p className="mb-2 font-bold dark:text-black">
                       Soporte técnico
                     </p>
-                    <p className="text-neutral-500 dark:text-neutral-200">
+                    <p className="text-neutral-500 dark:text-black-200">
                       support@example.com
                     </p>
-                    <p className="text-neutral-500 dark:text-neutral-200">
+                    <p className="text-neutral-500 dark:text-black-200">
                       +1 234-567-89
                     </p>
                   </div>
