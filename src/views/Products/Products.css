@@ -1,10 +1,6 @@
 .orderings {
   display: flex;
-  justify-content: space-evenly;
-  flex-direction: row;
   margin-top: 2em;
-  margin-bottom: 2em;
-}
-.products {
-  display: flex;
+  margin-bottom: 3em;
+  justify-content: center;
 }
