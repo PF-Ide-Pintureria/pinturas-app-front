@@ -4,6 +4,8 @@ import { allCategories } from "../../redux/actions/allCategories";
 import {productById} from "../../redux/actions/productById"
 import validations from "./validations";
 import { useParams } from "react-router-dom";
+import axios from "axios";
+import { BASE_URL } from "../../redux/action-type";
 
 const UpdateForm = () => {
 
@@ -17,8 +19,8 @@ const UpdateForm = () => {
         dispatch(productById(idProduct))
     }, [dispatch]);
     
-    const product = useSelector(state => state.detail);
-    const categories = useSelector(state => state.categories);
+    const detail = useSelector(state => state.detail);
+    const categories = useSelector(state=> state.categories)
     
     const [inputsForm, setInputsForm] = useState({
         name: "",
@@ -34,20 +36,20 @@ const UpdateForm = () => {
 
 
     useEffect(() => {
-        if (product) {      
+        if (detail) {      
             setInputsForm({
-                name: product.name,
-                price: product.price,
-                category: product.category,
-                patent: product.patent,
-                image: product.image,
-                color: product.color,
-                package: product.package,
-                stock: product.stock
+                name: detail.name,
+                price: detail.price,
+                category: detail.category,
+                patent: detail.patent,
+                image: detail.image,
+                color: detail.color,
+                package: detail.package,
+                stock: detail.stock
             })
         }
     },
-    [product]);
+    [detail]);
 
     const [errors, setErrors] = useState({
         price: "",
@@ -66,17 +68,23 @@ const handleInputChange = (event) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const errors = validations(inputsForm);
-        setErrors(errors);
-        if (Object.keys(errors).length === 0) {
-            const response = await formatAndEdit(inputsForm, dispatch);
-            if (response) {
-                alert('Producto modificado con éxito');
-                setInputsForm(defaultValues);
-            };
-        } else {
-            alert('Hubo un error al editar el producto');
-        };
+
+        const response = axios.put(`${BASE_URL}products/${idProduct}`, inputsForm);
+        if (response) {
+            console.log("producto actualizado");
+        }
+        // const errors = validations(inputsForm);
+        // setErrors(errors);
+        // // if (Object.keys(errors).length === 0) {
+        //     const response = await formatAndEdit(inputsForm, dispatch);
+        //     if (response) {
+        //         alert('Producto modificado con éxito');
+        //         setInputsForm(defaultValues);
+        //     };
+    // } 
+        // else {
+        //     alert('Hubo un error al editar el producto');
+        // };
     };
 
     return (
