@@ -1,5 +1,4 @@
 import React from "react";
-import { deleteProduct } from "../../redux/actions/deleteProduct";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -11,7 +10,6 @@ const UpdateButton = ({ idProduct }) => {
 
     const handleClick = () => {
         navigate(`/products/edit/${idProduct}`)
-        alert('Borrado de producto:' + idProduct)
     };
 
     return (
