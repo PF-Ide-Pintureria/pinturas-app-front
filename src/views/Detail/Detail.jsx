@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { productById } from "../../redux/actions/productById";
+import "./Detail.Module.css";
 import UpdateButton from "../../components/UpdateButton/UpdateButton";
 
 const Detail = () => {
@@ -13,6 +14,47 @@ const Detail = () => {
   useEffect(() => {
     dispatch(productById(idProduct));
   }, [dispatch, idProduct]);
+
+  // Función para renderizar las estrellas llenas y vacías basadas en la calificación del producto
+  const renderStars = (rating) => {
+    const MAX_STARS = 5;
+    const stars = [];
+
+    // Generar estrellas llenas
+    for (let i = 1; i <= rating; i++) {
+      stars.push(
+        <svg
+          key={`star-${i}`}
+          className="star"
+          width="24"
+          height="24"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24">
+          <path d="M12 2l2.899 8.919h9.273l-7.491 5.45 2.899 8.92-7.395-5.439-7.394 5.438 2.899-8.919-7.492-5.45h9.274z" />
+        </svg>
+      );
+    }
+
+    // Generar estrellas vacías (restantes)
+    for (let i = rating + 1; i <= MAX_STARS; i++) {
+      stars.push(
+        <svg
+          key={`star-empty-${i}`}
+          className="star-empty"
+          width="24"
+          height="24"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24">
+          <path
+            stroke="black"
+            d="M12 2l2.899 8.919h9.273l-7.491 5.45 2.899 8.92-7.395-5.439-7.394 5.438 2.899-8.919-7.492-5.45h9.274z"
+          />
+        </svg>
+      );
+    }
+
+    return <div className="stars-container">{stars}</div>;
+  };
 
   return (
     <section className="py-4 sm:py-4">
@@ -84,7 +126,9 @@ const Detail = () => {
             </p>
             <div className="mt-5 flex items-center">
               <div className="flex items-center mt-2">
-                <div className="rating-stars flex mr-3">Rating ⭐⭐⭐⭐⭐</div>
+                <div className="rating-stars flex mr-3">
+                  {renderStars(product?.rating)}
+                </div>
               </div>
               <span className="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-auto ">
                 {product?.rating}
