@@ -1,10 +1,10 @@
 import DeleteButton from "../../components/DeleteButton/DeleteButton";
+import UpdateButton from "--/../components/UpdateButton/UpdateButton";
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { productById } from "../../redux/actions/productById";
 import "./Detail.Module.css";
-import UpdateButton from "../../components/UpdateButton/UpdateButton";
 
 const Detail = () => {
   const dispatch = useDispatch();
@@ -187,7 +187,7 @@ const Detail = () => {
         <div className="mt-8 flow-root sm:mt-12">
           <p className="mt-4">{product?.description}</p>
         </div>
-        <div className="flex justify-end">
+        <div className="flax justify-end">
           <DeleteButton idProduct={idProduct} />
           <UpdateButton idProduct={idProduct}/>
         </div>
