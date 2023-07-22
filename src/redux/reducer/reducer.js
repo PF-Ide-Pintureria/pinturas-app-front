@@ -1,18 +1,20 @@
 import { 
     GET_ALL_PRODUCTS,
     GET_ALL_CATEGORIES,
-    DELETE_PRODUCT,
     GET_PRODUCT_FILTER,
-    POST_PRODUCT,
     GET_PRODUCT_BY_ID,
     GET_PRODUCT_BY_NAME,
+    GET_BEST_SELL,
+    DELETE_PRODUCT,
+    POST_PRODUCT,
     PUT_PRODUCT
 } from "../action-type";
 
 const initialState = {
     products: [],
     categories: [],
-    detail: {}
+    detail: {},
+    bestSell: []
 }
 
 const reducer = (state = initialState, {type, payload}) => {
@@ -33,6 +35,8 @@ const reducer = (state = initialState, {type, payload}) => {
             return {...state, products: payload}
         case PUT_PRODUCT:
             return {...state, products: payload}
+        case GET_BEST_SELL:
+            return { ...state, bestSell: payload}
         default:
             return { ...state }
     }
