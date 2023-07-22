@@ -3,7 +3,7 @@ import featuredBanner from "../../img/featured-banner.png";
 import AboutCard from "../../components/AboutCard/AboutCard";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import FeaturedContainer from "../../components/FeaturedContainer/FeaturedContainer";
-import Paginated from "../../components/Paginated/Paginated";
+import Banner from "../../components/Banner/Banner";
 import React from "react";
 
 const Home = () => {
@@ -11,9 +11,8 @@ const Home = () => {
     <div>
       <main>
         <div>
-          <img src={banner} alt="banner" className="max-width: fit-content;" />
+          <Banner />
         </div>
-
         <div>
           <FeaturedContainer />
         </div>
