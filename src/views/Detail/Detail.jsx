@@ -1,4 +1,5 @@
 import DeleteButton from "../../components/DeleteButton/DeleteButton";
+import UpdateButton from "../../components/UpdateButton/UpdateButton";
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -187,7 +188,8 @@ const Detail = () => {
           <p className="mt-4">{product?.description}</p>
         </div>
         <div className="flax justify-end">
-          <DeleteButton />
+          <DeleteButton idProduct={idProduct} />
+          <UpdateButton idProduct={idProduct}/>
         </div>
       </div>
     </section>

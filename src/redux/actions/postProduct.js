@@ -3,7 +3,9 @@ import { POST_PRODUCT, BASE_URL } from '../action-type';
 
 export const postProduct = (productCreate) => {
     return async (dispatch) => {
-        const newProduct = (await axios.post(`${BASE_URL}/products`, form)).data.products;
+        const response = await axios.post(`${BASE_URL}products`, productCreate)
+        const newProduct = response.status === 'success' ? response.producto : {};
         dispatch({ type: POST_PRODUCT, payload: newProduct });
-    }
-}
+        return response;
+    };
+};

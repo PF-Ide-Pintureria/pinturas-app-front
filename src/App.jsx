@@ -12,30 +12,34 @@ import Login from "./views/Login/Login";
 import Products from "./views/Products/Products";
 import AdminDashboard from "./views/AdminDashboard/AdminDashboard"
 import Account from "./views/Account/Account";
+import UpdateProduct from "./views/UpdateProduct/UpdateProduct";
+import CreateProduct from "./views/CreateProduct/CreateProduct";
 
 
 function App() {
-  return (
-    <BrowserRouter>
-      <header>
-        <NavBar />
-      </header>
-      <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/admin" element={<AdminDashboard />} />
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/account" element={<AdminDashboard/>} />
-        <Route path="/about" element={<About />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/products/:idProduct" element={<Detail />} />
-      </Routes>
-      <footer>
-        <Footer />
-      </footer>
-    </BrowserRouter>
-  );
-}
+    return (
+        <BrowserRouter>
+            <header>
+                <NavBar />
+            </header>
+            <Routes>
+                <Route exact path="/" element={<Home />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/admin" element={<AdminDashboard />} />
+                <Route path="/admin/create" element={<CreateProduct />} />
+                <Route path="/blog" element={<Blog />} />
+                <Route path="/cart" element={<Cart />} />
+                <Route path="/account" element={<AdminDashboard />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/products" element={<Products />} />
+                <Route path="/products/:idProduct" element={<Detail />} />
+                <Route path="/products/edit/:idProduct" element={<UpdateProduct />} />
+            </Routes>
+            <footer>
+                <Footer />
+            </footer>
+        </BrowserRouter>
+    );
+};
 
 export default App;

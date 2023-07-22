@@ -1,6 +1,7 @@
 import React from "react";
 
 const Cart = () => {
+
   const navigateToRegister = () => {
     navigate("/register");
   };
@@ -156,5 +157,6 @@ const Cart = () => {
     </div>
   );
 };
+
 
 export default Cart;
