@@ -1,17 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { allCategories } from "../../redux/actions/allCategories";
+import {productById} from "../../redux/actions/productById"
 import validations from "./validations";
+import { useParams } from "react-router-dom";
 
 const UpdateForm = () => {
 
+    const {idProduct} = useParams();
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(allCategories())
     }, [dispatch])
-    const [selectedCategory, setSelectedCategory] = useState("")
+    
+    useEffect(() => {
+        dispatch(productById(idProduct))
+    }, [dispatch]);
+    
+    const product = useSelector(state => state.detail);
+    const categories = useSelector(state => state.categories);
+    
     const [inputsForm, setInputsForm] = useState({
-        id: "",
         name: "",
         price: "",
         category: "",
@@ -19,47 +28,64 @@ const UpdateForm = () => {
         image: "",
         color: "",
         package: "",
-        stock: ""
+        stock: "",
+        file: ''
     });
+
+
+    useEffect(() => {
+        if (product) {      
+            setInputsForm({
+                name: product.name,
+                price: product.price,
+                category: product.category,
+                patent: product.patent,
+                image: product.image,
+                color: product.color,
+                package: product.package,
+                stock: product.stock
+            })
+        }
+    },
+    [product]);
 
     const [errors, setErrors] = useState({
-        name: "",
         price: "",
-        category: "",
-        patent: "",
-        image: "",
         color: "",
-        package: "",
         stock: ""
     });
 
-    const handleInputChange = (event) => {
+const handleInputChange = (event) => {
         const property = event.target.name;
         const value = event.target.value;
 
-        setInputsForm({ ...inputsForm, [property]: value });
-        setErrors(validations({ ...inputsForm, [property]: value }));
+        setInputsForm({ ...inputsForm, [property]: value })
+        setErrors(validations({ ...inputsForm, [property]: value }))
     };
 
-    const handleSelectedCategory = (event) => {
-        const selectedOption = event.target.value;
-        setSelectedCategory(selectedOption);
-    }
 
-
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        alert('Se deberia modificar un producto')
+        const errors = validations(inputsForm);
+        setErrors(errors);
+        if (Object.keys(errors).length === 0) {
+            const response = await formatAndEdit(inputsForm, dispatch);
+            if (response) {
+                alert('Producto modificado con éxito');
+                setInputsForm(defaultValues);
+            };
+        } else {
+            alert('Hubo un error al editar el producto');
+        };
     };
 
-    const categories = useSelector(state => state.categories)
     return (
 
         <div>
             <h2 className="text-primary uppercase font-bold  flex items-center justify-center">
                 Actualizar producto
             </h2>
-            <form className="justify-start" onSubmit={handleSubmit} enctype="multipart/form-data">
+            <form className="justify-start" onSubmit={handleSubmit} encType="multipart/form-data">
                 <div className="flex m-8">
                     <label
                         htmlFor="name"
@@ -99,8 +125,9 @@ const UpdateForm = () => {
                     </label>
                     <select
                         className="bg-formBg rounded-r-lg w-72 h-8"
-                        value={selectedCategory}
-                        onChange={handleSelectedCategory}
+                        value={inputsForm.category}
+                        onChange={handleInputChange}
+                        name="category"
                     >
                         <option value="">Seleccione una categoría</option>
                         {categories.map((category, index) => (
@@ -135,7 +162,7 @@ const UpdateForm = () => {
                         <input
                             className="opacity-0 absolute"
                             type="file"
-                            name="name"
+                            name="image"
                             accept="image/png, .jpeg, .jpg, image/gif"
                             onChange={handleInputChange}
 

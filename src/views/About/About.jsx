@@ -5,10 +5,10 @@ import React from "react";
 
 const About = () => {
   return (
-    <div>
+    <div className="centered-container">
       <img src={imgAbout} alt="Descripción de la imagen" className="banner" />
 
-      <div>
+      <div className="centered">
         <div>
           <p className="title-text">We Help To Get Solutions</p>
         </div>
@@ -27,10 +27,8 @@ const About = () => {
         </div>
       </div>
 
-      {/* ------------------------------------------------------------------------------------------------------------------ */}
-
-      <div className="general-container-icons">
-        <div className="container1">
+      <div className="centered-container-icons">
+        <div className="centered">
           <div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -83,7 +81,7 @@ const About = () => {
           </div>
         </div>
 
-        <div className="container1">
+        <div className="centered">
           <div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -147,7 +145,6 @@ const About = () => {
           </div>
         </div>
       </div>
-      {/* ------------------------------------------------------------------------------------------------------------------ */}
 
       <div className="general-card mb-11">
         <div>

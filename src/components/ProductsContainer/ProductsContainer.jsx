@@ -6,6 +6,7 @@ import { setPage } from "../../redux/actions/setPage";
 import { useSelector, useDispatch } from "react-redux";
 import { allProducts } from "../../redux/actions/allProducts";
 import { useNavigate } from "react-router-dom";
+import Sidebar from "../SideBar/SideBar"; // Importa tu componente Sidebar
 
 const ProductsContainer = () => {
     const navigate = useNavigate()
@@ -26,7 +27,10 @@ const ProductsContainer = () => {
 
     return (
         <div className="flex w-full m-auto">
-            <div className="w-full flex flex-col justify-center">
+          <div>
+            <Sidebar />
+           </div>
+            <div className="w-full flex m-auto flex-col justify-center">
                 <div className="w-11/12 grid grid-cols-4 gap-5">
                     {products.map((product) => (
                         <Products
@@ -38,20 +42,17 @@ const ProductsContainer = () => {
                             package={product.package}
                         />
                     ))}
-                </div>
-                <div className="w-full flex justify-center items-center my-7">
+                  </div>
+                  <div className="w-full flex justify-center items-center my-7">
                     <Paginated 
                         totalPages={totalPages}
                         thisPage={thisPage}
                         pageChange={handlePageChange}
                     />
-                </div>
+                  </div>
             </div>
-
         </div>
-    );
-
+  );
 };
-
 
 export default ProductsContainer;
