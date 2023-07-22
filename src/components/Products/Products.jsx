@@ -4,13 +4,15 @@ import { productById } from "../../redux/actions/productById";
 import React from "react";
 
 const Products = (product) => {
-  console.log(product)
+
   const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const handleDetailClick = () => {
-        dispatch(productById(product.idProduct));
-        navigate(`/products/${product.idProduct}`);
-    };
+
+  const navigate = useNavigate();
+
+  const handleDetailClick = () => {
+    dispatch(productById(product.idProduct));
+    navigate(`/products/${product.idProduct}`);
+  };
 
   return (
     <div className="w-64 h-96  flex flex-col items-center text-secondary justify-center bg-tertiary rounded-3xl">
