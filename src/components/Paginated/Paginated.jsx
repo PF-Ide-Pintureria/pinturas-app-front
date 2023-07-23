@@ -6,11 +6,9 @@ const Paginated = ({ thisPage, totalPages, pageChange }) => {
   const [endPage, setEndPage] = useState(Math.min(totalPages, totalPagesToShow));
 
   useEffect(() => {
-    // Calculamos el rango de páginas a mostrar
     let newStartPage = Math.max(1, thisPage - Math.floor(totalPagesToShow / 2));
     let newEndPage = Math.min(totalPages, newStartPage + totalPagesToShow - 1);
 
-    // Si el rango calculado es menor que totalPagesToShow, lo ajustamos para que siempre se muestren totalPagesToShow botones
     if (newEndPage - newStartPage < totalPagesToShow - 1) {
       newEndPage = Math.min(totalPages, newStartPage + totalPagesToShow - 1);
       newStartPage = Math.max(1, newEndPage - totalPagesToShow + 1);
@@ -51,7 +49,7 @@ const Paginated = ({ thisPage, totalPages, pageChange }) => {
             thisPage === i ? "bg-gray-900" : "bg-gray-700 hover:bg-purple-700"
           }`}
           onClick={() => pageChange(i)}
-          disabled={thisPage === i} // Agregar esta línea para desactivar el botón de la página actual
+          disabled={thisPage === i}
         >
           {i}
         </button>

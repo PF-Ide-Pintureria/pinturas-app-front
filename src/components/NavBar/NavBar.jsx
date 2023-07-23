@@ -4,7 +4,7 @@ import logo from "../../img/logoIde.png";
 
 const Nav = () => {
   return (
-    <div className="w-full h-48 flex justify-around items-center font-inter">
+    <div className="w-full h-32 flex justify-around items-center font-inter">
       <NavLink
         to="/products"
         className="bg-yellow-400 bg-opacity-75 rounded-lg px-3 font-inter"
