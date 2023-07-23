@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import banner1 from "../../img/banner1.png";
 import banner2 from "../../img/banner2.png";
 import banner3 from "../../img/banner3.png";
+import banner4 from "../../img/banner4.png";
 
 const BannerCarousel = () => {
   const [currentImage, setCurrentImage] = useState(0);
@@ -17,6 +18,10 @@ const BannerCarousel = () => {
     },
     {
       src: banner3,
+      link: "/products",
+    },
+    {
+      src: banner4,
       link: "/products",
     },
   ];
@@ -47,7 +52,8 @@ const BannerCarousel = () => {
           to={image.link}
           className={`absolute top-0 left-0 w-full h-full transition-opacity duration-500 ease-in-out ${
             index === currentImage ? "opacity-100" : "opacity-0"
-          }`}>
+          }`}
+        >
           <img
             src={image.src}
             alt={`Image ${index + 1}`}
@@ -58,14 +64,16 @@ const BannerCarousel = () => {
       <div className="absolute bottom-4 left-4 flex items-center space-x-2">
         <button
           className="w-8 h-8 p-1 bg-gray-800 bg-opacity-20 text-white rounded-full focus:outline-none"
-          onClick={goToPrevImage}>
+          onClick={goToPrevImage}
+        >
           &lt;
         </button>
       </div>
       <div className="absolute bottom-4 right-4 flex items-center space-x-2">
         <button
           className="w-8 h-8 p-1 bg-gray-800 bg-opacity-20 text-white rounded-full focus:outline-none"
-          onClick={goToNextImage}>
+          onClick={goToNextImage}
+        >
           &gt;
         </button>
       </div>
