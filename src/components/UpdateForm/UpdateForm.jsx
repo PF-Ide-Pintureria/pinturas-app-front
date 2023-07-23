@@ -68,6 +68,9 @@ const handleInputChange = (event) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        //Hasta aqui funcionaba. Metiendo validaciones:
+        const errors = validations(inputsForm);
+        setErrors(errors);
 
         const response = axios.put(`${BASE_URL}products/${idProduct}`, inputsForm);
         if (response) {
@@ -123,6 +126,7 @@ const handleInputChange = (event) => {
                         value={inputsForm.price}
                         onChange={handleInputChange}
                     />
+                    <span className="text-warning font-extrabold">{ errors.price}</span>
                 </div>
                 <div className="flex m-8">
                     <label
@@ -195,6 +199,23 @@ const handleInputChange = (event) => {
                         value={inputsForm.stock}
                         onChange={handleInputChange}
                     />
+                    <span className="text-warning font-extrabold">{ errors.stock}</span>
+                </div>
+                <div className="flex m-8">
+                    <label
+                        htmlFor="color"
+                        className="bg-quaternary rounded-l-xl w-40 h-8 flex items-center justify-center"
+                    >
+                        Color:
+                    </label>
+                    <input
+                        className="bg-formBg rounded-r-lg w-72 h-8"
+                        type="text"
+                        name="color"
+                        value={inputsForm.color}
+                        onChange={handleInputChange}
+                    />
+                    <span className="text-warning font-extrabold">{ errors.color}</span>
                 </div>
                 <div className="m-10 flex justify-center">
                     <button

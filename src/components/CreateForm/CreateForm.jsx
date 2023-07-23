@@ -107,7 +107,10 @@ const CreateForm = () => {
                         name="name"
                         value={inputsForm.name}
                         onChange={handleInputChange}
-                    />
+                    /> 
+                </div>
+                <div className="block">
+                    <span className="text-warning font-extrabold">{errors.name}</span>
                 </div>
                 <div className="flex m-8">
                     <label
@@ -123,7 +126,9 @@ const CreateForm = () => {
                         value={inputsForm.price}
                         onChange={handleInputChange}
                     />
+                    <span className="text-warning font-extrabold">{errors.price}</span>
                 </div>
+
                 <div className="flex m-8">
                     <label
                         htmlFor="code"
@@ -224,6 +229,7 @@ const CreateForm = () => {
                         value={inputsForm.stock}
                         onChange={handleInputChange}
                     />
+                    <span className="text-warning font-extrabold">{errors.stock}</span>
                 </div>
                 <div className="flex m-8">
                     <label
@@ -239,6 +245,7 @@ const CreateForm = () => {
                         value={inputsForm.color}
                         onChange={handleInputChange}
                     />
+                    <span className="text-warning">{errors.color}</span>
                 </div>
                 <div className="m-10 flex justify-center">
                     <button
