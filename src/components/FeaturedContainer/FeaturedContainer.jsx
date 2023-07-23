@@ -14,8 +14,8 @@ const FeaturedContainer = () => {
         <div className="flex w-4/5 column-4 gap-5 my-10 self-center justify-around object-center">
           {bestSellers.map((bestSeller) => (
             <Featured
-              key={bestSeller.id}
-              id={bestSeller.id}
+              key={bestSeller.idProduct}
+              id={bestSeller.idProduct}
               image={bestSeller.image}
               name={bestSeller.name}
               price={bestSeller.price}
