@@ -12,9 +12,9 @@ const AdmindDashboard = () => {
           <div className="form">
             <CreateForm />
           </div>
-          <div className="form">
+          {/* <div className="form">
             <UpdateForm />
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
