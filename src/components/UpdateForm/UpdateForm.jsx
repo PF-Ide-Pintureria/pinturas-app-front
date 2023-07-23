@@ -71,10 +71,12 @@ const handleInputChange = (event) => {
         //Hasta aqui funcionaba. Metiendo validaciones:
         const errors = validations(inputsForm);
         setErrors(errors);
-
-        const response = axios.put(`${BASE_URL}products/${idProduct}`, inputsForm);
+        if (!errors) {
+            const response = axios.put(`${BASE_URL}products/${idProduct}`, inputsForm);
+        }
         if (response) {
             console.log("producto actualizado");
+            alert(`Producto id: ${idProduct} modificado con éxito`)
         }
         // const errors = validations(inputsForm);
         // setErrors(errors);
@@ -126,7 +128,9 @@ const handleInputChange = (event) => {
                         value={inputsForm.price}
                         onChange={handleInputChange}
                     />
-                    <span className="text-warning font-extrabold">{ errors.price}</span>
+                    <div className="w-3 h-2">
+                        {errors.price && <p className="text-warning font-extrabold w-fit h3">{errors.price}</p>}
+                    </div>
                 </div>
                 <div className="flex m-8">
                     <label
@@ -199,7 +203,9 @@ const handleInputChange = (event) => {
                         value={inputsForm.stock}
                         onChange={handleInputChange}
                     />
-                    <span className="text-warning font-extrabold">{ errors.stock}</span>
+                    <div className="w-3 h-2">
+                        {errors.stock && <p className="text-warning font-extrabold w-fit h3">{errors.stock}</p>}
+                    </div>
                 </div>
                 <div className="flex m-8">
                     <label
@@ -215,7 +221,9 @@ const handleInputChange = (event) => {
                         value={inputsForm.color}
                         onChange={handleInputChange}
                     />
-                    <span className="text-warning font-extrabold">{ errors.color}</span>
+                    <div className="w-3 h-2">
+                        {errors.color && <p className="text-warning font-extrabold w-fit h3">{errors.color}</p>}
+                    </div>
                 </div>
                 <div className="m-10 flex justify-center">
                     <button
