@@ -3,7 +3,9 @@ import React, { useState, useEffect } from "react";
 const Paginated = ({ thisPage, totalPages, pageChange }) => {
   const totalPagesToShow = 7;
   const [startPage, setStartPage] = useState(1);
-  const [endPage, setEndPage] = useState(Math.min(totalPages, totalPagesToShow));
+  const [endPage, setEndPage] = useState(
+    Math.min(totalPages, totalPagesToShow)
+  );
 
   useEffect(() => {
     // Calculamos el rango de páginas a mostrar
@@ -19,7 +21,6 @@ const Paginated = ({ thisPage, totalPages, pageChange }) => {
     setStartPage(newStartPage);
     setEndPage(newEndPage);
   }, [thisPage, totalPagesToShow, totalPages]);
-
 
   const prevPage = () => {
     if (thisPage > 1) {
@@ -42,24 +43,24 @@ const Paginated = ({ thisPage, totalPages, pageChange }) => {
   };
 
   const renderPageNumbers = () => {
-  const pageNumbers = [];
-  for (let i = startPage; i <= endPage; i++) {
-    pageNumbers.push(
-      <li key={i}>
-        <button
-          className={`px-6 py-2 mx-0 font-bold text-white bg-gray-700 ${
-            thisPage === i ? "bg-gray-900" : "bg-gray-700 hover:bg-purple-700"
-          }`}
-          onClick={() => pageChange(i)}
-          disabled={thisPage === i} // Agregar esta línea para desactivar el botón de la página actual
-        >
-          {i}
-        </button>
-      </li>
-    );
-  }
-  return pageNumbers;
-};
+    const pageNumbers = [];
+    for (let i = startPage; i <= endPage; i++) {
+      pageNumbers.push(
+        <li key={i}>
+          <button
+            className={`px-6 py-2 mx-0 font-bold text-white bg-gray-700 ${
+              thisPage === i ? "bg-gray-900" : "bg-gray-700 hover:bg-purple-700"
+            }`}
+            onClick={() => pageChange(i)}
+            disabled={thisPage === i} // Agregar esta línea para desactivar el botón de la página actual
+          >
+            {i}
+          </button>
+        </li>
+      );
+    }
+    return pageNumbers;
+  };
 
   return (
     <div className="my-11">
