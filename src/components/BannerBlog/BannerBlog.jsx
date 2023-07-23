@@ -1,23 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import banner1 from "../../img/banner1.png";
-import banner2 from "../../img/banner2.png";
-import banner3 from "../../img/banner3.png";
+import banner4 from "../../img/banner4.png";
 
 const BannerCarousel = () => {
   const [currentImage, setCurrentImage] = useState(0);
   const images = [
     {
-      src: banner1,
-      link: "/products",
-    },
-    {
-      src: banner2,
-      link: "/products",
-    },
-    {
-      src: banner3,
-      link: "/products",
+      src: banner4,
+      link: "/blog",
     },
   ];
 

@@ -15,7 +15,7 @@ import Account from "./views/Account/Account";
 import UpdateProduct from "./views/UpdateProduct/UpdateProduct";
 import CreateProduct from "./views/CreateProduct/CreateProduct";
 import Developers from "./views/Developers/Developers";
-import Location from "./components/Location/Location";
+import Location from "./views/Location/Location";
 
 function App() {
   return (
