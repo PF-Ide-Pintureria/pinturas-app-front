@@ -21,14 +21,13 @@ const ProductsContainer = () => {
 
     const handlePageChange = (page) => {
         dispatch(setPage(page));
-        dispatch(allProducts(allProducts(
+        dispatch(allProducts(
             page,
             filters.category,
             filters.orderBy,
             filters.highPrice,
             filters.lowPrice
-        )));
-        // navigate(`/products?page=${page}`)
+        ));
     };
 
     const handleFiltersChange = (newFilters) => {
@@ -47,17 +46,19 @@ const ProductsContainer = () => {
             </div>
             <div>
             <div className="w-full flex m-auto flex-col justify-center">
-                <div className="w-11/12 grid grid-cols-3 gap-5">
-                    {products.map((product) => (
-                        <Products
-                            key={product.idProduct}
-                            idProduct={product.idProduct}
-                            image={product.image}
-                            name={product.name}
-                            price={product.price}
-                            package={product.package}
-                        />
-                    ))}
+                <div className="flex justify-center">
+                    <div className="w-11/12 grid grid-cols-3 gap-8">
+                        {products.map((product) => (
+                            <Products
+                                key={product.idProduct}
+                                idProduct={product.idProduct}
+                                image={product.image}
+                                name={product.name}
+                                price={product.price}
+                                package={product.package}
+                            />
+                        ))}
+                    </div>
                 </div>
                 <div className="w-full flex justify-center items-center my-7">
                     <Paginated 

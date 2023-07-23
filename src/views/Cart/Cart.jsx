@@ -7,7 +7,7 @@ const Cart = () => {
   };
 
   return (
-    <div>
+    <div className="my-10">
       <div className="flex flex-col items-center border-b bg-white py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
         <div className="w-10 mx-2">
           <svg
@@ -43,7 +43,7 @@ const Cart = () => {
           </div>
         </div>
         <form>
-          <div className="flex flex-wrap flex-col justify-center mt-10 bg-gray-50 px-4 pt-8 lg:mt-0 mr:auto h-full">
+          <div className="flex flex-wrap flex-col justify-center my-10 bg-gray-50 px-4 pt-8 lg:mt-0 mr:auto h-full">
             <p className="text-xl font-medium">Envío</p>
             <p className="text-gray-400 mt-2 text-m text-right">
               ¿No tienes una cuenta?{" "}

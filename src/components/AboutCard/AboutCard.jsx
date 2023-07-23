@@ -3,7 +3,7 @@ import React from 'react';
 
 const AboutCard = () => {
     return (
-        <div className="flex w-full justify-center ">
+        <div className="flex w-full justify-center my-14">
             <div className="w-9/12 gap-28">
 
             <Link className='flex columns-1 w-auto h-auto justify-center align-center mt-11' to='/about'>
