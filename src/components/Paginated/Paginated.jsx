@@ -3,7 +3,9 @@ import React, { useState, useEffect } from "react";
 const Paginated = ({ thisPage, totalPages, pageChange }) => {
   const totalPagesToShow = 7;
   const [startPage, setStartPage] = useState(1);
-  const [endPage, setEndPage] = useState(Math.min(totalPages, totalPagesToShow));
+  const [endPage, setEndPage] = useState(
+    Math.min(totalPages, totalPagesToShow)
+  );
 
   useEffect(() => {
     let newStartPage = Math.max(1, thisPage - Math.floor(totalPagesToShow / 2));
@@ -17,7 +19,6 @@ const Paginated = ({ thisPage, totalPages, pageChange }) => {
     setStartPage(newStartPage);
     setEndPage(newEndPage);
   }, [thisPage, totalPagesToShow, totalPages]);
-
 
   const prevPage = () => {
     if (thisPage > 1) {
@@ -40,6 +41,7 @@ const Paginated = ({ thisPage, totalPages, pageChange }) => {
   };
 
   const renderPageNumbers = () => {
+
   const pageNumbers = [];
   for (let i = startPage; i <= endPage; i++) {
     pageNumbers.push(
