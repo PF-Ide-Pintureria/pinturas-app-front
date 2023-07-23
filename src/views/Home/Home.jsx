@@ -5,6 +5,7 @@ import SearchBar from "../../components/SearchBar/SearchBar";
 import FeaturedContainer from "../../components/FeaturedContainer/FeaturedContainer";
 import CategoryContainer from "../../components/CategoryContainer/CategoryContainer";
 import Banner from "../../components/Banner/Banner";
+import BannerBlog from "../../components/BannerBlog/BannerBlog";
 import { bestSellers } from "../../redux/actions/bestSellers";
 
 const Home = () => {
@@ -19,13 +20,16 @@ const Home = () => {
       <main>
         <div>
           <Banner />
-      {/* </div> --------------> SEARCH TEMPORALY SUSPENDED <--------------------------------
-        <SearchBar />
-        <div> */}
+        </div>
+        {/* <SearchBar /> --------------> SEARCH TEMPORALY SUSPENDED <-------------------------------- */}
+        <div>
           <FeaturedContainer />
         </div>
         <div>
           <CategoryContainer />
+        </div>
+        <div>
+          <BannerBlog />
         </div>
         <div>
           <AboutCard />
