@@ -5,7 +5,7 @@ import React from "react";
 
 const About = () => {
   return (
-    <div className="centered-container">
+    <div className="centered-container mb-20">
       <img src={imgAbout} alt="Descripción de la imagen" className="banner" />
 
       <div className="centered">
@@ -42,7 +42,7 @@ const About = () => {
         </div>
       </div>
       <div className="flex justify-between">
-        <div className="centered-container-icons">
+        <div className="centered-container-icons grid grid-cols-2 gap-14">
           <div className="centered">
             <div>
               <svg
@@ -163,15 +163,15 @@ const About = () => {
           </div>
         </div>
       </div>
-      <div className="general-card mb-11">
+      <div className="general-card w-5/6 mb-11 grid grid-cols-2 gap-7">
         <div>
-          <img src={imgAbout2} alt="img2" className="img2" />
+          <img src={imgAbout2} alt="img2" className="img2 w-2/6" />
         </div>
 
-        <div className="square">
+        <div className="square w-3/5">
           <div className="texts mb-11 pb-11">
             <div>
-              <p className="blue-text">Como trbajamos en ide Pinturerias</p>
+              <p className="blue-text">Como trabajamos en ide Pinturerias</p>
             </div>
 
             <div>

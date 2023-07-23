@@ -36,8 +36,7 @@ const ProductsPage = () => {
 
   return (
     <div>
-      <img src={industrial} alt="Banner Industrial" className="industrial" />
-
+      <img src={industrial} alt="Banner Industrial" className="industrial my-0" />
       <div>
         <SearchBar />
       </div>

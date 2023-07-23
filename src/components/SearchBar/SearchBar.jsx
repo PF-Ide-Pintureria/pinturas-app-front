@@ -24,7 +24,7 @@ const SearchBar = () => {
   };
   
   return (
-    <div className="h-32 bg-white flex flex-col justify-center">
+    <div className="h-32 bg-white flex flex-col justify-center items-center mb-10">
       <div className="relative p-12 w-full sm:max-w-2xl sm:mx-auto">
         <div className="overflow-hidden z-0 rounded-full relative p-3">
           <div

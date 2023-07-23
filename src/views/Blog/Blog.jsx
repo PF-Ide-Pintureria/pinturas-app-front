@@ -11,13 +11,15 @@ const Blog = () => {
         <div className={style.container}>
             <div className={style.background}>
                 <h1 className='text-3xl font-bold flex items-center justify-center'>BLOG</h1>
-                <div className=' flex flex-wrap items-center justify-center m-10'>
-                    <BlogCard image={img} title="Lorem Ipsum" date="April 03, 2022" description={loremIpsu}/>
-                    <BlogCard image={img} title="Lorem Ipsum" date="April 03, 2022" description={loremIpsu}/>
-                    <BlogCard image={img} title="Lorem Ipsum" date="April 03, 2022" description={loremIpsu}/>
-                    <BlogCard image={img} title="Lorem Ipsum" date="April 03, 2022" description={loremIpsu}/>
-                    <BlogCard image={img} title="Lorem Ipsum" date="April 03, 2022" description={loremIpsu}/>
-                    <BlogCard image={img} title="Lorem Ipsum" date="April 03, 2022" description={loremIpsu}/>
+                <div className="my-10 flex justify-center items-center">
+                    <div className="h-full w-full grid grid-cols-3 gap-3">
+                        <BlogCard image={img} title="Lorem Ipsum" date="April 03, 2022" description={loremIpsu}/>
+                        <BlogCard image={img} title="Lorem Ipsum" date="April 03, 2022" description={loremIpsu}/>
+                        <BlogCard image={img} title="Lorem Ipsum" date="April 03, 2022" description={loremIpsu}/>
+                        <BlogCard image={img} title="Lorem Ipsum" date="April 03, 2022" description={loremIpsu}/>
+                        <BlogCard image={img} title="Lorem Ipsum" date="April 03, 2022" description={loremIpsu}/>
+                        <BlogCard image={img} title="Lorem Ipsum" date="April 03, 2022" description={loremIpsu}/>
+                    </div>
                 </div>
             </div>
         </div>
