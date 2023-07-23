@@ -14,6 +14,7 @@ import AdminDashboard from "./views/AdminDashboard/AdminDashboard";
 import Account from "./views/Account/Account";
 import UpdateProduct from "./views/UpdateProduct/UpdateProduct";
 import CreateProduct from "./views/CreateProduct/CreateProduct";
+import Developers from "./views/Developers/Developers";
 import Location from "./components/Location/Location";
 
 function App() {
@@ -30,11 +31,12 @@ function App() {
         <Route path="/blog" element={<Blog />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/account" element={<AdminDashboard />} />
-        <Route path="/products" element={<Products />} />
         <Route path="/about" element={<About />} />
-        <Route path="/location" element={<Location />} />
+        <Route path="/products" element={<Products />} />
         <Route path="/products/:idProduct" element={<Detail />} />
         <Route path="/products/edit/:idProduct" element={<UpdateProduct />} />
+        <Route path="/developers" element={<Developers />} />
+        <Route path="/location" element={<Location />} />
       </Routes>
       <footer>
         <Footer />
