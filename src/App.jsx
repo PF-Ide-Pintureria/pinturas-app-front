@@ -15,6 +15,7 @@ import Account from "./views/Account/Account";
 import UpdateProduct from "./views/UpdateProduct/UpdateProduct";
 import CreateProduct from "./views/CreateProduct/CreateProduct";
 import Developers from "./views/Developers/Developers";
+import Location from "./components/Location/Location";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         <Route path="/products/:idProduct" element={<Detail />} />
         <Route path="/products/edit/:idProduct" element={<UpdateProduct />} />
         <Route path="/developers" element={<Developers />} />
+        <Route path="/location" element={<Location />} />
       </Routes>
       <footer>
         <Footer />

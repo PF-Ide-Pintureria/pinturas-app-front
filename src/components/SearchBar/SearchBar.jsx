@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import {useDispatch} from 'react-redux';
 import { productByName } from '../../redux/actions/productByName'
 import { allProducts } from '../../redux/actions/allProducts';
+import { setPage } from "../../redux/actions/setPage";
 import { useSelector } from "react-redux";
 
 const SearchBar = () => {
@@ -11,9 +12,10 @@ const SearchBar = () => {
   const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const products = useSelector((state) => state.products)
+  const { products, thisPage } = useSelector((state) => state)
 
   const handleChange = (event) => {
+    dispatch(setPage(thisPage));
     // event.preventDefault();
     setSearch(event.target.value);
       event.target.value.length 
@@ -22,7 +24,7 @@ const SearchBar = () => {
   };
   
   return (
-    <div className="h-32 bg-white flex flex-col justify-center">
+    <div className="h-32 bg-white flex flex-col justify-center items-center mb-10">
       <div className="relative p-12 w-full sm:max-w-2xl sm:mx-auto">
         <div className="overflow-hidden z-0 rounded-full relative p-3">
           <div

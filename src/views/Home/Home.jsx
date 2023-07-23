@@ -19,9 +19,9 @@ const Home = () => {
       <main>
         <div>
           <Banner />
-        </div>
+      {/* </div> --------------> SEARCH TEMPORALY SUSPENDED <--------------------------------
         <SearchBar />
-        <div>
+        <div> */}
           <FeaturedContainer />
         </div>
         <div>

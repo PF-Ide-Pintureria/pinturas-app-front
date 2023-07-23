@@ -6,7 +6,7 @@ import category3 from "../../img/category3.png";
 
 const CategoryContainer = () => {
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col w-full my-10">
       <div className="w-full">
         <Link to="/products?category=${Linea Latex}">
           <img

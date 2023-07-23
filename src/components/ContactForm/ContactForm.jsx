@@ -1,5 +1,3 @@
-import style from "./ContactForm.module.css";
-
 import React, { useState } from "react";
 
 const Contact = () => {
@@ -45,17 +43,13 @@ const Contact = () => {
   };
 
   return (
-    <div className={style.container}>
-      <div className={style.background}>
+    <div className="flex- justify-center items-center">
+      <div className="bg-contain m-10 rounded p-2">
         <div
           className="container my-24 mx-auto  flex flex-wrap  rounded-lg bg-formBg  px-6 py-12 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]   @media (prefers-color-scheme: dark) {
     background-color: transparent;
   }
-}
-
-
-
- dark:shadow-black/20 md:py-16   backdrop-blur-[30px] mt-20"
+} dark:shadow-black/20 md:py-16   backdrop-blur-[30px] mt-20"
         >
           <div className="w-full md:w-5/12 md:px-3 lg:w-5/12 lg:px-6">
             <form onSubmit={handleSubmit}>
