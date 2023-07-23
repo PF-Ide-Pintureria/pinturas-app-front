@@ -6,7 +6,9 @@
     "scripts": {
         "dev": "vite",
         "build": "vite build",
-        "preview": "vite preview"
+        "preview": "vite preview",
+        "deploy": "gh-pages -d dist",
+        "pre-deploy": "npm run build"
     },
     "devDependencies": {
         "autoprefixer": "^10.4.14",
@@ -16,6 +18,7 @@
     },
     "dependencies": {
         "axios": "^1.4.0",
+        "gh-pages": "^5.0.0",
         "primeflex": "^3.3.1",
         "primeicons": "^6.0.1",
         "primereact": "^9.6.0",
@@ -28,5 +31,6 @@
         "redux-thunk": "^2.4.2",
         "sass": "^1.63.6",
         "tailwindscss": "^0.3.0"
-    }
+    },
+    "homepage": "https://PF-Ide-Pintureria.github.io/pinturas-app-front/"
 }
