@@ -1,24 +1,39 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Products from "../Products/Products";
 import Paginated from "../Paginated/Paginated"
 import { setPage } from "../../redux/actions/setPage";
-// import img from "../../img/pintura.png";
 import { useSelector, useDispatch } from "react-redux";
 import { allProducts } from "../../redux/actions/allProducts";
 import { useNavigate } from "react-router-dom";
-import Sidebar from "../SideBar/SideBar"; // Importa tu componente Sidebar
+import SideBar from "../SideBar/SideBar"
 
 const ProductsContainer = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch();
 
     const { products, totalPages, thisPage } = useSelector((state) => state);
-    
+    const [filters, setFilters] = useState({
+        category: "",
+        orderBy: "",
+        highPrice: "",
+        lowPrice: ""
+    });
+
     const handlePageChange = (page) => {
         dispatch(setPage(page));
-        dispatch(allProducts(page))
+        dispatch(allProducts(allProducts(
+            page,
+            filters.category,
+            filters.orderBy,
+            filters.highPrice,
+            filters.lowPrice
+        )));
         // navigate(`/products?page=${page}`)
-        console.log(page);
+    };
+
+    const handleFiltersChange = (newFilters) => {
+        console.log(newFilters);
+        setFilters(newFilters);
     };
 
     useEffect(() => {
@@ -26,12 +41,13 @@ const ProductsContainer = () => {
     }, [])
 
     return (
-        <div className="flex w-full m-auto">
-          <div>
-            <Sidebar />
-           </div>
+        <div className="flex w-full m-auto justify-center">
+            <div>
+                <SideBar onFiltersChange={handleFiltersChange}/>
+            </div>
+            <div>
             <div className="w-full flex m-auto flex-col justify-center">
-                <div className="w-11/12 grid grid-cols-4 gap-5">
+                <div className="w-11/12 grid grid-cols-3 gap-5">
                     {products.map((product) => (
                         <Products
                             key={product.idProduct}
@@ -42,17 +58,19 @@ const ProductsContainer = () => {
                             package={product.package}
                         />
                     ))}
-                  </div>
-                  <div className="w-full flex justify-center items-center my-7">
+                </div>
+                <div className="w-full flex justify-center items-center my-7">
                     <Paginated 
                         totalPages={totalPages}
                         thisPage={thisPage}
                         pageChange={handlePageChange}
                     />
-                  </div>
+                </div>
+            </div>
+
             </div>
         </div>
-  );
+    );
 };
 
 export default ProductsContainer;
