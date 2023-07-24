@@ -34,11 +34,11 @@ const CreateForm = () => {
         code: "",
         category: "",
         patent: "",
-        imagen: "",
+        // image: "",
         color: "",
         package: "",
         stock: "",
-        file: null,
+        // file: null,
     });
 
     const [errors, setErrors] = useState({
@@ -47,7 +47,7 @@ const CreateForm = () => {
         code: "",
         category: "",
         patent: "",
-        imagen: "",
+        // image: "",
         color: "",
         package: "",
         stock: ""
@@ -61,20 +61,33 @@ const CreateForm = () => {
             setInputsForm({
                 ...inputsForm,
                 file: event.target.files[0],
+                imagen: value,
             });
         } else {
             setInputsForm({ ...inputsForm, [property]: value });
             setErrors(validations({ ...inputsForm, [property]: value }));
         };
-
+        console.log(inputsForm)
     };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        const formData = new FormData();
+        formData.append('name', inputsForm.name);
+        formData.append('price', inputsForm.price);
+        formData.append('code', inputsForm.code);
+        formData.append('category', inputsForm.category);
+        formData.append('patent', inputsForm.patent);
+        // formData.append('image', inputsForm.image);
+        formData.append('color', inputsForm.color);
+        formData.append('package', inputsForm.package);
+        formData.append('stock', inputsForm.stock);
+        // formData.append('file', inputsForm.file);
         const errors = validations(inputsForm);
         setErrors(errors);
         if (Object.keys(errors).length === 0) {
-            const response = await formatAndPost(inputsForm, dispatch);
+            // const response = await axios.post(`${BASE_URL}products`,inputsForm)
+            const response = await formatAndPost(formData, dispatch);
             if (response) {
                 alert('Producto creado con éxito');
                 setInputsForm(defaultValues);
@@ -82,6 +95,8 @@ const CreateForm = () => {
         } else {
             alert('Hubo un error al crear el producto');
         };
+
+        console.log(inputsForm)
     };
 
 
@@ -189,16 +204,16 @@ const CreateForm = () => {
                         onChange={handleInputChange}
                     />
                 </div>
-                <div className="flex m-8">
+                {/* <div className="flex m-8">
                     <label
-                        htmlFor="imagen"
+                        htmlFor="file"
                         className="bg-quaternary rounded-l-xl w-40 h-8 flex items-center justify-center cursor-pointer"
                     >
                         Selecciona tu img:
                         <input
                             className="opacity-0 absolute"
                             type="file"
-                            name="imagen"
+                            name="image"
                             accept="image/*"
                             onChange={handleInputChange}
                         />
@@ -206,7 +221,7 @@ const CreateForm = () => {
                     <span className="bg-formBg rounded-r-lg w-72 h-8 flex items-center px-3">
                         {inputsForm.imagen && `Imagen seleccionada: ${inputsForm.imagen}`}
                     </span>
-                </div>
+                </div> */}
                 <div className="flex m-8">
                     <label
                         htmlFor="package"
