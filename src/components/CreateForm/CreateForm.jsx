@@ -58,7 +58,6 @@ const CreateForm = () => {
         const value = event.target.value;
 
         if (property === 'imagen') {
-            console.log('event.target.files[0]', event.target.files[0]);
             setInputsForm({
                 ...inputsForm,
                 file: event.target.files[0],
