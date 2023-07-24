@@ -7,12 +7,16 @@ const Footer = () => {
       <div className="w-full h-56 flex items-center justify-evenly">
         <NavLink to="/">
           {" "}
-          <img src={logo} alt="logo Ide Pinturerias" className="w-40 " />
+          <img
+            src={logo}
+            alt="logo Ide Pinturerias"
+            className="w-40 cursor-pointer transition-transform duration-300 ease-in-out hover:scale-110"
+          />
         </NavLink>
         <div className="flex items-center">
           <a
             href="https://www.facebook.com/ide.pintureria/"
-            className="w-8 h-8 mx-2 flex items-center justify-center bg-white bg-opacity-20 rounded-md"
+            className="w-8 h-8 mx-2 flex items-center justify-center bg-white bg-opacity-20 rounded-md cursor-pointer transition-transform duration-300 ease-in-out hover:scale-150"
             target="_blank"
             rel="noopener noreferrer">
             <svg
@@ -29,7 +33,7 @@ const Footer = () => {
           </a>
           <a
             href="https://www.instagram.com/ide.pintureria.ok/"
-            className="w-8 h-8 mx-2 flex items-center justify-center bg-white bg-opacity-20 rounded-md"
+            className="w-8 h-8 mx-2 flex items-center justify-center bg-white bg-opacity-20 rounded-md cursor-pointer transition-transform duration-300 ease-in-out hover:scale-150"
             target="_blank"
             rel="noopener noreferrer">
             <svg
@@ -46,7 +50,7 @@ const Footer = () => {
           </a>
           <a
             href="https://www.linkedin.com/ide.pintureria/"
-            className="w-8 h-8 mx-2 flex items-center justify-center bg-white bg-opacity-20 rounded-md"
+            className="w-8 h-8 mx-2 flex items-center justify-center bg-white bg-opacity-20 rounded-md cursor-pointer transition-transform duration-300 ease-in-out hover:scale-150"
             target="_blank"
             rel="noopener noreferrer">
             <svg
@@ -63,7 +67,7 @@ const Footer = () => {
           </a>
           <a
             href="https://twitter.com/ide.pintureria/"
-            className="w-8 h-8 mx-2 flex items-center justify-center bg-white bg-opacity-20 rounded-md"
+            className="w-8 h-8 mx-2 flex items-center justify-center bg-white bg-opacity-20 rounded-md cursor-pointer transition-transform duration-300 ease-in-out hover:scale-150"
             target="_blank"
             rel="noopener noreferrer">
             <svg
@@ -80,22 +84,30 @@ const Footer = () => {
           </a>
         </div>
         <div className="flex items-center">
-          <NavLink to="/products" className="font-sans mx-2 text-white">
+          <NavLink
+            to="/products"
+            className="font-sans mx-2 text-white cursor-pointer transition-transform duration-300 ease-in-out hover:scale-125">
             {" "}
             PRODUCTOS{" "}
           </NavLink>{" "}
           <p className="text-white"> | </p>
-          <NavLink to="/about" className="font-sans mx-2 text-white">
+          <NavLink
+            to="/about"
+            className="font-sans mx-2 text-white cursor-pointer transition-transform duration-300 ease-in-out hover:scale-125">
             {" "}
             EMPRESA{" "}
           </NavLink>
           <p className="text-white"> | </p>
-          <NavLink to="/location" className="font-sans mx-2 text-white">
+          <NavLink
+            to="/location"
+            className="font-sans mx-2 text-white cursor-pointer transition-transform duration-300 ease-in-out hover:scale-125">
             {" "}
             UBICACION{" "}
           </NavLink>
           <p className="text-white"> | </p>
-          <NavLink to="/contact" className="font-sans mx-2 text-white">
+          <NavLink
+            to="/contact"
+            className="font-sans mx-2 text-white cursor-pointer transition-transform duration-300 ease-in-out hover:scale-125">
             {" "}
             CONTACTO{" "}
           </NavLink>
@@ -108,7 +120,7 @@ const Footer = () => {
         </p>
         <NavLink
           to="/developers"
-          className="font-sans mx-2 font-bold text-white">
+          className="font-sans mx-2 font-bold text-white cursor-pointer transition-transform duration-300 ease-in-out hover:scale-110">
           {" "}
           Work Team Developers{" "}
         </NavLink>
