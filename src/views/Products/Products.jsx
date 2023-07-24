@@ -11,6 +11,28 @@ import { getProductFilter } from "../../redux/actions/getProductFilter";
 const ProductsPage = () => {
   const dispatch = useDispatch();
 
+  const { thisPage } = useSelector((state) => state);
+  const [filters, setFilters] = useState({
+    category: "",
+    orderBy: "",
+    highPrice: "",
+    lowPrice: "",
+  });
+  useEffect(() => {
+    console.log("dispatch?");
+    dispatch(
+      allProducts(
+        thisPage,
+        filters.category,
+        filters.orderBy,
+        filters.highPrice,
+        filters.lowPrice
+      )
+    );
+    dispatch(allCategories());
+    // dispatch()
+  }, [dispatch, thisPage, filters]);
+
   const { thisPage, filterCategory } = useSelector(state => state);
 
   useEffect(() => {
@@ -30,7 +52,11 @@ const ProductsPage = () => {
 
   return (
     <div>
-      <img src={industrial} alt="Banner Industrial" className="industrial my-0" />
+      {/* <img
+        src={industrial}
+        alt="Banner Industrial"
+        className="industrial my-0"
+      />--------------> Suspendido por recomendacion del Mentor <-------------------------------- */}
       <div>
         <SearchBar />
       </div>
@@ -38,7 +64,6 @@ const ProductsPage = () => {
       <div>
         <ProductsContainer  />
       </div>
-      
     </div>
   );
 };

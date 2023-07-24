@@ -11,7 +11,7 @@ const Footer = () => {
         </NavLink>
         <div className="flex items-center">
           <a
-            href="https://www.facebook.com/"
+            href="https://www.facebook.com/ide.pintureria/"
             className="w-8 h-8 mx-2 flex items-center justify-center bg-white bg-opacity-20 rounded-md"
             target="_blank"
             rel="noopener noreferrer">
@@ -45,7 +45,7 @@ const Footer = () => {
             </svg>
           </a>
           <a
-            href="https://www.linkedin.com/"
+            href="https://www.linkedin.com/ide.pintureria/"
             className="w-8 h-8 mx-2 flex items-center justify-center bg-white bg-opacity-20 rounded-md"
             target="_blank"
             rel="noopener noreferrer">
@@ -62,7 +62,7 @@ const Footer = () => {
             </svg>
           </a>
           <a
-            href="https://twitter.com/"
+            href="https://twitter.com/ide.pintureria/"
             className="w-8 h-8 mx-2 flex items-center justify-center bg-white bg-opacity-20 rounded-md"
             target="_blank"
             rel="noopener noreferrer">
