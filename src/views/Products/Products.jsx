@@ -9,7 +9,9 @@ import { allCategories } from "../../redux/actions/allCategories";
 import { getProductFilter } from "../../redux/actions/getProductFilter";
 
 const ProductsPage = () => {
+
   const dispatch = useDispatch();
+  const { thisPage, filterCategory } = useSelector(state => state);
 
   const [filters, setFilters] = useState({
     category: "",
@@ -17,6 +19,7 @@ const ProductsPage = () => {
     highPrice: "",
     lowPrice: "",
   });
+  
   useEffect(() => {
     console.log("dispatch?");
     dispatch(
@@ -32,7 +35,6 @@ const ProductsPage = () => {
     // dispatch()
   }, [dispatch, thisPage, filters]);
 
-  const { thisPage, filterCategory } = useSelector(state => state);
 
   useEffect(() => {
     dispatch(allProducts(thisPage));
