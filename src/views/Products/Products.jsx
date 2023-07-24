@@ -11,7 +11,6 @@ import { getProductFilter } from "../../redux/actions/getProductFilter";
 const ProductsPage = () => {
   const dispatch = useDispatch();
 
-  const { thisPage } = useSelector((state) => state);
   const [filters, setFilters] = useState({
     category: "",
     orderBy: "",
