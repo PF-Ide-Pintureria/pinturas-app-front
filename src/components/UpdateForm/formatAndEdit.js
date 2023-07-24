@@ -10,7 +10,6 @@ export const formatAndEdit = async (inputsForm, dispatch) => {
         };
         await putProducts(editedProduct)(dispatch).then((res) => {
             if (res.status === 201) {
-                console.log('Producto modificado correctamente');
                 alert(`Producto ${res.data.product.idProduct} modificado correctamente`);
             }else{
                 console.log('res.status', res.status);
