@@ -6,33 +6,27 @@ import ProductsContainer from "../../components/ProductsContainer/ProductsContai
 import { useDispatch, useSelector } from "react-redux";
 import { allProducts } from "../../redux/actions/allProducts";
 import { allCategories } from "../../redux/actions/allCategories";
+import { getProductFilter } from "../../redux/actions/getProductFilter";
 
 const ProductsPage = () => {
   const dispatch = useDispatch();
-  const { thisPage } = useSelector(state => state);
-  const [filters, setFilters] = useState({
-    category: "",
-    orderBy: "",
-    highPrice: "",
-    lowPrice: ""
-  });
-  useEffect(() => {
-    console.log("dispatch?");
-    dispatch(allProducts(
-      thisPage,
-      filters.category,
-      filters.orderBy,
-      filters.highPrice,
-      filters.lowPrice
-      ));
-    dispatch(allCategories());
-    // dispatch()
-  }, [dispatch, thisPage, filters]);
 
-  const handleFiltersChange = (newFilters) => {
-    console.log("cambiando filters");
-    setFilters(newFilters);
-  };
+  const { thisPage, filterCategory } = useSelector(state => state);
+
+  useEffect(() => {
+    dispatch(allProducts(thisPage));
+    if (!filterCategory){
+      dispatch(allCategories());
+    } else {
+      dispatch(getProductFilter(filterCategory));
+    }
+  }, [dispatch, thisPage, filterCategory]);
+  
+  // useEffect(() => {
+  //   if (filterCategory.length) {
+      
+  //   }
+  // }, [dispatch, filterCategory]);
 
   return (
     <div>
@@ -42,7 +36,7 @@ const ProductsPage = () => {
       </div>
 
       <div>
-        <ProductsContainer  onFiltersChange={handleFiltersChange}/>
+        <ProductsContainer  />
       </div>
       
     </div>
