@@ -9,7 +9,8 @@ import {
     POST_PRODUCT,
     PUT_PRODUCT,
     SET_TOTAL_PAGES,
-    SET_PAGE
+    SET_PAGE,
+    SET_CATEGORY
 } from "../action-type";
 
 const initialState = {
@@ -19,6 +20,7 @@ const initialState = {
     bestSell: [],
     totalPages: 0,
     thisPage: 1,
+    filterCategory: ""
 }
 
 const reducer = (state = initialState, {type, payload}) => {
@@ -45,6 +47,8 @@ const reducer = (state = initialState, {type, payload}) => {
             return {...state, totalPages: payload}
         case SET_PAGE:
             return { ...state, thisPage: payload}
+        case SET_CATEGORY:
+            return { ...state, filterCategory: payload}
         default:
             return { ...state }
     }
