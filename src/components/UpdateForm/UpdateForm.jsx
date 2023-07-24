@@ -66,6 +66,21 @@ const handleInputChange = (event) => {
     };
 
 
+    // const handleSubmit = async (event) => {
+    //     event.preventDefault();
+    //     const errors = validations(inputsForm);
+    //     setErrors(errors);
+    //     if (Object.keys(errors).length === 0) {
+    //         const response = await formatAndEdit(inputsForm, dispatch);
+    //         if (response) {
+    //             alert('Producto modificado con éxito');
+    //             setInputsForm(defaultValues);
+    //         };
+    //     } else {
+    //         alert('Hubo un error al modificar el producto');
+    //     };
+    // };
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         //Hasta aqui funcionaba. Metiendo validaciones:
@@ -78,18 +93,6 @@ const handleInputChange = (event) => {
             console.log("producto actualizado");
             alert(`Producto id: ${idProduct} modificado con éxito`)
         }
-        // const errors = validations(inputsForm);
-        // setErrors(errors);
-        // // if (Object.keys(errors).length === 0) {
-        //     const response = await formatAndEdit(inputsForm, dispatch);
-        //     if (response) {
-        //         alert('Producto modificado con éxito');
-        //         setInputsForm(defaultValues);
-        //     };
-    // } 
-        // else {
-        //     alert('Hubo un error al editar el producto');
-        // };
     };
 
     return (
@@ -99,7 +102,7 @@ const handleInputChange = (event) => {
                 Actualizar producto
             </h2>
             <form className="justify-start" onSubmit={handleSubmit} encType="multipart/form-data">
-                <div className="flex m-8">
+                <div className=" flex m-8 mb-0">
                     <label
                         htmlFor="name"
                         className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
@@ -112,12 +115,21 @@ const handleInputChange = (event) => {
                         name="name"
                         value={inputsForm.name}
                         onChange={handleInputChange}
-                    />
+                    /> 
                 </div>
-                <div className="flex m-8">
+                <div className="flex my-0 pt-0 pl-8 justify-around">
+                    <p
+                        className={`text-warning text-xs font-extrabold py-0 m-0 ${
+                        errors.name ? "block" : "hidden"
+                        }`}
+                    >
+                        {errors.name}
+                    </p>
+                </div>
+                <div className={`flex m-8 mb-0 ${errors.name ? "mt-4" : "mt-8"}`}>
                     <label
                         htmlFor="price"
-                        className="bg-quaternary rounded-l-xl w-40 h-8 flex items-center justify-center"
+                        className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
                     >
                         Precio:
                     </label>
@@ -128,11 +140,12 @@ const handleInputChange = (event) => {
                         value={inputsForm.price}
                         onChange={handleInputChange}
                     />
-                    <div className="w-3 h-2">
-                        {errors.price && <p className="text-warning font-extrabold w-fit h3">{errors.price}</p>}
-                    </div>
                 </div>
-                <div className="flex m-8">
+                    <div className="flex my-0 pt-0 pl-8 justify-around">
+                        {errors.price && <p className="text-warning text-xs font-extrabold py-0 m-0">{errors.price}</p>}  
+                    </div>
+
+                <div className={`flex m-8 mb-0 ${errors.price ? "mt-4" : "mt-8"}`}>
                     <label
                         htmlFor="category"
                         className="bg-quaternary rounded-l-xl w-40 h-8 flex items-center justify-center"
@@ -189,10 +202,10 @@ const handleInputChange = (event) => {
                     </span>
                 </div>
 
-                <div className="flex m-8">
+                <div className="flex m-8 mb-0">
                     <label
                         htmlFor="stock"
-                        className="bg-quaternary rounded-l-xl w-40 h-8 flex items-center justify-center"
+                        className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
                     >
                         Stock:
                     </label>
@@ -203,14 +216,14 @@ const handleInputChange = (event) => {
                         value={inputsForm.stock}
                         onChange={handleInputChange}
                     />
-                    <div className="w-3 h-2">
-                        {errors.stock && <p className="text-warning font-extrabold w-fit h3">{errors.stock}</p>}
-                    </div>
                 </div>
-                <div className="flex m-8">
+                    <div className="flex mt-0 pt-0 pl-8 justify-around">
+                        {errors.stock && <p className="text-warning text-xs font-extrabold py-0 m-0">{errors.stock}</p>}  
+                    </div>
+                <div className={`flex m-8 mb-0 ${errors.stock ? "mt-4" : "mt-8"}`}>
                     <label
                         htmlFor="color"
-                        className="bg-quaternary rounded-l-xl w-40 h-8 flex items-center justify-center"
+                        className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
                     >
                         Color:
                     </label>
@@ -221,11 +234,11 @@ const handleInputChange = (event) => {
                         value={inputsForm.color}
                         onChange={handleInputChange}
                     />
-                    <div className="w-3 h-2">
-                        {errors.color && <p className="text-warning font-extrabold w-fit h3">{errors.color}</p>}
-                    </div>
                 </div>
-                <div className="m-10 flex justify-center">
+                    <div className="flex mt-0 pt-0 pl-8 justify-around">
+                        {errors.color && <p className="text-warning text-xs font-extrabold py-0 m-0">{errors.color}</p>}  
+                    </div>
+                <div className={`m-10 flex justify-center ${errors.color ? "mt-4" : "mt-8"}`}>
                     <button
                         className="rounded-xl w-4/5 h-12 hover:translate-y-1.5 bg-primary text-tertiary border border-solid border-black m-5 font-bold flex items-center justify-center"
                         type="submit"

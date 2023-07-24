@@ -93,7 +93,7 @@ const CreateForm = () => {
                 Crear Producto
             </h2>
             <form onSubmit={handleSubmit} encType="multipart/form-data">
-                <div className=" flex m-8">
+                <div className=" flex m-8 mb-0">
                     <label
                         htmlFor="name"
                         className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
@@ -108,10 +108,16 @@ const CreateForm = () => {
                         onChange={handleInputChange}
                     /> 
                 </div>
-                <div className="block">
-                    <span className="text-warning font-extrabold">{errors.name}</span>
+                <div className="flex my-0 pt-0 pl-8 justify-around">
+                    <p
+                        className={`text-warning text-xs font-extrabold py-0 m-0 ${
+                        errors.name ? "block" : "hidden"
+                        }`}
+                    >
+                        {errors.name}
+                    </p>
                 </div>
-                <div className="flex m-8">
+                <div className={`flex m-8 mb-0 ${errors.name ? "mt-4" : "mt-8"}`}>
                     <label
                         htmlFor="price"
                         className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
@@ -125,10 +131,12 @@ const CreateForm = () => {
                         value={inputsForm.price}
                         onChange={handleInputChange}
                     />
-                    <span className="text-warning font-extrabold">{errors.price}</span>
                 </div>
+                    <div className="flex my-0 pt-0 pl-8 justify-around">
+                        {errors.price && <p className="text-warning text-xs font-extrabold py-0 m-0">{errors.price}</p>}  
+                    </div>
 
-                <div className="flex m-8">
+                <div className={`flex m-8 mb-0 ${errors.price ? "mt-4" : "mt-8"}`}>
                     <label
                         htmlFor="code"
                         className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
@@ -214,7 +222,7 @@ const CreateForm = () => {
                         onChange={handleInputChange}
                     />
                 </div>
-                <div className="flex m-8">
+                <div className="flex m-8 mb-0">
                     <label
                         htmlFor="stock"
                         className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
@@ -228,9 +236,11 @@ const CreateForm = () => {
                         value={inputsForm.stock}
                         onChange={handleInputChange}
                     />
-                    <span className="text-warning font-extrabold">{errors.stock}</span>
                 </div>
-                <div className="flex m-8">
+                    <div className="flex mt-0 pt-0 pl-8 justify-around">
+                        {errors.stock && <p className="text-warning text-xs font-extrabold py-0 m-0">{errors.stock}</p>}  
+                    </div>
+                <div className={`flex m-8 mb-0 ${errors.stock ? "mt-4" : "mt-8"}`}>
                     <label
                         htmlFor="color"
                         className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
@@ -244,9 +254,11 @@ const CreateForm = () => {
                         value={inputsForm.color}
                         onChange={handleInputChange}
                     />
-                    <span className="text-warning">{errors.color}</span>
                 </div>
-                <div className="m-10 flex justify-center">
+                    <div className="flex mt-0 pt-0 pl-8 justify-around">
+                        {errors.color && <p className="text-warning text-xs font-extrabold py-0 m-0">{errors.color}</p>}  
+                    </div>
+                <div className={`m-10 flex justify-center ${errors.color ? "mt-4" : "mt-8"}`}>
                     <button
                         className="rounded-xl w-4/5 h-12 hover:translate-y-1.5 bg-primary text-tertiary border border-solid border-black m-5 font-bold flex items-center justify-center"
                         type="submit"
