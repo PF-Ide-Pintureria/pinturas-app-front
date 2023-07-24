@@ -8,7 +8,7 @@ const AboutCard = () => {
         <Link
           className="flex columns-1 w-auto h-auto justify-center align-center mt-11"
           to="/about">
-          <h1 className="text-primary text-3xl text-center uppercase font-bold">
+          <h1 className="text-primary text-3xl text-center uppercase font-bold cursor-pointer transition-transform duration-300 ease-in-out hover:scale-125">
             Sobre Nosotros
           </h1>
         </Link>
