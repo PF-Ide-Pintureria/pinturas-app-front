@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import industrial from "../../img/industrial.png";
 import SearchBar from "../../components/SearchBar/SearchBar";
+import FeaturedContainer from "../../components/FeaturedContainer/FeaturedContainer";
+import { bestSellers } from "../../redux/actions/bestSellers";
 import "../Products/Products.css";
 import ProductsContainer from "../../components/ProductsContainer/ProductsContainer";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,9 +11,8 @@ import { allCategories } from "../../redux/actions/allCategories";
 import { getProductFilter } from "../../redux/actions/getProductFilter";
 
 const ProductsPage = () => {
-
   const dispatch = useDispatch();
-  const { thisPage, filterCategory } = useSelector(state => state);
+  const { thisPage, filterCategory } = useSelector((state) => state);
 
   const [filters, setFilters] = useState({
     category: "",
@@ -19,7 +20,7 @@ const ProductsPage = () => {
     highPrice: "",
     lowPrice: "",
   });
-  
+
   useEffect(() => {
     dispatch(
       allProducts(
@@ -34,19 +35,22 @@ const ProductsPage = () => {
     // dispatch()
   }, [dispatch, thisPage, filters]);
 
-
   useEffect(() => {
     dispatch(allProducts(thisPage));
-    if (!filterCategory){
+    if (!filterCategory) {
       dispatch(allCategories());
     } else {
       dispatch(getProductFilter(filterCategory, thisPage));
     }
   }, [dispatch, thisPage, filterCategory]);
-  
+
+  useEffect(() => {
+    dispatch(bestSellers());
+  }, [dispatch]);
+
   // useEffect(() => {
   //   if (filterCategory.length) {
-      
+
   //   }
   // }, [dispatch, filterCategory]);
 
@@ -62,7 +66,10 @@ const ProductsPage = () => {
       </div>
 
       <div>
-        <ProductsContainer  />
+        <ProductsContainer />
+      </div>
+      <div>
+        <FeaturedContainer />
       </div>
     </div>
   );

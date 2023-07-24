@@ -4,6 +4,8 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { productById } from "../../redux/actions/productById";
+import FeaturedContainer from "../../components/FeaturedContainer/FeaturedContainer";
+import { bestSellers } from "../../redux/actions/bestSellers";
 import "./Detail.Module.css";
 
 const Detail = () => {
@@ -14,6 +16,10 @@ const Detail = () => {
   useEffect(() => {
     dispatch(productById(idProduct));
   }, [dispatch, idProduct]);
+
+  useEffect(() => {
+    dispatch(bestSellers());
+  }, [dispatch]);
 
   // Función para renderizar las estrellas llenas y vacías basadas en la calificación del producto
   const renderStars = (rating) => {
@@ -189,8 +195,11 @@ const Detail = () => {
         </div>
         <div className="flax justify-end">
           <DeleteButton idProduct={idProduct} />
-          <UpdateButton idProduct={idProduct}/>
+          <UpdateButton idProduct={idProduct} />
         </div>
+      </div>
+      <div>
+        <FeaturedContainer />
       </div>
     </section>
   );
