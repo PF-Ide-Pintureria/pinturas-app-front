@@ -21,7 +21,6 @@ const ProductsPage = () => {
   });
   
   useEffect(() => {
-    console.log("dispatch?");
     dispatch(
       allProducts(
         thisPage,
@@ -41,7 +40,7 @@ const ProductsPage = () => {
     if (!filterCategory){
       dispatch(allCategories());
     } else {
-      dispatch(getProductFilter(filterCategory));
+      dispatch(getProductFilter(filterCategory, thisPage));
     }
   }, [dispatch, thisPage, filterCategory]);
   

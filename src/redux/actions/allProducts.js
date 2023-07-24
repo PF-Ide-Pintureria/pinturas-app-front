@@ -5,14 +5,15 @@ export const allProducts = (page) => {
     return async (dispatch) => {
         try {
             if (!page) {
-                const pages = (await axios.get(`${BASE_URL}products/`)).data.pages
+                const response = await axios.get(`${BASE_URL}products?active=true`);
+                const pages = response.data.pages;
+                const products = response.data.results.rows;
+                
                 dispatch({ type: SET_TOTAL_PAGES, payload: pages })
-
-                const products = (await axios.get(`${BASE_URL}products`)).data.results.rows;
                 return dispatch({ type: GET_ALL_PRODUCTS, payload: products })
 
             } else if (page){
-                const products = (await axios.get(`${BASE_URL}products?page=${page}`)).data.results.rows;
+                const products = (await axios.get(`${BASE_URL}products?active=true&page=${page}`)).data.results.rows;
                 return dispatch({ type: GET_ALL_PRODUCTS, payload: products })
             }
 

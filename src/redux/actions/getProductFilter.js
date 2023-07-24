@@ -3,7 +3,7 @@ import axios from "axios";
 
 
 export const getProductFilter = (
-    category, 
+    category, page
     // lowPrice, 
     // highPrice, 
     // minRating, 
@@ -19,15 +19,25 @@ export const getProductFilter = (
     ) => {
 
     return async (dispatch) => {
-        if (category
-            // || lowPrice || highPrice || orderBy
-            ){
-            const response = await axios.get(`${BASE_URL}products?category=${category}`);
-            const pages = response.data.pages;
-            const products = response.data.results.rows;
+        try {
+            if (category && !page
+                // || lowPrice || highPrice || orderBy
+                ){
+                const response = await axios.get(`${BASE_URL}products?active=true&category=${category}`);
+                const pages = response.data.pages;
+                const products = response.data.results.rows;
+                
+                dispatch({ type: SET_TOTAL_PAGES, payload: pages })
+                return dispatch({ type: GET_PRODUCT_FILTER, payload: products });
+
+            } else if (category && page) {
+                const products = (await axios.get(`${BASE_URL}products?active=true&category=${category}&page=${page}`)).data.results.rows;
+                return dispatch({ type: GET_PRODUCT_FILTER, payload: products });
+            }
             
-            dispatch({ type: SET_TOTAL_PAGES, payload: pages })
-            dispatch({ type: GET_PRODUCT_FILTER, payload: products });
+        } catch (error) {
+            console.log(error)
+
         }
     }
 }

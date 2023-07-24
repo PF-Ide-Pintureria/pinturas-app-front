@@ -22,8 +22,9 @@ const ProductsContainer = () => {
         lowPrice: ""
     });
 
-    const handleCategory = (category) => {
-        dispatch(setCategory(category));
+    const handleCategory = (category, page) => {
+        dispatch(setPage(page))
+        dispatch(setCategory(category, page));
     };
 
     // const handleChangeFilter = (event) => {
