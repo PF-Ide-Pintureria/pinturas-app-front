@@ -34,21 +34,21 @@ const Developers = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-primary hover:text-black transition-colors duration-300 mx-4 hover:scale-150">
-                    <FaGithub />
+                    <FaGithub style={{ fontSize: "1.5rem" }} />
                   </a>
                   <a
                     href={member.gmail}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-primary hover:text-black transition-colors duration-300 mx-4 hover:scale-150">
-                    <FaEnvelope />
+                    <FaEnvelope style={{ fontSize: "1.5rem" }} />
                   </a>
                   <a
                     href={member.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-primary hover:text-black transition-colors duration-300 mx-4 hover:scale-150">
-                    <FaLinkedin />
+                    <FaLinkedin style={{ fontSize: "1.5rem" }} />
                   </a>
                 </div>
               </div>
