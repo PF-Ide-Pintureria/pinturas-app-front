@@ -17,13 +17,11 @@ const Contact = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Validar campos obligatorios
     if (!inputs.name || !inputs.email || !inputs.message) {
       alert("Por favor, complete todos los campos obligatorios.");
       return;
     }
 
-    // Validar formato de correo electrónico
     const emailRegex =
       /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     if (!emailRegex.test(inputs.email)) {
@@ -31,10 +29,8 @@ const Contact = () => {
       return;
     }
 
-    // Aquí puedes enviar los datos al servidor si es necesario
     alert("Mensaje enviado");
 
-    // Reiniciar los valores de los campos después de enviar el formulario
     setInputs({
       name: "",
       email: "",
@@ -49,13 +45,15 @@ const Contact = () => {
           className="container my-24 mx-auto  flex flex-wrap  rounded-lg bg-formBg  px-6 py-12 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]   @media (prefers-color-scheme: dark) {
     background-color: transparent;
   }
-} dark:shadow-black/20 md:py-16   backdrop-blur-[30px] mt-20">
+} dark:shadow-black/20 md:py-16   backdrop-blur-[30px] mt-20"
+        >
           <div className="w-full md:w-5/12 md:px-3 lg:w-5/12 lg:px-6">
             <form onSubmit={handleSubmit}>
               <div className="flex m-8">
                 <label
                   htmlFor="name"
-                  className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center">
+                  className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
+                >
                   Nombre:
                 </label>
                 <input
@@ -71,8 +69,9 @@ const Contact = () => {
               <div className="flex m-8">
                 <label
                   htmlFor="name"
-                  className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center">
-                  Correo Electrónico:
+                  className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
+                >
+                  Correo :
                 </label>
                 <input
                   className=" rounded-r-lg w-72 h-8"
@@ -87,7 +86,8 @@ const Contact = () => {
               <div className="flex m-8">
                 <label
                   htmlFor="name"
-                  className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center">
+                  className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
+                >
                   Tu Mensaje:
                 </label>
                 <input
@@ -102,10 +102,12 @@ const Contact = () => {
               </div>
               <button
                 type="submit"
-                className="rounded-xl w-4/5 h-12 hover:translate-y-1.5 bg-primary text-tertiary border border-solid border-black m-5 font-bold flex  items-center justify-center">
+                className="rounded-xl w-4/5 h-12 hover:translate-y-1.5 bg-primary text-tertiary border border-solid border-black m-5 font-bold flex  items-center justify-center"
+              >
                 <h2
                   className="text-primary uppercase font-bold flex items-center justify-center"
-                  style={{ color: "white", fontWeight: "bold" }}>
+                  style={{ color: "white", fontWeight: "bold" }}
+                >
                   Enviar
                 </h2>
               </button>
@@ -123,7 +125,8 @@ const Contact = () => {
                         viewBox="0 0 24 24"
                         strokeWidth="2"
                         stroke="currentColor"
-                        className="h-12 w-12">
+                        className="h-12 w-12"
+                      >
                         <rect width="100%" height="100%" fill="pink" />
                         <path
                           strokeLinecap="round"
@@ -147,8 +150,6 @@ const Contact = () => {
                 </div>
               </div>
 
-              {/* Se agregan más contactos de soporte aquí */}
-
               <div className="w-full md:w-6/12 md:px-3 lg:w-6/12 lg:px-6">
                 <div className="flex items-start mb-12">
                   <div className="shrink-0">
@@ -159,7 +160,8 @@ const Contact = () => {
                         viewBox="0 0 24 24"
                         strokeWidth="2"
                         stroke="currentColor"
-                        class="h-12 w-12">
+                        class="h-12 w-12"
+                      >
                         <rect width="100%" height="100%" fill="pink" />
                         <path
                           strokeLinecap="round"
@@ -193,7 +195,8 @@ const Contact = () => {
                         viewBox="0 0 24 24"
                         stroke-width="2"
                         stroke="currentColor"
-                        class="h-12 w-12">
+                        class="h-12 w-12"
+                      >
                         <rect width="100%" height="100%" fill="pink" />
                         <path
                           stroke-linecap="round"
