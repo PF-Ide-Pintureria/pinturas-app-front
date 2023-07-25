@@ -18,8 +18,8 @@ export const GET_BEST_SELL = "GET_BEST_SELL";
 
 export const SET_TOTAL_PAGES = "SET_TOTAL_PAGES";
 
-export const  SET_PAGE = "SET_PAGE";
+export const SET_PAGE = "SET_PAGE";
 
-export const  SET_CATEGORY = "SET_CATEGORY";
+export const SET_CATEGORY = "SET_CATEGORY";
 
 export const BASE_URL = "https://back-server-pinturas-app.onrender.com/";

@@ -7,12 +7,12 @@ import { BASE_URL } from "../../redux/action-type";
 import axios from "axios";
 
 // const defaultValues = {
-//     name: "Probando Formulario",
-//     price: 0,
+//     name: "[TEST-2-LOCAL] [24-Jul] [Juan Pablo]",
+//     price: 100,
 //     code: "123",
 //     category: "Linea Fondos",
 //     patent: "FADEPA",
-//     imagen: "",
+//     image: "",
 //     color: "Blanco",
 //     package: "2 Lts.",
 //     stock: 12,
@@ -34,11 +34,10 @@ const CreateForm = () => {
         code: "",
         category: "",
         patent: "",
-        // image: "",
         color: "",
         package: "",
         stock: "",
-        // file: null,
+        image: "",
     });
 
     const [errors, setErrors] = useState({
@@ -47,7 +46,7 @@ const CreateForm = () => {
         code: "",
         category: "",
         patent: "",
-        // image: "",
+        image: "",
         color: "",
         package: "",
         stock: ""
@@ -57,11 +56,10 @@ const CreateForm = () => {
         const property = event.target.name;
         const value = event.target.value;
 
-        if (property === 'imagen') {
+        if (property === 'image') {
             setInputsForm({
                 ...inputsForm,
-                file: event.target.files[0],
-                imagen: value,
+                image: event.target.files[0],
             });
         } else {
             setInputsForm({ ...inputsForm, [property]: value });
@@ -72,22 +70,22 @@ const CreateForm = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const formData = new FormData();
-        formData.append('name', inputsForm.name);
-        formData.append('price', inputsForm.price);
-        formData.append('code', inputsForm.code);
-        formData.append('category', inputsForm.category);
-        formData.append('patent', inputsForm.patent);
-        // formData.append('image', inputsForm.image);
-        formData.append('color', inputsForm.color);
-        formData.append('package', inputsForm.package);
-        formData.append('stock', inputsForm.stock);
-        // formData.append('file', inputsForm.file);
+        // const formData = new FormData();
+        // formData.append('name', inputsForm.name);
+        // formData.append('price', inputsForm.price);
+        // formData.append('code', inputsForm.code);
+        // formData.append('category', inputsForm.category);
+        // formData.append('patent', inputsForm.patent);
+        // // formData.append('image', inputsForm.image);
+        // formData.append('color', inputsForm.color);
+        // formData.append('package', inputsForm.package);
+        // formData.append('stock', inputsForm.stock);
+        // // formData.append('file', inputsForm.file);
         const errors = validations(inputsForm);
         setErrors(errors);
         if (Object.keys(errors).length === 0) {
             // const response = await axios.post(`${BASE_URL}products`,inputsForm)
-            const response = await formatAndPost(formData, dispatch);
+            const response = await formatAndPost(inputsForm, dispatch);
             if (response) {
                 alert('Producto creado con éxito');
                 setInputsForm(defaultValues);
@@ -95,8 +93,6 @@ const CreateForm = () => {
         } else {
             alert('Hubo un error al crear el producto');
         };
-
-        console.log(inputsForm)
     };
 
 
@@ -121,13 +117,12 @@ const CreateForm = () => {
                         name="name"
                         value={inputsForm.name}
                         onChange={handleInputChange}
-                    /> 
+                    />
                 </div>
                 <div className="flex my-0 pt-0 pl-8 justify-around">
                     <p
-                        className={`text-warning text-xs font-extrabold py-0 m-0 ${
-                        errors.name ? "block" : "hidden"
-                        }`}
+                        className={`text-warning text-xs font-extrabold py-0 m-0 ${errors.name ? "block" : "hidden"
+                            }`}
                     >
                         {errors.name}
                     </p>
@@ -147,9 +142,9 @@ const CreateForm = () => {
                         onChange={handleInputChange}
                     />
                 </div>
-                    <div className="flex my-0 pt-0 pl-8 justify-around">
-                        {errors.price && <p className="text-warning text-xs font-extrabold py-0 m-0">{errors.price}</p>}  
-                    </div>
+                <div className="flex my-0 pt-0 pl-8 justify-around">
+                    {errors.price && <p className="text-warning text-xs font-extrabold py-0 m-0">{errors.price}</p>}
+                </div>
 
                 <div className={`flex m-8 mb-0 ${errors.price ? "mt-4" : "mt-8"}`}>
                     <label
@@ -204,7 +199,7 @@ const CreateForm = () => {
                         onChange={handleInputChange}
                     />
                 </div>
-                {/* <div className="flex m-8">
+                <div className="flex m-8">
                     <label
                         htmlFor="file"
                         className="bg-quaternary rounded-l-xl w-40 h-8 flex items-center justify-center cursor-pointer"
@@ -215,13 +210,14 @@ const CreateForm = () => {
                             type="file"
                             name="image"
                             accept="image/*"
+                            // value={inputsForm.image}
                             onChange={handleInputChange}
                         />
                     </label>
                     <span className="bg-formBg rounded-r-lg w-72 h-8 flex items-center px-3">
                         {inputsForm.imagen && `Imagen seleccionada: ${inputsForm.imagen}`}
                     </span>
-                </div> */}
+                </div>
                 <div className="flex m-8">
                     <label
                         htmlFor="package"
@@ -252,9 +248,9 @@ const CreateForm = () => {
                         onChange={handleInputChange}
                     />
                 </div>
-                    <div className="flex mt-0 pt-0 pl-8 justify-around">
-                        {errors.stock && <p className="text-warning text-xs font-extrabold py-0 m-0">{errors.stock}</p>}  
-                    </div>
+                <div className="flex mt-0 pt-0 pl-8 justify-around">
+                    {errors.stock && <p className="text-warning text-xs font-extrabold py-0 m-0">{errors.stock}</p>}
+                </div>
                 <div className={`flex m-8 mb-0 ${errors.stock ? "mt-4" : "mt-8"}`}>
                     <label
                         htmlFor="color"
@@ -270,9 +266,9 @@ const CreateForm = () => {
                         onChange={handleInputChange}
                     />
                 </div>
-                    <div className="flex mt-0 pt-0 pl-8 justify-around">
-                        {errors.color && <p className="text-warning text-xs font-extrabold py-0 m-0">{errors.color}</p>}  
-                    </div>
+                <div className="flex mt-0 pt-0 pl-8 justify-around">
+                    {errors.color && <p className="text-warning text-xs font-extrabold py-0 m-0">{errors.color}</p>}
+                </div>
                 <div className={`m-10 flex justify-center ${errors.color ? "mt-4" : "mt-8"}`}>
                     <button
                         className="rounded-xl w-4/5 h-12 hover:translate-y-1.5 bg-primary text-tertiary border border-solid border-black m-5 font-bold flex items-center justify-center"
