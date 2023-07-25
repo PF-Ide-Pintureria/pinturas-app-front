@@ -1,14 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import category1 from "../../img/category1.png";
-import category2 from "../../img/Esmalte.png";
-import category3 from "../../img/Maderas.png";
-import category4 from "../../img/Fondos.png";
-import category5 from "../../img/Pisos.png";
-import category6 from "../../img/Piletas.png";
-import category7 from "../../img//Poliuretanos.png";
-import category8 from "../../img/Impermeabilizante.png";
-import category9 from "../../img/Industrial.png";
+import category2 from "../../img/especiales.png";
+import category3 from "../../img/esmalte.png";
+import category4 from "../../img/cal.png";
+import category5 from "../../img/fondos.png";
+import category6 from "../../img/tintas.png";
+import category7 from "../../img/ecologico.png";
+import category8 from "../../img/industriales.png";
+import category9 from "../../img/latex.png";
+import category10 from "../../img/impermeabilizante.png";
+import category11 from "../../img/fijadores.png";
+import category12 from "../../img/bases.png";
+import category13 from "../../img/auxiliares.png";
+import category14 from "../../img/madera.png";
 
 const CategoryContainer = () => {
   return (
@@ -23,7 +28,7 @@ const CategoryContainer = () => {
         </Link>
       </div>
       <div className="flex w-full">
-        <div className="w-full">
+        <div className="w-1/2">
           <Link to="/products?category=${Linea}">
             <img
               src={category2}
@@ -32,7 +37,7 @@ const CategoryContainer = () => {
             />
           </Link>
         </div>
-        <div className="w-full">
+        <div className="w-1/2">
           <Link to="/products?category=${Linea}">
             <img
               src={category3}
@@ -41,9 +46,9 @@ const CategoryContainer = () => {
             />
           </Link>
         </div>
-      </div>{" "}
+      </div>
       <div className="flex w-full">
-        <div className="w-full">
+        <div className="w-1/2">
           <Link to="/products?category=${Linea}">
             <img
               src={category4}
@@ -52,7 +57,7 @@ const CategoryContainer = () => {
             />
           </Link>
         </div>
-        <div className="w-full">
+        <div className="w-1/2">
           <Link to="/products?category=${Linea}">
             <img
               src={category5}
@@ -61,9 +66,9 @@ const CategoryContainer = () => {
             />
           </Link>
         </div>
-      </div>{" "}
+      </div>
       <div className="flex w-full">
-        <div className="w-full">
+        <div className="w-1/2">
           <Link to="/products?category=${Linea}">
             <img
               src={category6}
@@ -72,7 +77,7 @@ const CategoryContainer = () => {
             />
           </Link>
         </div>
-        <div className="w-full">
+        <div className="w-1/2">
           <Link to="/products?category=${Linea}">
             <img
               src={category7}
@@ -81,9 +86,9 @@ const CategoryContainer = () => {
             />
           </Link>
         </div>
-      </div>{" "}
+      </div>
       <div className="flex w-full">
-        <div className="w-full">
+        <div className="w-1/2">
           <Link to="/products?category=${Linea}">
             <img
               src={category8}
@@ -92,7 +97,7 @@ const CategoryContainer = () => {
             />
           </Link>
         </div>
-        <div className="w-full">
+        <div className="w-1/2">
           <Link to="/products?category=${Linea}">
             <img
               src={category9}
@@ -101,6 +106,55 @@ const CategoryContainer = () => {
             />
           </Link>
         </div>
+      </div>
+      <div className="flex w-full">
+        <div className="w-1/2">
+          <Link to="/products?category=${Linea}">
+            <img
+              src={category10}
+              alt="category10"
+              className="w-full h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
+            />
+          </Link>
+        </div>
+        <div className="w-1/2">
+          <Link to="/products?category=${Linea}">
+            <img
+              src={category11}
+              alt="category11"
+              className="w-full h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
+            />
+          </Link>
+        </div>
+      </div>
+      <div className="flex w-full">
+        <div className="w-1/2">
+          <Link to="/products?category=${Linea}">
+            <img
+              src={category12}
+              alt="category12"
+              className="w-full h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
+            />
+          </Link>
+        </div>
+        <div className="w-1/2">
+          <Link to="/products?category=${Linea}">
+            <img
+              src={category13}
+              alt="category13"
+              className="w-full h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
+            />
+          </Link>
+        </div>
+      </div>
+      <div className="w-1/2 mx-auto">
+        <Link to="/products?category=${Linea}">
+          <img
+            src={category14}
+            alt="category14"
+            className="w-full h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95 "
+          />
+        </Link>
       </div>
     </div>
   );
