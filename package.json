@@ -1,32 +1,40 @@
 {
-    "name": "client2",
-    "private": true,
-    "version": "0.0.0",
-    "type": "module",
-    "scripts": {
-        "dev": "vite",
-        "build": "vite build",
-        "preview": "vite preview"
-    },
-    "devDependencies": {
-        "autoprefixer": "^10.4.14",
-        "postcss": "^8.4.26",
-        "tailwindcss": "^3.3.3",
-        "vite": "^3.2.3"
-    },
-    "dependencies": {
-        "axios": "^1.4.0",
-        "primeflex": "^3.3.1",
-        "primeicons": "^6.0.1",
-        "primereact": "^9.6.0",
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0",
-        "react-redux": "^8.1.1",
-        "react-router-dom": "^6.14.2",
-        "react-scripts": "^5.0.1",
-        "redux": "^4.2.1",
-        "redux-thunk": "^2.4.2",
-        "sass": "^1.63.6",
-        "tailwindscss": "^0.3.0"
-    }
+  "name": "client2",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "deploy": "gh-pages -d dist",
+    "pre-deploy": "npm run build"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.14",
+    "dotenv": "^16.3.1",
+    "postcss": "^8.4.26",
+    "tailwindcss": "^3.3.3",
+    "vite": "^3.2.3"
+  },
+  "dependencies": {
+    "@auth0/auth0-react": "^2.2.0",
+    "axios": "^1.4.0",
+    "gh-pages": "^5.0.0",
+    "google-maps-react": "1.1.7",
+    "primeflex": "^3.3.1",
+    "primeicons": "^6.0.1",
+    "primereact": "^9.6.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.10.1",
+    "react-redux": "^8.1.1",
+    "react-router-dom": "^6.14.2",
+    "react-scripts": "^5.0.1",
+    "redux": "^4.2.1",
+    "redux-thunk": "^2.4.2",
+    "sass": "^1.63.6",
+    "tailwindscss": "^0.3.0"
+  },
+  "homepage": "https://PF-Ide-Pintureria.github.io/pinturas-app-front/"
 }

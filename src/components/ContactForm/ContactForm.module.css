@@ -1,11 +1,13 @@
 .container {
-    height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-left: 30px;
 }
 
 .background {
-    height: max-content;
-    padding: 3em 0;
-    background-image: url('../../img//gradientBackground.png');
-    background-attachment: fixed;
-    background-size: cover;
+  background-size: 100%;
+  margin: 10px;
+  border-radius: 2rem;
+  padding: 6px;
 }
