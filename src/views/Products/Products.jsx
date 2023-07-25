@@ -13,33 +13,12 @@ const ProductsPage = () => {
   const dispatch = useDispatch();
   const { thisPage, filterCategory } = useSelector((state) => state);
 
-  const [filters, setFilters] = useState({
-    category: "",
-    orderBy: "",
-    highPrice: "",
-    lowPrice: "",
-  });
-
-  useEffect(() => {
-    dispatch(
-      allProducts(
-        thisPage,
-        filters.category,
-        filters.orderBy,
-        filters.highPrice,
-        filters.lowPrice
-      )
-    );
-    dispatch(allCategories());
-    // dispatch()
-  }, [dispatch, thisPage, filters]);
-
   useEffect(() => {
     dispatch(allProducts(thisPage));
     if (!filterCategory) {
       dispatch(allCategories());
     } else {
-      dispatch(getProductFilter(filterCategory, thisPage));
+      dispatch(getProductFilter(thisPage, filterCategory ));
     }
   }, [dispatch, thisPage, filterCategory]);
 
