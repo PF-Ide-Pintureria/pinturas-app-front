@@ -1,98 +1,92 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { allCategories } from "../../redux/actions/allCategories";
-import {productById} from "../../redux/actions/productById"
+import { productById } from "../../redux/actions/productById"
 import validations from "./validations";
 import { useParams } from "react-router-dom";
+import { formatAndEdit } from "./formatAndEdit";
 import axios from "axios";
 import { BASE_URL } from "../../redux/action-type";
 
 const UpdateForm = () => {
 
-    const {idProduct} = useParams();
+    const { idProduct } = useParams();
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(allCategories())
     }, [dispatch])
-    
+
     useEffect(() => {
         dispatch(productById(idProduct))
     }, [dispatch]);
-    
+
     const detail = useSelector(state => state.detail);
-    const categories = useSelector(state=> state.categories)
-    
+    const categories = useSelector(state => state.categories)
+
     const [inputsForm, setInputsForm] = useState({
         name: "",
         price: "",
         category: "",
         patent: "",
-        image: "",
         color: "",
-        package: "",
+        // package: "",
         stock: "",
-        file: ''
+        image: ""
     });
 
 
     useEffect(() => {
-        if (detail) {      
+        if (detail) {
             setInputsForm({
-                name: detail.name,
-                price: detail.price,
-                category: detail.category,
-                patent: detail.patent,
-                image: detail.image,
-                color: detail.color,
-                package: detail.package,
-                stock: detail.stock
+                ...detail
+                // name: detail.name,
+                // price: detail.price,
+                // category: detail.category,
+                // patent: detail.patent,
+                // image: detail.image,
+                // color: detail.color,
+                // // package: detail.package,
+                // stock: detail.stock
             })
         }
     },
-    [detail]);
+        [detail]);
 
     const [errors, setErrors] = useState({
+        name: "",
         price: "",
         color: "",
         stock: ""
     });
 
-const handleInputChange = (event) => {
+    const handleInputChange = (event) => {
         const property = event.target.name;
         const value = event.target.value;
 
-        setInputsForm({ ...inputsForm, [property]: value })
-        setErrors(validations({ ...inputsForm, [property]: value }))
+        if (property === 'image') {
+            setInputsForm({
+                ...inputsForm,
+                image: event.target.files[0],
+            });
+        } else {
+            setInputsForm({ ...inputsForm, [property]: value });
+            setErrors(validations({ ...inputsForm, [property]: value }));
+        };
     };
 
 
-    // const handleSubmit = async (event) => {
-    //     event.preventDefault();
-    //     const errors = validations(inputsForm);
-    //     setErrors(errors);
-    //     if (Object.keys(errors).length === 0) {
-    //         const response = await formatAndEdit(inputsForm, dispatch);
-    //         if (response) {
-    //             alert('Producto modificado con éxito');
-    //             setInputsForm(defaultValues);
-    //         };
-    //     } else {
-    //         alert('Hubo un error al modificar el producto');
-    //     };
-    // };
-
     const handleSubmit = async (event) => {
         event.preventDefault();
-        //Hasta aqui funcionaba. Metiendo validaciones:
         const errors = validations(inputsForm);
         setErrors(errors);
-        if (!errors) {
-            const response = axios.put(`${BASE_URL}products/${idProduct}`, inputsForm);
-        }
-        if (response) {
-            console.log("producto actualizado");
-            alert(`Producto id: ${idProduct} modificado con éxito`)
-        }
+        if (Object.keys(errors).length === 0) {
+            const response = await formatAndEdit(inputsForm, idProduct, dispatch);
+            if (response) {
+                alert('Producto modificado con éxito');
+            };
+        } else {
+            alert('Hubo un error al modificar el producto');
+        };
     };
 
     return (
@@ -115,13 +109,12 @@ const handleInputChange = (event) => {
                         name="name"
                         value={inputsForm.name}
                         onChange={handleInputChange}
-                    /> 
+                    />
                 </div>
                 <div className="flex my-0 pt-0 pl-8 justify-around">
                     <p
-                        className={`text-warning text-xs font-extrabold py-0 m-0 ${
-                        errors.name ? "block" : "hidden"
-                        }`}
+                        className={`text-warning text-xs font-extrabold py-0 m-0 ${errors.name ? "block" : "hidden"
+                            }`}
                     >
                         {errors.name}
                     </p>
@@ -141,9 +134,9 @@ const handleInputChange = (event) => {
                         onChange={handleInputChange}
                     />
                 </div>
-                    <div className="flex my-0 pt-0 pl-8 justify-around">
-                        {errors.price && <p className="text-warning text-xs font-extrabold py-0 m-0">{errors.price}</p>}  
-                    </div>
+                <div className="flex my-0 pt-0 pl-8 justify-around">
+                    {errors.price && <p className="text-warning text-xs font-extrabold py-0 m-0">{errors.price}</p>}
+                </div>
 
                 <div className={`flex m-8 mb-0 ${errors.price ? "mt-4" : "mt-8"}`}>
                     <label
@@ -192,7 +185,8 @@ const handleInputChange = (event) => {
                             className="opacity-0 absolute"
                             type="file"
                             name="image"
-                            accept="image/png, .jpeg, .jpg, image/gif"
+                            accept="image/*"
+                            // value={inputsForm?.image?.name}
                             onChange={handleInputChange}
 
                         />
@@ -217,9 +211,9 @@ const handleInputChange = (event) => {
                         onChange={handleInputChange}
                     />
                 </div>
-                    <div className="flex mt-0 pt-0 pl-8 justify-around">
-                        {errors.stock && <p className="text-warning text-xs font-extrabold py-0 m-0">{errors.stock}</p>}  
-                    </div>
+                <div className="flex mt-0 pt-0 pl-8 justify-around">
+                    {errors.stock && <p className="text-warning text-xs font-extrabold py-0 m-0">{errors.stock}</p>}
+                </div>
                 <div className={`flex m-8 mb-0 ${errors.stock ? "mt-4" : "mt-8"}`}>
                     <label
                         htmlFor="color"
@@ -235,9 +229,9 @@ const handleInputChange = (event) => {
                         onChange={handleInputChange}
                     />
                 </div>
-                    <div className="flex mt-0 pt-0 pl-8 justify-around">
-                        {errors.color && <p className="text-warning text-xs font-extrabold py-0 m-0">{errors.color}</p>}  
-                    </div>
+                <div className="flex mt-0 pt-0 pl-8 justify-around">
+                    {errors.color && <p className="text-warning text-xs font-extrabold py-0 m-0">{errors.color}</p>}
+                </div>
                 <div className={`m-10 flex justify-center ${errors.color ? "mt-4" : "mt-8"}`}>
                     <button
                         className="rounded-xl w-4/5 h-12 hover:translate-y-1.5 bg-primary text-tertiary border border-solid border-black m-5 font-bold flex items-center justify-center"
