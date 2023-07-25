@@ -10,7 +10,9 @@ import {
     PUT_PRODUCT,
     SET_TOTAL_PAGES,
     SET_PAGE,
-    SET_CATEGORY
+    SET_CATEGORY,
+    SET_LOW_PRICE,
+    SET_HIGH_PRICE
 } from "../action-type";
 
 const initialState = {
@@ -20,7 +22,11 @@ const initialState = {
     bestSell: [],
     totalPages: 0,
     thisPage: 1,
-    filterCategory: ""
+    filterCategory: "",
+    price: {
+        high: 0,
+        low: 0
+    }
 }
 
 const reducer = (state = initialState, {type, payload}) => {
@@ -49,6 +55,10 @@ const reducer = (state = initialState, {type, payload}) => {
             return { ...state, thisPage: payload}
         case SET_CATEGORY:
             return { ...state, filterCategory: payload}
+        case SET_HIGH_PRICE:
+            return { ...state, price: {...state.price, high: payload}}
+        case SET_LOW_PRICE:
+            return { ...state, price: {...state.price, low: payload}}
         default:
             return { ...state }
     }
