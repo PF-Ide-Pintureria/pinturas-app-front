@@ -1,57 +1,19 @@
-.button {
-  background-color: var(--primary-color);
-  color: white;
-  border: 1px solid var(--secondary-color);
-  /* Estilos adicionales */
+.stars-container {
+  display: inline-flex;
+  align-items: center;
 }
-.container {
-  color: black;
+
+.star {
+  fill: gold;
+  width: 1em;
+  height: 1em;
+  margin-right: 2px;
 }
-.containerImage {
-  color: black;
-}
-.preImage {
-  color: black;
-}
-.containerDetail {
-  color: black;
-}
-.h1 {
-  color: black;
-}
-.h2 {
-  color: black;
-}
-.h3 {
-  color: black;
-}
-.containerDescription {
-  color: black;
-}
-.detail {
-  color: black;
-}
-.containerOptions {
-  color: black;
-}
-.containerSize {
-  color: black;
-}
-.containerQuantity {
-  color: black;
-}
-.buttonQuantity {
-  color: black;
-}
-.quantity {
-  color: black;
-}
-.buttonBuy {
-  color: black;
-}
-.containerRating {
-  color: black;
-}
-.containerBestSellers {
-  color: black;
+
+.star-empty {
+  fill: transparent;
+  stroke: black;
+  width: 1em;
+  height: 1em;
+  margin-right: 2px;
 }

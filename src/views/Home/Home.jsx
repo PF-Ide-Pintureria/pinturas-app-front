@@ -1,27 +1,41 @@
-import style from "./Home.module.css";
-import banner from '../../img/banner-home.png';
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import AboutCard from "../../components/AboutCard/AboutCard";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import FeaturedContainer from "../../components/FeaturedContainer/FeaturedContainer";
-import Footer from "../../components/Footer/Footer";
-import React from "react";
+import CategoryContainer from "../../components/CategoryContainer/CategoryContainer";
+import Banner from "../../components/Banner/Banner";
+import BannerBlog from "../../components/BannerBlog/BannerBlog";
+import { bestSellers } from "../../redux/actions/bestSellers";
 
 const Home = () => {
-    return (
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(bestSellers());
+  }, [dispatch]);
+
+  return (
+    <div>
+      <main>
         <div>
-            <main className={style.container}>
-                <div className={style.bannerContainer}>
-                <img src={banner} alt="banner" className={style.banner} />
-                </div>
-                <div className={style.featured}>
-                    <SearchBar />
-                    <FeaturedContainer />
-                </div>
-                <div className={style.about}>
-                    <AboutCard />
-                </div>
-            </main>
+          <Banner />
         </div>
+        {/* <SearchBar /> --------------> SEARCH TEMPORALY SUSPENDED <-------------------------------- */}
+        <div>
+          <FeaturedContainer />
+        </div>
+        <div>
+          <CategoryContainer />
+        </div>
+        <div>
+          <BannerBlog />
+        </div>
+        <div>
+          <AboutCard />
+        </div>
+      </main>
+    </div>
   );
 };
 

@@ -1,191 +1,85 @@
-.banner {
-  width: 906px;
-  height: 300px;
+/* About.css */
+.centered-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.container {
+.centered {
   display: flex;
-  justify-content: center;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0;
+  text-align: center;
 }
+
 .title-text {
-  color: #000;
-  font-size: 40px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  font-family: "Inter", sans-serif;
-  margin-top: 3em;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .long-text {
-  color: #000;
-  font-family: "Inter", sans-serif;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 600px;
 }
 
-.rocket-container {
-  width: 1523px;
-  height: auto;
-  margin-top: 3em;
-  margin-left: -450px;
-}
-
-.rocket {
-  width: 131.308px;
-  height: 131.077px;
-  flex-shrink: 0;
-}
-
-.rocket-display-flex {
+.centered-container-icons {
   display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  align-content: center;
-  align-items: stretch;
-  margin-top: -135px;
-  align-items: center;
-  margin-left: -15em;
+  flex-direction: row;
+  justify-content: space-between;
+  max-width: 800px;
+  margin: 20px 0;
 }
 
-.rocket-display-flex-title {
-  text-align: left;
-  margin-left: 43em;
-  margin-top: 7px;
-}
-
-.rocket-title {
-  border-top: 1em;
-  color: #000;
-  font-family: "Inter", sans-serif;
-  font-size: 36px;
-  font-style: normal;
-  font-weight: 800;
-  line-height: normal;
-  margin-right: 35px;
-}
-
-.rocket-display-flex-long-text {
-  text-align: left;
-  margin-left: 43em;
-  margin-top: 7px;
-}
-
-.rocket-long-text {
-  color: #000;
-  font-family: "Inter", sans-serif;
-  font-size: 18px;
-  font-weight: 400;
-  margin-right: 60px;
-}
-
-.light-bulb {
-  position: relative;
-  top: -130px;
-  margin-right: -11em;
-}
-
-.light-bulb-display-flex {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  align-content: center;
-  align-items: stretch;
-  margin-top: -252px;
-  align-items: center;
-  margin-right: -9em;
-  margin-left: -15em;
-}
-
-.light-bulb-display-flex-title {
-  margin-left: 43em;
-  margin-top: 7px;
-}
-
+.rocket-title,
 .light-bulb-title {
-  border-top: 1em;
-  color: #000;
-  font-family: "Inter", sans-serif;
-  font-size: 36px;
-  font-style: normal;
-  font-weight: 800;
-  line-height: normal;
-  margin-right: 35px;
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 10px;
 }
 
-.light-bulb-display-flex-long-text {
-  text-align: left;
-  margin-left: 43em;
-  margin-top: 7px;
-}
-
+.rocket-long-text,
 .light-bulb-long-text {
-  color: #000;
-  font-family: "Inter", sans-serif;
-  font-size: 18px;
-  font-weight: 400;
-  margin-right: 60px;
+  font-size: 14px;
+  max-width: 180px;
+}
+
+.general-card {
+  display: flex;
+  justify-content: space-between;
+  max-width: 800px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
 }
 
 .img2 {
-  width: 640px;
-  height: 508px;
-  margin-top: 8em;
-  border-radius: 20px;
-  background: url(<path-to-image>), lightgray 50% / cover no-repeat, #c4c4c4;
-  position: relative; /* Agregamos posición relativa al contenedor de la imagen */
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-right: 20px;
 }
 
 .square {
-  background-color: #cccee2;
-  border-radius: 20px;
-  width: 400px;
-  height: 290px;
-  position: relative;
-  top: -190px;
-  margin-left: 441px;
-}
-
-.text1 p {
-  margin-top: -420px;
-  position: relative;
-}
-
-.text2 p {
-  margin-top: -10px;
-  position: relative;
+  flex-grow: 1;
 }
 
 .blue-text {
-  color: #0132e0;
-  text-align: center;
-  font-family: "Inter", sans-serif;
-
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
+  color: #007bff;
+  font-weight: bold;
 }
 
 .black-text {
   color: #000;
-  font-family: "Inter", sans-serif;
-  font-size: 36px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .grey-text {
-  color: #3f3e3e;
-  text-align: center;
-  font-family: "Inter", sans-serif;
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
+  color: #888;
+  font-size: 14px;
 }
