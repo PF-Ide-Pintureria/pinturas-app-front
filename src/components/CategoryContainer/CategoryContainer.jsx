@@ -8,7 +8,7 @@ import category5 from "../../img/fondos.png";
 import category6 from "../../img/tintas.png";
 import category7 from "../../img/ecologico.png";
 import category8 from "../../img/industriales.png";
-import category9 from "../../img/latex.png";
+//import category9 from "../../img/latex.png";
 import category10 from "../../img/impermeabilizante.png";
 import category11 from "../../img/fijadores.png";
 import category12 from "../../img/bases.png";
@@ -31,8 +31,8 @@ const CategoryContainer = () => {
         <div className="w-1/2">
           <Link to="/products?category=${Linea}">
             <img
-              src={category2}
-              alt="category2"
+              src={category14}
+              alt="category14"
               className="w-full h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
             />
           </Link>
@@ -100,8 +100,8 @@ const CategoryContainer = () => {
         <div className="w-1/2">
           <Link to="/products?category=${Linea}">
             <img
-              src={category9}
-              alt="category9"
+              src={category2}
+              alt="category2"
               className="w-full h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
             />
           </Link>
@@ -147,7 +147,7 @@ const CategoryContainer = () => {
           </Link>
         </div>
       </div>
-      <div className="w-1/2 mx-auto">
+      {/* <div className="w-1/2 mx-auto">
         <Link to="/products?category=${Linea}">
           <img
             src={category14}
@@ -155,7 +155,7 @@ const CategoryContainer = () => {
             className="w-full h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95 "
           />
         </Link>
-      </div>
+      </div> */}
     </div>
   );
 };
