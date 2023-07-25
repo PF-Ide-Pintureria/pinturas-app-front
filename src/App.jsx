@@ -8,7 +8,7 @@ import Detail from "./views/Detail/Detail";
 import Footer from "./components/Footer/Footer";
 import Cart from "./views/Cart/Cart";
 import Blog from "./views/Blog/Blog";
-import Login from "./views/Login/Login";
+// import Login from "./views/Login/Login";
 import Products from "./views/Products/Products";
 import AdminDashboard from "./views/Admin/AdminDashboard/AdminDashboard";
 import AdminUsers from "./views/Admin/AdminUsers/AdminUsers";
