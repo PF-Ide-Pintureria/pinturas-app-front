@@ -26,37 +26,38 @@ import Register from "./views/Register/Register";
 import Purchases from "./views/Purchases/Purchases";
 
 function App() {
-  return (
-    <BrowserRouter>
-      <header>
-        <NavBar />
-      </header>
-      <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/products/:idProduct" element={<Detail />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/admin" element={<AdminDashboard />} />
-        <Route path="/admin/users" element={<AdminUsers />} />
-        <Route path="/admin/products" element={<AdminProducts />} />
-        <Route path="/admin/blog" element={<AdminBlog />} />
-        <Route path="/admin/create" element={<CreateProduct />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/purchases" element={<Purchases />} />
-        <Route path="/reviews" element={<Reviews />} />
-        <Route path="/favorite" element={<Favorite />} />
-        {/* <Route path="/account" element={<AdminDashboard />} /> */}
-        <Route path="/account" element={<Account />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/location" element={<Location />} />
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/developers" element={<Developers />} />
-      </Routes>
-      <footer>
-        <Footer />
-      </footer>
-    </BrowserRouter>
-  );
+    return (
+        <BrowserRouter>
+            <header>
+                <NavBar />
+            </header>
+            <Routes>
+                <Route exact path="/" element={<Home />} />
+                <Route path="/products" element={<Products />} />
+                <Route path="/products/:idProduct" element={<Detail />} />
+                <Route path="/products/edit/:idProduct" element={<UpdateProduct />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/admin" element={<AdminDashboard />} />
+                <Route path="/admin/users" element={<AdminUsers />} />
+                <Route path="/admin/products" element={<AdminProducts />} />
+                <Route path="/admin/blog" element={<AdminBlog />} />
+                <Route path="/admin/create" element={<CreateProduct />} />
+                <Route path="/cart" element={<Cart />} />
+                <Route path="/purchases" element={<Purchases />} />
+                <Route path="/reviews" element={<Reviews />} />
+                <Route path="/favorite" element={<Favorite />} />
+                {/* <Route path="/account" element={<AdminDashboard />} /> */}
+                <Route path="/account" element={<Account />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/location" element={<Location />} />
+                <Route path="/blog" element={<Blog />} />
+                <Route path="/developers" element={<Developers />} />
+            </Routes>
+            <footer>
+                <Footer />
+            </footer>
+        </BrowserRouter>
+    );
 }
 
 export default App;
