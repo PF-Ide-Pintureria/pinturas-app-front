@@ -10,7 +10,10 @@ import Cart from "./views/Cart/Cart";
 import Blog from "./views/Blog/Blog";
 import Login from "./views/Login/Login";
 import Products from "./views/Products/Products";
-import AdminDashboard from "./views/AdminDashboard/AdminDashboard";
+import AdminDashboard from "./views/Admin/AdminDashboard/AdminDashboard";
+import AdminUsers from "./views/Admin/AdminUsers/AdminUsers";
+import AdminProducts from "./views/Admin/AdminProducts/AdminProducts";
+import AdminBlog from "./views/Admin/AdminBlog/AdminBlog";
 import Account from "./views/Account/Account";
 import UpdateProduct from "./views/UpdateProduct/UpdateProduct";
 import CreateProduct from "./views/CreateProduct/CreateProduct";
@@ -34,6 +37,9 @@ function App() {
         <Route path="/products/:idProduct" element={<Detail />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/admin/users" element={<AdminUsers />} />
+        <Route path="/admin/products" element={<AdminProducts />} />
+        <Route path="/admin/blog" element={<AdminBlog />} />
         <Route path="/admin/create" element={<CreateProduct />} />
 
         <Route path="/cart" element={<Cart />} />

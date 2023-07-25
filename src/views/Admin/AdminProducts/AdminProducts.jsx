@@ -1,18 +1,17 @@
 import React from "react";
-import CreateForm from "../../components/CreateForm/CreateForm";
-import UpdateForm from "../../components/UpdateForm/UpdateForm";
-import "../AdminDashboard/AdminDashboard.css";
-import CreateButton from "../../components/CreateButton/CreateButton";
+import CreateForm from "../../../components/CreateForm/CreateForm";
+import UpdateForm from "../../../components/UpdateForm/UpdateForm";
+import NavbarAdmin from "../../../components/NavbarAdmin/NavbarAdmin";
 
-const AdmindDashboard = () => {
+const AdminProducts = () => {
   return (
     <div>
       <div className="background">
-        {" "}
+        <NavbarAdmin />
         <div className="flex self-center justify-around">
           <div className="form">
             {/* <CreateForm /> */}
-            <CreateButton/>
+            <CreateButton />
           </div>
           {/* <div className="form">
             <UpdateForm />
@@ -23,4 +22,4 @@ const AdmindDashboard = () => {
   );
 };
 
-export default AdmindDashboard;
+export default AdminProducts;
