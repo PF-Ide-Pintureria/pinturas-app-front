@@ -1,6 +1,9 @@
 import React from "react";
 
 const NavbarAdmin = () => {
-  return <></>;
+    return (
+        <div>
+
+        </div>);
 };
 export default NavbarAdmin;
