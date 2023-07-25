@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import industrial from "../../img/industrial.png";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import FeaturedContainer from "../../components/FeaturedContainer/FeaturedContainer";
 import { bestSellers } from "../../redux/actions/bestSellers";
