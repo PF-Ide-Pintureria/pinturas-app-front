@@ -3,7 +3,12 @@ import axios from "axios";
 
 export const productById = (idProduct) => {
   return async (dispatch) => {
-    const product = (await axios.get(`${BASE_URL}products/details/${idProduct}`)).data.product;
-    dispatch({ type: GET_PRODUCT_BY_ID, payload: product });
+    try {
+      const product = (await axios.get(`${BASE_URL}products/details/${idProduct}`)).data.product;
+      dispatch({ type: GET_PRODUCT_BY_ID, payload: product });
+      
+    } catch (error) {
+      console.log(error);
+    }
   };
 };

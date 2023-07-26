@@ -13,8 +13,8 @@ const ProductsContainer = () => {
   const dispatch = useDispatch();
 
   const { products, categories, totalPages, thisPage, filterCategory } = useSelector((state) => state);
-
   const { high, low } = useSelector((state) => state.price);
+  
   const [isLoading, setIsLoading] = useState(true);
   const [filteredProducts, setFilteredProducts] = useState(products);
 
@@ -85,7 +85,7 @@ const ProductsContainer = () => {
           <aside                
             className="w-full p-6 sm:w-80 bg-tertiary text-gray-800"
             style={{ borderRadius: "20px" }}>
-            <nav className="text-base flex flex-col">
+            <div className="text-base flex flex-col">
               
               {/* <div className="my-3.5 flex flex-col">
                 <select
@@ -106,14 +106,14 @@ const ProductsContainer = () => {
                 </select>
               </div> */}
               <div>
-                <div className="h-10">
+                <div className="h-10"> {/*          CLEAR FILTERS        */}
                   { filterCategory && <div> {filterCategory} <button onClick={() => handleCategory("")}>X</button></div> }
                   { (high === 0 && low !== 0 && low) && <div> Desde ${low} <button onClick={() => handlePriceFilter("no price")}>X</button></div> }
                   { (low === 0 && high !== 0 && high ) && <div> Hasta ${high} <button onClick={() => handlePriceFilter("no price")}>X</button></div> }
                   { (low !== 0 && high !== 0 && high && low ) && <div> ${low} hasta ${high} <button onClick={() => handlePriceFilter("no price")}>X</button></div> }
 
                 </div>
-                <div className="mb-5">   {/*       FILTER CATEGORY    */}
+                <div className="mb-5">   {/*       FILTER CATEGORY      */}
                   <h2 className="text-base font-semibold tracking-wide uppercase text-blue-600">
                     Categorias
                   </h2>
@@ -133,7 +133,7 @@ const ProductsContainer = () => {
                     ))}
                   </div>
                 </div>
-                 <div className="mb-5">  {/*       FILTER PRICE    */}
+                 <div className="mb-5">  {/*       FILTER PRICE         */}
                   <h2 className="text-base font-semibold tracking-wide uppercase text-blue-600">
                     Precio
                   </h2>
@@ -165,34 +165,38 @@ const ProductsContainer = () => {
                       Más de $20.000
                     </h3>
                   </div>
+                  <div>
+                    <input type="number" />
+                    <p>{" "}-{" "}</p>
+                    <input type="number" />
+                  </div>
                 </div>
               </div>
-            </nav>
+            </div>
           </aside>
         </div>
       </div>
-      {/*     PAGINATED     */}
-      <div>
+      <div>       {/*       CARDS & PAGINATED     */}
         <div className="w-full flex m-auto flex-col justify-center">
           <div className="flex justify-center">
             <div className="w-11/12 grid grid-cols-3 gap-8">
               {isLoading ? (
                 <img src="https://i.pinimg.com/originals/6b/e0/89/6be0890f52e31d35d840d4fe2e10385b.gif" alt="loading" />
-              ) : (
-                filteredProducts.map((product) => (
-                  <Products
+                ) : (
+                  filteredProducts.map((product) => (
+                    <Products
                     key={product.idProduct}
                     idProduct={product.idProduct}
                     image={product.image}
                     name={product.name}
                     price={product.price}
                     package={product.package}
-                  />
-                ))
-              )}
+                    />
+                    ))
+                    )}
             </div>
           </div>
-          <div className="w-full flex justify-center items-center my-7">
+          <div className="w-full flex justify-center items-center my-7"> {/*     PAGINATED     */}
             {!isLoading && (
               <Paginated
                 totalPages={totalPages}

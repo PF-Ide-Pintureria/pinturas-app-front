@@ -20,6 +20,8 @@ export const SET_TOTAL_PAGES = "SET_TOTAL_PAGES";
 
 export const SET_PAGE = "SET_PAGE";
 
+export const SET_CART = "SET_CART";
+
 export const SET_CATEGORY = "SET_CATEGORY";
 
 export const  SET_HIGH_PRICE = "SET_HIGH_PRICE";

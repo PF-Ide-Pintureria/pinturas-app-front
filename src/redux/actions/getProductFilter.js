@@ -14,20 +14,18 @@ export const getProductFilter = ( page, category, low, high ) => {
     return async (dispatch) => {
 
         try {
-            let url = []
+            let url = ["products?active=true"]
             if (page) url.push(`&page=${page}`)
             if (!page) url.push(`&page=${1}`)
             if (category) url.push(`&category=${category}`)
             if (low !== 0) url.push(`&lowPrice=${low}`)
             if (high !== 0) url.push(`&highPrice=${high}`)
             let urlJoin = url.join("")
-
-            const active = "products?active=true"
             
-            const response = await axios.get(`${BASE_URL}${active}${urlJoin}`);
+            const response = await axios.get(`${BASE_URL}${urlJoin}`);
             const pages = response.data.pages;
             const products = response.data.results.rows;
-                
+            
             dispatch({ type: SET_TOTAL_PAGES, payload: pages });
             return dispatch({ type: GET_PRODUCT_FILTER, payload: products });
             
