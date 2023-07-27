@@ -26,6 +26,7 @@ import Register from "./views/Register/Register";
 import Purchases from "./views/Purchases/Purchases";
 
 function App() {
+
     return (
         <BrowserRouter>
             <header>
