@@ -24,8 +24,14 @@ export const SET_CART = "SET_CART";
 
 export const SET_CATEGORY = "SET_CATEGORY";
 
-export const  SET_HIGH_PRICE = "SET_HIGH_PRICE";
+export const SET_HIGH_PRICE = "SET_HIGH_PRICE";
 
-export const  SET_LOW_PRICE = "SET_LOW_PRICE";
+export const SET_LOW_PRICE = "SET_LOW_PRICE";
+
+export const POST_CONTACT_EMAIL = "POST_CONTACT_EMAIL";
+
+export const POST_REGISTER_EMAIL = "POST_REGISTER_EMAIL";
+
+export const POST_ORDER_EMAIL = "POST_ORDER_EMAIL";
 
 export const BASE_URL = "https://back-server-pinturas-app.onrender.com/";
