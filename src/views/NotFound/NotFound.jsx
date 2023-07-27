@@ -4,9 +4,7 @@ import img404 from "../../img/404.png";
 
 const NotFound = () => {
   return (
-    <div
-      className="flex flex-col mt-10 items-center justify-center min-h-screen"
-      style={{ marginBottom: "60px" }}>
+    <div className="flex flex-col mt-5 items-center justify-center min-h-screen">
       <h2 className="text-secondary text-lg mb-8">
         La página que estás buscando no parece existir
       </h2>
