@@ -9,10 +9,8 @@ import { useSelector } from "react-redux";
 
 const SearchBar = () => {
   const [search, setSearch] = useState("");
-  const location = useLocation();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { products, thisPage } = useSelector((state) => state)
+  const thisPage = useSelector((state) => state.thisPage);
 
   const handleChange = (event) => {
     dispatch(setPage(thisPage));

@@ -65,7 +65,6 @@ const CreateForm = () => {
             setInputsForm({ ...inputsForm, [property]: value });
             setErrors(validations({ ...inputsForm, [property]: value }));
         };
-        console.log(inputsForm)
     };
 
     const handleSubmit = async (event) => {
