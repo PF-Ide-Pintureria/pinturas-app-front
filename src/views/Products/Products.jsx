@@ -11,7 +11,8 @@ import { getProductFilter } from "../../redux/actions/getProductFilter";
 
 const ProductsPage = () => {
   const dispatch = useDispatch();
-  const { thisPage, filterCategory } = useSelector((state) => state);
+  const filterCategory = useSelector((state) => state.filterCategory);
+  const thisPage = useSelector((state) => state.thisPage);
 
   useEffect(() => {
     dispatch(allProducts(thisPage));
