@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import ProductCart from "../../components/ProductCart/ProductCart"
+import { productById } from "../../redux/actions/productById";
 
 const Cart = () => {
+  // const cart = useSelector((state) => state.cart);
+  // const productDetails = useSelector((state) => state.detail);
+  const [productsDetail, setProductsDetail] = useState([]);
+
 
   const navigateToRegister = () => {
     navigate("/register");
@@ -30,10 +37,25 @@ const Cart = () => {
           <p className="text-xl font-medium">Resumen del pedido</p>
           <p className="text-gray-400">Revisa tus artículos.</p>
           <div className="mt-8 space-y-3 rounded-lg border bg-white px-2 py-4 md:px-6">
-            <p className="text-gray-400 flex items-center justify-center">
-              El carrito esta vacio.
-            </p>
-          </div>
+          {/* {productsDetail.length > 0 ? (
+          productsDetail.map((product) =>
+            product && product.id ? (
+              <ProductCart
+                key={product.id}
+                name={product.name}
+                quantity={product.quantity}
+                price={product.price}
+                color={product.color}
+                image={product.image}
+              />
+            ) : null
+          )
+        ) : ( */}
+          <p className="text-gray-400 flex items-center justify-center">
+            El carrito está vacío.
+          </p>
+         {/* )} */}
+      </div>
           <div className="flex items-center justify-center">
             <button
               type="button"

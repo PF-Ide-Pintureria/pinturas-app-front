@@ -26,12 +26,6 @@ const ProductsPage = () => {
     dispatch(bestSellers());
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   if (filterCategory.length) {
-
-  //   }
-  // }, [dispatch, filterCategory]);
-
   return (
     <div>
       {/* <img

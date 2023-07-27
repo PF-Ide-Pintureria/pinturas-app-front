@@ -3,7 +3,6 @@ import { POST_PRODUCT, BASE_URL } from '../action-type';
 
 export const postProduct = (productCreate) => {
     return async (dispatch) => {
-        console.log(productCreate);
         const response = await axios.post(`${BASE_URL}products`, productCreate, {
             headers: {
             'Content-Type': 'multipart/form-data'
@@ -14,7 +13,6 @@ export const postProduct = (productCreate) => {
         return response;
     };
 };
-
 
 // 'upload_file', formData, {
 //             headers: {
