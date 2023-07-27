@@ -51,6 +51,8 @@ function App() {
         <Route path="/reviews" element={<Reviews />} />
         <Route path="/favorite" element={<Favorite />} />
         {/* <Route path="/account" element={<AdminDashboard />} /> */}
+        <Route path="/login/register" element={<Register />} />
+
         <Route path="/account" element={<Account />} />
         <Route path="/about" element={<About />} />
         <Route path="/location" element={<Location />} />
