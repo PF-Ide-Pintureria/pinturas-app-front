@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { postRegisterUser } from '../../redux/actions/postRegisterUser'
+import { postRegisterEmail } from '../../redux/actions/postRegisterEmail';
+import { postRegisterUser } from '../../redux/actions/postRegisterUser';
 import { useDispatch } from "react-redux";
 
 
@@ -72,11 +73,12 @@ const RegisterForm = () => {
         }
 
         if (Object.keys(errors).length === 0) {
-            await postRegisterUser({ name, lastName, email, password })(dispatch).then((response)=>{
+            await postRegisterUser({ name, lastName, email, password })(dispatch).then((response) => {
+                console.log('response: ', response);
                 console.log("Form submitted:", { name, lastName, email, password });
                 if (response.status === 200) {
+                    postRegisterEmail({ id: response.data.user.id, message: welcomeMessage })(dispatch);
                     alert('Usuario registrado correctamente');
-                    // postRegisterEmail(response.data.id, welcomeMessage);
                 }
 
             })
@@ -98,7 +100,7 @@ const RegisterForm = () => {
                         >
                             Registrate
                         </label>
-                        <form onSubmit={handleSubmit}  className="w-60">
+                        <form onSubmit={handleSubmit} className="w-60">
                             <div >
                                 <input
                                     type="text"
