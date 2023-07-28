@@ -7,35 +7,10 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const Account = () => {
-    const { isAuthenticated, user, logout, isLoading } = useAuth0();
-    const [activeButton, setActiveButton] = useState("dashboard");
-    const navigate = useNavigate();
+  const { isAuthenticated, user, logout, isLoading } = useAuth0();
+  const [activeButton, setActiveButton] = useState("dashboard");
+  const navigate = useNavigate();
 
-    const logUser = useSelector(state => state.user);
-    const handleButtonClick = (buttonName) => {
-        setActiveButton(buttonName);
-    };
 
-    if (!logUser) {
-        return (
-            <div style={{ display: "flex", minHeight: "100vh" }}>
-                <SideBar
-                    isAuthenticated={isAuthenticated}
-                    user={user}
-                    activeButton={activeButton}
-                    handleButtonClick={handleButtonClick}
-                    logout={logout}
-                />
-                <div className="w-9/12" style={{ flex: "1" }}>
-                    <LoadingScreen isLoading={isLoading} />
-                    <Dashboard isAuthenticated={isAuthenticated} />
-                    <footer style={{ textAlign: "center", padding: "10px" }}></footer>
-                </div>
-            </div>
-        );
-    } else {
-        navigate('/login')
-    }
-}
 
 export default Account;
