@@ -8,14 +8,14 @@ import { useNavigate } from "react-router-dom";
 import LoginForm from "../../components/LoginForm/LoginForm";
 
 const Account = () => {
-    const { isAuthenticated, user, logout, isLoading } = useAuth0();
-    const [activeButton, setActiveButton] = useState("dashboard");
-    const navigate = useNavigate();
+  const { isAuthenticated, user, logout, isLoading } = useAuth0();
+  const [activeButton, setActiveButton] = useState("dashboard");
+  const navigate = useNavigate();
 
-    const logUser = useSelector(state => state.user);
-    const handleButtonClick = (buttonName) => {
-        setActiveButton(buttonName);
-    };
+  const loggedUser = useSelector((state) => state.user);
+  const handleButtonClick = (buttonName) => {
+    setActiveButton(buttonName);
+  };
 
         return (
             <div>
