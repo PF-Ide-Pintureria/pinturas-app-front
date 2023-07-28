@@ -158,7 +158,7 @@ const SideBar = ({
                 : "hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline"
             }`}
             onClick={() => logout()}>
-            <span className="text-gray-600">
+            <span className="text-red-600">
               <svg
                 className="h-5"
                 xmlns="http://www.w3.org/2000/svg"
@@ -173,7 +173,7 @@ const SideBar = ({
                 />
               </svg>
             </span>
-            <span>Cerrar sesión</span>
+            <span className="text-red-600">Cerrar sesión</span>
           </a>
         </li>
       </ul>
