@@ -3,7 +3,7 @@ import LoginForm from "../../components/LoginForm/LoginForm";
 
 const Login = () => {
     return (
-        <div>
+        <div className="relative min-h-screen flex flex-col sm:justify-center items-center ">
             <LoginForm />
         </div>);
 }
