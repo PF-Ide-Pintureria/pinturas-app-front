@@ -24,7 +24,7 @@ const Orders = () => {
           <span>Mis Pedidos</span>
         </p>
       </li>
-      <div className="content flex-1 min-h-[500px] overflow-y-auto p-4 bg-gray-200">
+      <div className="content flex-1 min-h-[500px] overflow-y-auto p-4 rounded bg-gray-200">
         <p className="flex items-center space-x-3 text-gray-500 p-2 ">
           No tienes pedidos activos
         </p>
