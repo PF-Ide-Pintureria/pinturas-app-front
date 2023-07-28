@@ -25,22 +25,22 @@ const ProductsContainer = () => {
 
   const handlePriceFilter = (priceFilter) => {
     if (priceFilter === "Hasta $10000") {
-      dispatch(setPage(thisPage));
+      dispatch(setPage(1));
       dispatch(setLowPrice(0));
       dispatch(setHighPrice(10000));
 
     } else if (priceFilter === "$10000 a $20000") {
-      dispatch(setPage(thisPage));
+      dispatch(setPage(1));
       dispatch(setLowPrice(10000));
       dispatch(setHighPrice(20000));
 
     } else if (priceFilter === "Mas de $20000"){
-      dispatch(setPage(thisPage));
+      dispatch(setPage(1));
       dispatch(setLowPrice(20000));
       dispatch(setHighPrice(0));
       
     } else if (priceFilter === "no price"){
-      dispatch(setPage(thisPage));
+      dispatch(setPage(1));
       dispatch(setLowPrice(0));
       dispatch(setHighPrice(0));
 
