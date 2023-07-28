@@ -28,7 +28,7 @@ export const SET_LOW_PRICE = "SET_LOW_PRICE";
 export const SET_TOTAL_PAGES = "SET_TOTAL_PAGES";
 export const SET_PAGE = "SET_PAGE";
 
-export const GET_CART = "GET_CART";
+export const SET_CART = "SET_CART";
 
 //NODE MAILER
 export const POST_CONTACT_EMAIL = "POST_CONTACT_EMAIL";
