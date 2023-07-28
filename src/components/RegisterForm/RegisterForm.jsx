@@ -27,7 +27,7 @@ const RegisterForm = () => {
                     <p>Has recibido un nuevo mensaje desde el formulario de contacto.</p>
                     <p>Puedes responder este mensaje para comunicarte con ${name}</p>
                     <p>Mensaje: <br />
-                        ${message}<br /></p>
+                        
                     <p style="font-size:0.9em;">Saludos,<br />Ide Pintureria</p>
                     <hr style="border:none;border-top:1px solid #eee" />
                     <div style="float:right;padding:8px 0;color:#aaa;font-size:0.8em;line-height:1;font-weight:300">
