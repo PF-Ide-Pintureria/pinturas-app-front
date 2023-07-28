@@ -1,13 +1,15 @@
 import React from "react";
 import { deleteProduct } from "../../redux/actions/deleteProduct";
+import { allProducts } from "../../redux/actions/allProducts"
 import { useDispatch } from "react-redux";
 
 
-const DeleteButton = ({idProduct}) => {
+const DeleteButton = ({ idProduct }) => {
     const dispatch = useDispatch()
     const handleClick = async () => {
         dispatch(deleteProduct(idProduct));
         alert('Borrado de producto:' + idProduct)
+        dispatch(allProducts())
     }
 
     return (

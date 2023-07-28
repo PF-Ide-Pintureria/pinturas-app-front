@@ -1,27 +1,63 @@
+import React, { useEffect, useState } from "react";
 import DeleteButton from "../../components/DeleteButton/DeleteButton";
 import UpdateButton from "../../components/UpdateButton/UpdateButton";
-import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { productById } from "../../redux/actions/productById";
 import FeaturedContainer from "../../components/FeaturedContainer/FeaturedContainer";
 import { bestSellers } from "../../redux/actions/bestSellers";
 import "./Detail.Module.css";
+import { setCart } from "../../redux/actions/setCart";
 
 const Detail = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { idProduct } = useParams();
   const product = useSelector((state) => state.detail);
+  const cart = useSelector((state) => state.cart);
+
+  const [isValidQuantity, setIsValidQuantity] = useState(true);
+  const [error, setError] = useState("");
+  const [addProduct, setAddProduct] = useState({
+    id: idProduct,
+    name: product.name,
+    quantity: 1,
+    image: product.image,
+    price: product.price,
+    stock: product.stock,
+  });
+
+  let storage = JSON.parse(localStorage.getItem("cart")) || [];
 
   useEffect(() => {
-    dispatch(productById(idProduct));
-  }, [dispatch, idProduct]);
+    setStorage()
+  }, [cart])
 
-  useEffect(() => {
-    dispatch(bestSellers());
-  }, [dispatch]);
+  const handleInputChange = (event) => {
+    const { value } = event.target;
+    const parsedValue = Number(value);
+  
+    if (value === "" || isNaN(parsedValue) || parsedValue < 1) {
+      setAddProduct((prevProduct) => ({
+        ...prevProduct,
+        quantity: "",
+      }));
+      setError("Ingrese una cantidad válida");
+      setIsValidQuantity(false);
+    } else if (parsedValue > product.stock) {
+      setError("Stock no disponible");
+      setIsValidQuantity(false);
+    } else {
+      setAddProduct((prevProduct) => ({
+        ...prevProduct,
+        quantity: parsedValue,
+      }));
+      setError("");
+      setIsValidQuantity(true);
+    }
+  };
+  
 
-  // Función para renderizar las estrellas llenas y vacías basadas en la calificación del producto
   const renderStars = (rating) => {
     const MAX_STARS = 5;
     const stars = [];
@@ -40,6 +76,7 @@ const Detail = () => {
         </svg>
       );
     }
+  
 
     // Generar estrellas vacías (restantes)
     for (let i = rating + 1; i <= MAX_STARS; i++) {
@@ -62,10 +99,29 @@ const Detail = () => {
     return <div className="stars-container">{stars}</div>;
   };
 
+  const shopCart = () => {
+    dispatch(setCart(addProduct));
+    navigate("/cart");
+  };
+  
+  const addToCart = () => {
+    alert("Producto añadido al carrito")
+    dispatch(setCart(addProduct));
+  };
+  
+  const setStorage = () => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }
+
+  useEffect(() => {
+    dispatch(productById(idProduct));
+    dispatch(bestSellers());
+  }, [dispatch, idProduct]);
+  
   return (
     <section className="py-4 sm:py-4">
       <div className="container mx-auto px-4">
-        <nav className="flex">
+        <div className="flex">
           <ol role="list" className="flex items-center">
             <li className="text-left">
               <div className="-m-1">
@@ -104,7 +160,7 @@ const Detail = () => {
               </div>
             </li>
           </ol>
-        </nav>
+        </div>
         <div className="lg:col-gap-12 xl:col-gap-16 mt-8 grid grid-cols-1 gap-12 lg:mt-12 lg:grid-cols-5 lg:gap-16">
           <div className="lg:col-span-3 lg:row-end-1">
             <div className="lg:flex lg:items-start">
@@ -127,7 +183,7 @@ const Detail = () => {
               {product?.name}
             </h1>
             <p className=" mt-2 ml-2 text-sm font-medium text-gray-500">
-              Marca:
+              Marca: {"  "}
               {product?.patent}
             </p>
             <div className="mt-5 flex items-center">
@@ -144,40 +200,79 @@ const Detail = () => {
               3 Reviews
             </p>
             <p className=" mt-2 ml-2 text-sm font-medium text-gray-500">
-              Cantidades disponibles:
-              {product?.stock || 0}
-            </p>
-            <p className=" mt-2 ml-2 text-sm font-medium text-gray-500">
-              Presentación:
+              Presentación: {"  "}
               {product?.package}
             </p>
             <p className=" mt-2 ml-2 text-sm font-medium text-gray-500">
-              Color:
+              Color: {"  "}
               {product?.color}
             </p>
-            <div className="mt-10 flex flex-col items-center justify-between space-y-4 border-t border-b py-4 sm:flex-row sm:space-y-0">
-              <div className="flex items-end">
-                <h1 className="text-3xl font-bold">$ {product?.price}</h1>
+            <p className=" mt-2 ml-2 text-sm font-medium text-gray-500">
+              Stock disponible: {"  "}
+              { product?.stock || 0}
+            </p>
+            <div className=" flex items-end justify-start gap-2 sm:flex-row sm:space-y-0">
+              <div className="flex flex-col">
+                <label 
+                  htmlFor="quantity" 
+                  className=" mt-2 ml-2 text-sm font-medium text-gray-500"> 
+                  Cantidad 
+                </label>
+                <input
+                  type="number"
+                  placeholder="cantidad"
+                  name="quantity"
+                  value={addProduct.quantity}
+                  onChange={handleInputChange}
+                  className=" flex items-center justify-center p-2 my-2 h-11 w-24 rounded border-indigo-800 border-solid border-2"
+                />
               </div>
-              <button
-                // onClick={handleClick}
-                type="button"
-                className="inline-flex items-center justify-center rounded-md border-2 border-transparent bg-purple-800 bg-none px-12 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-gray-800">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="shrink-0 mr-3 h-5 w-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth="2">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-                  />
-                </svg>
-                Comprar
-              </button>
+              <div className="w-20 h-14 flex items-center justify-center">
+                {error && <p className="text-sm font-semibold text-red-800"> {error} </p>}
+              </div>
+            </div>
+            <div className="mt-10 flex flex-col items-center justify-between space-y-3 border-t border-b py-4 sm:flex-row sm:space-y-0">
+              <div className="flex items-end">
+                <h1 className="text-3xl font-bold">$ { product?.price}</h1>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <button
+                  type="button"
+                  disabled={!isValidQuantity}
+                  className={`flex items-center justify-center rounded-md border-2 border-transparent bg-purple-100 bg-none text-center text-base font-bold text-purple-800 transition-all duration-200 ease-in-out focus:shadow  
+                  ${isValidQuantity 
+                    ? "hover:bg-purple-200" 
+                    : "cursor-not-allowed"}`}
+                    onClick={addToCart}
+                >
+                  Agregar al carrito
+                </button>
+                <button
+                  type="button"
+                  className={`inline-flex items-center justify-center rounded-md border-2 border-transparent bg-purple-800 bg-none px-12 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow 
+                  ${isValidQuantity 
+                  ? "hover:bg-gray-800"
+                  : "cursor-not-allowed"}`}
+                  onClick={shopCart}
+                  disabled={!isValidQuantity}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="shrink-0 mr-3 h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                    />
+                  </svg>
+                  Comprar
+                </button>
+              </div>
             </div>
           </div>
         </div>
