@@ -173,7 +173,7 @@ const SideBar = ({
                 />
               </svg>
             </span>
-            <span>Cerrar sesión</span>
+            <span className="text-red-600">Cerrar sesión</span>
           </a>
         </li>
       </ul>
