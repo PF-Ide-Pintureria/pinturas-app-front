@@ -50,18 +50,20 @@ function App() {
         <Route path="/cart/buying" element={<Purchases />} />
         <Route path="/reviews" element={<Reviews />} />
         <Route path="/favorite" element={<Favorite />} />
-        {/* <Route path="/account" element={<AdminDashboard />} /> */}
         <Route path="/login/register" element={<Register />} />
-
+        {/* <Route path="/account" element={<AdminDashboard />} /> */}
         <Route path="/account" element={<Account />} />
         <Route path="/about" element={<About />} />
         <Route path="/location" element={<Location />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/developers" element={<Developers />} />
-        <Route path="*" element={<NotFound />} />
         <Route path="/payment/successful" element={<SuccessfulPayment />} />
         <Route path="/payment/failure" element={<FailurePayment />} />
         <Route path="/payment/pending" element={<PendingPayment />} />
+
+        
+        
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <footer>
         <Footer />

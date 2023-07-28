@@ -1,5 +1,5 @@
 import React from "react";
-import Desk from "./Desk";
+// import Desk from "./Desk";
 
 const SideBar = ({
   isAuthenticated,
