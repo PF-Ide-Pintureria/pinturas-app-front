@@ -26,8 +26,7 @@ const SideBar = ({
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
+              stroke="currentColor">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -48,16 +47,14 @@ const SideBar = ({
                 ? "bg-gray-200 focus:shadow-outline"
                 : "hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline"
             }`}
-            onClick={() => handleButtonClick("dashboard")}
-          >
+            onClick={() => handleButtonClick("dashboard")}>
             <span className="text-gray-600">
               <svg
                 className="h-5"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
+                stroke="currentColor">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -66,23 +63,21 @@ const SideBar = ({
                 />
               </svg>
             </span>
-            <span>Escritorio</span>
+            <span>Mi Cuenta</span>
           </a>
         </li>
 
         <li>
           <a
             href=""
-            className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline"
-          >
+            className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
             <span className=" text-gray-600">
               <svg
                 width="24"
                 height="24"
                 viewBox="0 0 24 24"
                 fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+                xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M8 21H12"
                   stroke="currentColor"
@@ -112,16 +107,14 @@ const SideBar = ({
         <li>
           <a
             href=""
-            className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline"
-          >
+            className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
             <span className="text-gray-600">
               <svg
                 className="h-5"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
+                stroke="currentColor">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -136,16 +129,14 @@ const SideBar = ({
         <li>
           <a
             href=""
-            className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline"
-          >
+            className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
             <span className=" text-gray-600">
               <svg
                 className="h-5"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
+                stroke="currentColor">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -154,7 +145,7 @@ const SideBar = ({
                 />
               </svg>
             </span>
-            <span>Lista De Deseos</span>
+            <span>Favoritos</span>
           </a>
         </li>
 
@@ -166,16 +157,14 @@ const SideBar = ({
                 ? "bg-gray-200 focus:shadow-outline"
                 : "hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline"
             }`}
-            onClick={() => logout()}
-          >
+            onClick={() => logout()}>
             <span className="text-gray-600">
               <svg
                 className="h-5"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
+                stroke="currentColor">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
