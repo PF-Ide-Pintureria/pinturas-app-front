@@ -1,8 +1,10 @@
 import { NavLink } from "react-router-dom";
 import React from "react";
 import logo from "../../img/logoIde.png";
+import { useSelector } from "react-redux";
 
 const Nav = () => {
+  const user = useSelector((state) => state.user);
   return (
     <div className="w-full h-32 flex justify-around items-center font-inter">
       <NavLink
@@ -76,7 +78,13 @@ const Nav = () => {
               />
             </svg>
           </div>
-          Mi cuenta
+          {user 
+          ? (
+            <p>Log in</p>
+            ) : (
+              <p>Mi cuenta</p>
+              )
+            }
         </NavLink>
       </div>
     </div>

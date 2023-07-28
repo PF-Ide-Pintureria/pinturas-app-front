@@ -25,7 +25,8 @@ const Account = () => {
   const navigate = useNavigate();
 
   const loggedUser = useSelector((state) => state.user);
-
+  
+  
   const handleButtonClick = (buttonName) => {
     if (buttonName === "account"){ 
       setDashboard(true);
@@ -69,11 +70,12 @@ const Account = () => {
       setActiveButton(buttonName);}
 
   };
-  
+  if(loggedUser.id){
   return (
     <div>
-      {loggedUser ? (
+      <h1 className="bg-red-700 w-72 h-72 text-yellow-400">HOLA K TAL VINE PRIMERO</h1>
         <div style={{ display: "flex", minHeight: "100vh" }}>
+          {console.log("HOLA K TAL")}
           <SideBar
             isAuthenticated={isAuthenticated}
             user={user}
@@ -85,22 +87,26 @@ const Account = () => {
             <LoadingScreen isLoading={isLoading} />
 
             {/* {dashboard && <Dashboard /> } */}
-            {updateUserForm && <UpdateUserForm /> }
-            {addresses && <Addresses /> }
-            {favorities && <Favorities /> }
-            {orders && <Orders /> }
+            { updateUserForm && <UpdateUserForm /> }
+            { addresses && <Addresses /> }
+            { favorities && <Favorities /> }
+            { orders && <Orders /> }
 
-            <Dashboard isAuthenticated={isAuthenticated} />
+            {/* <Dashboard isAuthenticated={isAuthenticated} /> */}
             <footer style={{ textAlign: "center", padding: "10px" }}></footer>
           </div>
         </div>
-      ) : (
+      
+    
+    </div>
+  );}
+  else{
+    return (
         <div className="pb-36 pt-20 my-20 flex items-center justify-center lg:mt-0 mr:auto h-full">
           <LoginForm />
         </div>
-      )}
-    </div>
-  );
+    )
+  }
 };
 
 export default Account;

@@ -1,15 +1,49 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 import { postLoginUser } from "../../redux/actions/postLoginUser";
 import { useDispatch } from "react-redux";
+import axios from "axios";
 
 const LoginForm = () => {
+  const { isAuthenticated, loginWithRedirect, user } = useAuth0();
+  const [userInfo, setUserInfo] = useState(null);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    if (isAuthenticated && !userInfo) {
+      setUserInfo(user);
+    }
+  }, [isAuthenticated, userInfo, user]);
+
+  // Si el usuario está autenticado, almacenamos su información en el estado local
+  // Esto te permitirá enviar la información al backend
+
+  // Función para enviar la información del usuario al backend
+  const sendUserInfoToBackend = () => {
+    axios
+      .post("/api/userInfo", userInfo) // Reemplaza "/api/userInfo" con el endpoint de tu API en el backend
+      .then((response) => {
+        // Manejo la respuesta exitosa si se envia la info corrrectamente al back
+        console.log(
+          "Información del usuario enviada al backend:",
+          response.data
+        );
+      })
+      .catch((error) => {
+        // Maneja el error si la solicitud falla
+        console.error(
+          "Error al enviar la información del usuario al backend:",
+          error
+        );
+      });
+  };
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     const errors = {};
@@ -29,7 +63,8 @@ const LoginForm = () => {
     if (Object.keys(errors).length === 0) {
       await postLoginUser({email, password})(dispatch).then((response) => {
         console.log("Form submitted:", { email, password });
-        if(response.status === 200) {
+        // alert("has sido loggeado bro")
+        if(response.status === "success") {
           alert('Usuario Logeado correctamente');
         }
       });
@@ -41,6 +76,7 @@ const LoginForm = () => {
   const navigateToRegister = () => {
     navigate("/login/register");
   };
+
 
   return (
     <div className="font-sans">
@@ -94,8 +130,35 @@ const LoginForm = () => {
                 </button>
               </div>
 
-              {/* ... */}
+              {/* ... */} 
             </form>
+            <div>
+              <p
+                // href="#"
+                className="inline-flex items-center gap-4 px-3 py-2 text-sm font-medium text-center text-blue-700 bg-slate-50 rounded-lg shadow-xl hover:bg-slate-200 focus:ring-4 focus:outline-none 
+                  dark:hover:bg-neutral-300
+                  focus:ring-blue-300 dark:bg-gray-100
+                ">
+                  {/* dark:focus:ring-blue-800 */}
+                <button onClick={() => loginWithRedirect()}>
+                  Iniciar con Google
+                </button>
+                <svg
+                  className="w-3.5 h-3.5 ml-2"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 14 10">
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M1 5h12m0 0L9 1m4 4L9 9"
+                  />
+                </svg>
+              </p>
+            </div>
             <p className="text-gray-400 pt-5 pb-10 text-m ">
               ¿No tienes una cuenta?{" "}
               <a
