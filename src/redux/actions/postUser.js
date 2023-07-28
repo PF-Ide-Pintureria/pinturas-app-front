@@ -12,4 +12,5 @@ export const postUser = (userCreate) => {
         dispatch({ type: POST_USER, payload: newUser });
         return response;
     };
+
 };

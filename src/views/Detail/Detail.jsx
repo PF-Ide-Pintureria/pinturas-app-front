@@ -20,7 +20,11 @@ const Detail = () => {
   const [error, setError] = useState("");
   const [addProduct, setAddProduct] = useState({
     id: idProduct,
+    name: product.name,
     quantity: 1,
+    image: product.image,
+    price: product.price,
+    stock: product.stock,
   });
 
   let storage = JSON.parse(localStorage.getItem("cart")) || [];
