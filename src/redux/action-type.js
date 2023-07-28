@@ -15,6 +15,7 @@ export const POST_LOGIN_USER = 'POST_LOGIN_USER';
 export const POST_REGISTER_USER = 'POST_REGISTER_USER';
 export const PUT_USER = 'PUT_USER';
 export const DELETE_USER = 'DELETE_USER';
+export const LOGOUT_USER = 'LOGOUT_USER';
 
 
 //FILTERS
