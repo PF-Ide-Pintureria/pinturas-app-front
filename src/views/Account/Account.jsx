@@ -11,12 +11,12 @@ const Account = () => {
     const [activeButton, setActiveButton] = useState("dashboard");
     const navigate = useNavigate();
 
-    const loggedUser = useSelector(state => state.user);
+    const logUser = useSelector(state => state.user);
     const handleButtonClick = (buttonName) => {
         setActiveButton(buttonName);
     };
 
-    if (loggedUser) {
+    if (!logUser) {
         return (
             <div style={{ display: "flex", minHeight: "100vh" }}>
                 <SideBar

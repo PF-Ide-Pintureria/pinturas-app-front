@@ -1,14 +1,12 @@
 import React from "react";
-
+import LoginForm from "../LoginForm/LoginForm";
 const PurchaseForm = () => {
 
-  const navigateToRegister = () => {
-    navigate("/register");
-  };
+  
 
   return (
-    <div className="mt-8 grid grid-cols-2 gap-5">
-      <form>  
+    <div className="my-7 flex items-center justify-center">
+      {/* <form>  
         <div className="pb-10 bg-gray-50 lg:mt-0 mr:auto h-full">
           <div className="pl-24 pt-8 pb-12 flex flex-col justify-center">
             <p className="text-xl font-medium">Compra como invitado</p>
@@ -112,21 +110,16 @@ const PurchaseForm = () => {
             </div>
           </div>
         </div>
-      </form>
-      <div>
-        <div className="pl-24 flex flex-col  py-8 lg:mt-0 mr:auto h-full">
-        <p className="text-xl font-medium">Ingresa con tu cuenta</p>
-          <p className="text-gray-400 mt-2 text-m ">
-            ¿No tienes una cuenta?{" "}
-            <a
-              className="text-blue-600"
-              href="#"
-              onClick={navigateToRegister}>
-              Registrate
-            </a>{" "}
-          </p>
+      </form> */}
+        <div className="pt-8 flex flex-col justify-center lg:mt-0 mr:auto h-full">
+          <p className="text-center text-xl font-medium">Ingresa con tu cuenta para continuar</p>
+          <div className="my-10 flex items-center justify-center">
+            <div className="pb-20">
+              <LoginForm />
+
+            </div>
+          </div>
         </div>
-      </div>
     </div>
     )
 }
