@@ -16,37 +16,64 @@ import LoginForm from "../../components/LoginForm/LoginForm";
 const Account = () => {
   const { isAuthenticated, user, logout, isLoading } = useAuth0();
   const [activeButton, setActiveButton] = useState("dashboard");
+  const [dashboard, setDashboard] = useState(false);
+  const [updateUserForm, setUpdateUserForm] = useState(false);
+  const [addresses, setAddresses] = useState(false);
+  const [favorities, setFavorities] = useState(false);
+  const [orders, setOrders] = useState(false);
   const navigate = useNavigate();
 
   const loggedUser = useSelector((state) => state.user);
+
   const handleButtonClick = (buttonName) => {
-    setActiveButton(buttonName);
+    if (buttonName === "dashboard"){ 
+      setDashboard(true);
+      setUpdateUserForm(false);
+      setAddresses(false);
+      setFavorities(false);
+      setOrders(false);
+      setActiveButton(buttonName);
+
+    }
+    if (buttonName === "userForm"){
+      setDashboard(false);
+      setUpdateUserForm(true);
+      setAddresses(false);
+      setFavorities(false);
+      setOrders(false);
+      setActiveButton(buttonName);
+    }
+    if (buttonName === "addresses"){ 
+      setDashboard(false);
+      setUpdateUserForm(false);
+      setAddresses(true);
+      setFavorities(false);
+      setOrders(false);
+      setActiveButton(buttonName);
+    }
+    if (buttonName === "favorities"){ 
+      setDashboard(false);
+      setUpdateUserForm(false);
+      setAddresses(false);
+      setFavorities(true);
+      setOrders(false);
+      setActiveButton(buttonName);
+    }
+    if (buttonName === "orders"){ 
+      setDashboard(false);
+      setUpdateUserForm(false);
+      setAddresses(false);
+      setFavorities(false);
+      setOrders(true);
+      setActiveButton(buttonName);}
+
   };
 
-  let activeComponent = null;
+  // let activeComponent = null;
 
-  switch (activeButton) {
-    case "dashboard":
-      activeComponent = <Dashboard isAuthenticated={isAuthenticated} />;
-      break;
-    case "updateUserForm":
-      activeComponent = <UpdateUserForm />;
-      break;
-    case "addresses":
-      activeComponent = <Addresses />;
-      break;
-    case "favorities":
-      activeComponent = <Favorities />;
-      break;
-    case "orders":
-      activeComponent = <Orders />;
-      break;
-    default:
-      activeComponent = null;
-  }
   return (
     <div>
-      {!loggedUser ? (
+      {loggedUser ? (
         <div style={{ display: "flex", minHeight: "100vh" }}>
           <SideBar
             isAuthenticated={isAuthenticated}
@@ -57,7 +84,13 @@ const Account = () => {
           />
           <div className="w-9/12" style={{ flex: "1" }}>
             <LoadingScreen isLoading={isLoading} />
-            {activeComponent}
+
+            {/* {dashboard && <Dashboard /> } */}
+            {updateUserForm && <UpdateUserForm /> }
+            {addresses && <Addresses /> }
+            {favorities && <Favorities /> }
+            {orders && <Orders /> }
+
             <Dashboard isAuthenticated={isAuthenticated} />
             <footer style={{ textAlign: "center", padding: "10px" }}></footer>
           </div>

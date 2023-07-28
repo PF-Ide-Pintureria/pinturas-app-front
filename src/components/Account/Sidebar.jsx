@@ -68,8 +68,8 @@ const SideBar = ({
         </li>
 
         <li>
-          <a
-            href=""
+          <p
+            onClick={() => handleButtonClick("addresses")}
             className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
             <span className=" text-gray-600">
               <svg
@@ -102,11 +102,11 @@ const SideBar = ({
               </svg>
             </span>
             <span>Direcciones</span>
-          </a>
+          </p>
         </li>
         <li>
-          <a
-            href=""
+          <p
+            onClick={() => handleButtonClick("orders")}
             className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
             <span className="text-gray-600">
               <svg
@@ -124,11 +124,11 @@ const SideBar = ({
               </svg>
             </span>
             <span>Mis Pedidos</span>
-          </a>
+          </p>
         </li>
         <li>
-          <a
-            href=""
+          <p
+            onClick={() => handleButtonClick("favorities")}
             className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
             <span className=" text-gray-600">
               <svg
@@ -146,7 +146,7 @@ const SideBar = ({
               </svg>
             </span>
             <span>Favoritos</span>
-          </a>
+          </p>
         </li>
 
         <li>
