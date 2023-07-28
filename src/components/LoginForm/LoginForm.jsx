@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { postLoginUser } from "../../redux/actions/postLoginUser";
+import { useDispatch } from "react-redux";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const errors = {};
 
@@ -24,7 +27,12 @@ const LoginForm = () => {
     }
 
     if (Object.keys(errors).length === 0) {
-      console.log("Form submitted:", { email, password });
+      await postLoginUser({email, password})(dispatch).then((response) => {
+        console.log("Form submitted:", { email, password });
+        if(response.status === 200) {
+          alert('Usuario Logeado correctamente');
+        }
+      });
     } else {
       setErrors(errors);
     }
