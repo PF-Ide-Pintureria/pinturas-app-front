@@ -5,7 +5,7 @@ import LoginForm from "../../components/LoginForm/LoginForm";
 const Register = () => {
     return (
         <div
-            className="flex items-center justify-center"
+            className="flex items-center justify-center mt-8 mb-20"
             style={{
                 height: "100vh",
             }}
