@@ -5,7 +5,7 @@ import ProductCart from "../../components/ProductCart/ProductCart"
 import { productById } from "../../redux/actions/productById";
 
 const Cart = () => {
-  // const cart = useSelector((state) => state.cart);
+  const cart = useSelector((state) => state.cart);
   // const productDetails = useSelector((state) => state.detail);
   // const [productsDetail, setProductsDetail] = useState([]);
 
@@ -34,24 +34,27 @@ const Cart = () => {
       <div className="w-full h-full flex flex-wrap justify-center items-stretch md:px-10  lg:px-20 xl:px-32">
         <div className="w-11/12 h-5/6 mx-3 mt-3 flex justify-center flex-col ">
           <div className=" mt-3 space-y-3 rounded-lg border bg-white px-2 py-4 md:px-6">
-            {/* {productsDetail.length > 0 ? (
-            productsDetail.map((product) =>
+            {cart && (
+            cart.map((product) =>
               product && product.id ? (
                 <ProductCart
-                  key={product.id}
-                  name={product.name}
+                  // key={product.id}
+                  id={product.id}
+                  // name={product.name}
                   quantity={product.quantity}
-                  price={product.price}
-                  color={product.color}
-                  image={product.image}
+                  // price={product.price}
+                  // color={product.color}
+                  // image={product.image}
                 />
               ) : null
             )
-            ) : ( */}
-            <p className="text-gray-400 flex items-center justify-center">
-              El carrito está vacío.
-            </p>
-            {/* )} */}
+            )} 
+            {cart.length == 0 && (
+              <p className="text-gray-400 flex items-center justify-center">
+                El carrito está vacío.
+              </p>
+            )}
+
           </div>
           <div className="my-9 flex items-center justify-center">
             <NavLink to={"/cart/buying"}

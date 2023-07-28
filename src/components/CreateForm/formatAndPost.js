@@ -20,7 +20,6 @@ export const formatAndPost = async (inputsForm, dispatch) => {
         formData.append('stock', inputsForm.stock);
         formData.append('image', inputsForm.file);
 
-        console.log('formData', formData)
         await postProduct(formData)(dispatch).then((res) => {
             console.log('respuesta', res.data)
             if (res.status === 201) {
