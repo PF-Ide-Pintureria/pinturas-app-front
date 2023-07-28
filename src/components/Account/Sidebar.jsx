@@ -47,7 +47,7 @@ const SideBar = ({
                 ? "bg-gray-200 focus:shadow-outline"
                 : "hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline"
             }`}
-            onClick={() => handleButtonClick("dashboard")}>
+            onClick={() => handleButtonClick("account")}>
             <span className="text-gray-600">
               <svg
                 className="h-5"
