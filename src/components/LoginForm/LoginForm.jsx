@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,27 +30,30 @@ const LoginForm = () => {
     }
   };
 
+  const navigateToRegister = () => {
+    navigate("/login/register");
+  };
+
   return (
     <div className="font-sans">
-      <div className="relative min-h-screen flex flex-col sm:justify-center items-center ">
         <div className="relative sm:max-w-sm w-full">
           <div className="card bg-blue-400 shadow-lg  w-full h-full rounded-3xl absolute  transform -rotate-6"></div>
           <div className="card bg-purple-700 shadow-lg  w-full h-full rounded-3xl absolute  transform rotate-6"></div>
-          <div className="relative w-full rounded-3xl  px-6 py-4 bg-gray-100 shadow-md">
+          <div className="relative w-full rounded-3xl  px-16 py-5 bg-gray-100 shadow-md">
             <label
               htmlFor=""
-              className="block mt-3 text-sm text-gray-700 text-center font-semibold"
+              className="block text-base pt-10 pb-5 text-gray-700 text-center font-semibold"
             >
               Iniciar sesión
             </label>
-            <form onSubmit={handleSubmit} className="mt-10">
+            <form onSubmit={handleSubmit} > 
               <div>
                 <input
                   type="email"
                   placeholder="Correo electrónico"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className={`mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${
+                  className={`mt-1 pl-4 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${
                     errors.email ? "border-red-500" : "border-gray-300"
                   }`}
                 />
@@ -63,7 +68,7 @@ const LoginForm = () => {
                   placeholder="Contraseña"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className={`mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${
+                  className={`mt-1 pl-4 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${
                     errors.password ? "border-red-500" : "border-gray-300"
                   }`}
                 />
@@ -72,10 +77,10 @@ const LoginForm = () => {
                 )}
               </div>
 
-              <div className="mt-7">
+              <div className="pt-10">
                 <button
                   type="submit"
-                  className="bg-blue-500 w-full py-3 rounded-xl text-white shadow-xl hover:shadow-inner focus:outline-none transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105"
+                  className="bg-blue-500 w-full py-3 rounded-xl text-white shadow-xl hover:bg-blue-600 hover:shadow-inner focus:outline-none transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105"
                 >
                   Iniciar sesión
                 </button>
@@ -83,9 +88,17 @@ const LoginForm = () => {
 
               {/* ... */}
             </form>
+            <p className="text-gray-400 pt-5 pb-10 text-m ">
+              ¿No tienes una cuenta?{" "}
+              <a
+                className="text-center text-blue-600 hover:text-blue-800"
+                href="#"
+                onClick={navigateToRegister}>
+                Registrate
+              </a>{" "}
+            </p>
           </div>
         </div>
-      </div>
     </div>
   );
 };
