@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { postUser } from '../../redux/actions/postUser'
+import { postRegisterUser } from '../../redux/actions/postRegisterUser'
 
 const RegisterForm = () => {
     const [name, setName] = useState("");

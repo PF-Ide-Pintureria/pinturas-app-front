@@ -11,9 +11,11 @@ import {
     GET_ALL_CATEGORIES,
 
     //USERS
-    POST_USER,
-    // LOGIN_USER,
-    // GET_USERS,
+    POST_REGISTER_USER,
+    POST_LOGIN_USER,
+    GET_ALL_USERS,
+    DELETE_USER,
+    PUT_USER,
 
     //FILTERS
     GET_PRODUCT_FILTER,
@@ -45,7 +47,7 @@ const initialState = {
 
     //USER
     user: {},
-    // allUsers: {},
+    allUsers: {},
 
     //FILTERS
     bestSell: [],
@@ -83,14 +85,18 @@ const reducer = (state = initialState, { type, payload }) => {
         //CATEGORIES
         case GET_ALL_CATEGORIES:
             return { ...state, categories: payload }
-        
+
         //USER
-        case POST_USER:
+        case POST_REGISTER_USER:
             return { ...state, user: payload }
-        // case LOGIN_USER:
-        //     return { ...state, user: payload }
-        // case GET_USERS:
-        //     return { ...state, users: payload }
+        case POST_LOGIN_USER:
+            return { ...state, user: payload }
+        case GET_ALL_USERS:
+            return { ...state, allUsers: payload }
+        case DELETE_USER:
+            return { ...state, allUsers: payload }
+        case PUT_USER:
+            return { ...state, allUsers: payload }
 
         //FILTERS
         case GET_PRODUCT_FILTER:
