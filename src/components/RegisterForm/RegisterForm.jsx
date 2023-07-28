@@ -84,24 +84,24 @@ const RegisterForm = () => {
     return (
         <div className="font-sans">
             <div className="relative min-h-screen flex flex-col sm:justify-center items-center ">
-                <div className="relative sm:max-w-sm w-full">
+                <div className="relative  sm:max-w-sm w-full">
                     <div className="card bg-blue-400 shadow-lg  w-full h-full rounded-3xl absolute  transform -rotate-6"></div>
                     <div className="card bg-purple-700 shadow-lg  w-full h-full rounded-3xl absolute  transform rotate-6"></div>
-                    <div className="relative w-full rounded-3xl  px-6 py-4 bg-gray-100 shadow-md">
+                    <div className="relative w-full rounded-3xl px-20 py-5 bg-gray-100 shadow-md">
                         <label
                             htmlFor=""
-                            className="block mt-3 text-sm text-gray-700 text-center font-semibold"
+                            className="block text-base pt-10 pb-5 text-gray-700 text-center font-semibold"
                         >
                             Registrate
                         </label>
-                        <form onSubmit={handleSubmit} className="mt-10">
-                            <div>
+                        <form onSubmit={handleSubmit}  className="w-60">
+                            <div >
                                 <input
                                     type="text"
                                     placeholder="Nombres"
                                     value={name}
                                     onChange={(e) => setName(e.target.value)}
-                                    className={`mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${errors.name ? "border-red-500" : "border-gray-300"
+                                    className={`mt-1 pl-4 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${errors.name ? "border-red-500" : "border-gray-300"
                                         }`}
                                 />
                                 {errors.name && (
@@ -115,7 +115,7 @@ const RegisterForm = () => {
                                     placeholder="Apellido"
                                     value={lastName}
                                     onChange={(e) => setLastname(e.target.value)}
-                                    className={`mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${errors.name ? "border-red-500" : "border-gray-300"
+                                    className={`mt-1 pl-4 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${errors.name ? "border-red-500" : "border-gray-300"
                                         }`}
                                 />
                                 {errors.lastName && (
@@ -129,7 +129,7 @@ const RegisterForm = () => {
                                     placeholder="Correo electrónico"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
-                                    className={`mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${errors.email ? "border-red-500" : "border-gray-300"
+                                    className={`mt-1 pl-4 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${errors.email ? "border-red-500" : "border-gray-300"
                                         }`}
                                 />
                                 {errors.email && (
@@ -143,7 +143,7 @@ const RegisterForm = () => {
                                     placeholder="Contraseña"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
-                                    className={`mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${errors.password ? "border-red-500" : "border-gray-300"
+                                    className={`mt-1 pl-4 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${errors.password ? "border-red-500" : "border-gray-300"
                                         }`}
                                 />
                                 {errors.password && (
@@ -157,7 +157,7 @@ const RegisterForm = () => {
                                     placeholder="Confirmar contraseña"
                                     value={confirmPassword}
                                     onChange={(e) => setConfirmPassword(e.target.value)}
-                                    className={`mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${errors.confirmPassword
+                                    className={`mt-1 pl-4 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${errors.confirmPassword
                                         ? "border-red-500"
                                         : "border-gray-300"
                                         }`}
@@ -169,10 +169,10 @@ const RegisterForm = () => {
                                 )}
                             </div>
 
-                            <div className="mt-7">
+                            <div className=" pt-8 pb-10 ">
                                 <button
                                     type="submit"
-                                    className="bg-blue-500 w-full py-3 rounded-xl text-white shadow-xl hover:shadow-inner focus:outline-none transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105"
+                                    className="bg-blue-500 w-full flex items-center justify-center py-3 rounded-xl text-white shadow-xl hover:bg-blue-600  hover:shadow-inner focus:outline-none transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105"
                                 >
                                     Registrarse
                                 </button>
