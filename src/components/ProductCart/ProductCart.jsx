@@ -1,8 +1,10 @@
 import React from "react";
 
-const ProductCart = ({ name, quantity, price, color, image }) => {
+const ProductCart = ({id, quantity}) => {
   return (
     <div>
+      <h1>{id}</h1>
+      <h1>{quantity}</h1>
       {/* <img
         className="w-full h-80 max-w-full object-cover"
         src={image}
