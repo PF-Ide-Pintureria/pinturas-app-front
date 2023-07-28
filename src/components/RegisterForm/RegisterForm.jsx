@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { postRegisterUser } from '../../redux/actions/postRegisterUser'
+import { useDispatch } from "react-redux";
+
 
 const RegisterForm = () => {
     const [name, setName] = useState("");
@@ -8,7 +10,7 @@ const RegisterForm = () => {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [errors, setErrors] = useState({});
-
+    const dispatch = useDispatch();
     const welcomeMessage = (`<html lang="en">
 
         <head>
@@ -70,14 +72,16 @@ const RegisterForm = () => {
         }
 
         if (Object.keys(errors).length === 0) {
-            const response = await postUser({ name, lastName, email, password })
-            console.log("Form submitted:", { name, lastName, email, password });
+            await postRegisterUser({ name, lastName, email, password })(dispatch).then((response)=>{
+                console.log("Form submitted:", { name, lastName, email, password });
+                if (response.status === 200) {
+                    alert('Usuario registrado correctamente');
+                    // postRegisterEmail(response.data.id, welcomeMessage);
+                }
+
+            })
         } else {
             setErrors(errors);
-        }
-        if (response.status === 200) {
-            alert('Usuario registrado correctamente');
-            postRegisterEmail(response.data.id, welcomeMessage);
         }
     };
 
