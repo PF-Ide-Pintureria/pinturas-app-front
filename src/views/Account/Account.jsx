@@ -74,7 +74,6 @@ const Account = () => {
   return (
     <div>
         <div style={{ display: "flex", minHeight: "100vh" }}>
-          {console.log("HOLA K TAL")}
           <SideBar
             isAuthenticated={isAuthenticated}
             user={user}

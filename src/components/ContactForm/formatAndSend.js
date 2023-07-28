@@ -45,7 +45,6 @@ export const formatAndSend = async ({ name, email, message }, dispatch) => {
         console.log('emailToBeSent: ', emailToBeSent);
 
         await postContactEmail(emailToBeSent)(dispatch).then((res) => {
-            console.log('respuesta: ', res.data);
             if (res.status === 200) {
                 alert("Correo enviado correctamente");
             } else {
