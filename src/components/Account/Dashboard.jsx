@@ -98,20 +98,22 @@ const Dashboard = () => {
         </div>
       </div>
     );
-  } else {
-    return (
-      <div style={containerStyle}>
-        <div
-          className="max-w-sm border-gray-200 rounded-lg shadow dark:bg-purple-700 dark:border-gray-700"
-          style={cardStyle}
-        >
-          <button onClick={sendUserInfoToBackend}>
-            Enviar información al Backend
-          </button>
-        </div>
-      </div>
-    );
   }
+
+  // else {
+  //   return (
+  //     <div style={containerStyle}>
+  //       <div
+  //         className="max-w-sm border-gray-200 rounded-lg shadow dark:bg-purple-700 dark:border-gray-700"
+  //         style={cardStyle}
+  //       >
+  //         <button onClick={sendUserInfoToBackend}>
+  //           Enviar información al Backend
+  //         </button>
+  //       </div>
+  //     </div>
+  //   );
+  // }
 };
 
 export default Dashboard;
