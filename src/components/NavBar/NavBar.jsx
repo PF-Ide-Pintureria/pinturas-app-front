@@ -63,6 +63,26 @@ const Nav = () => {
           Mi carrito
         </NavLink>
       </div>
+      {user.id ? 
+      (<div className="flex justify-center items-center cursor-pointer transition-transform duration-300 ease-in-out hover:scale-125">
+        <NavLink
+          to="/account"
+          className="flex justify-center items-center font-inter">
+          <div className="w-6 mx-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 42 42"
+              fill="none">
+              <path
+                d="M21 0C14.3726 0 9 5.37258 9 12V22H33V12C33 5.37258 27.6274 0 21 0ZM21 26C13.783 26 6.98562 27.822 1.04864 31.0326L0 31.5996V42H42V31.5996L40.9514 31.0326C35.0144 27.822 28.217 26 21 26Z"
+                fill="black"
+              />
+            </svg>
+          </div>
+            {user.name} {user.lastName}
+        </NavLink>
+      </div>
+      ) : (
       <div className="flex justify-center items-center cursor-pointer transition-transform duration-300 ease-in-out hover:scale-125">
         <NavLink
           to="/account"
@@ -78,15 +98,10 @@ const Nav = () => {
               />
             </svg>
           </div>
-          {user 
-          ? (
-            <p>Log in</p>
-            ) : (
-              <p>Mi cuenta</p>
-              )
-            }
+          Log in
         </NavLink>
       </div>
+      )} 
     </div>
   );
 };
