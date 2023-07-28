@@ -10,9 +10,12 @@ export const GET_PRODUCT_BY_ID = 'GET_PRODUCT_BY_ID';
 export const GET_ALL_CATEGORIES = 'GET_ALL_CATEGORIES';
 
 //USER
-export const POST_USER = 'POST_USER';
 export const LOGIN_USER = 'LOGIN_USER';
+export const POST_USER = 'POST_USER';
 export const GET_USERS = 'GET_USERS';
+export const PUT_USER = 'PUT_USER';
+export const DELETE_USER = 'DELETE_USER';
+
 
 //FILTERS
 export const GET_PRODUCT_FILTER = 'GET_PRODUCT_FILTER';
@@ -25,7 +28,7 @@ export const SET_LOW_PRICE = "SET_LOW_PRICE";
 export const SET_TOTAL_PAGES = "SET_TOTAL_PAGES";
 export const SET_PAGE = "SET_PAGE";
 
-export const SET_CART = "SET_CART";
+export const GET_CART = "GET_CART";
 
 //NODE MAILER
 export const POST_CONTACT_EMAIL = "POST_CONTACT_EMAIL";

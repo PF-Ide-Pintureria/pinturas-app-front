@@ -7,15 +7,10 @@ export const postProduct = (productCreate) => {
             headers: {
             'Content-Type': 'multipart/form-data'
             }
-        } )
+        })
+
         const newProduct = response.status === 'success' ? response.product : {};
         dispatch({ type: POST_PRODUCT, payload: newProduct });
         return response;
     };
 };
-
-// 'upload_file', formData, {
-//             headers: {
-//             'Content-Type': 'multipart/form-data'
-//             }
-//         }
