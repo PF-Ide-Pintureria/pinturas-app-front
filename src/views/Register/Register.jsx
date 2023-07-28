@@ -24,7 +24,7 @@ const Register = () => {
             //   zIndex: "-1",
             // }}
             ></div>
-            <div style={{ marginRight: "100px" }}>
+            <div>
                 <RegisterForm />
             </div>
             {/* <div style={{ marginLeft: "20px" }}>
