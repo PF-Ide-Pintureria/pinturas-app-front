@@ -34,22 +34,23 @@ const Contact = () => {
 
         console.log('checkpoint: ', 1);
 
-        // if (!inputs.name || !inputs.email || !inputs.message) {
-        //     alert("Por favor, complete todos los campos obligatorios.");
-        //     return;
-        // }
+        if (!inputs.name || !inputs.email || !inputs.message) {
+            alert("Por favor, complete todos los campos obligatorios.");
+            return;
+        }
 
-        // const emailRegex =
-        //     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-        // if (!emailRegex.test(inputs.email)) {
-        //     alert("Por favor, ingrese un correo electrónico válido.");
-        //     return;
-        // }
+        const emailRegex =
+            /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        if (!emailRegex.test(inputs.email)) {
+            alert("Por favor, ingrese un correo electrónico válido.");
+            return;
+        }
 
-        // const errores = formValidation(inputs)
-        // setErrors(errores);
-        // if (Object.keys(errors).length === 0) {
-        formatAndSend(inputs, dispatch);
+        const errores = formValidation(inputs)
+        setErrors(errores);
+        if (Object.keys(errors).length === 0) {
+            formatAndSend(inputs, dispatch);
+        }
         //     if (response) {
         //         alert('Tu mensaje ha sido enviado!');
         //     };

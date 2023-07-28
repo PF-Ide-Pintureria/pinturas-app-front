@@ -4,7 +4,7 @@ import { postContactEmail } from "../../redux/actions/postContactEmail";
 export const formatAndSend = async ({ name, email, message }, dispatch) => {
     console.log('checkpoint: ', 2);
     try {
-        const formatedEmail = ` < !DOCTYPE html >
+        const formatedEmail = `
         <html lang="en" >
             <head>
                 <meta charset="UTF-8">
@@ -36,9 +36,11 @@ export const formatAndSend = async ({ name, email, message }, dispatch) => {
             </body>
         </html>`
 
-        const emailToBeSent = new FormData();
-        emailToBeSent.append('name', name);
-        emailToBeSent.append('message', formatedEmail)
+        const emailToBeSent = {
+            name: name,
+            message: formatedEmail,
+            replyTo: email
+        };
 
         console.log('emailToBeSent: ', emailToBeSent);
 
