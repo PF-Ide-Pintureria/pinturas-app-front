@@ -34,6 +34,7 @@ import {
     POST_CONTACT_EMAIL,
     POST_ORDER_EMAIL,
     POST_REGISTER_EMAIL,
+    LOGOUT_USER,
 
 } from "../action-type";
 
@@ -97,6 +98,8 @@ const reducer = (state = initialState, { type, payload }) => {
             return { ...state, allUsers: payload }
         case PUT_USER:
             return { ...state, allUsers: payload }
+        case LOGOUT_USER:
+            return { ...state, user: payload }
 
         //FILTERS
         case GET_PRODUCT_FILTER:
