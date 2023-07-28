@@ -26,7 +26,6 @@ const Account = () => {
 
   const loggedUser = useSelector((state) => state.user);
   
-  
   const handleButtonClick = (buttonName) => {
     if (buttonName === "account"){ 
       setDashboard(true);
@@ -70,10 +69,10 @@ const Account = () => {
       setActiveButton(buttonName);}
 
   };
+
   if(loggedUser.id){
   return (
     <div>
-      <h1 className="bg-red-700 w-72 h-72 text-yellow-400">HOLA K TAL VINE PRIMERO</h1>
         <div style={{ display: "flex", minHeight: "100vh" }}>
           {console.log("HOLA K TAL")}
           <SideBar
