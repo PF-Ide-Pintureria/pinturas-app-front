@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { putUser } from "../../redux/actions/putUser"
 
 const UpdateUserForm = () => {
   const [name, setName] = useState("");
@@ -7,6 +9,8 @@ const UpdateUserForm = () => {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordsMatch, setPasswordsMatch] = useState(true);
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch()
 
   // Funciones para manejar los cambios en los campos
   const handleNameChange = (e) => setName(e.target.value);
@@ -16,7 +20,7 @@ const UpdateUserForm = () => {
   const handleConfirmPasswordChange = (e) => setConfirmPassword(e.target.value);
 
   // Función para manejar el envío del formulario
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Validar que los campos no estén vacíos
@@ -37,6 +41,14 @@ const UpdateUserForm = () => {
     } else {
       setPasswordsMatch(true);
     }
+    await putUser(user.id, {name, email, newPassword})(dispatch).then((response) =>{
+      console.log("form update: ", {name, email, newPassword});
+      if(response.status === 200) {
+        alert("Usuario Modificado");
+      } else {
+        alert("HUBO UN ERROR PTTMMMMMMM")
+      }
+    })
   };
 
   return (
