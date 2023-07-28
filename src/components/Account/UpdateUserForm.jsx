@@ -45,8 +45,7 @@ const UpdateUserForm = () => {
         <div className="mb-6">
           <label
             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-            htmlFor="grid-first-name"
-          >
+            htmlFor="grid-first-name">
             Nombre
           </label>
           <input
@@ -65,8 +64,7 @@ const UpdateUserForm = () => {
         <div className="mb-6">
           <label
             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-            htmlFor="grid-email"
-          >
+            htmlFor="grid-email">
             Actualiza dirección de correo electrónico
           </label>
           <input
@@ -83,8 +81,7 @@ const UpdateUserForm = () => {
           <p className="font-bold mb-2">CAMBIO DE CONTRASEÑA</p>
           <label
             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-            htmlFor="grid-current-password"
-          >
+            htmlFor="grid-current-password">
             Contraseña actual (déjalo en blanco para no cambiarla)
           </label>
           <input
@@ -100,8 +97,7 @@ const UpdateUserForm = () => {
         <div className="mb-6">
           <label
             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-            htmlFor="grid-new-password"
-          >
+            htmlFor="grid-new-password">
             Nueva contraseña (déjalo en blanco para no cambiarla)
           </label>
           <input
@@ -117,8 +113,7 @@ const UpdateUserForm = () => {
         <div className="mb-6">
           <label
             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-            htmlFor="grid-confirm-password"
-          >
+            htmlFor="grid-confirm-password">
             Confirmar nueva contraseña (déjalo en blanco para no cambiarla)
           </label>
           <input
@@ -137,13 +132,18 @@ const UpdateUserForm = () => {
             </p>
           )}
         </div>
-
-        <button
-          type="submit"
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-        >
-          Guardar cambios
-        </button>
+        <div className="flex justify-between">
+          <button
+            type="submit"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+            Guardar cambios
+          </button>
+          <button
+            type="submit"
+            className="bg-red-500 hover:bg-red-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+            Eliminar Cuenta
+          </button>
+        </div>
       </form>
       <footer style={{ textAlign: "center", padding: "14.5px" }}></footer>
     </div>
