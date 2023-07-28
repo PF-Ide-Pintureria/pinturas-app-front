@@ -24,6 +24,10 @@ import Reviews from "./views/Reviews/Reviews";
 import Favorite from "./views/Profile/Favorite/Favorite";
 import Register from "./views/Register/Register";
 import Purchases from "./views/Purchases/Purchases";
+import NotFound from "./views/NotFound/NotFound";
+import SuccessfulPayment from "./views/Payment/SuccessfulPayment";
+import FailurePayment from "./views/Payment/FaillurePayment";
+import PendingPayment from "./views/Payment/PendingPayment";
 
 function App() {
   return (
@@ -47,13 +51,19 @@ function App() {
         <Route path="/reviews" element={<Reviews />} />
         <Route path="/favorite" element={<Favorite />} />
         <Route path="/login/register" element={<Register />} />
-
         {/* <Route path="/account" element={<AdminDashboard />} /> */}
         <Route path="/account" element={<Account />} />
         <Route path="/about" element={<About />} />
         <Route path="/location" element={<Location />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/developers" element={<Developers />} />
+        <Route path="/payment/successful" element={<SuccessfulPayment />} />
+        <Route path="/payment/failure" element={<FailurePayment />} />
+        <Route path="/payment/pending" element={<PendingPayment />} />
+
+        
+        
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <footer>
         <Footer />
