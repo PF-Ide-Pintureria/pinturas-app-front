@@ -10,6 +10,7 @@ import UpdateUserForm from "../../components/Account/UpdateUserForm";
 import Addresses from "../../components/Account/Addresses";
 import Favorities from "../../components/Account/Favorites";
 import Orders from "../../components/Account/Orders";
+// import UpdateUserForm from "../../components/Account/UpdateUserForm";
 
 import LoginForm from "../../components/LoginForm/LoginForm";
 
@@ -26,9 +27,9 @@ const Account = () => {
   const loggedUser = useSelector((state) => state.user);
 
   const handleButtonClick = (buttonName) => {
-    if (buttonName === "dashboard"){ 
+    if (buttonName === "account"){ 
       setDashboard(true);
-      setUpdateUserForm(false);
+      setUpdateUserForm(true);
       setAddresses(false);
       setFavorities(false);
       setOrders(false);
@@ -68,9 +69,7 @@ const Account = () => {
       setActiveButton(buttonName);}
 
   };
-
-  // let activeComponent = null;
-
+  
   return (
     <div>
       {loggedUser ? (
