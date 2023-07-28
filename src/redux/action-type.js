@@ -10,9 +10,9 @@ export const GET_PRODUCT_BY_ID = 'GET_PRODUCT_BY_ID';
 export const GET_ALL_CATEGORIES = 'GET_ALL_CATEGORIES';
 
 //USER
-export const LOGIN_USER = 'LOGIN_USER';
-export const POST_USER = 'POST_USER';
-export const GET_USERS = 'GET_USERS';
+export const GET_ALL_USERS = 'GET_ALL_USERS';
+export const POST_LOGIN_USER = 'POST_LOGIN_USER';
+export const POST_REGISTER_USER = 'POST_REGISTER_USER';
 export const PUT_USER = 'PUT_USER';
 export const DELETE_USER = 'DELETE_USER';
 
