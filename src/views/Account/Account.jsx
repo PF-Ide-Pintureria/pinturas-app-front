@@ -27,11 +27,12 @@ const Account = () => {
     const [orders, setOrders] = useState(false);
     const [products, setProducts] = useState(false);
     const navigate = useNavigate();
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     const loggedUser = useSelector((state) => state.user);
 
     const logoutUserAction = () => {
+        // console.log('Dispatch in Account:', dispatch);
         logoutUser(dispatch);
         navigate('/');
     }
