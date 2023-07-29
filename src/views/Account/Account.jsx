@@ -12,6 +12,7 @@ import UpdateUserForm from "../../components/Account/UpdateUserForm";
 import Addresses from "../../components/Account/Addresses";
 import Favorities from "../../components/Account/Favorites";
 import Orders from "../../components/Account/Orders";
+import ProductsDash from "../../components/Account/ProductsDash";
 // import UpdateUserForm from "../../components/Account/UpdateUserForm";
 
 import LoginForm from "../../components/LoginForm/LoginForm";
@@ -24,6 +25,7 @@ const Account = () => {
     const [addresses, setAddresses] = useState(false);
     const [favorities, setFavorities] = useState(false);
     const [orders, setOrders] = useState(false);
+    const [products, setProducts] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch()
 
@@ -42,6 +44,7 @@ const Account = () => {
             setAddresses(false);
             setFavorities(false);
             setOrders(false);
+            setProducts(false);
             setActiveButton(buttonName);
 
         }
@@ -51,6 +54,7 @@ const Account = () => {
             setAddresses(false);
             setFavorities(false);
             setOrders(false);
+            setProducts(false);
             setActiveButton(buttonName);
         }
         if (buttonName === "addresses") {
@@ -59,6 +63,7 @@ const Account = () => {
             setAddresses(true);
             setFavorities(false);
             setOrders(false);
+            setProducts(false);
             setActiveButton(buttonName);
         }
         if (buttonName === "favorities") {
@@ -67,6 +72,7 @@ const Account = () => {
             setAddresses(false);
             setFavorities(true);
             setOrders(false);
+            setProducts(false);
             setActiveButton(buttonName);
         }
         if (buttonName === "orders") {
@@ -75,6 +81,16 @@ const Account = () => {
             setAddresses(false);
             setFavorities(false);
             setOrders(true);
+            setProducts(false);
+            setActiveButton(buttonName);
+        }
+        if (buttonName === "products") {
+            setDashboard(false);
+            setUpdateUserForm(false);
+            setAddresses(false);
+            setFavorities(false);
+            setOrders(false);
+            setProducts(true);
             setActiveButton(buttonName);
         }
 
@@ -126,6 +142,7 @@ const Account = () => {
                         {addresses && <Addresses />}
                         {favorities && <Favorities />}
                         {orders && <Orders />}
+                        {products && <ProductsDash />}
 
                         {/* <Dashboard isAuthenticated={isAuthenticated} /> */}
                         <footer style={{ textAlign: "center", padding: "10px" }}></footer>
