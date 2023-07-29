@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { postRegisterEmail } from '../../redux/actions/postRegisterEmail';
 import { postRegisterUser } from '../../redux/actions/postRegisterUser';
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 
 const RegisterForm = () => {
@@ -12,6 +13,7 @@ const RegisterForm = () => {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [errors, setErrors] = useState({});
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const welcomeMessage = (`<html lang="en">
 
         <head>
@@ -79,6 +81,7 @@ const RegisterForm = () => {
                 if (response.status === 200) {
                     postRegisterEmail({ id: response.data.user.id, message: welcomeMessage })(dispatch);
                     alert('Usuario registrado correctamente');
+                    navigate('/login');
                 }
 
             })

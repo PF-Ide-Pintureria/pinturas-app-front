@@ -62,18 +62,23 @@ const LoginForm = () => {
         }
 
         if (Object.keys(errors).length === 0) {
-            await postLoginUser({ email, password })(dispatch).then((response) => {
-                console.log('user: ', response.acceso.user);
-                // console.log("Form submitted:", { email, password });
-                if (response?.acceso?.user?.active === false) {
-                    alert("Usuario no encontrado");
-                    logoutUser();
-                    navigate('/')
-                }
-                else if (response.status === "success") {
-                    alert("Usuario Logueado correctamente");
-                }
-            });
+            const primeraRespuesta = await postLoginUser({ email, password })(dispatch)
+            // .then((response) => {
+            // console.log('user: ', response?.acceso?.user);
+            console.log('response: ', primeraRespuesta)
+            // console.log("Form submitted:", { email, password });
+            // if (primeraRespuesta?.status === 'error' || primeraRespuesta?.status === 'fail') {
+            //     alert(primeraRespuesta.mensaje);
+            // }
+            if (primeraRespuesta?.acceso?.user?.active === false) {
+                alert("Usuario no encontrado");
+                logoutUser(dispatch);
+                navigate('/')
+            }
+            else if (primeraRespuesta.status === "success") {
+                alert("Usuario Logueado correctamente");
+            }
+            // });
         } else {
             setErrors(errors);
         }

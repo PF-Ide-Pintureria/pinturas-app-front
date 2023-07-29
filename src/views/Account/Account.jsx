@@ -32,7 +32,7 @@ const Account = () => {
     const loggedUser = useSelector((state) => state.user);
 
     const logoutUserAction = () => {
-        dispatch(logoutUser());
+        logoutUser(dispatch);
         navigate('/');
     }
 
