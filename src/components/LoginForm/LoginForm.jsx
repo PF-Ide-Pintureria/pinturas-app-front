@@ -62,20 +62,29 @@ const LoginForm = () => {
         }
 
         if (Object.keys(errors).length === 0) {
-            const primeraRespuesta = await postLoginUser({ email, password })(dispatch)
-            // .then((response) => {
-            // console.log('user: ', response?.acceso?.user);
-            console.log('response: ', primeraRespuesta)
-            // console.log("Form submitted:", { email, password });
-            // if (primeraRespuesta?.status === 'error' || primeraRespuesta?.status === 'fail') {
-            //     alert(primeraRespuesta.mensaje);
-            // }
-            if (primeraRespuesta?.acceso?.user?.active === false) {
+
+            let primeraRes;
+
+            try {
+                primeraRes = await postLoginUser({ email, password })(dispatch);
+            }
+            catch (err) {
+                console.log('Atrapado en el catch de LoginForm');
+                console.log(err);
+            };
+
+            console.log('primeraRes', primeraRes);
+
+            if (primeraRes.status === 'fail') {
+
+                alert(primeraRes.message);
+
+            } else if (primeraRes?.acceso?.user?.active === false) {
                 alert("Usuario no encontrado");
                 logoutUser(dispatch);
-                navigate('/')
+                navigate('/');
             }
-            else if (primeraRespuesta.status === "success") {
+            else if (primeraRes.status === "success") {
                 alert("Usuario Logueado correctamente");
             }
             // });
