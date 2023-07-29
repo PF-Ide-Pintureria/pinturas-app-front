@@ -18,7 +18,7 @@ export const formatAndPost = async (inputsForm, dispatch) => {
         formData.append('color', inputsForm.color);
         formData.append('package', inputsForm.package);
         formData.append('stock', inputsForm.stock);
-        formData.append('image', inputsForm.file);
+        formData.append('image', inputsForm.image);
 
         await postProduct(formData)(dispatch).then((res) => {
             console.log('respuesta', res.data)
