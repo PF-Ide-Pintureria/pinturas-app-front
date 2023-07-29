@@ -8,7 +8,7 @@ import FeaturedContainer from "../../components/FeaturedContainer/FeaturedContai
 import { bestSellers } from "../../redux/actions/bestSellers";
 import "./Detail.Module.css";
 import { useCart } from "../../hooks/useCart";
-
+import { setCart } from "../../redux/actions/setCart"
 
 const Detail = () => {
 
@@ -97,7 +97,25 @@ const Detail = () => {
     };
 
     const shopCart = () => {
-        dispatch(setCart(addProduct));
+        if (isValidQuantity) {
+            addToCart({
+                product: {
+                    id: addProduct.id,
+                },
+                quantity: addProduct.quantity,
+            });
+            setAddProduct({
+                id: idProduct,
+                name: product.name,
+                quantity: 1,
+                image: product.image,
+                price: product.price,
+                stock: product.stock,
+            });
+            dispatch(setCart(addProduct));
+        } else {
+            alert("Ingrese una cantidad válida");
+        }
         navigate("/cart");
     };
 
@@ -117,6 +135,7 @@ const Detail = () => {
                 price: product.price,
                 stock: product.stock,
             });
+            dispatch(setCart(addProduct));
             alert("Producto agregado al carrito");
         } else {
             alert("Ingrese una cantidad válida");
@@ -432,7 +451,7 @@ const Detail = () => {
                                         type="button"
                                         disabled={!isValidQuantity}
                                         className={`flex items-center justify-center rounded-md border-2 border-transparent bg-purple-100 bg-none text-center text-base font-bold text-purple-800 transition-all duration-200 ease-in-out focus:shadow
-                  ${isValidQuantity
+                    ${isValidQuantity
                                                 ? "hover:bg-purple-200"
                                                 : "cursor-not-allowed"}`}
                                         onClick={handleAddToCart}
@@ -442,7 +461,7 @@ const Detail = () => {
                                     <button
                                         type="button"
                                         className={`inline-flex items-center justify-center rounded-md border-2 border-transparent bg-purple-800 bg-none px-12 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow
-                  ${isValidQuantity
+                                                ${isValidQuantity
                                                 ? "hover:bg-gray-800"
                                                 : "cursor-not-allowed"}`}
                                         onClick={shopCart}

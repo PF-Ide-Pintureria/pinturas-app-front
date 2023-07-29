@@ -34,20 +34,29 @@ const Cart = () => {
       <div className="w-full h-full flex flex-wrap justify-center items-stretch md:px-10  lg:px-20 xl:px-32">
         <div className="w-11/12 h-5/6 mx-3 mt-3 flex justify-center flex-col ">
           <div className=" mt-3 space-y-3 rounded-lg border bg-white px-2 py-4 md:px-6">
-            {cart && (
-            cart.map((product) =>
-              product && product.id ? (
-                <ProductCart
-                  // key={product.id}
-                  id={product.id}
-                  // name={product.name}
-                  quantity={product.quantity}
-                  // price={product.price}
-                  // color={product.color}
-                  // image={product.image}
-                />
-              ) : null
-            )
+            {cart.length > 1 && (
+              <div>
+                <div className="w-full grid grid-cols-3 gap-10">
+                  <h1> Detalle </h1>
+                  <h1 className="flex justify-end"> Cantidad </h1> 
+                  <h1 className="flex justify-end"> Precio </h1> 
+                </div>
+                {cart.map((product) =>
+                  product && product.id ? (
+                    <ProductCart
+                      // key={product.id}
+                      id={product.id}
+                      name={product.name}
+                      stock={product.stock}
+                      quantity={product.quantity}
+                      price={product.price}
+                      // color={product.color}
+                      image={product.image}
+                    />
+                    ) : null
+                  )
+                }
+              </div>
             )} 
             {cart.length == 0 && (
               <p className="text-gray-400 flex items-center justify-center">
