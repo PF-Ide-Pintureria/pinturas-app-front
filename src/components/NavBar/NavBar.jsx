@@ -1,8 +1,13 @@
 import { NavLink } from "react-router-dom";
 import React from "react";
 import logo from "../../img/logoIde.png";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useSelector } from "react-redux";
 
 const Nav = () => {
+  const userBd = useSelector((state) => state.user);
+  const { isAuthenticated, user } = useAuth0();
+
   return (
     <div className="w-full h-32 flex justify-around items-center font-inter">
       <NavLink
@@ -61,7 +66,8 @@ const Nav = () => {
           Mi carrito
         </NavLink>
       </div>
-      <div className="flex justify-center items-center cursor-pointer transition-transform duration-300 ease-in-out hover:scale-125">
+      {(!userBd.id && !isAuthenticated) && (
+        <div className="flex justify-center items-center cursor-pointer transition-transform duration-300 ease-in-out hover:scale-125">
         <NavLink
           to="/account"
           className="flex justify-center items-center font-inter">
@@ -76,11 +82,52 @@ const Nav = () => {
               />
             </svg>
           </div>
-          Mi cuenta
+          Log in
+        </NavLink>
+      </div>)
+      }
+      {userBd.id && 
+      (<div className="flex justify-center items-center cursor-pointer transition-transform duration-300 ease-in-out hover:scale-125">
+        <NavLink
+          to="/account"
+          className="flex justify-center items-center font-inter">
+          <div className="w-6 mx-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 42 42"
+              fill="none">
+              <path
+                d="M21 0C14.3726 0 9 5.37258 9 12V22H33V12C33 5.37258 27.6274 0 21 0ZM21 26C13.783 26 6.98562 27.822 1.04864 31.0326L0 31.5996V42H42V31.5996L40.9514 31.0326C35.0144 27.822 28.217 26 21 26Z"
+                fill="black"
+              />
+            </svg>
+          </div>
+            {userBd.name} {userBd.lastName}
         </NavLink>
       </div>
+      ) } 
+      {isAuthenticated && (
+        <div className="flex justify-center items-center cursor-pointer transition-transform duration-300 ease-in-out hover:scale-125">
+        <NavLink
+          to="/account"
+          className="flex justify-center items-center font-inter">
+          <div className="w-6 mx-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 42 42"
+              fill="none">
+              <path
+                d="M21 0C14.3726 0 9 5.37258 9 12V22H33V12C33 5.37258 27.6274 0 21 0ZM21 26C13.783 26 6.98562 27.822 1.04864 31.0326L0 31.5996V42H42V31.5996L40.9514 31.0326C35.0144 27.822 28.217 26 21 26Z"
+                fill="black"
+              />
+            </svg>
+          </div>
+            {user.name} {user.lastName}
+        </NavLink>
+      </div>) 
+      }
     </div>
-  );
+    );
 };
 
 export default Nav;

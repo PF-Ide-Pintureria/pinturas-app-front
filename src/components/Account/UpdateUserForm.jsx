@@ -1,153 +1,388 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { putUser } from "../../redux/actions/putUser"
+import { useAuth0 } from "@auth0/auth0-react"
+import { deleteUser } from "../../redux/actions/deleteUser";
+import { logoutUser } from "../../redux/actions/logoutUser";
+import { useNavigate } from "react-router-dom";
 
 const UpdateUserForm = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [currentPassword, setCurrentPassword] = useState("");
-  const [newPassword, setNewPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [passwordsMatch, setPasswordsMatch] = useState(true);
+    // const [name, setName] = useState("");
+    // const [email, setEmail] = useState("");
+    // const [lastName, setLastName] = useState("");
+    // const [currentPassword, setCurrentPassword] = useState("");
+    // const [newPassword, setNewPassword] = useState("");
+    // const [confirmPassword, setConfirmPassword] = useState("");
+    // const [passwordsMatch, setPasswordsMatch] = useState(true);
 
-  // Funciones para manejar los cambios en los campos
-  const handleNameChange = (e) => setName(e.target.value);
-  const handleEmailChange = (e) => setEmail(e.target.value);
-  const handleCurrentPasswordChange = (e) => setCurrentPassword(e.target.value);
-  const handleNewPasswordChange = (e) => setNewPassword(e.target.value);
-  const handleConfirmPasswordChange = (e) => setConfirmPassword(e.target.value);
+    const [inputs, setInputs] = useState({
+        name: "",
+        lastName: "",
+        email: "",
+        currentPassword: "",
+        newPassword: "",
+        confirmPassword: "",
+        passwordMatch: true,
+    })
 
-  // Función para manejar el envío del formulario
-  const handleSubmit = (e) => {
-    e.preventDefault();
+    const user = useSelector((state) => state.user);
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const { isAuthenticated } = useAuth0();
 
-    // Validar que los campos no estén vacíos
-    if (
-      !name ||
-      !email ||
-      !currentPassword ||
-      (!newPassword && !confirmPassword)
-    ) {
-      alert("Por favor, completa todos los campos.");
-      return;
+    // Funciones para manejar los cambios en los campos
+    // const handleNameChange = (e) => setName(e.target.value);
+    // const handleEmailChange = (e) => setEmail(e.target.value);
+    // const handleCurrentPasswordChange = (e) => setCurrentPassword(e.target.value);
+    // const handleNewPasswordChange = (e) => setNewPassword(e.target.value);
+    // const handleConfirmPasswordChange = (e) => setConfirmPassword(e.target.value);
+
+
+    const handleChange = (event) => {
+        const property = event.target.name;
+        const value = event.target.value;
+        setInputs({
+            ...inputs,
+            [property]: value
+        });
+
     }
+    //precargar el formulario con informacion de user:
+    useEffect(() => {
+        // Cargar información del usuario al cargar el componente
+        if (user) {
+            setInputs({
+                name: user.name,
+                lastName: user.lastName,
+                email: user.email,
+            });
+        }
+    }, [user]);
 
-    // Validar que las contraseñas coincidan
-    if (newPassword !== confirmPassword) {
-      setPasswordsMatch(false);
-      return;
+    // Función para manejar el envío del formulario
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        // Validar que los campos no estén vacíos
+        if (
+            !inputs.name ||
+            !inputs.email
+        ) {
+            alert("Por favor, completa todos los campos.");
+            return;
+        }
+
+
+        // Validar que las contraseñas coincidan
+        if (inputs.newPassword !== inputs.confirmPassword) {
+            setInputs({
+                ...inputs,
+                passwordMatch: false
+            });
+            return;
+        } else {
+            setInputs({
+                ...inputs,
+                passwordMatch: true
+            });
+        }
+
+
+
+        await putUser(user.id, {
+            name: inputs.name,
+            email: inputs.email,
+            password: inputs.newPassword
+        })(dispatch).then((response) => {
+            console.log("form update: ", {
+                name: inputs.name,
+                email: inputs.email,
+                password: inputs.newPassword
+            });
+            if (response.status === 200) {
+                alert("Usuario Modificado");
+            } else {
+                alert("HUBO UN ERROR PTTMMMMMMM")
+            }
+        })
+
+
+    };
+    const handleDelete = () => {
+        deleteUser(user.id)(dispatch)
+        alert("Usuario eliminado")
+        logoutUser(dispatch);
+        navigate('/');
+    }
+    if (isAuthenticated) {
+        return (
+            <div className="container mx-auto px-4">
+                <form className="w-full max-w-md" onSubmit={handleSubmit}>
+                    <div className="mb-6">
+                        <label
+                            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                            htmlFor="grid-first-name">
+                            Nombre
+                        </label>
+                        <input
+                            className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+                            id="grid-first-name"
+                            type="text"
+                            name="name"
+                            placeholder="Nombre"
+                            value={inputs.name}
+                            onChange={handleChange}
+                        />
+                        <p className="text-gray-600 text-xs mt-1">
+                            Así será como se mostrará tu nombre en la sección de tu cuenta.
+                        </p>
+                    </div>
+
+                    <div className="mb-6">
+                        <label
+                            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                            htmlFor="grid-last-name">
+                            Apellido
+                        </label>
+                        <input
+                            className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+                            id="grid-last-name"
+                            type="text"
+                            name="lastName"
+                            placeholder="Apellido"
+                            value={inputs.lastName}
+                            onChange={handleChange}
+                        />
+                    </div>
+
+                    <div className="mb-6">
+                        <label
+                            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                            htmlFor="grid-email">
+                            Actualiza dirección de correo electrónico
+                        </label>
+                        <input
+                            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                            id="grid-email"
+                            type="email"
+                            name="email"
+                            placeholder="Correo electrónico"
+                            value={inputs.email}
+                            onChange={handleChange}
+                            disabled="true"
+                        />
+                    </div>
+
+                    <div className="mb-6">
+                        <p className="font-bold mb-2">CAMBIO DE CONTRASEÑA</p>
+                        <label
+                            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                            htmlFor="grid-current-password">
+                            Contraseña actual (déjalo en blanco para no cambiarla)
+                        </label>
+                        <input
+                            className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+                            id="grid-current-password"
+                            type="password"
+                            name="currentPassword"
+                            placeholder="Contraseña Actual"
+                            value={inputs.currentPassword}
+                            onChange={handleChange}
+                            autoComplete="false"
+                        />
+                    </div>
+
+                    <div className="mb-6">
+                        <label
+                            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                            htmlFor="grid-new-password">
+                            Nueva contraseña (déjalo en blanco para no cambiarla)
+                        </label>
+                        <input
+                            className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+                            id="grid-new-password"
+                            type="password"
+                            name="newPassword"
+                            placeholder="Contraseña Nueva"
+                            value={inputs.newPassword}
+                            onChange={handleChange}
+                        />
+                    </div>
+
+                    <div className="mb-6">
+                        <label
+                            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                            htmlFor="grid-confirm-password">
+                            Confirmar nueva contraseña (déjalo en blanco para no cambiarla)
+                        </label>
+                        <input
+                            className={`appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white ${!inputs.passwordMatch ? "border-red-500" : "border-gray-200"
+                                }`}
+                            id="grid-confirm-password"
+                            type="password"
+                            name="confirmPassword"
+                            placeholder="Confirma Contraseña"
+                            value={inputs.confirmPassword}
+                            onChange={handleChange}
+                        />
+                        {!inputs.passwordMatch && (
+                            <p className="text-red-500 text-xs mt-1">
+                                Las contraseñas no coinciden.
+                            </p>
+                        )}
+                    </div>
+                    <div className="flex justify-between">
+                        <button
+                            type="submit"
+                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                            Guardar cambios
+                        </button>
+                        <button
+                            type="button"
+                            className="bg-red-500 hover:bg-red-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                            onClick={handleDelete}>
+                            Eliminar Cuenta
+                        </button>
+                    </div>
+                </form>
+                <footer style={{ textAlign: "center", padding: "14.5px" }}></footer>
+            </div>
+        );
     } else {
-      setPasswordsMatch(true);
+        return (
+            <div className="container mx-auto px-4">
+                <form className="w-full max-w-md" onSubmit={handleSubmit}>
+                    <div className="mb-6">
+                        <label
+                            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                            htmlFor="grid-first-name">
+                            Nombre
+                        </label>
+                        <input
+                            className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+                            id="grid-first-name"
+                            type="text"
+                            name="name"
+                            placeholder="Nombre"
+                            value={inputs.name}
+                            onChange={handleChange}
+                        />
+                        <p className="text-gray-600 text-xs mt-1">
+                            Así será como se mostrará tu nombre en la sección de tu cuenta.
+                        </p>
+                    </div>
+
+                    <div className="mb-6">
+                        <label
+                            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                            htmlFor="grid-last-name">
+                            Apellido
+                        </label>
+                        <input
+                            className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+                            id="grid-last-name"
+                            type="text"
+                            name="lastName"
+                            placeholder="Apellido"
+                            value={inputs.lastName}
+                            onChange={handleChange}
+                        />
+                    </div>
+
+                    <div className="mb-6">
+                        <label
+                            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                            htmlFor="grid-email">
+                            Actualiza dirección de correo electrónico
+                        </label>
+                        <input
+                            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                            id="grid-email"
+                            type="email"
+                            name="email"
+                            placeholder="Correo electrónico"
+                            value={inputs.email}
+                            onChange={handleChange}
+                        />
+                    </div>
+
+                    <div className="mb-6">
+                        <p className="font-bold mb-2">CAMBIO DE CONTRASEÑA</p>
+                        <label
+                            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                            htmlFor="grid-current-password">
+                            Contraseña actual (déjalo en blanco para no cambiarla)
+                        </label>
+                        <input
+                            className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+                            id="grid-current-password"
+                            type="password"
+                            name="currentPassword"
+                            placeholder="Contraseña Actual"
+                            value={inputs.currentPassword}
+                            onChange={handleChange}
+                            autoComplete="false"
+                        />
+                    </div>
+
+                    <div className="mb-6">
+                        <label
+                            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                            htmlFor="grid-new-password">
+                            Nueva contraseña (déjalo en blanco para no cambiarla)
+                        </label>
+                        <input
+                            className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+                            id="grid-new-password"
+                            type="password"
+                            name="newPassword"
+                            placeholder="Contraseña Nueva"
+                            value={inputs.newPassword}
+                            onChange={handleChange}
+                        />
+                    </div>
+
+                    <div className="mb-6">
+                        <label
+                            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                            htmlFor="grid-confirm-password">
+                            Confirmar nueva contraseña (déjalo en blanco para no cambiarla)
+                        </label>
+                        <input
+                            className={`appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white ${!inputs.passwordMatch ? "border-red-500" : "border-gray-200"
+                                }`}
+                            id="grid-confirm-password"
+                            type="password"
+                            name="confirmPassword"
+                            placeholder="Confirma Contraseña"
+                            value={inputs.confirmPassword}
+                            onChange={handleChange}
+                        />
+                        {!inputs.passwordMatch && (
+                            <p className="text-red-500 text-xs mt-1">
+                                Las contraseñas no coinciden.
+                            </p>
+                        )}
+                    </div>
+                    <div className="flex justify-between">
+                        <button
+                            type="submit"
+                            name="update"
+                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                            Guardar cambios
+                        </button>
+                        <button
+                            type="button"
+                            name="delete"
+                            className="bg-red-500 hover:bg-red-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                            onClick={handleDelete}>
+                            Eliminar Cuenta
+                        </button>
+                    </div>
+                </form>
+                <footer style={{ textAlign: "center", padding: "14.5px" }}></footer>
+            </div>
+        );
     }
-  };
-
-  return (
-    <div className="container mx-auto px-4">
-      <form className="w-full max-w-md" onSubmit={handleSubmit}>
-        <div className="mb-6">
-          <label
-            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-            htmlFor="grid-first-name">
-            Nombre
-          </label>
-          <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
-            id="grid-first-name"
-            type="text"
-            placeholder="Nombre"
-            value={name}
-            onChange={handleNameChange}
-          />
-          <p className="text-gray-600 text-xs mt-1">
-            Así será como se mostrará tu nombre en la sección de tu cuenta.
-          </p>
-        </div>
-
-        <div className="mb-6">
-          <label
-            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-            htmlFor="grid-email">
-            Actualiza dirección de correo electrónico
-          </label>
-          <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            id="grid-email"
-            type="email"
-            placeholder="Correo electrónico"
-            value={email}
-            onChange={handleEmailChange}
-          />
-        </div>
-
-        <div className="mb-6">
-          <p className="font-bold mb-2">CAMBIO DE CONTRASEÑA</p>
-          <label
-            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-            htmlFor="grid-current-password">
-            Contraseña actual (déjalo en blanco para no cambiarla)
-          </label>
-          <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
-            id="grid-current-password"
-            type="password"
-            placeholder="Contraseña Actual"
-            value={currentPassword}
-            onChange={handleCurrentPasswordChange}
-          />
-        </div>
-
-        <div className="mb-6">
-          <label
-            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-            htmlFor="grid-new-password">
-            Nueva contraseña (déjalo en blanco para no cambiarla)
-          </label>
-          <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
-            id="grid-new-password"
-            type="password"
-            placeholder="Contraseña Nueva"
-            value={newPassword}
-            onChange={handleNewPasswordChange}
-          />
-        </div>
-
-        <div className="mb-6">
-          <label
-            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-            htmlFor="grid-confirm-password">
-            Confirmar nueva contraseña (déjalo en blanco para no cambiarla)
-          </label>
-          <input
-            className={`appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white ${
-              !passwordsMatch ? "border-red-500" : "border-gray-200"
-            }`}
-            id="grid-confirm-password"
-            type="password"
-            placeholder="Confirma Contraseña"
-            value={confirmPassword}
-            onChange={handleConfirmPasswordChange}
-          />
-          {!passwordsMatch && (
-            <p className="text-red-500 text-xs mt-1">
-              Las contraseñas no coinciden.
-            </p>
-          )}
-        </div>
-        <div className="flex justify-between">
-          <button
-            type="submit"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-            Guardar cambios
-          </button>
-          <button
-            type="submit"
-            className="bg-red-500 hover:bg-red-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-            Eliminar Cuenta
-          </button>
-        </div>
-      </form>
-      <footer style={{ textAlign: "center", padding: "14.5px" }}></footer>
-    </div>
-  );
 };
 
 export default UpdateUserForm;
