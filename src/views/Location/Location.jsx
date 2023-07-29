@@ -1,5 +1,5 @@
 import React from "react";
-import { GoogleApiWrapper } from "google-maps-react";
+// import { GoogleApiWrapper } from "google-maps-react";
 import Banner5 from "../../img/banner5.png";
 import Location from "../../img/location.png";
 import "./Location.css";
@@ -18,7 +18,7 @@ class LocationMap extends React.Component {
                                 <iframe
                                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12094.57348593182!2d-64.4100351!3d-31.7294921!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x171ba1f406068069!2sPintureria%20Fadepa!5e0!3m2!1ses-419!2sar!4v1624523797308!5m2!1ses-419!2sar"
                                     className="h-80 w-full border-0 rounded-lg shadow-lg"
-                                    allowfullscreen=""
+                                    allowFullScreen=""
                                     loading="lazy"></iframe>
                             </div>
                         </div>
@@ -50,6 +50,8 @@ class LocationMap extends React.Component {
     }
 }
 
-export default GoogleApiWrapper({
-    apiKey: "AIzaSyBsG72-Xkp2zyp68QlAwUlP2O-KA3OnTng",
-})(LocationMap);
+// export default GoogleApiWrapper({
+//     apiKey: "AIzaSyBsG72-Xkp2zyp68QlAwUlP2O-KA3OnTng",
+// })(LocationMap);
+
+export default LocationMap
