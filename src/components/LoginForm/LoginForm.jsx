@@ -43,7 +43,7 @@ const LoginForm = () => {
         );
       });
   };
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const errors = {};
@@ -61,11 +61,11 @@ const LoginForm = () => {
     }
 
     if (Object.keys(errors).length === 0) {
-      await postLoginUser({email, password})(dispatch).then((response) => {
+      await postLoginUser({ email, password })(dispatch).then((response) => {
         console.log("Form submitted:", { email, password });
         // alert("has sido loggeado bro")
-        if(response.status === "success") {
-          alert('Usuario Logeado correctamente');
+        if (response.status === "success") {
+          alert("Usuario Logeado correctamente");
         }
       });
     } else {
@@ -77,99 +77,81 @@ const LoginForm = () => {
     navigate("/login/register");
   };
 
-
   return (
     <div className="font-sans">
-        <div className="relative sm:max-w-sm w-full">
-          <div className="card bg-blue-400 shadow-lg  w-full h-full rounded-3xl absolute  transform -rotate-6"></div>
-          <div className="card bg-purple-700 shadow-lg  w-full h-full rounded-3xl absolute  transform rotate-6"></div>
-          <div className="relative w-full rounded-3xl  px-16 py-5 bg-gray-100 shadow-md">
-            <label
-              htmlFor=""
-              className="block text-base pt-10 pb-5 text-gray-700 text-center font-semibold"
-            >
-              Iniciar sesión
-            </label>
-            <form onSubmit={handleSubmit} > 
-              <div>
-                <input
-                  type="email"
-                  placeholder="Correo electrónico"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className={`mt-1 pl-4 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${
-                    errors.email ? "border-red-500" : "border-gray-300"
-                  }`}
-                />
-                {errors.email && (
-                  <p className="text-red-500 text-sm mt-1">{errors.email}</p>
-                )}
-              </div>
-
-              <div className="mt-7">
-                <input
-                  type="password"
-                  placeholder="Contraseña"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className={`mt-1 pl-4 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${
-                    errors.password ? "border-red-500" : "border-gray-300"
-                  }`}
-                />
-                {errors.password && (
-                  <p className="text-red-500 text-sm mt-1">{errors.password}</p>
-                )}
-              </div>
-
-              <div className="pt-10">
-                <button
-                  type="submit"
-                  className="bg-blue-500 w-full py-3 rounded-xl text-white shadow-xl hover:bg-blue-600 hover:shadow-inner focus:outline-none transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105"
-                >
-                  Iniciar sesión
-                </button>
-              </div>
-
-              {/* ... */} 
-            </form>
+      <div className="relative sm:max-w-sm w-full">
+        <div className="card bg-blue-400 shadow-lg  w-full h-full rounded-3xl absolute  transform -rotate-6"></div>
+        <div className="card bg-purple-700 shadow-lg  w-full h-full rounded-3xl absolute  transform rotate-6"></div>
+        <div className="relative w-full rounded-3xl  px-16 py-5 bg-gray-100 shadow-md">
+          <label
+            htmlFor=""
+            className="block text-base pt-10 pb-5 text-gray-700 text-center font-semibold"
+          >
+            Iniciar sesión
+          </label>
+          <form onSubmit={handleSubmit}>
             <div>
-              <p
-                // href="#"
-                className="inline-flex items-center gap-4 px-3 py-2 text-sm font-medium text-center text-blue-700 bg-slate-50 rounded-lg shadow-xl hover:bg-slate-200 focus:ring-4 focus:outline-none 
-                  dark:hover:bg-neutral-300
-                  focus:ring-blue-300 dark:bg-gray-100
-                ">
-                  {/* dark:focus:ring-blue-800 */}
-                <button onClick={() => loginWithRedirect()}>
-                  Iniciar con Google
-                </button>
-                <svg
-                  className="w-3.5 h-3.5 ml-2"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 14 10">
-                  <path
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M1 5h12m0 0L9 1m4 4L9 9"
-                  />
-                </svg>
-              </p>
+              <input
+                type="email"
+                placeholder="Correo electrónico"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className={`mt-1 pl-4 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${
+                  errors.email ? "border-red-500" : "border-gray-300"
+                }`}
+              />
+              {errors.email && (
+                <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+              )}
             </div>
-            <p className="text-gray-400 pt-5 pb-10 text-m ">
-              ¿No tienes una cuenta?{" "}
-              <a
-                className="text-center text-blue-600 hover:text-blue-800"
-                href="#"
-                onClick={navigateToRegister}>
-                Registrate
-              </a>{" "}
-            </p>
+
+            <div className="mt-7">
+              <input
+                type="password"
+                placeholder="Contraseña"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className={`mt-1 pl-4 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${
+                  errors.password ? "border-red-500" : "border-gray-300"
+                }`}
+              />
+              {errors.password && (
+                <p className="text-red-500 text-sm mt-1">{errors.password}</p>
+              )}
+            </div>
+
+            <div className="pt-10">
+              <button
+                type="submit"
+                className="bg-blue-500 w-full py-3 rounded-xl text-white shadow-xl hover:bg-blue-600 hover:shadow-inner focus:outline-none transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105"
+              >
+                Iniciar sesión
+              </button>
+            </div>
+          </form>
+
+          <div className="mt-7">
+            <button
+              onClick={() => loginWithRedirect()}
+              type="submit"
+              className="bg-blue-500 w-full py-3 rounded-xl text-white shadow-xl hover:bg-blue-600 hover:shadow-inner focus:outline-none transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105"
+            >
+              Iniciar con Google
+            </button>
           </div>
+
+          <p className="text-gray-400 pt-5 pb-10 text-m ">
+            ¿No tienes una cuenta?{" "}
+            <a
+              className="text-center text-blue-600 hover:text-blue-800"
+              href="#"
+              onClick={navigateToRegister}
+            >
+              Registrate
+            </a>{" "}
+          </p>
         </div>
+      </div>
     </div>
   );
 };
