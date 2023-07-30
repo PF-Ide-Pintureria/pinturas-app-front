@@ -1,5 +1,5 @@
 import axios from "axios";
-import { POST_LOGIN_USER, BASE_URL } from '../action-type';
+import { POST_LOGIN_USER, ACCESS_TOKEN, BASE_URL } from '../action-type';
 
 export const postLoginUser = (userLogin) => {
     return async (dispatch) => {
@@ -8,6 +8,9 @@ export const postLoginUser = (userLogin) => {
             console.log('respuesta en el action: ', response);
             if (response?.acceso?.user?.active) {
                 const loginUser = response.acceso.user;
+                const token = response.acceso.token;
+                localStorage.setItem("user", JSON.stringify(loginUser))
+                dispatch({ type: ACCESS_TOKEN, payload: token })
                 dispatch({ type: POST_LOGIN_USER, payload: loginUser });
             }
             return response;

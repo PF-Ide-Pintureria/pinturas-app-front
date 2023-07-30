@@ -16,6 +16,8 @@ import {
   GET_ALL_USERS,
   DELETE_USER,
   PUT_USER,
+  ACCESS_TOKEN,
+  SET_USER,
 
   //FILTERS
   GET_PRODUCT_FILTER,
@@ -50,6 +52,7 @@ const initialState = {
   //USER
   user: {},
   allUsers: {},
+  token: "",
 
   //FILTERS
   bestSell: [],
@@ -104,6 +107,10 @@ const reducer = (state = initialState, { type, payload }) => {
     case PUT_USER:
       return { ...state, allUsers: payload };
     case LOGOUT_USER:
+      return { ...state, user: payload };
+    case ACCESS_TOKEN:
+      return { ...state, token: payload };
+    case SET_USER:
       return { ...state, user: payload };
 
     //FILTERS

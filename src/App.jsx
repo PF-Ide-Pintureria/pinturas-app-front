@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./views/Home/Home";
 import About from "./views/About/About";
@@ -32,8 +32,23 @@ import Login from "./views/Login/Login";
 import DebuggerFooter from "./components/debuggerFooter/debuggerFooter";
 const { VITE_NODE_ENV: NODE_ENV } = import.meta.env;
 import { useCart } from "./hooks/useCart";
+import { useDispatch } from "react-redux";
+import { setUser } from "./redux/actions/setUser";
 
 function App() {
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        const user = localStorage.getItem("user");
+        const cart = localStorage.getItem("cart");
+        if (user) {
+            dispatch(setUser(JSON.parse(user)));
+        }
+        // if (cart){
+        //     dispatch(setCart)
+
+        // }
+    }, [])
 
     const { cartState } = useCart();
 
@@ -44,29 +59,35 @@ function App() {
             </header>
             <Routes>
                 <Route exact path="/" element={<Home />} />
+
                 <Route path="/products" element={<Products />} />
                 <Route path="/products/:idProduct" element={<Detail />} />
                 <Route path="/products/edit/:idProduct" element={<UpdateProduct />} />
-                <Route path="/contact" element={<Contact />} />
+
+                <Route path="/login" element={<Login />} />
+                <Route path="/login/register" element={<Register />} />
+
                 <Route path="/admin" element={<AdminDashboard />} />
                 <Route path="/admin/users" element={<AdminUsers />} />
                 <Route path="/admin/products" element={<AdminProducts />} />
                 <Route path="/admin/blog" element={<AdminBlog />} />
                 <Route path="/admin/create" element={<CreateProduct />} />
+
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/cart/buying" element={<Purchases />} />
+
+                <Route path="/payment/successful" element={<SuccessfulPayment />} />
+                <Route path="/payment/failure" element={<FailurePayment />} />
+                <Route path="/payment/pending" element={<PendingPayment />} />
+
                 <Route path="/reviews" element={<Reviews />} />
                 <Route path="/favorite" element={<Favorite />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/login/register" element={<Register />} />
+                <Route path="/contact" element={<Contact />} />
                 <Route path="/account" element={<Account />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/location" element={<Location />} />
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/developers" element={<Developers />} />
-                <Route path="/payment/successful" element={<SuccessfulPayment />} />
-                <Route path="/payment/failure" element={<FailurePayment />} />
-                <Route path="/payment/pending" element={<PendingPayment />} />
 
                 <Route path="*" element={<NotFound />} />
             </Routes>

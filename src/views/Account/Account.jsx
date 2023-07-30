@@ -33,6 +33,7 @@ const Account = () => {
 
     const logoutUserAction = () => {
         // console.log('Dispatch in Account:', dispatch);
+        localStorage.removeItem("user");
         logoutUser(dispatch);
         navigate('/');
     }
@@ -40,7 +41,7 @@ const Account = () => {
 
     const handleButtonClick = (buttonName) => {
         if (buttonName === "account") {
-            setDashboard(true);
+            setDashboard(false);
             setUpdateUserForm(true);
             setAddresses(false);
             setFavorities(false);
@@ -49,15 +50,15 @@ const Account = () => {
             setActiveButton(buttonName);
 
         }
-        if (buttonName === "userForm") {
-            setDashboard(false);
-            setUpdateUserForm(true);
-            setAddresses(false);
-            setFavorities(false);
-            setOrders(false);
-            setProducts(false);
-            setActiveButton(buttonName);
-        }
+        // if (buttonName === "userForm") {
+        //     setDashboard(false);
+        //     setUpdateUserForm(true);
+        //     setAddresses(false);
+        //     setFavorities(false);
+        //     setOrders(false);
+        //     setProducts(false);
+        //     setActiveButton(buttonName);
+        // }
         if (buttonName === "addresses") {
             setDashboard(false);
             setUpdateUserForm(false);
@@ -111,7 +112,7 @@ const Account = () => {
                         <LoadingScreen isLoading={isLoading} />
 
                         {/* {dashboard && <Dashboard /> } */}
-                        {updateUserForm && <UpdateUserForm />}
+                        {(updateUserForm && loggedUser) && <UpdateUserForm />}
                         {addresses && <Addresses />}
                         {favorities && <Favorities />}
                         {orders && <Orders />}
@@ -139,7 +140,7 @@ const Account = () => {
                         <LoadingScreen isLoading={isLoading} />
 
                         {/* {dashboard && <Dashboard /> } */}
-                        {updateUserForm && <UpdateUserForm />}
+                        {(updateUserForm && loggedUser)  && <UpdateUserForm />}
                         {addresses && <Addresses />}
                         {favorities && <Favorities />}
                         {orders && <Orders />}
