@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import FeaturedContainer from "../../components/FeaturedContainer/FeaturedContainer";
 import { bestSellers } from "../../redux/actions/bestSellers";
-import "../Products/Products.css";
 import ProductsContainer from "../../components/ProductsContainer/ProductsContainer";
 import { useDispatch, useSelector } from "react-redux";
 import { allProducts } from "../../redux/actions/allProducts";
@@ -19,7 +18,7 @@ const ProductsPage = () => {
     if (!filterCategory) {
       dispatch(allCategories());
     } else {
-      dispatch(getProductFilter(thisPage, filterCategory ));
+      dispatch(getProductFilter(thisPage, filterCategory));
     }
   }, [dispatch, thisPage, filterCategory]);
 
@@ -29,15 +28,9 @@ const ProductsPage = () => {
 
   return (
     <div>
-      {/* <img
-        src={industrial}
-        alt="Banner Industrial"
-        className="industrial my-0"
-      />--------------> Suspendido por recomendacion del Mentor <-------------------------------- */}
       <div>
         <SearchBar />
       </div>
-
       <div>
         <ProductsContainer />
       </div>
