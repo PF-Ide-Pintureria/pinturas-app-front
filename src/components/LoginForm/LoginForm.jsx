@@ -22,6 +22,10 @@ const LoginForm = () => {
         }
     }, [isAuthenticated, userInfo, user]);
 
+    // useEffect(() => {
+
+    // }, [])
+
     // Si el usuario está autenticado, almacenamos su información en el estado local
     // Esto te permitirá enviar la información al backend
 

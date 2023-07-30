@@ -16,6 +16,8 @@ export const POST_REGISTER_USER = "POST_REGISTER_USER";
 export const PUT_USER = "PUT_USER";
 export const DELETE_USER = "DELETE_USER";
 export const LOGOUT_USER = "LOGOUT_USER";
+export const ACCESS_TOKEN = "ACCESS_TOKEN";
+export const SET_USER = "SET_USER";
 
 //FILTERS
 export const GET_PRODUCT_FILTER = "GET_PRODUCT_FILTER";

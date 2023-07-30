@@ -17,7 +17,7 @@ const Detail = () => {
     const navigate = useNavigate();
     const { idProduct } = useParams();
     const product = useSelector((state) => state.detail);
-    const { cart, addToCart, removeFromCart, clearCart } = useCart();
+    const { cartState, addToCart, removeFromCart, clearCart } = useCart();
 
     const [isValidQuantity, setIsValidQuantity] = useState(true);
     const [error, setError] = useState("");

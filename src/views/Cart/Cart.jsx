@@ -3,9 +3,12 @@ import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import ProductCart from "../../components/ProductCart/ProductCart"
 import { productById } from "../../redux/actions/productById";
+import { useCart } from "../../hooks/useCart";
 
 const Cart = () => {
-  const cart = useSelector((state) => state.cart);
+  const user = useSelector((state) => state.user);
+  const { cartState:cart, addToCart, removeFromCart, clearCart } = useCart();
+  console.log(cart);
   // const productDetails = useSelector((state) => state.detail);
   // const [productsDetail, setProductsDetail] = useState([]);
 
