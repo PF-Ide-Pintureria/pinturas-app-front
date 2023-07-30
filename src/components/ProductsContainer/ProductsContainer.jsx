@@ -11,9 +11,6 @@ import { setHighPrice } from "../../redux/actions/filters/setHighPrice";
 
 const ProductsContainer = () => {
     const dispatch = useDispatch();
-
-    // const { products, categories, totalPages, thisPage, filterCategory } =
-    // useSelector((state) => state);
     const products = useSelector((state) => state.products);
     const categories = useSelector((state) => state.categories);
     const totalPages = useSelector((state) => state.totalPages);

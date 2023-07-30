@@ -2,15 +2,23 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import ProductCart from "../../components/ProductCart/ProductCart"
-import { productById } from "../../redux/actions/productById";
-import { useCart } from "../../hooks/useCart";
+import { postCart } from "../../redux/actions/postCart";
+
 
 const Cart = () => {
   const user = useSelector((state) => state.user);
-  const { cartState:cart, addToCart, removeFromCart, clearCart } = useCart();
-  console.log(cart);
-  // const productDetails = useSelector((state) => state.detail);
+  const cart = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
   // const [productsDetail, setProductsDetail] = useState([]);
+  const handleSendProduct = async() => {
+    
+      await postCart(cart)(dispatch).then((response) => {
+        if(response) console.log(response);
+      }).catch((err) => {
+        alert(err);
+      })
+    }
+    
 
   return (
     <div className="my-10 w-full">
@@ -37,13 +45,14 @@ const Cart = () => {
       <div className="w-full h-full flex flex-wrap justify-center items-stretch md:px-10  lg:px-20 xl:px-32">
         <div className="w-11/12 h-5/6 mx-3 mt-3 flex justify-center flex-col ">
           <div className=" mt-3 space-y-3 rounded-lg border bg-white px-2 py-4 md:px-6">
-            {cart.length > 1 && (
+            {cart.length > 0 && (
               <div>
                 <div className="w-full grid grid-cols-3 gap-10">
                   <h1> Detalle </h1>
-                  <h1 className="flex justify-end"> Cantidad </h1> 
-                  <h1 className="flex justify-end"> Precio </h1> 
+                  <h1> Cantidad </h1> 
+                  <h1> Precio </h1> 
                 </div>
+
                 {cart.map((product) =>
                   product && product.id ? (
                     <ProductCart
@@ -60,6 +69,7 @@ const Cart = () => {
                   )
                 }
               </div>
+              
             )} 
             {cart.length == 0 && (
               <p className="text-gray-400 flex items-center justify-center">
@@ -69,11 +79,26 @@ const Cart = () => {
 
           </div>
           <div className="my-9 flex items-center justify-center">
-            <NavLink to={"/cart/buying"}
-              type="button"
-              className="inline-flex items-center justify-center rounded-md border-2 border-transparent bg-purple-800 bg-none px-12 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-gray-800">
-              Comprar carrito
-            </NavLink >
+            
+            {!user ? (
+              <div>
+                alert("Necesitas estar loggeado para comprar")
+                <NavLink to={"/cart/buying"}
+                  type="button"
+                  className="inline-flex items-center justify-center rounded-md border-2 border-transparent bg-purple-800 bg-none px-12 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-gray-800">
+                  Comprar carrito
+                </NavLink >
+              </div>
+              ) : (
+                <div>
+                  <button 
+                  type="button"
+                  onClick={()=> handleSendProduct()}
+                  className="inline-flex items-center justify-center rounded-md border-2 border-transparent bg-purple-800 bg-none px-12 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-gray-800">
+                    Comprar carrito
+                  </button>
+                </div>
+              )}
           </div>
         </div>
       </div>
