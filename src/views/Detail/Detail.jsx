@@ -23,11 +23,7 @@ const Detail = () => {
     const [error, setError] = useState("");
     const [addProduct, setAddProduct] = useState({
         id: idProduct,
-        name: product.name,
         quantity: 1,
-        image: product.image,
-        price: product.price,
-        stock: product.stock,
     });
 
     const handleInputChange = (event) => {
@@ -106,19 +102,13 @@ const Detail = () => {
             });
             setAddProduct({
                 id: idProduct,
-                name: product.name,
                 quantity: 1,
-                image: product.image,
-                price: product.price,
-                stock: product.stock,
             });
-            dispatch(setCart(addProduct));
-        } else {
-            alert("Ingrese una cantidad válida");
+            dispatch(setCart([addProduct]));
+            navigate("/cart");
         }
-        navigate("/cart");
     };
-
+    
     const handleAddToCart = () => {
         if (isValidQuantity) {
             addToCart({
@@ -129,14 +119,11 @@ const Detail = () => {
             });
             setAddProduct({
                 id: idProduct,
-                name: product.name,
                 quantity: 1,
-                image: product.image,
-                price: product.price,
-                stock: product.stock,
             });
-            dispatch(setCart(addProduct));
             alert("Producto agregado al carrito");
+            dispatch(setCart([addProduct]));
+
         } else {
             alert("Ingrese una cantidad válida");
         }

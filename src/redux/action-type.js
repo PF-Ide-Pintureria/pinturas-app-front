@@ -30,18 +30,18 @@ export const SET_LOW_PRICE = "SET_LOW_PRICE";
 export const SET_TOTAL_PAGES = "SET_TOTAL_PAGES";
 export const SET_PAGE = "SET_PAGE";
 
+//CART
 export const SET_CART = "SET_CART";
+export const POST_CART = "POST_CART";
 
 //NODE MAILER
 export const POST_CONTACT_EMAIL = "POST_CONTACT_EMAIL";
 export const POST_REGISTER_EMAIL = "POST_REGISTER_EMAIL";
 export const POST_ORDER_EMAIL = "POST_ORDER_EMAIL";
 
+//AUTH0-USERS-INFO
+export const SET_USER_DATA = "SET_USER_DATA";
+export const URL_INFO_USER_AUTH0 = "ll";
+
 //URL
 export const BASE_URL = "https://back-server-pinturas-app.onrender.com/";
-
-//AUTH0-USERS-INFO
-
-export const SET_USER_DATA = "SET_USER_DATA";
-
-export const URL_INFO_USER_AUTH0 = "ll";

@@ -32,10 +32,13 @@ import Login from "./views/Login/Login";
 import DebuggerFooter from "./components/debuggerFooter/debuggerFooter";
 const { VITE_NODE_ENV: NODE_ENV } = import.meta.env;
 import { useCart } from "./hooks/useCart";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "./redux/actions/setUser";
+import { allProducts } from "./redux/actions/allProducts";
+import { setCart } from "../src/redux/actions/setCart";
 
 function App() {
+    const { cartState } = useCart();
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -44,13 +47,12 @@ function App() {
         if (user) {
             dispatch(setUser(JSON.parse(user)));
         }
-        // if (cart){
-        //     dispatch(setCart)
-
-        // }
+        if(cart){
+            dispatch(setCart(JSON.parse(cart)));
+        }
+        dispatch(allProducts());
     }, [])
 
-    const { cartState } = useCart();
 
     return (
         <BrowserRouter>

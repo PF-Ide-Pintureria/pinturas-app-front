@@ -29,7 +29,10 @@ import {
   //PAGES
   SET_TOTAL_PAGES,
   SET_PAGE,
+
+  //CART
   SET_CART,
+  POST_CART,
 
   //NODE MAILER
   POST_CONTACT_EMAIL,
@@ -65,7 +68,10 @@ const initialState = {
   //PAGES
   totalPages: 0,
   thisPage: 1,
+
+  //CART
   cart: [],
+  sendCart: {},
 
   //MAIL
   mail: {},
@@ -131,9 +137,12 @@ const reducer = (state = initialState, { type, payload }) => {
     case SET_PAGE:
       return { ...state, thisPage: payload };
 
+      //CART
     case SET_CART:
-      return { ...state, cart: [...state.cart, payload] };
-
+      return { ...state, cart: [...state.cart, ...payload] };
+    case POST_CART:
+      return { ...state, sendCart: payload };
+      
     //NODE MAILER
     case POST_CONTACT_EMAIL:
       return { ...state, mail: payload };
