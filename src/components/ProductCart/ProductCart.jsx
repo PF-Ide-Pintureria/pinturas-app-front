@@ -3,7 +3,8 @@ import React from "react";
 const ProductCart = ({name, quantity, image, price, stock}) => {
 
   const calcPrice = (quant, pric) => {
-    return Number(quant) * Number(pric);
+    let sum = Number(quant) * Number(pric)
+    return sum.toFixed(2);
   }
 
   return (
