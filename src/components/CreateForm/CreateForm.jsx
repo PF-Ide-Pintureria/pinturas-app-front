@@ -5,6 +5,7 @@ import validations from "./validations";
 import { formatAndPost } from "./formatAndPost";
 import { BASE_URL } from "../../redux/action-type";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 // const defaultValues = {
 //     name: "[TEST-2-LOCAL] [24-Jul] [Juan Pablo]",
@@ -20,7 +21,7 @@ import axios from "axios";
 // };
 
 const CreateForm = () => {
-
+    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -88,13 +89,12 @@ const CreateForm = () => {
             if (response) {
                 alert('Producto creado con éxito');
                 setInputsForm(defaultValues);
+                navigate("/products");
             };
         } else {
             alert('Hubo un error al crear el producto');
         };
     };
-
-
 
     const categories = useSelector(state => state.categories)
     return (
