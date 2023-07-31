@@ -24,6 +24,10 @@ const Detail = () => {
     const [addProduct, setAddProduct] = useState({
         id: idProduct,
         quantity: 1,
+        name: product.name,
+        image: product.image,
+        price: product.price,
+        stock: product.stock
     });
 
     const handleInputChange = (event) => {
@@ -97,12 +101,20 @@ const Detail = () => {
             addToCart({
                 product: {
                     id: addProduct.id,
+                    name: product.name,
+                    image: product.image,
+                    price: product.price,
+                    stock: product.stock
                 },
                 quantity: addProduct.quantity,
             });
             setAddProduct({
                 id: idProduct,
                 quantity: 1,
+                name: product.name,
+                image: product.image,
+                price: product.price,
+                stock: product.stock
             });
             dispatch(setCart([addProduct]));
             navigate("/cart");
@@ -114,12 +126,20 @@ const Detail = () => {
             addToCart({
                 product: {
                     id: addProduct.id,
+                    name: product.name,
+                    image: product.image,
+                    price: product.price,
+                    stock: product.stock
                 },
                 quantity: addProduct.quantity,
             });
             setAddProduct({
                 id: idProduct,
                 quantity: 1,
+                name: product.name,
+                image: product.image,
+                price: product.price,
+                stock: product.stock
             });
             alert("Producto agregado al carrito");
             dispatch(setCart([addProduct]));
