@@ -9,14 +9,25 @@ const Cart = () => {
   const user = useSelector((state) => state.user);
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+  console.log('user', user)
   // const [productsDetail, setProductsDetail] = useState([]);
+
   const handleSendProduct = async() => {
-    
-      await postCart(cart)(dispatch).then((response) => {
-        if(response) console.log(response);
-      }).catch((err) => {
-        alert(err);
-      })
+      if(!user.id) {
+        alert("Necesitas estar loggeado para comprar");
+
+      }
+      else if(user.id){
+        let buyCart = {
+          idUser: user.id,
+          products: cart
+          }
+        await postCart(buyCart)(dispatch).then((response) => {
+          if(response) console.log(response);
+        }).catch((err) => {
+          alert(err);
+        })
+      }
     }
     
 
@@ -47,12 +58,14 @@ const Cart = () => {
           <div className=" mt-3 space-y-3 rounded-lg border bg-white px-2 py-4 md:px-6">
             {cart.length > 0 && (
               <div>
-                <div className="w-full grid grid-cols-3 gap-10">
-                  <h1> Detalle </h1>
-                  <h1> Cantidad </h1> 
-                  <h1> Precio </h1> 
+                <div className="w-full grid grid-cols-2 gap-10">
+                  <h1 className="text-lg font-semibold"> Detalle </h1>
+                  <div className="grid grid-cols-2">
+                    <h1 className="text-lg font-semibold text-right"> Cantidad </h1> 
+                    <h1 className="text-lg font-semibold text-right"> Precio </h1> 
+                  </div>
                 </div>
-
+                <div></div>
                 {cart.map((product) =>
                   product && product.id ? (
                     <ProductCart
@@ -79,26 +92,14 @@ const Cart = () => {
 
           </div>
           <div className="my-9 flex items-center justify-center">
-            
-            {!user ? (
-              <div>
-                alert("Necesitas estar loggeado para comprar")
-                <NavLink to={"/cart/buying"}
-                  type="button"
-                  className="inline-flex items-center justify-center rounded-md border-2 border-transparent bg-purple-800 bg-none px-12 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-gray-800">
-                  Comprar carrito
-                </NavLink >
-              </div>
-              ) : (
                 <div>
                   <button 
                   type="button"
-                  onClick={()=> handleSendProduct()}
+                  onClick={handleSendProduct}
                   className="inline-flex items-center justify-center rounded-md border-2 border-transparent bg-purple-800 bg-none px-12 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-gray-800">
                     Comprar carrito
                   </button>
                 </div>
-              )}
           </div>
         </div>
       </div>

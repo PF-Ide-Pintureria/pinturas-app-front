@@ -198,7 +198,8 @@ const Detail = () => {
                             </li>
                         </ol>
                     </div>
-                    <div className="lg:col-gap-12 xl:col-gap-16 mt-8 grid grid-cols-1 gap-12 lg:mt-12 lg:grid-cols-5 lg:gap-16">
+                    <div className="lg:col-gap-12 xl:col-gap-16 mt-8 grid grid-cols-1 gap-12 lg:mt-12 lg:grid-cols-2 lg:gap-10">
+                        
                         <div className="lg:col-span-3 lg:row-end-1">
                             <div className="lg:flex lg:items-start">
                                 <div className="lg:order-2 lg:ml-5">
@@ -215,7 +216,7 @@ const Detail = () => {
                             </div>
                         </div>
 
-                        <div className="lg:col-span-2 lg:row-span-2 lg:row-end-2">
+                        <div className="lg:col-span-2 lg:row-span-2 lg:row-end-2 ">
                             <h1 className="sm: text-2xl font-bold text-gray-900 sm:text-3xl">
                                 {product?.name}
                             </h1>
@@ -268,7 +269,7 @@ const Detail = () => {
                                     {error && <p className="text-sm font-semibold text-red-800"> {error} </p>}
                                 </div>
                             </div>
-                            <div className="mt-10 flex flex-col items-center justify-between space-y-3 border-t border-b py-4 sm:flex-row sm:space-y-0">
+                            <div className="mt-10 flex flex-col grid-cols-2 gap-2 items-center justify-between space-y-3 border-t border-b py-4 sm:flex-row sm:space-y-0">
                                 <div className="flex items-end">
                                     <h1 className="text-3xl font-bold">$ {product?.price}</h1>
                                 </div>
@@ -276,20 +277,14 @@ const Detail = () => {
                                     <button
                                         type="button"
                                         disabled={!isValidQuantity}
-                                        className={`flex items-center justify-center rounded-md border-2 border-transparent bg-purple-100 bg-none text-center text-base font-bold text-purple-800 transition-all duration-200 ease-in-out focus:shadow
-                  ${isValidQuantity
-                                                ? "hover:bg-purple-200"
-                                                : "cursor-not-allowed"}`}
+                                        className={`flex items-center justify-center rounded-md border-2 border-transparent bg-purple-100 bg-none text-center text-base font-bold text-purple-800 transition-all duration-200 ease-in-out focus:shadow ${isValidQuantity ? "hover:bg-purple-200" : "cursor-not-allowed"}`}
                                         onClick={handleAddToCart}
                                     >
                                         Agregar al carrito
                                     </button>
                                     <button
                                         type="button"
-                                        className={`inline-flex items-center justify-center rounded-md border-2 border-transparent bg-purple-800 bg-none px-12 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow
-                  ${isValidQuantity
-                                                ? "hover:bg-gray-800"
-                                                : "cursor-not-allowed"}`}
+                                        className={`inline-flex items-center justify-center rounded-md border-2 border-transparent bg-purple-800 bg-none px-12 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow ${isValidQuantity ?  "hover:bg-gray-800" : "cursor-not-allowed"}`}
                                         onClick={shopCart}
                                         disabled={!isValidQuantity}
                                     >
