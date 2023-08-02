@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import "./Account.css";
 const Orders = () => {
   return (
     <div className="container mx-auto px-4">
@@ -12,7 +12,8 @@ const Orders = () => {
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
-              stroke="currentColor">
+              stroke="currentColor"
+            >
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -28,12 +29,19 @@ const Orders = () => {
         <p className="flex items-center space-x-3 text-gray-500 p-2 ">
           No tienes pedidos activos
         </p>
+        <p>
+          <p>Te invitamos a darnos tu opinión de tu compra</p>
+          <Link to="/reviews" className="underline">
+            <span className="custom-link">Da click aquí</span>
+          </Link>
+        </p>
       </div>
       <div className="flex justify-between m-10">
         <Link to="/products">
           <button
             type="submit"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          >
             Ir a buscar Productos
           </button>
         </Link>
