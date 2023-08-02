@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import ProductCart from "../../components/ProductCart/ProductCart"
-import { postCart } from "../../redux/actions/postCart";
-
+import { postCart } from "../../redux/actions/Cart/postCart";
+import { setCart } from "../../redux/actions/Cart/setCart";
 
 const Cart = () => {
   const user = useSelector((state) => state.user);
@@ -11,7 +11,10 @@ const Cart = () => {
   const dispatch = useDispatch();
   console.log('user', user)
   // const [productsDetail, setProductsDetail] = useState([]);
-
+  let sumPrices = [];
+  const addPrice = (price) =>{
+    return sumPrices.push(price)
+  }
   const handleSendProduct = async() => {
       if(!user.id) {
         alert("Necesitas estar loggeado para comprar");
@@ -23,13 +26,24 @@ const Cart = () => {
           products: cart
           }
         await postCart(buyCart)(dispatch).then((response) => {
-          if(response) console.log(response);
+          if(response){
+            console.log(response); 
+            dispatch(setCart([]))
+            localStorage.clear();
+          }
         }).catch((err) => {
           alert(err);
         })
       }
     }
-    
+  const totalPrice = () => {
+    let sum = 0
+    for (let i = 0; i < sumPrices.length; i++) {
+      sum = sum + sumPrices[i];
+      
+    }
+    return
+  }
 
   return (
     <div className="my-10 w-full">
@@ -58,17 +72,14 @@ const Cart = () => {
           <div className=" mt-3 space-y-3 rounded-lg border bg-white px-2 py-4 md:px-6">
             {cart.length > 0 && (
               <div>
-                <div className="w-full grid grid-cols-2 gap-10">
+                <div className="w-full flex justify-between px-4">
                   <h1 className="text-lg font-semibold"> Detalle </h1>
-                  <div className="grid grid-cols-2">
-                    <h1 className="text-lg font-semibold text-right"> Cantidad </h1> 
                     <h1 className="text-lg font-semibold text-right"> Precio </h1> 
-                  </div>
                 </div>
-                <div></div>
+                <div>
                 {cart.map((product) =>
                   product && product.id ? (
-                    <ProductCart
+                    <ProductCart addPrice={addPrice}
                       // key={product.id}
                       id={product.id}
                       name={product.name}
@@ -81,6 +92,11 @@ const Cart = () => {
                     ) : null
                   )
                 }
+                </div>
+                <div className="w-full flex justify-between px-4 pt-4 border-t">
+                  <h1 className="text-lg font-semibold "> Total </h1>
+                  <h1> $ {totalPrice()}</h1>
+                </div>
               </div>
               
             )} 

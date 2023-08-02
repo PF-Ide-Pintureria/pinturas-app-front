@@ -35,6 +35,8 @@ export const SET_PAGE = "SET_PAGE";
 //CART
 export const SET_CART = "SET_CART";
 export const POST_CART = "POST_CART";
+export const GET_CART_ID = "GET_CART_ID";
+export const GET_CART = "GET_CART";
 
 //NODE MAILER
 export const POST_CONTACT_EMAIL = "POST_CONTACT_EMAIL";

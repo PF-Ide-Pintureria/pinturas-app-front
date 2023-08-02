@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+<<<<<<< HEAD
 import { postLoginUser } from "../../redux/actions/postLoginUser";
 import { useDispatch, useSelector } from "react-redux";
+=======
+import { postLoginUser } from "../../redux/actions/User/postLoginUser";
+import { useDispatch } from "react-redux";
+>>>>>>> 4e1212d1e27d38e9a7aa75e517660b0118c626de
 import axios from "axios";
-import { logoutUser } from "../../redux/actions/logoutUser";
+import { logoutUser } from "../../redux/actions/User/logoutUser";
 
 const LoginForm = () => {
     const { isAuthenticated, loginWithRedirect, user } = useAuth0();

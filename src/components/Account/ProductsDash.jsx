@@ -4,8 +4,12 @@ import CreateButton from '../CreateButton/CreateButton.jsx';
 import UpdateButton from "../UpdateButton/UpdateButton.jsx";
 import DeleteButton from '../DeleteButton/DeleteButton.jsx';
 import { useDispatch, useSelector } from "react-redux";
+<<<<<<< HEAD
 import { allProducts } from '../../redux/actions/allProducts.js';
 import { getAllProductsNoFilter } from "../../redux/actions/getAllProductsNoFilter.js";
+=======
+import { allProducts } from '../../redux/actions/Products/allProducts.js';
+>>>>>>> 4e1212d1e27d38e9a7aa75e517660b0118c626de
 
 
 const ProductsDash = () => {
