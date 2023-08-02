@@ -8,6 +8,7 @@ import { allProducts } from '../../redux/actions/allProducts.js';
 import { getAllProductsNoFilter } from "../../redux/actions/getAllProductsNoFilter.js";
 
 
+
 const ProductsDash = () => {
     const dispatch = useDispatch();
     const products = useSelector((state) => state.allProducts);

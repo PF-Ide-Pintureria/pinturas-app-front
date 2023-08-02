@@ -20,29 +20,32 @@ import {
     SET_USER,
     GET_USER_BY_ID,
 
-    //FILTERS
-    GET_PRODUCT_FILTER,
-    GET_BEST_SELL,
-    SET_CATEGORY,
-    SET_LOW_PRICE,
-    SET_HIGH_PRICE,
+  //FILTERS
+  GET_PRODUCT_FILTER,
+  GET_BEST_SELL,
+  SET_CATEGORY,
+  SET_LOW_PRICE,
+  SET_HIGH_PRICE,
 
-    //PAGES
-    SET_TOTAL_PAGES,
-    SET_PAGE,
+  //PAGES
+  SET_TOTAL_PAGES,
+  SET_PAGE,
 
-    //CART
-    SET_CART,
-    POST_CART,
+ 
+  //NODE MAILER
+  POST_CONTACT_EMAIL,
+  POST_ORDER_EMAIL,
+  POST_REGISTER_EMAIL,
+  LOGOUT_USER,
 
-    //NODE MAILER
-    POST_CONTACT_EMAIL,
-    POST_ORDER_EMAIL,
-    POST_REGISTER_EMAIL,
-    LOGOUT_USER,
+  //AUTH0-USERS-INFO
+  SET_USER_DATA,
 
-    //AUTH0-USERS-INFO
-    SET_USER_DATA,
+  //CART
+  SET_CART,
+  POST_CART,
+  GET_CART_ID,
+  GET_CART,
 
 } from "../action-type";
 
@@ -70,15 +73,19 @@ const initialState = {
     },
 
     //PAGES
+
     totalPages: 0,
     thisPage: 1,
 
     //CART
     cart: [],
     sendCart: {},
+    cartID: "",
+    GET_CART: [],
 
     //MAIL
     mail: {},
+
 
     //AUTH0-USERS-INFO
 
@@ -145,19 +152,23 @@ const reducer = (state = initialState, { type, payload }) => {
         case SET_PAGE:
             return { ...state, thisPage: payload };
 
-        //CART
-        case SET_CART:
-            return { ...state, cart: [...state.cart, ...payload] };
-        case POST_CART:
-            return { ...state, sendCart: payload };
-
-        //NODE MAILER
-        case POST_CONTACT_EMAIL:
-            return { ...state, mail: payload };
-        case POST_ORDER_EMAIL:
-            return { ...state, mail: payload };
-        case POST_REGISTER_EMAIL:
-            return { ...state, mail: payload };
+              //CART
+    case SET_CART:
+      return { ...state, cart: [...state.cart, ...payload] };
+    case POST_CART:
+      return { ...state, sendCart: payload };
+    case GET_CART_ID:
+      return { ...state, cartID: payload };
+    case GET_CART:
+      return { ...state, cart: [...state.cart, ...payload] };
+        
+    //NODE MAILER
+    case POST_CONTACT_EMAIL:
+      return { ...state, mail: payload };
+    case POST_ORDER_EMAIL:
+      return { ...state, mail: payload };
+    case POST_REGISTER_EMAIL:
+      return { ...state, mail: payload };
 
         //AUTH0-USERS-INFO
 

@@ -20,7 +20,6 @@ import CreateProduct from "./views/CreateProduct/CreateProduct";
 import Developers from "./views/Developers/Developers";
 import Location from "./views/Location/Location";
 import Profile from "./views/Profile/Profile";
-import Reviews from "./views/Reviews/Reviews";
 import Favorite from "./views/Profile/Favorite/Favorite";
 import Register from "./views/Register/Register";
 import Purchases from "./views/Purchases/Purchases";
@@ -29,6 +28,7 @@ import SuccessfulPayment from "./views/Payment/SuccessfulPayment";
 import FailurePayment from "./views/Payment/FaillurePayment";
 import PendingPayment from "./views/Payment/PendingPayment";
 import Login from "./views/Login/Login";
+import ReviewsPage from "./views/ReviewsPage/ReviewsPage";
 import DebuggerFooter from "./components/debuggerFooter/debuggerFooter";
 const { VITE_NODE_ENV: NODE_ENV } = import.meta.env;
 import { useCart } from "./hooks/useCart";
@@ -38,16 +38,20 @@ import { allProducts } from "./redux/actions/allProducts";
 import { setCart } from "../src/redux/actions/setCart";
 import TestTable from "./TestTable";
 import UpdateUserForm from "./components/UpdateForm/UpdateUserForm";
+import { getCart } from "./redux/actions/Cart/getCart";
+
 
 function App() {
-    const { cartState } = useCart();
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+
 
     useEffect(() => {
         const user = localStorage.getItem("user");
         const cart = localStorage.getItem("cart");
         if (user) {
             dispatch(setUser(JSON.parse(user)));
+            // cartId !== null && dispatch(getCart(cartId));
+
         }
 
         if (cart) {
@@ -58,19 +62,20 @@ function App() {
 
 
     return (
-        <BrowserRouter>
-            <header>
-                <NavBar />
-            </header>
-            <Routes>
-                <Route exact path="/" element={<Home />} />
+    <BrowserRouter>
+        <header>
+        <NavBar />
+        </header>
+        <Routes>
+        <Route exact path="/" element={<Home />} />
 
-                <Route path="/products" element={<Products />} />
-                <Route path="/products/:idProduct" element={<Detail />} />
-                <Route path="/products/edit/:idProduct" element={<UpdateProduct />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/products/:idProduct" element={<Detail />} />
+        <Route path="/products/edit/:idProduct" element={<UpdateProduct />} />
 
-                <Route path="/login" element={<Login />} />
-                <Route path="/login/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/login/register" element={<Register />} />
+
 
                 <Route path="/admin" element={<AdminDashboard />} />
                 <Route path="/admin/users" element={<AdminUsers />} />
@@ -79,22 +84,21 @@ function App() {
                 <Route path="/admin/create" element={<CreateProduct />} />
                 <Route path="/admin/edit/:idUser" element={<UpdateUserForm />} />
 
-                <Route path="/cart" element={<Cart />} />
-                <Route path="/cart/buying" element={<Purchases />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/cart/buying" element={<Purchases />} />
 
-                <Route path="/payment/successful" element={<SuccessfulPayment />} />
-                <Route path="/payment/failure" element={<FailurePayment />} />
-                <Route path="/payment/pending" element={<PendingPayment />} />
+        <Route path="/payment/successful" element={<SuccessfulPayment />} />
+        <Route path="/payment/failure" element={<FailurePayment />} />
+        <Route path="/payment/pending" element={<PendingPayment />} />
 
-                <Route path="/reviews" element={<Reviews />} />
-                <Route path="/favorite" element={<Favorite />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/account" element={<Account />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/location" element={<Location />} />
-                <Route path="/blog" element={<Blog />} />
-                <Route path="/developers" element={<Developers />} />
-
+        <Route path="/reviews" element={<ReviewsPage />} />
+        <Route path="/favorite" element={<Favorite />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/account" element={<Account />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/location" element={<Location />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/developers" element={<Developers />} />
 
                 <Route path="/testing" element={<TestTable />} />
 
@@ -106,6 +110,7 @@ function App() {
             </footer>
         </BrowserRouter>
     );
+
 }
 
 export default App;

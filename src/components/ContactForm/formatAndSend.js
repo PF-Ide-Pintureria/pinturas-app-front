@@ -1,4 +1,4 @@
-import { postContactEmail } from "../../redux/actions/postContactEmail";
+import { postContactEmail } from "../../redux/actions/Mail/postContactEmail";
 
 
 export const formatAndSend = async ({ name, email, message }, dispatch) => {

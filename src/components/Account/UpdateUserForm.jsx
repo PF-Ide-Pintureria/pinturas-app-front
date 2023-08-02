@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { putUser } from "../../redux/actions/putUser"
+import { putUser } from "../../redux/actions/User/putUser"
 import { useAuth0 } from "@auth0/auth0-react"
 import { deleteUser } from "../../redux/actions/deleteUser";
-import { logoutUser } from "../../redux/actions/logoutUser";
+import { logoutUser } from "../../redux/actions/User/logoutUser";
 import { useNavigate } from "react-router-dom";
 
 const UpdateUserForm = () => {

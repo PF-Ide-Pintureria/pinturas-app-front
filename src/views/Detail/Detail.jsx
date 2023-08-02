@@ -3,12 +3,12 @@ import DeleteButton from "../../components/DeleteButton/DeleteButton";
 import UpdateButton from "../../components/UpdateButton/UpdateButton";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { productById } from "../../redux/actions/productById";
+import { productById } from "../../redux/actions/Products/productById";
 import FeaturedContainer from "../../components/FeaturedContainer/FeaturedContainer";
 import { bestSellers } from "../../redux/actions/bestSellers";
 import "./Detail.Module.css";
 import { useCart } from "../../hooks/useCart";
-import { setCart } from "../../redux/actions/setCart"
+import { setCart } from "../../redux/actions/Cart/setCart"
 
 const Detail = () => {
 
