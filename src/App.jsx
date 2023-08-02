@@ -41,6 +41,21 @@ import { getCart } from "./redux/actions/Cart/getCart";
 function App() {
 
 
+    useEffect(() => {
+        const user = localStorage.getItem("user");
+        const cart = localStorage.getItem("cart");
+        if (user) {
+            dispatch(setUser(JSON.parse(user)));
+            cartId !== null && dispatch(getCart(cartId));
+
+        }
+        if(cart){
+            dispatch(setCart(JSON.parse(cart)));
+        }
+        dispatch(allProducts());
+    }, [])
+
+
   return (
     <BrowserRouter>
       <header>
