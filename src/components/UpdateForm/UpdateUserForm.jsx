@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers } from "../../redux/actions/getAllUsers";
-import { putUser } from "../../redux/actions/putUser";
+import { putUser } from "../../redux/actions/User/putUser.js";
 import { useParams } from "react-router-dom";
 
 
@@ -60,7 +60,9 @@ const UpdateUserForm = () => {
     };
     const handleSubmit = async (event) => {
         event.preventDefault();
-        await putUser(findUser.id, JSON.stringify(inputs))(dispatch)
+        await putUser(findUser.id, JSON.stringify(inputs))(dispatch).then(response => {
+            if (!response) { alert("error") }
+        })
         alert('vamos a modificar el usuario');
     }
 

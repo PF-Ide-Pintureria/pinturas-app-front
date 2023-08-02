@@ -34,9 +34,8 @@ const { VITE_NODE_ENV: NODE_ENV } = import.meta.env;
 import { useCart } from "./hooks/useCart";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "./redux/actions/setUser";
-<<<<<<< HEAD
-import { allProducts } from "./redux/actions/allProducts";
-import { setCart } from "../src/redux/actions/setCart";
+import { allProducts } from "./redux/actions/Products/allProducts";
+import { setCart } from "./redux/actions/Cart/setCart";
 import TestTable from "./TestTable";
 import UpdateUserForm from "./components/UpdateForm/UpdateUserForm";
 import { getCart } from "./redux/actions/Cart/getCart";
@@ -77,7 +76,7 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/login/register" element={<Register />} />
 
-<<<<<<< HEAD
+
                 <Route path="/admin" element={<AdminDashboard />} />
                 <Route path="/admin/users" element={<AdminUsers />} />
                 <Route path="/admin/products" element={<AdminProducts />} />
@@ -85,44 +84,35 @@ function App() {
                 <Route path="/admin/create" element={<CreateProduct />} />
                 <Route path="/admin/edit/:idUser" element={<UpdateUserForm />} />
 
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/cart/buying" element={<Purchases />} />
+                <Route path="/cart" element={<Cart />} />
+                <Route path="/cart/buying" element={<Purchases />} />
 
-        <Route path="/payment/successful" element={<SuccessfulPayment />} />
-        <Route path="/payment/failure" element={<FailurePayment />} />
-        <Route path="/payment/pending" element={<PendingPayment />} />
+                <Route path="/payment/successful" element={<SuccessfulPayment />} />
+                <Route path="/payment/failure" element={<FailurePayment />} />
+                <Route path="/payment/pending" element={<PendingPayment />} />
 
-        <Route path="/reviews" element={<ReviewsPage />} />
-        <Route path="/favorite" element={<Favorite />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/account" element={<Account />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/location" element={<Location />} />
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/developers" element={<Developers />} />
+                <Route path="/reviews" element={<ReviewsPage />} />
+                <Route path="/favorite" element={<Favorite />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/account" element={<Account />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/location" element={<Location />} />
+                <Route path="/blog" element={<Blog />} />
+                <Route path="/developers" element={<Developers />} />
 
-<<<<<<< HEAD
+
 
                 <Route path="/testing" element={<TestTable />} />
 
                 <Route path="*" element={<NotFound />} />
             </Routes >
-        <footer>
-            {NODE_ENV === 'debugging' && <DebuggerFooter cart={cartState} />}
-            <Footer />
-        </footer>
+            <footer>
+                {NODE_ENV === 'debugging' && <DebuggerFooter cart={cartState} />}
+                <Footer />
+            </footer>
         </BrowserRouter >
     );
-=======
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-      <footer>
-        {NODE_ENV === "debugging" && <DebuggerFooter cart={cartState} />}
-        <Footer />
-      </footer>
-    </BrowserRouter>
-  );
->>>>>>> 4e1212d1e27d38e9a7aa75e517660b0118c626de
+
 
 }
 
