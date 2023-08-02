@@ -1,22 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import CreateButton from '../CreateButton/CreateButton.jsx';
-import UpdateButton from "../UpdateButton/UpdateButton.jsx";
-import DeleteButton from '../DeleteButton/DeleteButton.jsx';
+// import CreateButton from '../CreateButton/CreateButton.jsx';
+// import UpdateButton from "../UpdateButton/UpdateButton.jsx";
+// import DeleteButton from '../DeleteButton/DeleteButton.jsx';
 import { useDispatch, useSelector } from "react-redux";
-import { allProducts } from '../../redux/actions/allProducts.js';
-import { getAllProductsNoFilter } from "../../redux/actions/getAllProductsNoFilter.js";
+import { getAllUsers } from '../../redux/actions/getAllUsers.js';
+import { deleteUser } from "../../redux/actions/deleteUser.js";
+import DeleteUserButton from "../DeleteButton/DeleteUserButton.jsx";
 
 
-const ProductsDash = () => {
+const UsersDash = () => {
     const dispatch = useDispatch();
-    const products = useSelector((state) => state.allProducts);
-
     useEffect(() => {
-        getAllProductsNoFilter()(dispatch)
-        console.log('traemos los productos')
+        getAllUsers()(dispatch)
+        console.log('traemos los usuarios')
     }, [dispatch])
+    const users = useSelector(state => state.allUsers);
 
+
+    console.log('users: ', users);
     return (
         <div className="container mx-auto px-4">
             {" "}
@@ -43,38 +45,36 @@ const ProductsDash = () => {
                                 d="M16.5 10.5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
                         </svg>
                     </span>
-                    <span>Productos</span>
+                    <span>Usuarios</span>
                 </p>
-                <CreateButton />
+                {/* <CreateButton /> */}
             </li>
             <div className="flex">
-                <table className="border-solid border-gray-500">
+                <table className="border-solid border border-gray-500 rounded-l w-full">
                     <thead>
                         <tr>
                             <td className="border-solid border border-gray bg-primary text-quaternary font-extrabold rounded-tl-xl h-12 w-auto">ID</td>
-                            <td className="border-solid border border-gray  bg-primary text-quaternary font-extrabold">Imagen</td>
                             <td className="border-solid border border-gray  bg-primary text-quaternary font-extrabold">Nombre</td>
-                            <td className="border-solid border border-gray  bg-primary text-quaternary font-extrabold">Categoría</td>
-                            <td className="border-solid border border-gray  bg-primary text-quaternary font-extrabold">Empaque</td>
-                            <td className="border-solid border border-gray  bg-primary text-quaternary font-extrabold">Stock</td>
+                            <td className="border-solid border border-gray  bg-primary text-quaternary font-extrabold">Rol</td>
+                            <td className="border-solid border border-gray  bg-primary text-quaternary font-extrabold">Status</td>
                             <td className="border-solid border border-gray  bg-primary text-quaternary font-extrabold">Editar</td>
-                            <td className="border-solid border border-gray  bg-primary text-quaternary font-extrabold rounded-tr-xl">Eliminar</td>
+                            <td className="border-solid border border-gray  bg-primary text-quaternary font-extrabold">Eliminar</td>
+                            <td className="border-solid border border-gray  bg-primary text-quaternary font-extrabold rounded-tr-xl">Bannear</td>
                         </tr>
                     </thead>
                     <tbody>
-                        {products.map(product => (
-                            <tr key={product.idProduct}>
-
-                                <td className="font-bold border-2 border-solid border-gray-800">{product.idProduct}</td>
-                                <td className="w-5 h-5">
-                                    <img className="font-bold border-2 border-solid border-gray-800" src={product.image} />
+                        {users.map((user) => (
+                            <tr key={user.id}>
+                                <td className="flex-row border-2 border-solid border-primary font-bold justify-center">{user.id}</td>
+                                <td className="flex-row border-2 border-solid border-primary font-bold justify-center">{user.name}</td>
+                                <td className="flex-row border-2 border-solid border-primary font-bold justify-center">{user.rol}</td>
+                                <td className="flex-row border-2 border-solid border-primary font-bold justify-center">
+                                    {user.active ? <span>Activo</span> : <span>Inactivo</span>}
+                                    {/* <input className="flex justify-self-center" type="checkbox" checked={user.active} disabled="true" /> */}
                                 </td>
-                                <td className="font-bold border-2 border-solid border-gray-800">{product.name}</td>
-                                <td className="font-bold border-2 border-solid border-gray-800">{product.category}</td>
-                                <td className="font-bold border-2 border-solid border-gray-800">{product.package}</td>
-                                <td className="font-bold border-2 border-solid border-gray-800">{product.stock}</td>
-                                <td className="font-bold border-2 border-solid border-gray-800"><UpdateButton idProduct={product.idProduct} /></td>
-                                <td className="font-bold border-2 border-solid border-gray-800"><DeleteButton idProduct={product.idProduct} /></td>
+                                <td className="flex-row border-2 border-solid border-primary font-bold justify-center"><span>INSERTAR EDITAR</span></td>
+                                <td className="flex-row border-2 border-solid border-primary font-bold justify-center"><DeleteUserButton idUser={user.id} /></td>
+                                <td className="flex-row border-2 border-solid border-primary font-bold justify-center"><span>INSERTAR BANNEAR</span></td>
                             </tr>
                         )
                         )}
@@ -83,13 +83,13 @@ const ProductsDash = () => {
             </div>
 
             <div className="flex justify-between m-10">
-                <Link to="/products">
+                {/* <Link to="/products">
                     <button
                         type="submit"
                         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                         Ir a buscar Productos
                     </button>
-                </Link>
+                </Link> */}
             </div>
         </div>
     )
@@ -97,4 +97,4 @@ const ProductsDash = () => {
 }
 
 
-export default ProductsDash;
+export default UsersDash;

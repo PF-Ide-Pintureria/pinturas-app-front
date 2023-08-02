@@ -36,6 +36,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "./redux/actions/setUser";
 import { allProducts } from "./redux/actions/allProducts";
 import { setCart } from "../src/redux/actions/setCart";
+import TestTable from "./TestTable";
+import UpdateUserForm from "./components/UpdateForm/UpdateUserForm";
 
 function App() {
     const { cartState } = useCart();
@@ -47,7 +49,8 @@ function App() {
         if (user) {
             dispatch(setUser(JSON.parse(user)));
         }
-        if(cart){
+
+        if (cart) {
             dispatch(setCart(JSON.parse(cart)));
         }
         dispatch(allProducts());
@@ -74,6 +77,7 @@ function App() {
                 <Route path="/admin/products" element={<AdminProducts />} />
                 <Route path="/admin/blog" element={<AdminBlog />} />
                 <Route path="/admin/create" element={<CreateProduct />} />
+                <Route path="/admin/edit/:idUser" element={<UpdateUserForm />} />
 
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/cart/buying" element={<Purchases />} />
@@ -90,6 +94,9 @@ function App() {
                 <Route path="/location" element={<Location />} />
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/developers" element={<Developers />} />
+
+
+                <Route path="/testing" element={<TestTable />} />
 
                 <Route path="*" element={<NotFound />} />
             </Routes>

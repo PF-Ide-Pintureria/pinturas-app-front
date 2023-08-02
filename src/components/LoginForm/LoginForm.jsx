@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { postLoginUser } from "../../redux/actions/postLoginUser";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { logoutUser } from "../../redux/actions/logoutUser";
 
@@ -21,6 +21,8 @@ const LoginForm = () => {
             setUserInfo(user);
         }
     }, [isAuthenticated, userInfo, user]);
+
+
 
     // useEffect(() => {
 
@@ -49,6 +51,7 @@ const LoginForm = () => {
             });
     };
 
+    const dbUser = useSelector(state => state.user)
     const handleSubmit = async (e) => {
         e.preventDefault();
         const errors = {};
@@ -76,8 +79,8 @@ const LoginForm = () => {
                 console.log('Atrapado en el catch de LoginForm');
                 console.log(err);
             };
-
             console.log('primeraRes', primeraRes);
+            console.log(dbUser)
 
             if (primeraRes.status === 'fail') {
 
@@ -90,6 +93,7 @@ const LoginForm = () => {
             }
             else if (primeraRes.status === "success") {
                 alert("Usuario Logueado correctamente");
+                navigate('/account')
             }
             // });
         } else {
@@ -153,13 +157,14 @@ const LoginForm = () => {
                     </form>
 
                     <div className="mt-7">
-                        <button
-                            onClick={() => loginWithRedirect()}
-                            type="submit"
-                            className="bg-blue-500 w-full py-3 rounded-xl text-white shadow-xl hover:bg-blue-600 hover:shadow-inner focus:outline-none transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105"
-                        >
-                            Iniciar con Google
-                        </button>
+                        <a href="https://back-server-pinturas-app.onrender.com/users/registered-authzero">
+                            <button
+                                type="submit"
+                                className="bg-blue-500 w-full py-3 rounded-xl text-white shadow-xl hover:bg-blue-600 hover:shadow-inner focus:outline-none transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105"
+                            >
+                                Iniciar con Google
+                            </button>
+                        </a>
                     </div>
 
                     <p className="text-gray-400 pt-5 pb-10 text-m ">
