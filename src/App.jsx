@@ -39,6 +39,7 @@ import { setCart } from "./redux/actions/Cart/setCart";
 import { getCart } from "./redux/actions/Cart/getCart";
 
 function App() {
+    const dispatch = useDispatch();
 
 
     useEffect(() => {
@@ -46,7 +47,7 @@ function App() {
         const cart = localStorage.getItem("cart");
         if (user) {
             dispatch(setUser(JSON.parse(user)));
-            cartId !== null && dispatch(getCart(cartId));
+            // cartId !== null && dispatch(getCart(cartId));
 
         }
         if(cart){
@@ -56,12 +57,12 @@ function App() {
     }, [])
 
 
-  return (
+    return (
     <BrowserRouter>
-      <header>
+        <header>
         <NavBar />
-      </header>
-      <Routes>
+        </header>
+        <Routes>
         <Route exact path="/" element={<Home />} />
 
         <Route path="/products" element={<Products />} />
