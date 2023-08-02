@@ -111,8 +111,20 @@ const initialState = {
     POST_REGISTER_EMAIL,
     LOGOUT_USER,
 
+    //NODE MAILER
+    POST_CONTACT_EMAIL,
+    POST_ORDER_EMAIL,
+    POST_REGISTER_EMAIL,
+    LOGOUT_USER,
+
     //AUTH0-USERS-INFO
     SET_USER_DATA,
+
+    //CART
+    SET_CART,
+    POST_CART,
+    GET_CART_ID,
+    GET_CART,
 
 } from "../action-type";
 
@@ -165,7 +177,7 @@ const initialState = {
       return { ...state, cartID: payload };
     case GET_CART:
       return { ...state, cart: [...state.cart, ...payload] };
-      
+
     //NODE MAILER
     case POST_CONTACT_EMAIL:
       return { ...state, mail: payload };
@@ -245,6 +257,10 @@ const reducer = (state = initialState, { type, payload }) => {
             return { ...state, cart: [...state.cart, ...payload] };
         case POST_CART:
             return { ...state, sendCart: payload };
+        case GET_CART_ID:
+            return { ...state, cartID: payload };
+        case GET_CART:
+            return { ...state, cart: [...state.cart, ...payload] };
 
         //NODE MAILER
         case POST_CONTACT_EMAIL:

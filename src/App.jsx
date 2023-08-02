@@ -39,11 +39,8 @@ import { allProducts } from "./redux/actions/allProducts";
 import { setCart } from "../src/redux/actions/setCart";
 import TestTable from "./TestTable";
 import UpdateUserForm from "./components/UpdateForm/UpdateUserForm";
-=======
-import { allProducts } from "./redux/actions/Products/allProducts";
-import { setCart } from "./redux/actions/Cart/setCart";
 import { getCart } from "./redux/actions/Cart/getCart";
->>>>>>> 4e1212d1e27d38e9a7aa75e517660b0118c626de
+
 
 function App() {
     const dispatch = useDispatch();
@@ -66,19 +63,19 @@ function App() {
 
 
     return (
-    <BrowserRouter>
-        <header>
-        <NavBar />
-        </header>
-        <Routes>
-        <Route exact path="/" element={<Home />} />
+        <BrowserRouter>
+            <header>
+                <NavBar />
+            </header>
+            <Routes>
+                <Route exact path="/" element={<Home />} />
 
-        <Route path="/products" element={<Products />} />
-        <Route path="/products/:idProduct" element={<Detail />} />
-        <Route path="/products/edit/:idProduct" element={<UpdateProduct />} />
+                <Route path="/products" element={<Products />} />
+                <Route path="/products/:idProduct" element={<Detail />} />
+                <Route path="/products/edit/:idProduct" element={<UpdateProduct />} />
 
-        <Route path="/login" element={<Login />} />
-        <Route path="/login/register" element={<Register />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/login/register" element={<Register />} />
 
 <<<<<<< HEAD
                 <Route path="/admin" element={<AdminDashboard />} />
@@ -87,13 +84,6 @@ function App() {
                 <Route path="/admin/blog" element={<AdminBlog />} />
                 <Route path="/admin/create" element={<CreateProduct />} />
                 <Route path="/admin/edit/:idUser" element={<UpdateUserForm />} />
-=======
-        <Route path="/admin" element={<AdminDashboard />} />
-        <Route path="/admin/users" element={<AdminUsers />} />
-        <Route path="/admin/products" element={<AdminProducts />} />
-        <Route path="/admin/blog" element={<AdminBlog />} />
-        <Route path="/admin/create" element={<CreateProduct />} />
->>>>>>> 4e1212d1e27d38e9a7aa75e517660b0118c626de
 
         <Route path="/cart" element={<Cart />} />
         <Route path="/cart/buying" element={<Purchases />} />
@@ -116,12 +106,12 @@ function App() {
                 <Route path="/testing" element={<TestTable />} />
 
                 <Route path="*" element={<NotFound />} />
-            </Routes>
-            <footer>
-                {NODE_ENV === 'debugging' && <DebuggerFooter cart={cartState} />}
-                <Footer />
-            </footer>
-        </BrowserRouter>
+            </Routes >
+        <footer>
+            {NODE_ENV === 'debugging' && <DebuggerFooter cart={cartState} />}
+            <Footer />
+        </footer>
+        </BrowserRouter >
     );
 =======
         <Route path="*" element={<NotFound />} />
@@ -133,6 +123,7 @@ function App() {
     </BrowserRouter>
   );
 >>>>>>> 4e1212d1e27d38e9a7aa75e517660b0118c626de
+
 }
 
 export default App;
