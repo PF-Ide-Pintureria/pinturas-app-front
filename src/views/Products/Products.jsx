@@ -4,7 +4,7 @@ import FeaturedContainer from "../../components/FeaturedContainer/FeaturedContai
 import { bestSellers } from "../../redux/actions/bestSellers";
 import ProductsContainer from "../../components/ProductsContainer/ProductsContainer";
 import { useDispatch, useSelector } from "react-redux";
-import { allProducts } from "../../redux/actions/allProducts";
+import { allProducts } from "../../redux/actions/Products/allProducts";
 import { allCategories } from "../../redux/actions/allCategories";
 import { getProductFilter } from "../../redux/actions/getProductFilter";
 

@@ -1,4 +1,4 @@
-import { GET_ALL_PRODUCTS, BASE_URL } from "../action-type";
+import { GET_ALL_PRODUCTS, BASE_URL } from "../../action-type";
 import axios from "axios";
 
 export const productByName = (name) => {

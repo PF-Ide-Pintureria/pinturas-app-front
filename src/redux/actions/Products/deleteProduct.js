@@ -1,5 +1,5 @@
 import axios from "axios"
-import { DELETE_PRODUCT, BASE_URL } from "../action-type"
+import { DELETE_PRODUCT, BASE_URL } from "../../action-type"
 
 export const deleteProduct = (id) => {
     return (dispatch) => {

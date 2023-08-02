@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
-import { setPage } from "../../redux/actions/setPage";
+import { setPage } from "../../redux/actions/Page/setPage";
 import { setCategory } from "../../redux/actions/filters/setCategory";
 // Banners
 import category1 from "../../img/category1.png";

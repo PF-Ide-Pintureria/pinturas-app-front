@@ -4,7 +4,7 @@ import CreateButton from '../CreateButton/CreateButton.jsx';
 import UpdateButton from "../UpdateButton/UpdateButton.jsx";
 import DeleteButton from '../DeleteButton/DeleteButton.jsx';
 import { useDispatch, useSelector } from "react-redux";
-import { allProducts } from '../../redux/actions/allProducts.js';
+import { allProducts } from '../../redux/actions/Products/allProducts.js';
 
 
 const ProductsDash = () => {
