@@ -11,7 +11,8 @@ const Addresses = () => {
               height="24"
               viewBox="0 0 24 24"
               fill="none"
-              xmlns="http://www.w3.org/2000/svg">
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <path
                 d="M8 21H12"
                 stroke="currentColor"
@@ -40,7 +41,7 @@ const Addresses = () => {
       </li>
       <form className="w-full max-w-md">
         <div className="mb-6">
-          <p className="text-gray-600 text-xs mt-1">Provincia </p>
+          <p className="text-gray-600 text-xs mt-1">Dirección </p>
           <input
             className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
             placeholder="Mariano Moreno 206"
@@ -60,12 +61,14 @@ const Addresses = () => {
         <div className="flex justify-between">
           <button
             type="submit"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          >
             Guardar cambios
           </button>
           <button
             type="submit"
-            className="bg-red-500 hover:bg-red-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+            className="bg-red-500 hover:bg-red-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          >
             Eliminar Dirección
           </button>
         </div>
