@@ -1,4 +1,4 @@
-import { GET_PRODUCT_BY_ID, BASE_URL } from "../action-type";
+import { GET_PRODUCT_BY_ID, BASE_URL } from "../../action-type";
 import axios from "axios";
 
 export const productById = (idProduct) => {

@@ -1,5 +1,5 @@
 
-import { postProduct } from "../../redux/actions/postProduct";
+import { postProduct } from "../../redux/actions/Products/postProduct";
 import React from "react";
 
 

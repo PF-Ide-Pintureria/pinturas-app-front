@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { postRegisterEmail } from '../../redux/actions/postRegisterEmail';
+import { postRegisterEmail } from '../../redux/actions/Mail/postRegisterEmail';
 import { postRegisterUser } from '../../redux/actions/postRegisterUser';
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";

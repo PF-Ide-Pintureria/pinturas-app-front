@@ -6,7 +6,7 @@ import Dashboard from "../../components/Account/Dashboard";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { logoutUser } from "../../redux/actions/logoutUser";
+import { logoutUser } from "../../redux/actions/User/logoutUser";
 
 import UpdateUserForm from "../../components/Account/UpdateUserForm";
 import Addresses from "../../components/Account/Addresses";
