@@ -1,6 +1,6 @@
 import React from "react";
-import { deleteProduct } from "../../redux/actions/deleteProduct";
-import { allProducts } from "../../redux/actions/allProducts"
+import { deleteProduct } from "../../redux/actions/Products/deleteProduct";
+import { allProducts } from "../../redux/actions/Products/allProducts"
 import { useDispatch } from "react-redux";
 
 

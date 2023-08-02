@@ -1,5 +1,5 @@
 import axios from "axios";
-import { PUT_PRODUCT, BASE_URL } from '../action-type';
+import { PUT_PRODUCT, BASE_URL } from '../../action-type';
 
 export const putProduct = (id, formData) => {
     return async (dispatch) => {

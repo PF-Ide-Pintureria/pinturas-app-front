@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import ProductCart from "../../components/ProductCart/ProductCart"
-import { postCart } from "../../redux/actions/postCart";
-
+import { postCart } from "../../redux/actions/Cart/postCart";
+import { setCart } from "../../redux/actions/Cart/setCart";
 
 const Cart = () => {
   const user = useSelector((state) => state.user);
@@ -23,7 +23,11 @@ const Cart = () => {
           products: cart
           }
         await postCart(buyCart)(dispatch).then((response) => {
-          if(response) console.log(response);
+          if(response){
+            console.log(response); 
+            dispatch(setCart([]))
+            localStorage.clear();
+          }
         }).catch((err) => {
           alert(err);
         })

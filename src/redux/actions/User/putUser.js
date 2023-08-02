@@ -1,5 +1,5 @@
 import axios from "axios";
-import { PUT_USER, BASE_URL } from '../action-type';
+import { PUT_USER, BASE_URL } from '../../action-type';
 
 export const putUser = (id, formData) => {
     return async (dispatch) => {

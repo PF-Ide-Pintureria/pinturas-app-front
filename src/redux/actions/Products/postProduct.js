@@ -1,5 +1,5 @@
 import axios from "axios";
-import { POST_PRODUCT, BASE_URL } from '../action-type';
+import { POST_PRODUCT, BASE_URL } from '../../action-type';
 
 export const postProduct = (productCreate) => {
     return async (dispatch) => {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { allCategories } from "../../redux/actions/allCategories";
-import { productById } from "../../redux/actions/productById"
+import { productById } from "../../redux/actions/Products/productById"
 import validations from "./validations";
 import { useParams } from "react-router-dom";
 import { formatAndEdit } from "./formatAndEdit";

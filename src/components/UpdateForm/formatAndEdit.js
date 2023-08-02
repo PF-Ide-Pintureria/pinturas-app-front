@@ -1,5 +1,5 @@
 
-import { putProduct } from "../../redux/actions/putProducts";
+import { putProduct } from "../../redux/actions/Products/putProducts";
 import React from "react";
 
 
