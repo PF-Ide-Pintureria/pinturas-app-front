@@ -78,7 +78,7 @@ const ReviewForm = () => {
               )}
             </div>
             <div className="character-counter">
-              {characterCount} / 1510 caracteres
+              {characterCount} / 1500 caracteres
             </div>
           </div>
         </div>
