@@ -48,7 +48,7 @@ function App() {
         const cart = localStorage.getItem("cart");
         if (user) {
             dispatch(setUser(JSON.parse(user)));
-            dispatch(getCart(cartId))
+            cartId !== null && dispatch(getCart(cartId));
 
         }
         if(cart){
