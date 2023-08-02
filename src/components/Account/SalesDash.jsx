@@ -5,16 +5,14 @@ import UpdateButton from "../UpdateButton/UpdateButton.jsx";
 import DeleteButton from '../DeleteButton/DeleteButton.jsx';
 import { useDispatch, useSelector } from "react-redux";
 import { allProducts } from '../../redux/actions/allProducts.js';
-import { getAllProductsNoFilter } from "../../redux/actions/getAllProductsNoFilter.js";
 
 
-
-const ProductsDash = () => {
+const SalesDash = () => {
     const dispatch = useDispatch();
-    const products = useSelector((state) => state.allProducts);
+    const products = useSelector((state) => state.products);
 
     useEffect(() => {
-        getAllProductsNoFilter()(dispatch)
+        allProducts(1)(dispatch)
         console.log('traemos los productos')
     }, [dispatch])
 
@@ -52,30 +50,30 @@ const ProductsDash = () => {
                 <table className="border-solid border-gray-500">
                     <thead>
                         <tr>
-                            <td className="border-solid border border-gray bg-primary text-quaternary font-extrabold rounded-tl-xl h-12 w-auto">ID</td>
-                            <td className="border-solid border border-gray  bg-primary text-quaternary font-extrabold">Imagen</td>
-                            <td className="border-solid border border-gray  bg-primary text-quaternary font-extrabold">Nombre</td>
-                            <td className="border-solid border border-gray  bg-primary text-quaternary font-extrabold">Categoría</td>
-                            <td className="border-solid border border-gray  bg-primary text-quaternary font-extrabold">Empaque</td>
-                            <td className="border-solid border border-gray  bg-primary text-quaternary font-extrabold">Stock</td>
-                            <td className="border-solid border border-gray  bg-primary text-quaternary font-extrabold">Editar</td>
-                            <td className="border-solid border border-gray  bg-primary text-quaternary font-extrabold rounded-tr-xl">Eliminar</td>
+                            <td className="border-solid border-1 border-gray">ID</td>
+                            <td>Imagen</td>
+                            <td>Nombre</td>
+                            <td>Categoría</td>
+                            <td>Empaque</td>
+                            <td>Stock</td>
+                            <td>Editar</td>
+                            <td>Eliminar</td>
                         </tr>
                     </thead>
                     <tbody>
                         {products.map(product => (
                             <tr key={product.idProduct}>
 
-                                <td className="font-bold border-2 border-solid border-gray-800">{product.idProduct}</td>
-                                <td className="w-5 h-5">
-                                    <img className="font-bold border-2 border-solid border-gray-800" src={product.image} />
+                                <td>{product.idProduct}</td>
+                                <td>
+                                    <img src={product.image} />
                                 </td>
-                                <td className="font-bold border-2 border-solid border-gray-800">{product.name}</td>
-                                <td className="font-bold border-2 border-solid border-gray-800">{product.category}</td>
-                                <td className="font-bold border-2 border-solid border-gray-800">{product.package}</td>
-                                <td className="font-bold border-2 border-solid border-gray-800">{product.stock}</td>
-                                <td className="font-bold border-2 border-solid border-gray-800"><UpdateButton idProduct={product.idProduct} /></td>
-                                <td className="font-bold border-2 border-solid border-gray-800"><DeleteButton idProduct={product.idProduct} /></td>
+                                <td>{product.name}</td>
+                                <td>{product.category}</td>
+                                <td>{product.package}</td>
+                                <td>{product.stock}</td>
+                                <td><UpdateButton idProduct={product.idProduct} /></td>
+                                <td><DeleteButton idProduct={product.idProduct} /></td>
                             </tr>
                         )
                         )}
@@ -98,4 +96,4 @@ const ProductsDash = () => {
 }
 
 
-export default ProductsDash;
+export default SalesDash;
