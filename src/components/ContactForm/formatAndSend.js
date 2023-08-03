@@ -1,5 +1,5 @@
 import { postContactEmail } from "../../redux/actions/Mail/postContactEmail";
-
+import Swal from 'sweetalert2'
 
 export const formatAndSend = async ({ name, email, message }, dispatch) => {
     console.log('checkpoint: ', 2);
@@ -46,9 +46,9 @@ export const formatAndSend = async ({ name, email, message }, dispatch) => {
 
         await postContactEmail(emailToBeSent)(dispatch).then((res) => {
             if (res.message === "Email sent succesfuly") {
-                alert("Correo enviado correctamente");
+                Swal.fire("Correo enviado correctamente");
             } else {
-                alert('El mensaje no ha sido enviado')
+                Swal.fire('El mensaje no ha sido enviado')
             }
         }).then(() => {
             true;

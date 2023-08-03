@@ -2,6 +2,7 @@ import React from "react";
 import { putUser } from "../../redux/actions/User/putUser";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2';
 
 const BanUserButton = ({ idUser }) => {
     const dispatch = useDispatch();
@@ -18,7 +19,7 @@ const BanUserButton = ({ idUser }) => {
     const handleClick = async (event) => {
         event.preventDefault();
         await putUser(idUser, formData)(dispatch);
-        alert('Usuario Banneado');
+        Swal.fire('Usuario Banneado');
         // navigate('/account');
     }
 

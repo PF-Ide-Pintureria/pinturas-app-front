@@ -5,8 +5,7 @@ import { productById } from "../../redux/actions/Products/productById"
 import validations from "./validations";
 import { useParams } from "react-router-dom";
 import { formatAndEdit } from "./formatAndEdit";
-import axios from "axios";
-import { BASE_URL } from "../../redux/action-type";
+import Swal from 'sweetalert2';
 
 const UpdateForm = () => {
 
@@ -82,10 +81,10 @@ const UpdateForm = () => {
         if (Object.keys(errors).length === 0) {
             const response = await formatAndEdit(inputsForm, idProduct, dispatch);
             if (response) {
-                alert('Producto modificado con éxito');
+                Swal.fire('Producto modificado con éxito');
             };
         } else {
-            alert('Hubo un error al modificar el producto');
+            Swal.fire('Hubo un error al modificar el producto');
         };
     };
 

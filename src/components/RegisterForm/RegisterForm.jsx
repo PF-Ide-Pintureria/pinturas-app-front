@@ -3,6 +3,7 @@ import { postRegisterEmail } from '../../redux/actions/Mail/postRegisterEmail';
 import { postRegisterUser } from '../../redux/actions/postRegisterUser';
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2';
 
 
 const RegisterForm = () => {
@@ -80,7 +81,7 @@ const RegisterForm = () => {
                 console.log("Form submitted:", { name, lastName, email, password });
                 if (response.status === 200) {
                     postRegisterEmail({ id: response.data.user.id, message: welcomeMessage })(dispatch);
-                    alert('Usuario registrado correctamente');
+                    Swal.fire('Usuario registrado correctamente');
                     navigate('/login');
                 }
 

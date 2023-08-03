@@ -20,63 +20,36 @@ const SalesDash = () => {
             width: 50
         },
         {
-            field: 'name',
-            headerName: 'Nombre',
+            field: 'date',
+            headerName: 'Fecha',
             width: 100
         },
         {
-            field: 'lastName',
-            headerName: 'Apellido',
+            field: 'userId',
+            headerName: 'Usuario',
             width: 100
         },
         {
-            field: 'rol',
-            headerName: 'Rol',
+            field: 'total',
+            headerName: 'Total',
             width: 80
         },
         {
-            field: 'status',
+            field: 'state',
             headerName: 'Estado',
             width: 90
-        },
-        {
-            field: 'edit',
-            headerName: 'Editar',
-            width: 90,
-            sorteable: false,
-            renderCell: (params) => (
-                <UpdateUserButton idUser={params.row.id} />
-            )
-        },
-        {
-            field: 'delete',
-            headerName: 'Eliminar',
-            width: 90,
-            sorteable: false,
-            renderCell: (params) => (
-                <DeleteUserButton idUser={params.row.id} />
-            )
-        },
-        {
-            field: 'ban',
-            headerName: 'Bloquear',
-            width: 90,
-            sorteable: false,
-            renderCell: (params) => (
-                <BanUserButton idUser={params.row.id} />
-            )
         },
     ]
 
     return (
         <div className="w-full">
             <DataGrid
-                rows={users.map(user => ({
-                    id: user.id,
-                    name: user.name,
-                    lastName: user.lastName,
-                    rol: user.rol,
-                    status: user.active ? "Activo" : "Inactivo",
+                rows={orders.map(order => ({
+                    id: order.id,
+                    date: order.createdAt,
+                    userId: order.userId,
+                    total: order.total,
+                    state: order.state,
                 }))}
                 columns={columns}
                 initialState={{
