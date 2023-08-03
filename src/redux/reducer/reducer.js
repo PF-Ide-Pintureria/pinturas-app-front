@@ -39,6 +39,8 @@ import {
 
     //ORDERS
     GET_ALL_ORDERS,
+    POST_ORDER_CART,
+    POST_ORDER_PAYMENT,
 
     //NODE MAILER
     POST_CONTACT_EMAIL,
@@ -62,6 +64,8 @@ const initialState = {
 
     //ORDERS
     allOrders: [],
+    newOrder: {},
+    payment: "",
 
     //PRODUCTS
     products: [],
@@ -167,9 +171,14 @@ const reducer = (state = initialState, { type, payload }) => {
             return { ...state, cartID: payload };
         case GET_CART:
             return { ...state, cart: [...state.cart, ...payload] };
-
+            
+        //ORDERS
         case GET_ALL_ORDERS:
             return { ...state, allOrders: payload };
+        case POST_ORDER_CART:
+            return { ...state, newOrder: payload };
+        case POST_ORDER_PAYMENT:
+            return { ...state, payment: payload };
 
         //NODE MAILER
         case POST_CONTACT_EMAIL:
