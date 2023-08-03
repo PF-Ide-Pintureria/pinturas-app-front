@@ -4,16 +4,15 @@ import CreateButton from '../CreateButton/CreateButton.jsx';
 import UpdateButton from "../UpdateButton/UpdateButton.jsx";
 import DeleteButton from '../DeleteButton/DeleteButton.jsx';
 import { useDispatch, useSelector } from "react-redux";
-// import { allProducts } from '../../redux/actions/Products/allProducts.js';
-import { getAllProductsNoFilter } from "../../redux/actions/Products/getAllProductsNoFilter.js";
+import { allProducts } from '../../redux/actions/Products/allProducts.js';
 
 
-const ProductsDash = () => {
+const SalesDash = () => {
     const dispatch = useDispatch();
-    const products = useSelector((state) => state.allProducts);
+    const products = useSelector((state) => state.products);
 
     useEffect(() => {
-        getAllProductsNoFilter()(dispatch)
+        allProducts(1)(dispatch)
         console.log('traemos los productos')
     }, [dispatch])
 
@@ -97,4 +96,4 @@ const ProductsDash = () => {
 }
 
 
-export default ProductsDash;
+export default SalesDash;

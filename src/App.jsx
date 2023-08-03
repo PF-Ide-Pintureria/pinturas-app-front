@@ -36,6 +36,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "./redux/actions/setUser";
 import { allProducts } from "./redux/actions/Products/allProducts";
 import { setCart } from "./redux/actions/Cart/setCart";
+import TestTable from "./TestTable";
+import UpdateUserForm from "./components/UpdateForm/UpdateUserForm";
 import { getCart } from "./redux/actions/Cart/getCart";
 
 function App() {
@@ -50,7 +52,7 @@ function App() {
             // cartId !== null && dispatch(getCart(cartId));
 
         }
-        if(cart){
+        if (cart) {
             dispatch(setCart(JSON.parse(cart)));
         }
         dispatch(allProducts());
@@ -58,50 +60,57 @@ function App() {
 
 
     return (
-    <BrowserRouter>
-        <header>
-        <NavBar />
-        </header>
-        <Routes>
-        <Route exact path="/" element={<Home />} />
+        <BrowserRouter>
+            <header>
+                <NavBar />
+            </header>
+            <Routes>
+                <Route exact path="/" element={<Home />} />
 
-        <Route path="/products" element={<Products />} />
-        <Route path="/products/:idProduct" element={<Detail />} />
-        <Route path="/products/edit/:idProduct" element={<UpdateProduct />} />
+                <Route path="/products" element={<Products />} />
+                <Route path="/products/:idProduct" element={<Detail />} />
+                <Route path="/products/edit/:idProduct" element={<UpdateProduct />} />
 
-        <Route path="/login" element={<Login />} />
-        <Route path="/login/register" element={<Register />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/login/register" element={<Register />} />
 
-        <Route path="/admin" element={<AdminDashboard />} />
-        <Route path="/admin/users" element={<AdminUsers />} />
-        <Route path="/admin/products" element={<AdminProducts />} />
-        <Route path="/admin/blog" element={<AdminBlog />} />
-        <Route path="/admin/create" element={<CreateProduct />} />
 
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/cart/buying" element={<Purchases />} />
+                <Route path="/admin" element={<AdminDashboard />} />
+                <Route path="/admin/users" element={<AdminUsers />} />
+                <Route path="/admin/products" element={<AdminProducts />} />
+                <Route path="/admin/blog" element={<AdminBlog />} />
+                <Route path="/admin/create" element={<CreateProduct />} />
+                <Route path="/admin/edit/:idUser" element={<UpdateUserForm />} />
 
-        <Route path="/payment/successful" element={<SuccessfulPayment />} />
-        <Route path="/payment/failure" element={<FailurePayment />} />
-        <Route path="/payment/pending" element={<PendingPayment />} />
+                <Route path="/cart" element={<Cart />} />
+                <Route path="/cart/buying" element={<Purchases />} />
 
-        <Route path="/reviews" element={<ReviewsPage />} />
-        <Route path="/favorite" element={<Favorite />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/account" element={<Account />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/location" element={<Location />} />
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/developers" element={<Developers />} />
+                <Route path="/payment/successful" element={<SuccessfulPayment />} />
+                <Route path="/payment/failure" element={<FailurePayment />} />
+                <Route path="/payment/pending" element={<PendingPayment />} />
 
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-      <footer>
-        {NODE_ENV === "debugging" && <DebuggerFooter cart={cartState} />}
-        <Footer />
-      </footer>
-    </BrowserRouter>
-  );
+                <Route path="/reviews" element={<ReviewsPage />} />
+                <Route path="/favorite" element={<Favorite />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/account" element={<Account />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/location" element={<Location />} />
+                <Route path="/blog" element={<Blog />} />
+                <Route path="/developers" element={<Developers />} />
+
+
+
+                <Route path="/testing" element={<TestTable />} />
+
+                <Route path="*" element={<NotFound />} />
+            </Routes>
+            <footer>
+                {NODE_ENV === 'debugging' && <DebuggerFooter cart={cartState} />}
+                <Footer />
+            </footer>
+        </BrowserRouter>
+    );
+
 }
 
 export default App;
