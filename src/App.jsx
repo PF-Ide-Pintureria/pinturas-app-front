@@ -80,6 +80,7 @@ function App() {
                 <Route path="/admin/products" element={<AdminProducts />} />
                 <Route path="/admin/blog" element={<AdminBlog />} />
                 <Route path="/admin/create" element={<CreateProduct />} />
+                <Route path="/admin/edit/:idUser" element={<UpdateUserForm />} />
 
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/cart/buying" element={<Purchases />} />
@@ -102,14 +103,13 @@ function App() {
                 <Route path="/testing" element={<TestTable />} />
 
                 <Route path="*" element={<NotFound />} />
-            </Routes >
+            </Routes>
             <footer>
                 {NODE_ENV === 'debugging' && <DebuggerFooter cart={cartState} />}
                 <Footer />
             </footer>
-        </BrowserRouter >
+        </BrowserRouter>
     );
-
 
 }
 

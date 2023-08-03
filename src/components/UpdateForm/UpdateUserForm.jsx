@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers } from "../../redux/actions/getAllUsers";
 import { putUser } from "../../redux/actions/User/putUser.js";
 import { useParams } from "react-router-dom";
-import getUserById from "../../redux/actions/getUserById";
+import getUserById from "../../redux/actions/User/getUserById";
 
 
 
@@ -12,7 +12,7 @@ const UpdateUserForm = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         getUserById(idUser)(dispatch)
-    }, [])
+    }, [dispatch])
     // useEffect(() => {
     //     console.log('entramos en el primer useEffect')
     //     getAllUsers()(dispatch)

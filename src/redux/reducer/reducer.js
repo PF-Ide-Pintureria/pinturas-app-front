@@ -45,6 +45,7 @@ import {
 
     //AUTH0-USERS-INFO
     SET_USER_DATA,
+    GET_USER_BY_ID,
 
 } from "../action-type";
 
@@ -66,8 +67,9 @@ const initialState = {
 
     //USER
     user: {},
-    allUsers: {},
+    allUsers: [],
     token: "",
+    userId: {},
 
     //FILTERS
     bestSell: [],
@@ -105,6 +107,8 @@ const reducer = (state = initialState, { type, payload }) => {
             return { ...state, detail: payload };
         case GET_PRODUCT_BY_NAME:
             return { ...state, products: payload };
+        case GET_ALL_PRODUCTS_NO_FILTER:
+            return { ...state, allProducts: payload };
 
         //CATEGORIES
         case GET_ALL_CATEGORIES:
@@ -127,6 +131,8 @@ const reducer = (state = initialState, { type, payload }) => {
             return { ...state, token: payload };
         case SET_USER:
             return { ...state, user: payload };
+        case GET_USER_BY_ID:
+            return { ...state, userId: payload };
 
         //FILTERS
         case GET_PRODUCT_FILTER:

@@ -1,13 +1,15 @@
 import axios from "axios";
-import { BASE_URL, GET_USER_BY_ID } from "../action-type";
+import { BASE_URL, GET_USER_BY_ID } from "../../action-type";
 
 const getUserById = (idUser) => {
     return async (dispatch) => {
         try {
 
             const rawResponse = await axios.get(`${BASE_URL}users/${idUser}`);
+            console.log('rawResponse: ', rawResponse)
             const responseData = rawResponse?.data;
-            const response = responseData?.users;
+            const response = responseData?.usuario;
+            console.log('user: ', response)
 
             return dispatch({ type: GET_USER_BY_ID, payload: response });
 
@@ -18,4 +20,4 @@ const getUserById = (idUser) => {
     };
 }
 
-export default getUserById;
+export default getUserById
