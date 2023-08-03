@@ -9,7 +9,7 @@ const getUserById = (idUser) => {
             const responseData = rawResponse?.data;
             const response = responseData?.users;
 
-            return dispatch({ type: GET_ALL_USERS, payload: response });
+            return dispatch({ type: GET_USER_BY_ID, payload: response });
 
         } catch (error) {
             console.error(error);
@@ -17,3 +17,5 @@ const getUserById = (idUser) => {
         }
     };
 }
+
+export default getUserById;

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers } from "../../redux/actions/getAllUsers";
 import { putUser } from "../../redux/actions/User/putUser.js";
 import { useParams } from "react-router-dom";
+import getUserById from "../../redux/actions/getUserById";
 
 
 
@@ -10,13 +11,16 @@ const UpdateUserForm = () => {
     const { idUser } = useParams();
     const dispatch = useDispatch();
     useEffect(() => {
-        console.log('entramos en el primer useEffect')
-        getAllUsers()(dispatch)
-    }, [dispatch]);
-    const fullUsers = useSelector((state) => state.allUsers);
-    console.log('fullUsers: ', fullUsers);
-    const findUser = fullUsers?.find((user) => parseInt(user.id) === parseInt(idUser));
-    console.log('findUser: ', findUser)
+        getUserById(idUser)(dispatch)
+    }, [])
+    // useEffect(() => {
+    //     console.log('entramos en el primer useEffect')
+    //     getAllUsers()(dispatch)
+    // }, [dispatch]);
+    const findUser = useSelector((state) => state.userId);
+    // console.log('fullUsers: ', fullUsers);
+    // const findUser = fullUsers?.find((user) => parseInt(user.id) === parseInt(idUser));
+    // console.log('findUser: ', findUser)
 
     const [inputs, setInputs] = useState({
         name: "",
