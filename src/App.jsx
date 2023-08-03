@@ -34,12 +34,9 @@ const { VITE_NODE_ENV: NODE_ENV } = import.meta.env;
 import { useCart } from "./hooks/useCart";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "./redux/actions/setUser";
-import { allProducts } from "./redux/actions/allProducts";
-import { setCart } from "../src/redux/actions/setCart";
-import TestTable from "./TestTable";
-import UpdateUserForm from "./components/UpdateForm/UpdateUserForm";
+import { allProducts } from "./redux/actions/Products/allProducts";
+import { setCart } from "./redux/actions/Cart/setCart";
 import { getCart } from "./redux/actions/Cart/getCart";
-
 
 function App() {
     const dispatch = useDispatch();
@@ -53,8 +50,7 @@ function App() {
             // cartId !== null && dispatch(getCart(cartId));
 
         }
-
-        if (cart) {
+        if(cart){
             dispatch(setCart(JSON.parse(cart)));
         }
         dispatch(allProducts());
@@ -76,13 +72,11 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/login/register" element={<Register />} />
 
-
-                <Route path="/admin" element={<AdminDashboard />} />
-                <Route path="/admin/users" element={<AdminUsers />} />
-                <Route path="/admin/products" element={<AdminProducts />} />
-                <Route path="/admin/blog" element={<AdminBlog />} />
-                <Route path="/admin/create" element={<CreateProduct />} />
-                <Route path="/admin/edit/:idUser" element={<UpdateUserForm />} />
+        <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/admin/users" element={<AdminUsers />} />
+        <Route path="/admin/products" element={<AdminProducts />} />
+        <Route path="/admin/blog" element={<AdminBlog />} />
+        <Route path="/admin/create" element={<CreateProduct />} />
 
         <Route path="/cart" element={<Cart />} />
         <Route path="/cart/buying" element={<Purchases />} />
@@ -100,17 +94,14 @@ function App() {
         <Route path="/blog" element={<Blog />} />
         <Route path="/developers" element={<Developers />} />
 
-                <Route path="/testing" element={<TestTable />} />
-
-                <Route path="*" element={<NotFound />} />
-            </Routes>
-            <footer>
-                {NODE_ENV === 'debugging' && <DebuggerFooter cart={cartState} />}
-                <Footer />
-            </footer>
-        </BrowserRouter>
-    );
-
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+      <footer>
+        {NODE_ENV === "debugging" && <DebuggerFooter cart={cartState} />}
+        <Footer />
+      </footer>
+    </BrowserRouter>
+  );
 }
 
 export default App;
