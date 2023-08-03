@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers } from "./redux/actions/getAllUsers";
 import DeleteUserButton from "./components/DeleteButton/DeleteUserButton";
 import UpdateUserButton from "./components/UpdateButton/UpdateUserButton";
+import BanUserButton from "./components/DeleteButton/BanUserButton";
 
 const TestTable = () => {
     const dispatch = useDispatch();
@@ -63,7 +64,10 @@ const TestTable = () => {
             field: 'ban',
             headerName: 'Exiliar',
             width: 90,
-            sorteable: false
+            sorteable: false,
+            renderCell: (params) => (
+                <BanUserButton idUser={params.row.id} />
+            )
         },
     ]
 
@@ -73,10 +77,9 @@ const TestTable = () => {
                 rows={users.map(user => ({
                     id: user.id,
                     name: user.name,
-                    lastName: user.name,
+                    lastName: user.lastName,
                     rol: user.rol,
                     status: user.active ? "Activo" : "Inactivo",
-                    ban: "Pendiente"
                 }))}
                 columns={columns}
                 initianState={{

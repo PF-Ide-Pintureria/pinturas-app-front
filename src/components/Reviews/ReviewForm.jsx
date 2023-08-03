@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { saveReview } from "../../redux/actions/postSaveReview";
 import Rating from "../Reviews/Rating";
 import "./Rating.css";
+import Swal from "sweetalert2";
 
 const ReviewForm = () => {
   const [characterCount, setCharacterCount] = useState(0);

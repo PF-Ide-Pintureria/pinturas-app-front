@@ -9,6 +9,7 @@ import { bestSellers } from "../../redux/actions/bestSellers";
 import "./Detail.Module.css";
 import { useCart } from "../../hooks/useCart";
 import { setCart } from "../../redux/actions/Cart/setCart"
+import Swal from 'sweetalert2';
 
 const Detail = () => {
 
@@ -120,7 +121,7 @@ const Detail = () => {
             navigate("/cart");
         }
     };
-    
+
     const handleAddToCart = () => {
         if (isValidQuantity) {
             addToCart({
@@ -141,11 +142,11 @@ const Detail = () => {
                 price: product.price,
                 stock: product.stock
             });
-            alert("Producto agregado al carrito");
+            Swal.fire("Producto agregado al carrito");
             dispatch(setCart([addProduct]));
 
         } else {
-            alert("Ingrese una cantidad válida");
+            Swal.fire("Ingrese una cantidad válida");
         }
     };
 
@@ -199,7 +200,7 @@ const Detail = () => {
                         </ol>
                     </div>
                     <div className="lg:col-gap-12 xl:col-gap-16 mt-8 grid grid-cols-1 gap-12 lg:mt-12 lg:grid-cols-2 lg:gap-10">
-                        
+
                         <div className="lg:col-span-3 lg:row-end-1">
                             <div className="lg:flex lg:items-start">
                                 <div className="lg:order-2 lg:ml-5">
@@ -284,7 +285,7 @@ const Detail = () => {
                                     </button>
                                     <button
                                         type="button"
-                                        className={`inline-flex items-center justify-center rounded-md border-2 border-transparent bg-purple-800 bg-none px-12 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow ${isValidQuantity ?  "hover:bg-gray-800" : "cursor-not-allowed"}`}
+                                        className={`inline-flex items-center justify-center rounded-md border-2 border-transparent bg-purple-800 bg-none px-12 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow ${isValidQuantity ? "hover:bg-gray-800" : "cursor-not-allowed"}`}
                                         onClick={shopCart}
                                         disabled={!isValidQuantity}
                                     >

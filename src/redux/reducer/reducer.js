@@ -37,6 +37,9 @@ import {
   GET_CART_ID,
   GET_CART,
 
+  //ORDERS
+  GET_ALL_ORDERS,
+
   //NODE MAILER
   POST_CONTACT_EMAIL,
   POST_ORDER_EMAIL,
@@ -57,6 +60,9 @@ const initialState = {
   sendCart: {},
   cartID: "",
   GET_CART: [],
+
+  //ORDERS
+  allOrders: [],
 
   //PRODUCTS
   products: [],
@@ -96,7 +102,7 @@ const initialState = {
 
 const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    //USER
+    //PRODUCTS
     case GET_ALL_PRODUCTS:
       return { ...state, products: payload };
     case DELETE_PRODUCT:
@@ -163,6 +169,9 @@ const reducer = (state = initialState, { type, payload }) => {
       return { ...state, cartID: payload };
     case GET_CART:
       return { ...state, cart: [...state.cart, ...payload] };
+
+    case GET_ALL_ORDERS:
+      return { ...state, allOrders: payload };
 
     //NODE MAILER
     case POST_CONTACT_EMAIL:

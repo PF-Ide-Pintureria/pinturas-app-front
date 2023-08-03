@@ -6,6 +6,7 @@ import { formatAndPost } from "./formatAndPost";
 import { BASE_URL } from "../../redux/action-type";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2';
 
 // const defaultValues = {
 //     name: "[TEST-2-LOCAL] [24-Jul] [Juan Pablo]",
@@ -87,12 +88,12 @@ const CreateForm = () => {
             // const response = await axios.post(`${BASE_URL}products`,inputsForm)
             const response = await formatAndPost(inputsForm, dispatch);
             if (response) {
-                alert('Producto creado con éxito');
+                Swal.fire('Producto creado con éxito');
                 setInputsForm(defaultValues);
                 navigate("/products");
             };
         } else {
-            alert('Hubo un error al crear el producto');
+            Swal.fire('Hubo un error al crear el producto');
         };
     };
 
