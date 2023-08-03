@@ -14,7 +14,7 @@ const Reviews = () => {
               src={
                 isAuthenticated
                   ? user.picture
-                  : "https://cdn.myshoptet.com/usr/www.sladke-potreby.cz/user/shop/big/222662_hello-kitty-hlavaa.png?634c60e8"
+                  : "https://cdn-icons-png.flaticon.com/512/1053/1053244.png"
               }
               alt=""
             />

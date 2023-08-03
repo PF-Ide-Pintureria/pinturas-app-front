@@ -59,3 +59,6 @@
 .mb {
   margin-bottom: 14px;
 }
+.button-pointer {
+  cursor: pointer;
+}
