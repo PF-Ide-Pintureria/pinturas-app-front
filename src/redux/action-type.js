@@ -38,6 +38,9 @@ export const POST_CART = "POST_CART";
 export const GET_CART_ID = "GET_CART_ID";
 export const GET_CART = "GET_CART";
 
+//ORDERS
+export const GET_ALL_ORDERS = "GET_ALL_ORDERS";
+
 //NODE MAILER
 export const POST_CONTACT_EMAIL = "POST_CONTACT_EMAIL";
 export const POST_REGISTER_EMAIL = "POST_REGISTER_EMAIL";
