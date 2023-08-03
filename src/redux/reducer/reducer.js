@@ -19,7 +19,6 @@ import {
     PUT_USER,
     ACCESS_TOKEN,
     SET_USER,
-    GET_USER_BY_ID,
 
     //FILTERS
     GET_PRODUCT_FILTER,
@@ -67,8 +66,7 @@ const initialState = {
 
     //USER
     user: {},
-    allUsers: [],
-    userId: {},
+    allUsers: {},
     token: "",
 
     //FILTERS
@@ -107,8 +105,6 @@ const reducer = (state = initialState, { type, payload }) => {
             return { ...state, detail: payload };
         case GET_PRODUCT_BY_NAME:
             return { ...state, products: payload };
-        case GET_ALL_PRODUCTS_NO_FILTER:
-            return { ...state, allProducts: payload }
 
         //CATEGORIES
         case GET_ALL_CATEGORIES:
@@ -119,8 +115,6 @@ const reducer = (state = initialState, { type, payload }) => {
             return { ...state, user: payload };
         case POST_LOGIN_USER:
             return { ...state, user: payload };
-        case GET_USER_BY_ID:
-            return { ...state, userId: payload };
         case GET_ALL_USERS:
             return { ...state, allUsers: payload };
         case DELETE_USER:

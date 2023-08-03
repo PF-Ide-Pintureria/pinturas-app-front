@@ -40,7 +40,6 @@ import TestTable from "./TestTable";
 import UpdateUserForm from "./components/UpdateForm/UpdateUserForm";
 import { getCart } from "./redux/actions/Cart/getCart";
 
-
 function App() {
     const dispatch = useDispatch();
 
@@ -53,7 +52,6 @@ function App() {
             // cartId !== null && dispatch(getCart(cartId));
 
         }
-
         if (cart) {
             dispatch(setCart(JSON.parse(cart)));
         }
@@ -82,7 +80,6 @@ function App() {
                 <Route path="/admin/products" element={<AdminProducts />} />
                 <Route path="/admin/blog" element={<AdminBlog />} />
                 <Route path="/admin/create" element={<CreateProduct />} />
-                <Route path="/admin/edit/:idUser" element={<UpdateUserForm />} />
 
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/cart/buying" element={<Purchases />} />
