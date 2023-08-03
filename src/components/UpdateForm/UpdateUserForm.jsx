@@ -28,13 +28,13 @@ const UpdateUserForm = () => {
         email: "",
         active: true,
         rol: "client",
-        authZero: false,
         isBanned: false,
         address: "",
         locality: "",
         province: "",
         phone: "",
     });
+    const [formData, setFormData] = useState({});
 
 
     useEffect(() => {
@@ -46,12 +46,11 @@ const UpdateUserForm = () => {
                 email: findUser?.email,
                 active: findUser?.active,
                 rol: findUser?.rol,
-                authZero: findUser?.authZero,
                 isBanned: findUser?.isBanned,
-                address: findUser?.address,
-                locality: findUser?.locality,
-                province: findUser?.province,
-                phone: findUser?.phone,
+                address: findUser?.address || "",
+                locality: findUser?.locality || "",
+                province: findUser?.province || "",
+                phone: findUser?.phone || "",
             });
         }
     }, [findUser]);
@@ -61,13 +60,20 @@ const UpdateUserForm = () => {
         const value = event.target.type === "checkbox" ? event.target.checked : event.target.value;
         setInputs({ ...inputs, [property]: value })
         console.log(inputs)
+        setFormData({
+            ...formData,
+            [property]: value
+        })
+        console.log('Formdata en el change:', formData)
     };
     const handleSubmit = async (event) => {
         event.preventDefault();
-        await putUser(findUser.id, JSON.stringify(inputs))(dispatch).then(response => {
+
+        console.log('formData en el submit ', formData)
+        await putUser(findUser.id, formData)(dispatch).then(response => {
             if (!response) { alert("error") }
         })
-        alert('vamos a modificar el usuario');
+        alert('Usuario modificado correctamente');
     }
 
 
@@ -112,8 +118,9 @@ const UpdateUserForm = () => {
                         onChange={handleChange}
                         checked={inputs.active}
                         value={inputs.active ? "true" : "false"}
-                        className="bg-formBg rounded-r-lg w-72 h-8"
+                        className="bg-formBg rounded-r-lg w-72 h-8 p-0 m-0"
                     />
+                    {inputs.active ? <span className="m-0 p-0">Activo</span> : <span className="m-0 p-0">Inactivo</span>}
                 </div>
                 <div className=" flex m-8 mb-0">
                     <label className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center">Rol: </label>
@@ -129,17 +136,6 @@ const UpdateUserForm = () => {
                     </select>
                 </div>
                 <div className=" flex m-8 mb-0">
-                    <label className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center">Auth0: </label>
-                    <input
-                        type="checkbox"
-                        name="authZero"
-                        onChange={handleChange}
-                        checked={inputs.authZero}
-                        value={inputs.authZero ? "true" : "false"}
-                        className="bg-formBg rounded-r-lg w-72 h-8"
-                    />
-                </div>
-                <div className=" flex m-8 mb-0">
                     <label className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center">Baneo: </label>
                     <input
                         type="checkbox"
@@ -149,6 +145,7 @@ const UpdateUserForm = () => {
                         value={inputs.isBanned ? "true" : "false"}
                         className="bg-formBg rounded-r-lg w-72 h-8"
                     />
+                    {inputs.isBanned ? <span className="m-0 p-0">Bloqueado</span> : <span className="m-0 p-0">No bloqueado</span>}
                 </div>
                 <div className=" flex m-8 mb-0">
                     <label className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center">Dirección: </label>
@@ -156,7 +153,7 @@ const UpdateUserForm = () => {
                         type="text"
                         name="address"
                         onChange={handleChange}
-                        value={inputs.address ? inputs.address : "no-address"}
+                        value={inputs.address}
                         className="bg-formBg rounded-r-lg w-72 h-8"
                     />
                 </div>
@@ -166,7 +163,7 @@ const UpdateUserForm = () => {
                         type="text"
                         name="locality"
                         onChange={handleChange}
-                        value={inputs.locality ? inputs.locality : "no-locality"}
+                        value={inputs.locality}
                         className="bg-formBg rounded-r-lg w-72 h-8"
                     />
                 </div>
@@ -176,20 +173,20 @@ const UpdateUserForm = () => {
                         type="text"
                         name="province"
                         onChange={handleChange}
-                        value={inputs.province ? inputs.province : "no-province"}
+                        value={inputs.province}
                         className="bg-formBg rounded-r-lg w-72 h-8"
                     />
                 </div>
-                {/* <div className=" flex m-8 mb-0">
-                    <label className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center">Imagen: </label>
+                <div className=" flex m-8 mb-0">
+                    <label className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center">Teléfono: </label>
                     <input
-                        type="file"
-                        name="image"
+                        type="tel"
+                        name="phone"
                         onChange={handleChange}
-                        value={inputs.image ? inputs.image : "no-image"}
+                        value={inputs.phone}
                         className="bg-formBg rounded-r-lg w-72 h-8"
                     />
-                </div> */}
+                </div>
                 <button
                     type="submit"
                     className="rounded-xl w-4/5 h-12 hover:translate-y-1.5 bg-primary text-tertiary border border-solid border-black m-5 font-bold flex items-center justify-center"
