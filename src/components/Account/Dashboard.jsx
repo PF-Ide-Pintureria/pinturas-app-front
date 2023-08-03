@@ -1,6 +1,6 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import login from "../../img/login-img.jpeg";
+// import login from "../../img/login-img.jpeg";
 import { connect } from "react-redux";
 import Cookies from "js-cookie";
 import { setUserData } from "../../redux/actions/postAuthzeroUsers";
@@ -8,7 +8,7 @@ import { setUserData } from "../../redux/actions/postAuthzeroUsers";
 const Dashboard = ({ isAuthenticated, user, setUserData }) => {
   const {
     isAuthenticated: auth0IsAuthenticated,
-    loginWithRedirect: auth0LoginWithRedirect,
+    // loginWithRedirect: auth0LoginWithRedirect,
     user: auth0User,
   } = useAuth0();
 
@@ -19,22 +19,22 @@ const Dashboard = ({ isAuthenticated, user, setUserData }) => {
     setUserData(auth0User);
   }
 
-  const containerStyle = {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    height: "100vh",
-  };
+  // const containerStyle = {
+  //   display: "flex",
+  //   justifyContent: "center",
+  //   alignItems: "center",
+  //   height: "100vh",
+  // };
 
-  const cardStyle = {
-    maxWidth: "400px",
-    width: "100%",
-    justifyContent: "center",
-  };
+  // const cardStyle = {
+  //   maxWidth: "400px",
+  //   width: "100%",
+  //   justifyContent: "center",
+  // };
 
   return (
     <div>
-      {!isAuthenticated ? (
+      {/* {!isAuthenticated ? (
         <div style={containerStyle}>
           <div
             className="max-w-sm border-gray-200 rounded-lg shadow dark:bg-purple-700 dark:border-gray-700"
@@ -78,13 +78,13 @@ const Dashboard = ({ isAuthenticated, user, setUserData }) => {
             </div>
           </div>
         </div>
-      ) : (
-        <div>
-          <p className="flex items-center space-x-3 text-gray-400 p-2">
-            Panel de Usuario de {user.name}
-          </p>
-        </div>
-      )}
+      ) : ( */}
+      <div>
+        <p className="flex items-center space-x-3 text-gray-400 p-2">
+          Panel de Usuario de {user.name}
+        </p>
+      </div>
+      {/* } */}
     </div>
   );
 };
