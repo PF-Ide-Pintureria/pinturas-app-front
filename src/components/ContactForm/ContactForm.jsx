@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { formValidation } from "./formValidation";
 import { formatAndSend } from "./formatAndSend";
 import { useDispatch } from "react-redux";
+import Swal from 'sweetalert2'
 
 
 const Contact = () => {
@@ -50,10 +51,10 @@ const Contact = () => {
         setErrors(errores);
         if (Object.keys(errors).length === 0) {
             formatAndSend(inputs, dispatch);
-                if (response) {
-                    alert('Tu mensaje ha sido enviado!');
-                
-                } else {
+            if (response) {
+                alert('Tu mensaje ha sido enviado!');
+
+            } else {
                 alert('Hubo un error al enviar el mensaje');
             };
         }

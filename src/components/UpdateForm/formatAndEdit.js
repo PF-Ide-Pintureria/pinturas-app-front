@@ -1,6 +1,7 @@
 
 import { putProduct } from "../../redux/actions/Products/putProducts";
 import React from "react";
+import Swal from 'sweetalert2';
 
 
 export const formatAndEdit = async (inputsForm, idProduct, dispatch) => {
@@ -19,7 +20,7 @@ export const formatAndEdit = async (inputsForm, idProduct, dispatch) => {
         await putProduct(idProduct, formData)(dispatch).then((res) => {
             console.log('respuesta', res)
             if (res.status === 201) {
-                alert(`Producto ${res.data.product.idProduct} modificado correctamente`);
+                Swal.fire(`Producto ${res.data.product.idProduct} modificado correctamente`);
             } else {
                 console.log('res.status', res.status);
             }
@@ -33,33 +34,3 @@ export const formatAndEdit = async (inputsForm, idProduct, dispatch) => {
         console.error(error);
     };
 };
-
-
-
-
-// import putProducts from '../../redux/actions/putProducts.js';
-// import React from "react";
-
-
-// export const formatAndEdit = async (inputsForm, dispatch) => {
-//     try {
-//         const editedProduct = {
-//             ...inputsForm,
-//         };
-//         await putProducts(editedProduct)(dispatch).then((res) => {
-//             if (res.status === 201) {
-
-//                 alert(`Producto ${res.data.product.idProduct} modificado correctamente`);
-//             }else{
-//                 console.log('res.status', res.status);
-//             }
-//         }).then(() => {
-//             true;
-//         }).catch((err) => {
-//             console.error(err);
-//         });
-
-//     } catch (error) {
-//         console.error(error);
-//     };
-// };
