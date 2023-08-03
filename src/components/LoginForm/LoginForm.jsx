@@ -74,11 +74,8 @@ const LoginForm = () => {
                 primeraRes = await postLoginUser({ email, password })(dispatch);
             }
             catch (err) {
-                console.log('Atrapado en el catch de LoginForm');
-                console.log(err);
+                console.error(err);
             };
-
-            console.log('primeraRes', primeraRes);
 
             if (primeraRes.status === 'fail') {
 

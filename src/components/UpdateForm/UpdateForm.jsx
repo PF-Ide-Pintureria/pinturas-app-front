@@ -38,14 +38,6 @@ const UpdateForm = () => {
         if (detail) {
             setInputsForm({
                 ...detail
-                // name: detail.name,
-                // price: detail.price,
-                // category: detail.category,
-                // patent: detail.patent,
-                // image: detail.image,
-                // color: detail.color,
-                // // package: detail.package,
-                // stock: detail.stock
             })
         }
     },

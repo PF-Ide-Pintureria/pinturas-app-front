@@ -13,7 +13,7 @@ const SideBarAuth = ({
     }
 
     return (
-        <div className="w-3/12 bg-white rounded p-3 shadow-lg">
+        <div className="w-1/5 bg-white rounded p-3 shadow-lg">
 
             <div className="flex items-center space-x-4 p-2 mb-5">
                 <img className="h-12 rounded-full" src={user.picture} alt="Profile" />

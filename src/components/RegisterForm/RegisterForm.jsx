@@ -77,8 +77,6 @@ const RegisterForm = () => {
 
         if (Object.keys(errors).length === 0) {
             await postRegisterUser({ name, lastName, email, password })(dispatch).then((response) => {
-                console.log('response: ', response);
-                console.log("Form submitted:", { name, lastName, email, password });
                 if (response.status === 200) {
                     postRegisterEmail({ id: response.data.user.id, message: welcomeMessage })(dispatch);
                     Swal.fire('Usuario registrado correctamente');

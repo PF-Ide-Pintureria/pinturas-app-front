@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 
 
 const UpdateButton = ({ idProduct }) => {
-    console.log('Que nos llega al button:', idProduct)
 
     const dispatch = useDispatch();
     const navigate = useNavigate();

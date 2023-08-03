@@ -6,10 +6,8 @@ const getUserById = (idUser) => {
         try {
 
             const rawResponse = await axios.get(`${BASE_URL}users/${idUser}`);
-            console.log('rawResponse: ', rawResponse)
             const responseData = rawResponse?.data;
             const response = responseData?.usuario;
-            console.log('user: ', response)
 
             return dispatch({ type: GET_USER_BY_ID, payload: response });
 

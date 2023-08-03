@@ -7,7 +7,6 @@ const SalesDash = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         getAllOrders()(dispatch)
-        console.log('traemos las ventas')
     }, [dispatch])
     const orders = useSelector(state => state.allOrders);
 

@@ -71,17 +71,6 @@ const CreateForm = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        // const formData = new FormData();
-        // formData.append('name', inputsForm.name);
-        // formData.append('price', inputsForm.price);
-        // formData.append('code', inputsForm.code);
-        // formData.append('category', inputsForm.category);
-        // formData.append('patent', inputsForm.patent);
-        // // formData.append('image', inputsForm.image);
-        // formData.append('color', inputsForm.color);
-        // formData.append('package', inputsForm.package);
-        // formData.append('stock', inputsForm.stock);
-        // // formData.append('file', inputsForm.file);
         const errors = validations(inputsForm);
         setErrors(errors);
         if (Object.keys(errors).length === 0) {
