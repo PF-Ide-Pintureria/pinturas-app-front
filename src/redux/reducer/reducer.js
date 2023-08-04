@@ -132,21 +132,21 @@ const reducer = (state = initialState, { type, payload }) => {
     //USER
     case POST_REGISTER_USER:
         return { ...state, user: payload };
-        case POST_LOGIN_USER:
+    case POST_LOGIN_USER:
         return { ...state, user: payload };
-        case GET_ALL_USERS:
+    case GET_ALL_USERS:
         return { ...state, allUsers: payload };
-        case DELETE_USER:
+    case DELETE_USER:
         return { ...state, allUsers: payload };
-        case PUT_USER:
+    case PUT_USER:
         return { ...state, allUsers: payload };
-        case LOGOUT_USER:
+    case LOGOUT_USER:
         return { ...state, user: payload };
-        case ACCESS_TOKEN:
+    case ACCESS_TOKEN:
         return { ...state, token: payload };
-        case SET_USER:
+    case SET_USER:
         return { ...state, user: payload };
-        case GET_USER_BY_ID:
+    case GET_USER_BY_ID:
         return { ...state, userId: payload };
 
     //FILTERS
@@ -188,9 +188,9 @@ const reducer = (state = initialState, { type, payload }) => {
     //NODE MAILER
     case POST_CONTACT_EMAIL:
         return { ...state, mail: payload };
-        case POST_ORDER_EMAIL:
+    case POST_ORDER_EMAIL:
         return { ...state, mail: payload };
-        case POST_REGISTER_EMAIL:
+    case POST_REGISTER_EMAIL:
         return { ...state, mail: payload };
 
     //AUTH0-USERS-INFO

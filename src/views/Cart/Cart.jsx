@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import ProductCart from "../../components/ProductCart/ProductCart"
 import { postCart } from "../../redux/actions/Cart/postCart";
@@ -11,6 +11,7 @@ const Cart = () => {
   const user = useSelector((state) => state.user);
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   console.log('user', user)
   // const [productsDetail, setProductsDetail] = useState([]);
   let sumPrices = [];
@@ -42,8 +43,8 @@ const Cart = () => {
                 let idOrder = response.order.id;
 
                 await postOrderPayment(idOrder)(dispatch).then((response) => {
-                  alert("seguimos trabajando en la response")
-                  console.log('response postOrderPayment N46', response);
+                  if (response) navigate("/cart/detail");
+                  
                 }).catch((err) => {
                   console.log('err postOrderPayment', err)
                 })
