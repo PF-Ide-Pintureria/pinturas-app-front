@@ -40,7 +40,7 @@ import {
   //ORDERS
   GET_ALL_ORDERS,
   POST_ORDER_CART,
-    POST_ORDER_PAYMENT,
+  POST_ORDER_PAYMENT,
 
   //NODE MAILER
   POST_CONTACT_EMAIL,
@@ -97,6 +97,9 @@ const initialState = {
 
   //MAIL
   mail: {},
+
+  //ORDERS
+  initPoint: "",
 
   //AUTH0-USERS-INFO
   userData: {},
@@ -187,8 +190,11 @@ const reducer = (state = initialState, { type, payload }) => {
     case POST_REGISTER_EMAIL:
       return { ...state, mail: payload };
 
-    //AUTH0-USERS-INFO
+    //ORDERS
+    case POST_ORDER_PAYMENT:
+      return { ...state, initPoint: payload };
 
+    //AUTH0-USERS-INFO
     case SET_USER_DATA:
       return { ...state, userData: payload };
 

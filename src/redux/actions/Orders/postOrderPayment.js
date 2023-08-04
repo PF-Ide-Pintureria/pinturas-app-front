@@ -8,8 +8,9 @@ export const postOrderPayment = (idOrder) => {
             console.log('body', body)
             const response = (await axios.post(`${BASE_URL}orders/payment`, body)).data;
 
-            console.log('response N9 postOrderPayment', response)
-            dispatch({type: POST_ORDER_PAYMENT, payload: response})
+            // console.log('response N9 postOrderPayment', response.body.init_point
+            // )
+            dispatch({type: POST_ORDER_PAYMENT, payload: response.body.init_point})
 
             return response;
 
