@@ -107,8 +107,7 @@ const initialState = {
 };
 
 const reducer = (state = initialState, { type, payload }) => {
-
-  switch (type) {
+    switch (type) {
 
     //PRODUCTS
     case GET_ALL_PRODUCTS:
