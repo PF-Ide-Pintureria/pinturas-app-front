@@ -5,7 +5,8 @@ import ProductCart from "../../components/ProductCart/ProductCart"
 import { postCart } from "../../redux/actions/Cart/postCart";
 import { setCart } from "../../redux/actions/Cart/setCart";
 import { postOrderByCart } from "../../redux/actions/Orders/postOrderByCart";
-import { postOrderPayment } from "../../redux/actions/Orders/postOrderPayment"
+import { postOrderPayment } from "../../redux/actions/Orders/postOrderPayment";
+
 
 const Cart = () => {
   const user = useSelector((state) => state.user);
@@ -15,52 +16,56 @@ const Cart = () => {
   console.log('user', user)
   // const [productsDetail, setProductsDetail] = useState([]);
   let sumPrices = [];
+
   const addPrice = (price) =>{
     return sumPrices.push(price)
   }
+
   const handleSendProduct = async() => {
-      if(!user.id) {
-        alert("Necesitas estar loggeado para comprar");
+    if(!user.id) {
+      alert("Necesitas estar loggeado para comprar");
 
-      }
-      else if(user.id){
-        let buyCart = {
-          idUser: user.id,
-          products: cart
-          }
-        await postCart(buyCart)(dispatch).then(async (response) => {
-          if(response){
-            
-            let order = {
-              idCart: response.data.idCart
-            }
 
-            // console.log(response.data.idCart); 
-            await postOrderByCart(order)(dispatch).then(async (response) => {
-
-              if (response){
-
-                let idOrder = response.order.id;
-
-                await postOrderPayment(idOrder)(dispatch).then((response) => {
-                  if (response) navigate("/cart/detail");
-                  
-                }).catch((err) => {
-                  console.log('err postOrderPayment', err)
-                })
-
-              }
-            }).catch((err)=> {
-              console.log('err postOrderByCart', err)
-            })
-            // dispatch(setCart([]))
-            // localStorage.clear();
-          }
-        }).catch((err) => {
-          alert(err);
-        })
-      }
     }
+    else if(user.id){
+      let buyCart = {
+        idUser: user.id,
+        products: cart
+        }
+      await postCart(buyCart)(dispatch).then(async (response) => {
+        if(response){
+          
+          let order = {
+            idCart: response.data.idCart
+          }
+
+          // console.log(response.data.idCart); 
+          await postOrderByCart(order)(dispatch).then(async (response) => {
+
+            if (response){
+
+              let idOrder = response.order.id;
+
+              await postOrderPayment(idOrder)(dispatch).then((response) => {
+                if (response) navigate("/cart/detail");
+                console.log('response postOrderPayment N46', response);
+              }).catch((err) => {
+                console.log('err postOrderPayment', err)
+              })
+
+            }
+          }).catch((err)=> {
+            console.log('err postOrderByCart', err)
+          })
+          // dispatch(setCart([]))
+          // localStorage.clear();
+        }
+      }).catch((err) => {
+        alert(err);
+      })
+    }
+
+  }
 
   const totalPrice = () => {
     let sum = 0
