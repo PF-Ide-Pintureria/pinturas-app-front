@@ -41,6 +41,8 @@ import UpdateUserForm from "./components/UpdateForm/UpdateUserForm";
 import { getCart } from "./redux/actions/Cart/getCart";
 import OrderDetail from "./views/OrderDetail/OrderDetail";
 import Dashboard from "./views/Dashboard/Dashboard";
+import BlogCreate from "./views/Blog/BlogCreate";
+import EditBlog from "./views/Blog/EditBlog";
 
 function App() {
     const dispatch = useDispatch();
@@ -95,6 +97,9 @@ function App() {
                 <Route path="/about" element={<About />} />
                 <Route path="/location" element={<Location />} />
                 <Route path="/blog" element={<Blog />} />
+                <Route path="/blog/create" element={<BlogCreate />} />
+                <Route path="/blog/edit/:id" element={<EditBlog />} />
+
                 <Route path="/developers" element={<Developers />} />
 
                 <Route path="/testing" element={<TestTable />} />
@@ -102,8 +107,7 @@ function App() {
                 <Route path="*" element={<NotFound />} />
             </Routes>
             <footer>
-                {/* {NODE_ENV === "debugging" && <DebuggerFooter cart={cartState} />}
-        <Footer /> */}
+                <Footer />
             </footer>
         </BrowserRouter>
     );
