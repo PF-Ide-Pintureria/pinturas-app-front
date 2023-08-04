@@ -39,6 +39,7 @@ import { setCart } from "./redux/actions/Cart/setCart";
 import TestTable from "./TestTable";
 import UpdateUserForm from "./components/UpdateForm/UpdateUserForm";
 import { getCart } from "./redux/actions/Cart/getCart";
+import OrderDetail from "./views/OrderDetail/OrderDetail";
 
 function App() {
   const dispatch = useDispatch();
@@ -80,6 +81,7 @@ function App() {
 
         <Route path="/cart" element={<Cart />} />
         <Route path="/cart/buying" element={<Purchases />} />
+        <Route path="/cart/detail" element={<OrderDetail />} />
 
         <Route path="/payment/successful" element={<SuccessfulPayment />} />
         <Route path="/payment/failure" element={<FailurePayment />} />
