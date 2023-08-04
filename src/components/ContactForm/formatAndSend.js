@@ -2,7 +2,6 @@ import { postContactEmail } from "../../redux/actions/Mail/postContactEmail";
 import Swal from 'sweetalert2'
 
 export const formatAndSend = async ({ name, email, message }, dispatch) => {
-    console.log('checkpoint: ', 2);
     try {
         const formatedEmail = `
         <html lang="en" >
@@ -41,8 +40,6 @@ export const formatAndSend = async ({ name, email, message }, dispatch) => {
             message: formatedEmail,
             replyTo: email
         };
-
-        console.log('emailToBeSent: ', emailToBeSent);
 
         await postContactEmail(emailToBeSent)(dispatch).then((res) => {
             if (res.message === "Email sent succesfuly") {

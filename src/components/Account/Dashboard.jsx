@@ -6,18 +6,20 @@ import Cookies from "js-cookie";
 import { setUserData } from "../../redux/actions/postAuthzeroUsers";
 
 const Dashboard = ({ isAuthenticated, user, setUserData }) => {
+
   const {
     isAuthenticated: auth0IsAuthenticated,
     // loginWithRedirect: auth0LoginWithRedirect,
     user: auth0User,
   } = useAuth0();
 
-  if (auth0IsAuthenticated) {
-    // Guardar en cookies
-    Cookies.set("userData", JSON.stringify(auth0User), { expires: 31 });
-    // Guardar en Redux
-    setUserData(auth0User);
-  }
+    if (auth0IsAuthenticated) {
+        // Guardar en cookies
+        Cookies.set("userData", JSON.stringify(auth0User), { expires: 31 });
+        // Guardar en Redux
+        setUserData(auth0User);
+    }
+
 
   // const containerStyle = {
   //   display: "flex",
@@ -90,14 +92,14 @@ const Dashboard = ({ isAuthenticated, user, setUserData }) => {
 };
 
 const mapStateToProps = (state) => {
-  return {
-    isAuthenticated: state.userData !== null,
-    user: state.userData,
-  };
+    return {
+        isAuthenticated: state.userData !== null,
+        user: state.userData,
+    };
 };
 
 const mapDispatchToProps = {
-  setUserData: setUserData,
+    setUserData: setUserData,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

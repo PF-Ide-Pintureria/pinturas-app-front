@@ -110,7 +110,7 @@ const UpdateUserForm = () => {
     };
     const handleDelete = () => {
         deleteUser(user.id)(dispatch)
-        alert("Usuario eliminado")
+        Swal.fire("Usuario eliminado")
         logoutUser(dispatch);
         navigate('/');
     }

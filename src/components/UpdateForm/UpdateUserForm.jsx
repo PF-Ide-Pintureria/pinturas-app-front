@@ -65,12 +65,10 @@ const UpdateUserForm = () => {
             ...formData,
             [property]: value
         })
-        console.log('Formdata en el change:', formData)
     };
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        console.log('formData en el submit ', formData)
         await putUser(findUser.id, formData)(dispatch).then(response => {
             if (!response) { Swal.fire("error") }
         })

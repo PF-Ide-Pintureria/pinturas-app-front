@@ -16,7 +16,6 @@ const ProductsDash = () => {
 
     useEffect(() => {
         getAllProductsNoFilter()(dispatch)
-        console.log('traemos los productos')
     }, [dispatch])
 
 
@@ -27,17 +26,6 @@ const ProductsDash = () => {
             flex: 0.2,
             minWidth: 40,
         },
-        // {
-        //     field: 'image',
-        //     headerName: "Image",
-        //     renderCell: (params) => {
-        //         return (
-        //             <div>
-        //                 <img src={params.row.image} alt="" />
-        //             </div>
-        //         )
-        //     }
-        // },
         {
             field: 'name',
             headerName: "Nombre",
@@ -65,14 +53,14 @@ const ProductsDash = () => {
         {
             field: 'edit',
             headerName: "Editar",
-            renderCell: (params) => (<UpdateButton idProduct={params.row.idProduct} />),
+            renderCell: (params) => (<UpdateButton idProduct={params.row.id} />),
             flex: 4,
             minWidth: 200,
         },
         {
             field: 'delete',
             headerName: "Eliminar",
-            renderCell: (params) => (<DeleteButton idProduct={params.row.idProduct} />),
+            renderCell: (params) => (<DeleteButton idProduct={params.row.id} />),
             flex: 4,
             minWidth: 200,
         },
@@ -141,44 +129,9 @@ const ProductsDash = () => {
                         }
                     }}
                     disableColumnFilter
-
                     pageSizeOptions={[5, 10, 15, 20, 100]}
                 />
 
-
-
-                {/* <table className="border-solid border-gray-500">
-                    <thead>
-                        <tr>
-                            <td className="border-solid border-1 border-gray">ID</td>
-                            <td>Imagen</td>
-                            <td>Nombre</td>
-                            <td>Categoría</td>
-                            <td>Empaque</td>
-                            <td>Stock</td>
-                            <td>Editar</td>
-                            <td>Eliminar</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {products.map(product => (
-                            <tr key={product.idProduct}>
-
-                                <td>{product.idProduct}</td>
-                                <td>
-                                    <img src={product.image} />
-                                </td>
-                                <td>{product.name}</td>
-                                <td>{product.category}</td>
-                                <td>{product.package}</td>
-                                <td>{product.stock}</td>
-                                <td><UpdateButton idProduct={product.idProduct} /></td>
-                                <td><DeleteButton idProduct={product.idProduct} /></td>
-                            </tr>
-                        )
-                        )}
-                    </tbody>
-                </table> */}
             </div>
 
             <div className="flex justify-between m-10">
