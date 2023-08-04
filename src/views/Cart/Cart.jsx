@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import ProductCart from "../../components/ProductCart/ProductCart"
 import { postCart } from "../../redux/actions/Cart/postCart";
 import { setCart } from "../../redux/actions/Cart/setCart";
+import { postOrderByCart } from "../../redux/actions/Orders/postOrderByCart";
+import { postOrderPayment } from "../../redux/actions/Orders/postOrderPayment"
 
 const Cart = () => {
   const user = useSelector((state) => state.user);
@@ -25,17 +27,40 @@ const Cart = () => {
           idUser: user.id,
           products: cart
           }
-        await postCart(buyCart)(dispatch).then((response) => {
+        await postCart(buyCart)(dispatch).then(async (response) => {
           if(response){
-            console.log(response); 
-            dispatch(setCart([]))
-            localStorage.clear();
+            
+            let order = {
+              idCart: response.data.idCart
+            }
+
+            // console.log(response.data.idCart); 
+            await postOrderByCart(order)(dispatch).then(async (response) => {
+
+              if (response){
+
+                let idOrder = response.order.id;
+
+                await postOrderPayment(idOrder)(dispatch).then((response) => {
+                  alert("seguimos trabajando en la response")
+                  console.log('response postOrderPayment N46', response);
+                }).catch((err) => {
+                  console.log('err postOrderPayment', err)
+                })
+
+              }
+            }).catch((err)=> {
+              console.log('err postOrderByCart', err)
+            })
+            // dispatch(setCart([]))
+            // localStorage.clear();
           }
         }).catch((err) => {
           alert(err);
         })
       }
     }
+
   const totalPrice = () => {
     let sum = 0
     for (let i = 0; i < sumPrices.length; i++) {
