@@ -39,6 +39,8 @@ import {
 
   //ORDERS
   GET_ALL_ORDERS,
+  POST_ORDER_CART,
+    POST_ORDER_PAYMENT,
 
   //NODE MAILER
   POST_CONTACT_EMAIL,
@@ -52,6 +54,7 @@ import {
 
   // REVIEWS
   SAVE_REVIEW,
+
 } from "../action-type";
 
 const initialState = {
@@ -62,7 +65,9 @@ const initialState = {
   GET_CART: [],
 
   //ORDERS
-  allOrders: [],
+    allOrders: [],
+    newOrder: {},
+    payment: "",
 
   //PRODUCTS
   products: [],
@@ -102,6 +107,7 @@ const initialState = {
 
 const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
+    
     //PRODUCTS
     case GET_ALL_PRODUCTS:
       return { ...state, products: payload };
