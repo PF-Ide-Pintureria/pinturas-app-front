@@ -6,6 +6,8 @@ import DeleteButton from '../DeleteButton/DeleteButton.jsx';
 import { useDispatch, useSelector } from "react-redux";
 // import { allProducts } from '../../redux/actions/Products/allProducts.js';
 import { getAllProductsNoFilter } from "../../redux/actions/Products/getAllProductsNoFilter.js";
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import { Avatar } from "@mui/material";
 
 
 const ProductsDash = () => {
@@ -14,8 +16,56 @@ const ProductsDash = () => {
 
     useEffect(() => {
         getAllProductsNoFilter()(dispatch)
-        console.log('traemos los productos')
     }, [dispatch])
+
+
+    const columns = [
+        {
+            field: 'id',
+            headerName: "ID",
+            flex: 0.2,
+            minWidth: 40,
+        },
+        {
+            field: 'name',
+            headerName: "Nombre",
+            flex: 2,
+            minWidth: 120,
+        },
+        {
+            field: 'category',
+            headerName: "Categoría",
+            flex: 3,
+            minWidth: 180,
+        },
+        {
+            field: 'package',
+            headerName: "Formato",
+            flex: 0.8,
+            minWidth: 80,
+        },
+        {
+            field: 'stock',
+            headerName: "Stock",
+            flex: 0.9,
+            minWidth: 60,
+        },
+        {
+            field: 'edit',
+            headerName: "Editar",
+            renderCell: (params) => (<UpdateButton idProduct={params.row.id} />),
+            flex: 4,
+            minWidth: 200,
+        },
+        {
+            field: 'delete',
+            headerName: "Eliminar",
+            renderCell: (params) => (<DeleteButton idProduct={params.row.id} />),
+            flex: 4,
+            minWidth: 200,
+        },
+
+    ]
 
     return (
         <div className="container mx-auto px-4">
@@ -48,38 +98,40 @@ const ProductsDash = () => {
                 <CreateButton />
             </li>
             <div className="flex">
-                <table className="border-solid border-gray-500">
-                    <thead>
-                        <tr>
-                            <td className="border-solid border-1 border-gray">ID</td>
-                            <td>Imagen</td>
-                            <td>Nombre</td>
-                            <td>Categoría</td>
-                            <td>Empaque</td>
-                            <td>Stock</td>
-                            <td>Editar</td>
-                            <td>Eliminar</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {products.map(product => (
-                            <tr key={product.idProduct}>
+                <DataGrid
+                    rows={products.map(product => ({
+                        id: product.idProduct,
+                        name: product.name,
+                        category: product.category,
+                        package: product.package,
+                        stock: product.stock
+                    }))}
+                    columns={columns}
+                    initialState={{
+                        pagination: {
+                            paginationModel: {
+                                page: 0,
+                                pageSize: 15
+                            }
+                        },
+                        sorting: true,
+                        filter: {
+                            filterModel: {
+                                items: [],
+                            }
+                        }
 
-                                <td>{product.idProduct}</td>
-                                <td>
-                                    <img src={product.image} />
-                                </td>
-                                <td>{product.name}</td>
-                                <td>{product.category}</td>
-                                <td>{product.package}</td>
-                                <td>{product.stock}</td>
-                                <td><UpdateButton idProduct={product.idProduct} /></td>
-                                <td><DeleteButton idProduct={product.idProduct} /></td>
-                            </tr>
-                        )
-                        )}
-                    </tbody>
-                </table>
+                    }}
+                    slots={{ toolbar: GridToolbar }}
+                    slotProps={{
+                        toolbar: {
+                            showQuickFilter: true
+                        }
+                    }}
+                    disableColumnFilter
+                    pageSizeOptions={[5, 10, 15, 20, 100]}
+                />
+
             </div>
 
             <div className="flex justify-between m-10">

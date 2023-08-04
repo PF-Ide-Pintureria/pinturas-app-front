@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { formValidation } from "./formValidation";
 import { formatAndSend } from "./formatAndSend";
 import { useDispatch } from "react-redux";
+import Swal from 'sweetalert2'
 
 
 const Contact = () => {
@@ -32,17 +33,15 @@ const Contact = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        console.log('checkpoint: ', 1);
-
         if (!inputs.name || !inputs.email || !inputs.message) {
-            alert("Por favor, complete todos los campos obligatorios.");
+            Swal.fire("Por favor, complete todos los campos obligatorios.");
             return;
         }
 
         const emailRegex =
             /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
         if (!emailRegex.test(inputs.email)) {
-            alert("Por favor, ingrese un correo electrónico válido.");
+            Swal.fire("Por favor, ingrese un correo electrónico válido.");
             return;
         }
 
@@ -50,11 +49,11 @@ const Contact = () => {
         setErrors(errores);
         if (Object.keys(errors).length === 0) {
             formatAndSend(inputs, dispatch);
-                if (response) {
-                    alert('Tu mensaje ha sido enviado!');
-                
-                } else {
-                alert('Hubo un error al enviar el mensaje');
+            if (response) {
+                Swal.fire('Tu mensaje ha sido enviado!');
+
+            } else {
+                Swal.fire('Hubo un error al enviar el mensaje');
             };
         }
 

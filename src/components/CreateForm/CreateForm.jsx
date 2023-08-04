@@ -6,6 +6,7 @@ import { formatAndPost } from "./formatAndPost";
 import { BASE_URL } from "../../redux/action-type";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2';
 
 // const defaultValues = {
 //     name: "[TEST-2-LOCAL] [24-Jul] [Juan Pablo]",
@@ -70,29 +71,18 @@ const CreateForm = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        // const formData = new FormData();
-        // formData.append('name', inputsForm.name);
-        // formData.append('price', inputsForm.price);
-        // formData.append('code', inputsForm.code);
-        // formData.append('category', inputsForm.category);
-        // formData.append('patent', inputsForm.patent);
-        // // formData.append('image', inputsForm.image);
-        // formData.append('color', inputsForm.color);
-        // formData.append('package', inputsForm.package);
-        // formData.append('stock', inputsForm.stock);
-        // // formData.append('file', inputsForm.file);
         const errors = validations(inputsForm);
         setErrors(errors);
         if (Object.keys(errors).length === 0) {
             // const response = await axios.post(`${BASE_URL}products`,inputsForm)
             const response = await formatAndPost(inputsForm, dispatch);
             if (response) {
-                alert('Producto creado con éxito');
+                Swal.fire('Producto creado con éxito');
                 setInputsForm(defaultValues);
                 navigate("/products");
             };
         } else {
-            alert('Hubo un error al crear el producto');
+            Swal.fire('Hubo un error al crear el producto');
         };
     };
 

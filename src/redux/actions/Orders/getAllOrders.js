@@ -5,7 +5,11 @@ const getAllOrders = () => {
     return async (dispatch) => {
         try {
             const rawResponse = await axios.get(`${BASE_URL}orders`);
-            const response = response?.data
+            const response = rawResponse?.data?.orders
+            dispatch({
+                type: GET_ALL_ORDERS,
+                payload: response
+            })
             return response
         }
         catch (error) {

@@ -5,7 +5,7 @@ export const POST_PRODUCT = "POST_PRODUCT";
 export const PUT_PRODUCT = "PUT_PRODUCT";
 export const GET_PRODUCT_BY_NAME = "GET_PRODUCT_BY_NAME";
 export const GET_PRODUCT_BY_ID = "GET_PRODUCT_BY_ID";
-export const GET_ALL_PRODUCTS_NO_FILTER = "GET_ALL_PRODUCTS_NO_FILTER"
+export const GET_ALL_PRODUCTS_NO_FILTER = "GET_ALL_PRODUCTS_NO_FILTER";
 
 //CATEGORIES
 export const GET_ALL_CATEGORIES = "GET_ALL_CATEGORIES";
@@ -19,7 +19,7 @@ export const DELETE_USER = "DELETE_USER";
 export const LOGOUT_USER = "LOGOUT_USER";
 export const ACCESS_TOKEN = "ACCESS_TOKEN";
 export const SET_USER = "SET_USER";
-export const GET_USER_BY_ID = "GET_USER_BY_ID"
+export const GET_USER_BY_ID = "GET_USER_BY_ID";
 
 //FILTERS
 export const GET_PRODUCT_FILTER = "GET_PRODUCT_FILTER";
@@ -50,7 +50,12 @@ export const POST_ORDER_EMAIL = "POST_ORDER_EMAIL";
 
 //AUTH0-USERS-INFO
 export const SET_USER_DATA = "SET_USER_DATA";
-export const URL_INFO_USER_AUTH0 = "ll";
+export const URL_INFO_USER_AUTH0 = "--";
 
 //URL
 export const BASE_URL = "https://back-server-pinturas-app.onrender.com/";
+
+// REVIEWS
+
+export const SAVE_REVIEW = "SAVE_REVIEW";
+export const URL_SAVE_REVIEW = "--";

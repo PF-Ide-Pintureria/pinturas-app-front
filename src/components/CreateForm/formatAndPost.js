@@ -1,11 +1,12 @@
 
 import { postProduct } from "../../redux/actions/Products/postProduct";
 import React from "react";
+import Swal from 'sweetalert2'
 
 
 export const formatAndPost = async (inputsForm, dispatch) => {
     try {
-        console.log('file',inputsForm.file)
+        console.log('file', inputsForm.file)
         // const newProduct = {
         //     ...inputsForm,
         // };
@@ -21,12 +22,8 @@ export const formatAndPost = async (inputsForm, dispatch) => {
         formData.append('image', inputsForm.image);
 
         await postProduct(formData)(dispatch).then((res) => {
-            console.log('respuesta', res.data)
             if (res.status === 201) {
-                console.log('Producto creado correctamente');
-                alert(`Producto creado correctamente con el id: ${res.data.product[0].idProduct}`);
-            }else{
-                console.log('res.status', res.status);
+                Swal.fire(`Producto creado correctamente con el id: ${res.data.product[0].idProduct}`);
             }
         }).then(() => {
             true;

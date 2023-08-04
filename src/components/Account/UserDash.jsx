@@ -10,11 +10,8 @@ const UsersDash = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         getAllUsers()(dispatch)
-        console.log('traemos los usuarios')
     }, [dispatch])
     const users = useSelector(state => state.allUsers);
-
-    console.log('Users: ', users)
 
     const columns = [
         {

@@ -1,13 +1,14 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { deleteUser } from "../../redux/actions/deleteUser";
+import Swal from 'sweetalert2';
 
 
 const DeleteUserButton = ({ idUser }) => {
     const dispatch = useDispatch()
     const handleClick = async () => {
         deleteUser(idUser)(dispatch);
-        alert("Usuario eliminado")
+        Swal.fire("Usuario eliminado")
     }
 
     return (

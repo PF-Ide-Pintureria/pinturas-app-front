@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { postLoginUser } from "../../redux/actions/User/postLoginUser";
 import axios from "axios";
 import { logoutUser } from "../../redux/actions/User/logoutUser";
+import Swal from 'sweetalert2';
 
 const LoginForm = () => {
     const { isAuthenticated, loginWithRedirect, user } = useAuth0();
@@ -73,23 +74,20 @@ const LoginForm = () => {
                 primeraRes = await postLoginUser({ email, password })(dispatch);
             }
             catch (err) {
-                console.log('Atrapado en el catch de LoginForm');
-                console.log(err);
+                console.error(err);
             };
-
-            console.log('primeraRes', primeraRes);
 
             if (primeraRes.status === 'fail') {
 
-                alert(primeraRes.message);
+                Swal.fire(primeraRes.message);
 
             } else if (primeraRes?.acceso?.user?.active === false) {
-                alert("Usuario no encontrado");
+                Swal.fire("Usuario no encontrado");
                 logoutUser(dispatch);
                 navigate('/');
             }
             else if (primeraRes.status === "success") {
-                alert("Usuario Logueado correctamente");
+                Swal.fire("Usuario Logueado correctamente");
             }
             // });
         } else {
