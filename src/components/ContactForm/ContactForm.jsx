@@ -49,6 +49,7 @@ const Contact = () => {
         setErrors(errores);
         if (Object.keys(errors).length === 0) {
             formatAndSend(inputs, dispatch);
+            console.log('response', response)
             if (response) {
                 Swal.fire('Tu mensaje ha sido enviado!');
 

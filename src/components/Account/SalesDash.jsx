@@ -14,12 +14,12 @@ const SalesDash = () => {
         {
             field: 'id',
             headerName: 'ID',
-            width: 50
+            width: 300
         },
         {
             field: 'date',
             headerName: 'Fecha',
-            width: 100
+            width: 190
         },
         {
             field: 'userId',

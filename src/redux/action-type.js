@@ -48,6 +48,13 @@ export const POST_CONTACT_EMAIL = "POST_CONTACT_EMAIL";
 export const POST_REGISTER_EMAIL = "POST_REGISTER_EMAIL";
 export const POST_ORDER_EMAIL = "POST_ORDER_EMAIL";
 
+//BLOG
+export const GET_POSTS = "GET_POSTS";
+export const GET_POST_BY_ID = "GET_POST_BY_ID";
+export const DELETE_POST = "DELETE_POST";
+export const PUT_POST = "PUT_POST";
+export const POST_POST = "POST_POST";
+
 //AUTH0-USERS-INFO
 export const SET_USER_DATA = "SET_USER_DATA";
 export const URL_INFO_USER_AUTH0 = "--";
