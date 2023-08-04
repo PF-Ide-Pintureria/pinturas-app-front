@@ -129,7 +129,7 @@ const ProductsDash = () => {
                         }
                     }}
                     disableColumnFilter
-                    pageSizeOptions={[5, 10, 15, 20, 100]}
+                    pageSizeOptions={[5, 10, 15, 20, 50, 100]}
                 />
 
             </div>

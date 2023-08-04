@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux/es/hooks/useSelector";
+import { useNavigate } from "react-router-dom";
 // import Desk from "./Desk";
 
 const SideBarUser = ({
@@ -8,6 +9,7 @@ const SideBarUser = ({
     user,
     logout,
 }) => {
+    const navigate = useNavigate();
     const loggedUser = useSelector((state) => state.user);
     if (loggedUser.rol === "admin") {
         return (
@@ -149,7 +151,7 @@ const SideBarUser = ({
 
                     <li>
                         <p
-                            onClick={() => handleButtonClick("products")}
+                            onClick={() => navigate('/admin')}
                             className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
                             <span className=" text-gray-600">
                                 <svg
@@ -172,10 +174,10 @@ const SideBarUser = ({
                                         d="M16.5 10.5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
                                 </svg>
                             </span>
-                            <span>Productos</span>
+                            <span>Ir al Dashboard</span>
                         </p>
                     </li>
-                    <li>
+                    {/* <li>
                         <p
                             onClick={() => handleButtonClick("users")}
                             className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
@@ -226,7 +228,7 @@ const SideBarUser = ({
                             </span>
                             <span>Ventas</span>
                         </p>
-                    </li>
+                    </li> */}
 
                     <li>
                         <a

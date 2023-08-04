@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { DataGrid } from '@mui/x-data-grid';
+import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import { useDispatch, useSelector } from "react-redux";
 import getAllOrders from "../../redux/actions/Orders/getAllOrders";
 
@@ -9,8 +9,6 @@ const SalesDash = () => {
         getAllOrders()(dispatch)
     }, [dispatch])
     const orders = useSelector(state => state.allOrders);
-
-    console.log('orders: ', orders)
 
     const columns = [
         {
@@ -57,9 +55,22 @@ const SalesDash = () => {
                             page: 0,
                             pageSize: 10
                         }
+                    },
+                    sorting: true,
+                    filter: {
+                        filterModel: {
+                            items: [],
+                        }
                     }
                 }}
-                pageSizeOptions={[5, 10, 100]}
+                slots={{ toolbar: GridToolbar }}
+                slotProps={{
+                    toolbar: {
+                        showQuickFilter: true
+                    }
+                }}
+                disableColumnFilter
+                pageSizeOptions={[5, 10, 15, 20, 50, 100]}
             />
         </div>
     )

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { DataGrid } from '@mui/x-data-grid';
+import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers } from "../../redux/actions/getAllUsers";
 import DeleteUserButton from "../../components/DeleteButton/DeleteUserButton";
@@ -85,9 +85,22 @@ const UsersDash = () => {
                             page: 0,
                             pageSize: 10
                         }
+                    },
+                    sorting: true,
+                    filter: {
+                        filterModel: {
+                            items: [],
+                        }
                     }
                 }}
-                pageSizeOptions={[5, 10, 100]}
+                slots={{ toolbar: GridToolbar }}
+                slotProps={{
+                    toolbar: {
+                        showQuickFilter: true
+                    }
+                }}
+                disableColumnFilter
+                pageSizeOptions={[5, 10, 15, 20, 50, 100]}
             />
         </div>
     )
