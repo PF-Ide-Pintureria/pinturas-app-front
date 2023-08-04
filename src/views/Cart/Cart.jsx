@@ -7,6 +7,7 @@ import { setCart } from "../../redux/actions/Cart/setCart";
 import { postOrderByCart } from "../../redux/actions/Orders/postOrderByCart";
 import { postOrderPayment } from "../../redux/actions/Orders/postOrderPayment";
 
+
 const Cart = () => {
   const user = useSelector((state) => state.user);
   const cart = useSelector((state) => state.cart);
@@ -23,6 +24,7 @@ const Cart = () => {
   const handleSendProduct = async() => {
     if(!user.id) {
       alert("Necesitas estar loggeado para comprar");
+
 
     }
     else if(user.id){
@@ -62,6 +64,7 @@ const Cart = () => {
         alert(err);
       })
     }
+
   }
 
   const totalPrice = () => {
