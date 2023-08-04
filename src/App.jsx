@@ -62,10 +62,11 @@ function App() {
 
     return (
         <BrowserRouter>
+        <div className={"h-screen w-screen"}>
             <header>
                 <NavBar />
             </header>
-            <Routes>
+            <Routes >
                 <Route exact path="/" element={<Home />} />
 
                 <Route path="/products" element={<Products />} />
@@ -106,6 +107,7 @@ function App() {
 
                 <Route path="*" element={<NotFound />} />
             </Routes>
+        </div>
             <footer>
                 <Footer />
             </footer>
