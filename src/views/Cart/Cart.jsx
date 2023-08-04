@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import ProductCart from "../../components/ProductCart/ProductCart"
+import ProductCart from "../../components/ProductCart/ProductCart";
 import { postCart } from "../../redux/actions/Cart/postCart";
 import { setCart } from "../../redux/actions/Cart/setCart";
 import { postOrderByCart } from "../../redux/actions/Orders/postOrderByCart";
@@ -12,8 +12,8 @@ const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  console.log('user', user)
   // const [productsDetail, setProductsDetail] = useState([]);
+
   let sumPrices = [];
 
   const addPrice = (price) =>{

@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const PendingPayment = () => {
+  
   return (
     <div className="flex items-center justify-center min-h-screen mt-5">
       <div className="bg-white shadow-lg rounded-lg p-6 w-96">
