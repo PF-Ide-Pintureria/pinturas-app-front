@@ -5,6 +5,21 @@ import { Link } from "react-router-dom";
 const Favorities = () => {
     const favorites = useSelector((state) => state.allFavorites);
     console.log('favorites Favorite N7', favorites)
+    const deleteProductCart = () => {
+        if (user){
+            let data = {
+                idUser: user.id,
+                idProduct: id
+            }
+            // console.log('data', data)
+            deleteFavorites(data)(dispatch).then((response) =>{
+                if (response) {
+                    Swal.fire("eliminado");
+                }
+            }).catch((error) => console.log('error', error))
+        }
+    }
+
     return (
         <div className="container mx-auto px-4">
             {" "}
@@ -28,14 +43,23 @@ const Favorities = () => {
                     <span>Favoritos</span>
                 </p>
             </li>
-            <div className="content flex-1 min-h-[500px] overflow-y-auto p-4 rounded bg-gray-200">
+            <div className="content flex-1 min-h-[500px] overflow-y-auto p-4 rounded bg-tertiary grid grid-cols-2">
                 {favorites 
                 ? (
                     favorites.map((favorite) => 
-                    <div>
-                        <p>{favorite.image}</p>
-                        <p>{favorite.name}</p>
-                        <p>{favorite.price}</p>
+                    <div className="flex p-5  w-full rounded hover:bg-gray-200 ">
+                        <img src={favorite.image} alt={`${favorite.name} `} className="w-20" />
+                        <div className="flex flex-col justify-between p-5">
+                            <div>
+                                <p className="text-base font-semibold ">{favorite.name}</p>
+                                <button className="text-indigo-500 font-medium font-sans text-left flex items-center pb-3" onClick={deleteProductCart}>Eliminar</button>
+                            </div>
+                            <div>
+                            {favorite.stock === 1 && <p className="text-red-700"> Producto sin stock </p>}
+                            {favorite.active === "false" && <p className="text-red-700"> Producto sin stock </p>}
+                                <p className="flex items-end text-2xl">${favorite.price}</p>
+                            </div>
+                        </div>
                     </div>
                     )
                     )    

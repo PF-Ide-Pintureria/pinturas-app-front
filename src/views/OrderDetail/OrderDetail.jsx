@@ -8,6 +8,9 @@ const OrderDetail = () => {
     const cart = useSelector((state) => state.cart);
     let prices = []
     console.log('prices', prices)
+    const pushPrice = () =>{
+        
+    }
 
     const calcTotal = () => {
         let sum = 0
