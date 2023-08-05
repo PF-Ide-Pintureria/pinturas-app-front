@@ -55,12 +55,16 @@ export const DELETE_POST = "DELETE_POST";
 export const PUT_POST = "PUT_POST";
 export const POST_POST = "POST_POST";
 
+//FAVORITE
+export const ADD_FAVORITE = "ADD_FAVORITE";
+export const GET_FAVORITES = "GET_FAVORITES";
+
 //AUTH0-USERS-INFO
 export const SET_USER_DATA = "SET_USER_DATA";
 export const URL_INFO_USER_AUTH0 = "--";
 
 //URL
-export const BASE_URL = "https://back-server-pinturas-app.onrender.com/";
+export const BASE_URL = "http://localhost:3000/";
 
 // REVIEWS
 

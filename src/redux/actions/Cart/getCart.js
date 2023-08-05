@@ -5,7 +5,7 @@ export const getCart = (cartId) => {
     return async (dispatch) => {
         try {
             const response = (await axios.get(`${BASE_URL}carts`, cartId)).data;
-            console.log('getCart', response)
+
             const cart = response.cart;
             // const products = cart.products;
             // console.log('cart', cart.products)

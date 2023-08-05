@@ -1,7 +1,10 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const Favorities = () => {
+    const favorites = useSelector((state) => state.allFavorites);
+    console.log('favorites Favorite N7', favorites)
     return (
         <div className="container mx-auto px-4">
             {" "}
@@ -26,9 +29,20 @@ const Favorities = () => {
                 </p>
             </li>
             <div className="content flex-1 min-h-[500px] overflow-y-auto p-4 rounded bg-gray-200">
-                <p className="flex items-center space-x-3 text-gray-500 p-2 ">
+                {favorites 
+                ? (
+                    favorites.map((favorite) => 
+                    <div>
+                        <p>{favorite.image}</p>
+                        <p>{favorite.name}</p>
+                        <p>{favorite.price}</p>
+                    </div>
+                    )
+                    )    
+                : (<p className="flex items-center space-x-3 text-gray-500 p-2 ">
                     No tienes favoritos
-                </p>
+                    </p>
+                )}
             </div>
             <div className="flex justify-between m-10">
                 <Link to="/products">

@@ -59,6 +59,10 @@ import {
     PUT_POST,
     POST_POST,
 
+    //FAVORITES
+    ADD_FAVORITE,
+    GET_FAVORITES,
+
     // REVIEWS
     SAVE_REVIEW,
 
@@ -117,11 +121,14 @@ const initialState = {
     //BLOG
     posts: [],
     post: {},
+
+    //FAVORITES
+    favorites: [],
+    Allfavorites: [],
 };
 
 const reducer = (state = initialState, { type, payload }) => {
     switch (type) {
-
         //PRODUCTS
         case GET_ALL_PRODUCTS:
             return { ...state, products: payload };
@@ -222,9 +229,14 @@ const reducer = (state = initialState, { type, payload }) => {
             return { ...state, posts: payload };
 
         // REVIEWS
-
         case SAVE_REVIEW:
             return { ...state, userReview: payload };
+
+        //FAVORITES
+        case ADD_FAVORITE:
+            return { ...state, favorites: payload };
+        case GET_FAVORITES:
+            return { ...state, Allfavorites: payload };
 
         default:
             return { ...state };
