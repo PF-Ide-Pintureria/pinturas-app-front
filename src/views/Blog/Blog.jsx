@@ -6,8 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import getPosts from "../../redux/actions/Blog/getPosts";
 
 const Blog = () => {
-    let loremIpsu =
-        "Para conseguir un buen resultado a la hora de pintar, basta con seguir unas recomendaciones.";
 
     const dispatch = useDispatch();
 
@@ -29,44 +27,17 @@ const Blog = () => {
                         {posts.map(post => {
                             return (
                                 <BlogCard
-                                    image={post.image ? post.image : { img }}
+                                    key={post.idBlog}
+                                    id={post.idBlog}
+                                    image={post.image ? post.image : img}
                                     title={post.title}
                                     date={(Date(post.createdAt)).slice(0, 15)}
                                     description={post.description}
+                                    author={post.userId}
                                 />
 
                             )
                         })}
-                        {/* <BlogCard
-                            image={img}
-                            title="Consejos para pintar"
-                            date="April 03, 2022"
-                            description={loremIpsu}
-                        />
-                        <BlogCard
-                            image={img}
-                            title="Consejos para pintar"
-                            date="April 03, 2022"
-                            description={loremIpsu}
-                        />
-                        <BlogCard
-                            image={img}
-                            title="Consejos para pintar"
-                            date="April 03, 2022"
-                            description={loremIpsu}
-                        />
-                        <BlogCard
-                            image={img}
-                            title="LConsejos para pintar"
-                            date="April 03, 2022"
-                            description={loremIpsu}
-                        />
-                        <BlogCard
-                            image={img}
-                            title="LConsejos para pintar"
-                            date="April 03, 2022"
-                            description={loremIpsu}
-                        /> */}
                     </div>
                 </div>
             </div>
