@@ -22,12 +22,12 @@ const UsersDash = () => {
         {
             field: 'name',
             headerName: 'Nombre',
-            width: 100
+            width: 160
         },
         {
             field: 'lastName',
             headerName: 'Apellido',
-            width: 100
+            width: 160
         },
         {
             field: 'rol',
@@ -37,12 +37,27 @@ const UsersDash = () => {
         {
             field: 'status',
             headerName: 'Estado',
-            width: 90
+            width: 80
+        },
+        {
+            field: 'address',
+            headerName: 'Direccion',
+            width: 180
+        },
+        {
+            field: 'locality',
+            headerName: 'Localidad',
+            width: 160
+        },
+        {
+            field: 'province',
+            headerName: 'Provincia',
+            width: 160
         },
         {
             field: 'edit',
             headerName: 'Editar',
-            width: 90,
+            width: 120,
             sorteable: false,
             renderCell: (params) => (
                 <UpdateUserButton idUser={params.row.id} />
@@ -51,7 +66,7 @@ const UsersDash = () => {
         {
             field: 'delete',
             headerName: 'Eliminar',
-            width: 90,
+            width: 120,
             sorteable: false,
             renderCell: (params) => (
                 <DeleteUserButton idUser={params.row.id} />
@@ -60,7 +75,7 @@ const UsersDash = () => {
         {
             field: 'ban',
             headerName: 'Bloquear',
-            width: 90,
+            width: 120,
             sorteable: false,
             renderCell: (params) => (
                 <BanUserButton idUser={params.row.id} />
@@ -77,6 +92,9 @@ const UsersDash = () => {
                     lastName: user.lastName,
                     rol: user.rol,
                     status: user.active ? "Activo" : "Inactivo",
+                    address: user.address,
+                    locality: user.locality,
+                    province: user.province
                 }))}
                 columns={columns}
                 initialState={{

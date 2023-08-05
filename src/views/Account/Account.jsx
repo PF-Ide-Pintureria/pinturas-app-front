@@ -41,11 +41,11 @@ const Account = () => {
         logoutUser(dispatch);
         navigate('/');
     }
-    useEffect(()=> {
-        if (loggedUser.id){
+    useEffect(() => {
+        if (loggedUser.id) {
             dispatch(getFavorites(loggedUser.id))
         }
-    },[loggedUser])
+    }, [loggedUser])
 
     const handleButtonClick = (buttonName) => {
         if (buttonName === "account") {
