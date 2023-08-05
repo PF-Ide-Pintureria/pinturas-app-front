@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from 'sweetalert2';
 import { postFavorites } from "../../redux/actions/Favorites/postFavorites";
+import { deleteFavorites } from "../../redux/actions/Favorites/deleteFavorite";
 
 const ProductCart = ({ id, name, quantity, image, price, stock}) => {
     const [count, setCount] = useState(quantity)
@@ -19,8 +20,16 @@ const ProductCart = ({ id, name, quantity, image, price, stock}) => {
 
     const deleteProductCart = () => {
         if (user){
-            dispatch(postFavorites())
-            Swal.fire("not implemented");
+            let data = {
+                idUser: user.id,
+                idProduct: id
+            }
+            // console.log('data', data)
+            deleteFavorites(data)(dispatch).then((response) =>{
+                if (response) {
+                    Swal.fire("eliminado");
+                }
+            }).catch((error) => console.log('error', error))
         }
     }
     const addFavorite = () => {

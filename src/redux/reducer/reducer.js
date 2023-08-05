@@ -62,6 +62,7 @@ import {
     //FAVORITES
     ADD_FAVORITE,
     GET_FAVORITES,
+    DELETE_FAVORITES,
 
     // REVIEWS
     SAVE_REVIEW,
@@ -236,6 +237,8 @@ const reducer = (state = initialState, { type, payload }) => {
         case ADD_FAVORITE:
             return { ...state, favorites: payload };
         case GET_FAVORITES:
+            return { ...state, Allfavorites: payload };
+        case DELETE_FAVORITES:
             return { ...state, Allfavorites: payload };
 
         default:
