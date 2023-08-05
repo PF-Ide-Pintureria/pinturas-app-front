@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SideBarAuth from "../../components/Account/SidebarAuth";
 import SideBarUser from "../../components/Account/SideBarUser";
 import LoadingScreen from "../../components/Account/LoadingScreen";
@@ -17,6 +17,7 @@ import ProductsDash from "../../components/Account/ProductsDash";
 import LoginForm from "../../components/LoginForm/LoginForm";
 import UsersDash from "../../components/Account/UserDash";
 import SalesDash from "../../components/Account/SalesDash";
+import { getFavorites } from "../../redux/actions/Favorites/getFavorites";
 
 const Account = () => {
     const { isAuthenticated, user, logout, isLoading } = useAuth0();
@@ -40,7 +41,11 @@ const Account = () => {
         logoutUser(dispatch);
         navigate('/');
     }
-
+    useEffect(()=> {
+        if (loggedUser.id){
+            dispatch(getFavorites(loggedUser.id))
+        }
+    },[loggedUser])
 
     const handleButtonClick = (buttonName) => {
         if (buttonName === "account") {
@@ -55,15 +60,6 @@ const Account = () => {
             setActiveButton(buttonName);
 
         }
-        // if (buttonName === "userForm") {
-        //     setDashboard(false);
-        //     setUpdateUserForm(true);
-        //     setAddresses(false);
-        //     setFavorities(false);
-        //     setOrders(false);
-        //     setProducts(false);
-        //     setActiveButton(buttonName);
-        // }
         if (buttonName === "addresses") {
             setDashboard(false);
             setUpdateUserForm(false);
@@ -132,6 +128,7 @@ const Account = () => {
         }
 
     };
+
     if (isAuthenticated) {
         return (
             <div>

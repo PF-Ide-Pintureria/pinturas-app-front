@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import ProductCart from "../../components/ProductCart/ProductCart";
+import ProductCart from "../../components/ProductCart/ProductCart"
 import { postCart } from "../../redux/actions/Cart/postCart";
 import { setCart } from "../../redux/actions/Cart/setCart";
 import { postOrderByCart } from "../../redux/actions/Orders/postOrderByCart";
@@ -12,12 +12,12 @@ const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  console.log('user', user)
   // const [productsDetail, setProductsDetail] = useState([]);
-
   let sumPrices = [];
 
-  const addPrice = (price) =>{
-    return sumPrices.push(price)
+  const addPrice = (quantity, price) =>{
+    sumPrices.push(quantity * price);
   }
 
   const handleSendProduct = async() => {
@@ -70,7 +70,7 @@ const Cart = () => {
       sum = sum + sumPrices[i];
       
     }
-    return
+    return sum.toFixed(2);
   }
 
   return (
@@ -107,23 +107,26 @@ const Cart = () => {
                 <div>
                 {cart.map((product) =>
                   product && product.id ? (
-                    <ProductCart addPrice={addPrice}
-                      // key={product.id}
-                      id={product.id}
-                      name={product.name}
-                      stock={product.stock}
-                      quantity={product.quantity}
-                      price={product.price}
-                      // color={product.color}
-                      image={product.image}
-                    />
+                    <div>
+                      {addPrice(product.quantity, product.price)}
+                      <ProductCart 
+                        // key={product.id}
+                        id={product.id}
+                        name={product.name}
+                        stock={product.stock}
+                        quantity={product.quantity}
+                        price={product.price}
+                        // color={product.color}
+                        image={product.image}
+                      />
+                    </div>
                     ) : null
                   )
                 }
                 </div>
                 <div className="w-full flex justify-between px-4 pt-4 border-t">
-                  <h1 className="text-lg font-semibold "> Total </h1>
-                  <h1> $ {totalPrice()}</h1>
+                  <h1 className="text-2xl font-bold text-gray-800 pb-2 my-5"> Total </h1>
+                  <h1 className="text-2xl font-bold text-gray-800 pb-2 my-5"> $ {totalPrice()}</h1>
                 </div>
               </div>
               

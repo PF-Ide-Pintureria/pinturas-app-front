@@ -1,12 +1,15 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Swal from 'sweetalert2';
+import { postFavorites } from "../../redux/actions/Favorites/postFavorites";
 
-const ProductCart = ({ name, quantity, image, price, stock, addPrice }) => {
+const ProductCart = ({ id, name, quantity, image, price, stock}) => {
     const [count, setCount] = useState(quantity)
+    const dispatch = useDispatch()
+    const user = useSelector(state => state.user)
 
     const calcPrice = (quant, pric) => {
         let sum = Number(quant) * Number(pric)
-        addPrice(sum.toFixed(2))
         return sum.toFixed(2);
     }
     const moreOrLessQuantity = (algo) => {
@@ -15,10 +18,30 @@ const ProductCart = ({ name, quantity, image, price, stock, addPrice }) => {
     }
 
     const deleteProductCart = () => {
-        Swal.fire("not implemented");
+        if (user){
+            dispatch(postFavorites())
+            Swal.fire("not implemented");
+        }
     }
     const addFavorite = () => {
-        Swal.fire("not implemented");
+        if (user){
+            let data = {
+                "idUser": user.id,
+                "idProduct": id
+            }
+            dispatch(postFavorites(data)).then((response) => {
+                if (response === "existe"){
+                    Swal.fire("Ya exite este producto en favoritos");
+                }else{
+                    Swal.fire("Producto agregado a favoritos");
+
+                }
+            }).catch((error) => {
+                console.log('error productCart', error)
+            });
+        } else {
+            Swal.fire("Debes estar logeado para agregar favoritos");
+        }
     }
 
     return (

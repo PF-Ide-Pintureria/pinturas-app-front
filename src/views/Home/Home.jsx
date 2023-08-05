@@ -16,12 +16,11 @@ const Home = () => {
   }, [dispatch]);
 
   return (
-    <div>
-      <main>
+    <div className="w-full h-full">
+      <main className="w-full h-full">
         <div>
           <Banner />
         </div>
-        {/* <SearchBar /> --------------> SEARCH TEMPORALY SUSPENDED <-------------------------------- */}
         <div>
           <FeaturedContainer />
         </div>
