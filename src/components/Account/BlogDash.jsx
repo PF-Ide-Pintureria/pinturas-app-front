@@ -7,47 +7,18 @@ import EditBlogButton from "./Blog/EditBlogButton";
 import DeleteBlogButton from "./Blog/DeleteBlogButton";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import CreateBlogButton from "./Blog/CreateBlogButton";
+import getUserById from "../../redux/actions/User/getUserById";
 
 
 const BlogDash = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        console.log('entramos en el useEffect')
         getPosts()(dispatch);
     }, [dispatch]);
-
     const posts = useSelector(state => state.posts);
-    // const posts = [
-    //     {
-    //         id: 1,
-    //         title: 'Post 1',
-    //         author: 'Autor 1',
-    //         date: 'septiembre 30 del año pasado',
-    //         active: true
-    //     },
-    //     {
-    //         id: 2,
-    //         title: 'Post 2',
-    //         author: 'Autor 2',
-    //         date: 'Octubre 30 del año pasado',
-    //         active: false
-    //     },
-    //     {
-    //         id: 3,
-    //         title: 'Post 3',
-    //         author: 'Autor 3',
-    //         date: 'Noviembre 30 del año pasado',
-    //         active: true
-    //     },
-    //     {
-    //         id: 4,
-    //         title: 'Post 4',
-    //         author: 'Autor 4',
-    //         date: 'Diciembre 30 del año pasado',
-    //         active: true
-    //     },
-    // ]
+
+
 
     const columns = [
         {
@@ -61,9 +32,14 @@ const BlogDash = () => {
             width: 200
         },
         {
+            field: 'description',
+            headerName: 'Descripcion',
+            width: 200
+        },
+        {
             field: 'author',
             headerName: 'Autor',
-            width: 200
+            width: 40
         },
         {
             field: 'status',
@@ -103,7 +79,8 @@ const BlogDash = () => {
                     rows={posts.map(post => ({
                         id: post.idBlog,
                         title: post.title,
-                        author: post.description,
+                        author: post.userId,
+                        description: post.description,
                         date: post.createdAt,
                         status: post.active ? "Activo" : "Inactivo",
                     }))}

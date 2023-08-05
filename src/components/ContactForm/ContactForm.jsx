@@ -47,15 +47,10 @@ const Contact = () => {
 
         const errores = formValidation(inputs);
         setErrors(errores);
+        console.log('errores form', errores)
         if (Object.keys(errors).length === 0) {
+            console.log('Podemos despachar la action', inputs)
             formatAndSend(inputs, dispatch);
-            console.log('response', response)
-            if (response) {
-                Swal.fire('Tu mensaje ha sido enviado!');
-
-            } else {
-                Swal.fire('Hubo un error al enviar el mensaje');
-            };
         }
 
         setInputs({
@@ -92,11 +87,19 @@ const Contact = () => {
                                     placeholder="Nombre"
                                 />
                             </div>
+                            <div className="flex my-0 pt-0 pl-8 justify-around">
+                                <p
+                                    className={`text-warning text-xs font-extrabold py-0 m-0 ${errors.name ? "block" : "hidden"
+                                        }`}
+                                >
+                                    {errors.name}
+                                </p>
+                            </div>
 
-                            <div className="flex m-8">
+                            <div className={`flex ${errors.name ? "m-4" : "m-8"}`}>
                                 <label
                                     htmlFor="name"
-                                    className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
+                                    className="bg-quaternary rounded-l-xl w-40 h-8 flex items-center justify-center"
                                 >
                                     Correo :
                                 </label>
@@ -108,6 +111,14 @@ const Contact = () => {
                                     onChange={handleChange}
                                     placeholder="Correo electrónico"
                                 />
+                            </div>
+                            <div className="flex my-0 pt-0 pl-8 justify-around">
+                                <p
+                                    className={`text-warning text-xs font-extrabold py-0 m-0 ${errors.email ? "block" : "hidden"
+                                        }`}
+                                >
+                                    {errors.email}
+                                </p>
                             </div>
 
                             <div className="flex m-8">
@@ -126,6 +137,14 @@ const Contact = () => {
                                     onChange={handleChange}
                                     placeholder="Tu mensaje"
                                 />
+                            </div>
+                            <div className="flex my-0 pt-0 pl-8 justify-around">
+                                <p
+                                    className={`text-warning text-xs font-extrabold py-0 m-0 ${errors.message ? "block" : "hidden"
+                                        }`}
+                                >
+                                    {errors.message}
+                                </p>
                             </div>
                             <button
                                 type="submit"
