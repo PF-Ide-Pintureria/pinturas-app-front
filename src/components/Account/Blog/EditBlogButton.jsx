@@ -12,7 +12,7 @@ const EditBlogButton = ({ idBlog }) => {
 
     return (
         <div className="justify-end">
-            <button onClick={handleClick} className="bg-primary text-quaternary border border-solid border-black rounded-xl w-8 h-4">Editar</button>
+            <button onClick={handleClick} className="bg-primary rounded-xl w-20 h-12 m-8 text-yellow-300 border-2 border-solid border-gray-300 shadow-md font-bold">Editar</button>
         </div>
     )
 }

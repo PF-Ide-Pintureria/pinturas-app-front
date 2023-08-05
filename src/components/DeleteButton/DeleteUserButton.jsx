@@ -13,7 +13,7 @@ const DeleteUserButton = ({ idUser }) => {
 
     return (
         <div className="flex justify-end">
-            <button onClick={handleClick} className="bg-warning rounded-xl w-2 h-2 p-4 text-yellow-300 border-2 border-solid border-gray-300 shadow-md font-bold justify-center items-center">X</button>
+            <button onClick={handleClick} className="bg-warning rounded-xl w-20 h-12 m-8 text-yellow-300 border-2 border-solid border-gray-300 shadow-md font-bold">Eliminar</button>
         </div>
     );
 }

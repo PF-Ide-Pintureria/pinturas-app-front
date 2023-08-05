@@ -25,7 +25,7 @@ const BanUserButton = ({ idUser }) => {
 
     return (
         <div>
-            <button onClick={handleClick}>Banear</button>
+            <button className="bg-warning rounded-xl w-20 h-12 m-8 text-yellow-300 border-2 border-solid border-gray-300 shadow-md font-bold" onClick={handleClick}>Bloquear</button>
         </div>
     )
 }
