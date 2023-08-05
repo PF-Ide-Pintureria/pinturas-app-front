@@ -1,13 +1,77 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import ProductCart from "../../components/ProductCart/ProductCart"
-import { productById } from "../../redux/actions/productById";
+import { postCart } from "../../redux/actions/Cart/postCart";
+import { setCart } from "../../redux/actions/Cart/setCart";
+import { postOrderByCart } from "../../redux/actions/Orders/postOrderByCart";
+import { postOrderPayment } from "../../redux/actions/Orders/postOrderPayment";
 
 const Cart = () => {
+  const user = useSelector((state) => state.user);
   const cart = useSelector((state) => state.cart);
-  // const productDetails = useSelector((state) => state.detail);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  console.log('user', user)
   // const [productsDetail, setProductsDetail] = useState([]);
+  let sumPrices = [];
+
+  const addPrice = (quantity, price) =>{
+    sumPrices.push(quantity * price);
+  }
+
+  const handleSendProduct = async() => {
+    if(!user.id) {
+      alert("Necesitas estar loggeado para comprar");
+
+    }
+    else if(user.id){
+      let buyCart = {
+        idUser: user.id,
+        products: cart
+        }
+      await postCart(buyCart)(dispatch).then(async (response) => {
+        if(response){
+          
+          let order = {
+            idCart: response.data.idCart
+          }
+
+          // console.log(response.data.idCart); 
+          await postOrderByCart(order)(dispatch).then(async (response) => {
+
+            if (response){
+
+              let idOrder = response.order.id;
+
+              await postOrderPayment(idOrder)(dispatch).then((response) => {
+                if (response) navigate("/cart/detail");
+                console.log('response postOrderPayment N46', response.response.initPoint);
+              }).catch((err) => {
+                console.log('err postOrderPayment', err)
+              })
+
+            }
+          }).catch((err)=> {
+            console.log('err postOrderByCart', err)
+          })
+          // dispatch(setCart([]))
+          // localStorage.clear();
+        }
+      }).catch((err) => {
+        alert(err);
+      })
+    }
+  }
+
+  const totalPrice = () => {
+    let sum = 0
+    for (let i = 0; i < sumPrices.length; i++) {
+      sum = sum + sumPrices[i];
+      
+    }
+    return sum.toFixed(2);
+  }
 
   return (
     <div className="my-10 w-full">
@@ -34,20 +98,38 @@ const Cart = () => {
       <div className="w-full h-full flex flex-wrap justify-center items-stretch md:px-10  lg:px-20 xl:px-32">
         <div className="w-11/12 h-5/6 mx-3 mt-3 flex justify-center flex-col ">
           <div className=" mt-3 space-y-3 rounded-lg border bg-white px-2 py-4 md:px-6">
-            {cart && (
-            cart.map((product) =>
-              product && product.id ? (
-                <ProductCart
-                  // key={product.id}
-                  id={product.id}
-                  // name={product.name}
-                  quantity={product.quantity}
-                  // price={product.price}
-                  // color={product.color}
-                  // image={product.image}
-                />
-              ) : null
-            )
+            {cart.length > 0 && (
+              <div>
+                <div className="w-full flex justify-between px-4">
+                  <h1 className="text-lg font-semibold"> Detalle </h1>
+                    <h1 className="text-lg font-semibold text-right"> Precio </h1> 
+                </div>
+                <div>
+                {cart.map((product) =>
+                  product && product.id ? (
+                    <div>
+                      {addPrice(product.quantity, product.price)}
+                      <ProductCart 
+                        // key={product.id}
+                        id={product.id}
+                        name={product.name}
+                        stock={product.stock}
+                        quantity={product.quantity}
+                        price={product.price}
+                        // color={product.color}
+                        image={product.image}
+                      />
+                    </div>
+                    ) : null
+                  )
+                }
+                </div>
+                <div className="w-full flex justify-between px-4 pt-4 border-t">
+                  <h1 className="text-2xl font-bold text-gray-800 pb-2 my-5"> Total </h1>
+                  <h1 className="text-2xl font-bold text-gray-800 pb-2 my-5"> $ {totalPrice()}</h1>
+                </div>
+              </div>
+              
             )} 
             {cart.length == 0 && (
               <p className="text-gray-400 flex items-center justify-center">
@@ -57,11 +139,14 @@ const Cart = () => {
 
           </div>
           <div className="my-9 flex items-center justify-center">
-            <NavLink to={"/cart/buying"}
-              type="button"
-              className="inline-flex items-center justify-center rounded-md border-2 border-transparent bg-purple-800 bg-none px-12 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-gray-800">
-              Comprar carrito
-            </NavLink >
+                <div>
+                  <button 
+                  type="button"
+                  onClick={handleSendProduct}
+                  className="inline-flex items-center justify-center rounded-md border-2 border-transparent bg-purple-800 bg-none px-12 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-gray-800">
+                    Comprar carrito
+                  </button>
+                </div>
           </div>
         </div>
       </div>

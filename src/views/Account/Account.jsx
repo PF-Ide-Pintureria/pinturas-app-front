@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SideBarAuth from "../../components/Account/SidebarAuth";
 import SideBarUser from "../../components/Account/SideBarUser";
 import LoadingScreen from "../../components/Account/LoadingScreen";
@@ -6,7 +6,7 @@ import Dashboard from "../../components/Account/Dashboard";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { logoutUser } from "../../redux/actions/logoutUser";
+import { logoutUser } from "../../redux/actions/User/logoutUser";
 
 import UpdateUserForm from "../../components/Account/UpdateUserForm";
 import Addresses from "../../components/Account/Addresses";
@@ -14,8 +14,10 @@ import Favorities from "../../components/Account/Favorites";
 import Orders from "../../components/Account/Orders";
 import ProductsDash from "../../components/Account/ProductsDash";
 // import UpdateUserForm from "../../components/Account/UpdateUserForm";
-
 import LoginForm from "../../components/LoginForm/LoginForm";
+import UsersDash from "../../components/Account/UserDash";
+import SalesDash from "../../components/Account/SalesDash";
+import { getFavorites } from "../../redux/actions/Favorites/getFavorites";
 
 const Account = () => {
     const { isAuthenticated, user, logout, isLoading } = useAuth0();
@@ -26,6 +28,8 @@ const Account = () => {
     const [favorities, setFavorities] = useState(false);
     const [orders, setOrders] = useState(false);
     const [products, setProducts] = useState(false);
+    const [users, setUsers] = useState(false);
+    const [sales, setSales] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -33,30 +37,28 @@ const Account = () => {
 
     const logoutUserAction = () => {
         // console.log('Dispatch in Account:', dispatch);
+        localStorage.removeItem("user");
         logoutUser(dispatch);
         navigate('/');
     }
-
+    useEffect(() => {
+        if (loggedUser.id) {
+            dispatch(getFavorites(loggedUser.id))
+        }
+    }, [loggedUser])
 
     const handleButtonClick = (buttonName) => {
         if (buttonName === "account") {
-            setDashboard(true);
-            setUpdateUserForm(true);
-            setAddresses(false);
-            setFavorities(false);
-            setOrders(false);
-            setProducts(false);
-            setActiveButton(buttonName);
-
-        }
-        if (buttonName === "userForm") {
             setDashboard(false);
             setUpdateUserForm(true);
             setAddresses(false);
             setFavorities(false);
             setOrders(false);
             setProducts(false);
+            setUsers(false);
+            setSales(false);
             setActiveButton(buttonName);
+
         }
         if (buttonName === "addresses") {
             setDashboard(false);
@@ -65,6 +67,8 @@ const Account = () => {
             setFavorities(false);
             setOrders(false);
             setProducts(false);
+            setUsers(false);
+            setSales(false);
             setActiveButton(buttonName);
         }
         if (buttonName === "favorities") {
@@ -74,6 +78,8 @@ const Account = () => {
             setFavorities(true);
             setOrders(false);
             setProducts(false);
+            setUsers(false);
+            setSales(false);
             setActiveButton(buttonName);
         }
         if (buttonName === "orders") {
@@ -83,6 +89,8 @@ const Account = () => {
             setFavorities(false);
             setOrders(true);
             setProducts(false);
+            setUsers(false);
+            setSales(false);
             setActiveButton(buttonName);
         }
         if (buttonName === "products") {
@@ -92,10 +100,35 @@ const Account = () => {
             setFavorities(false);
             setOrders(false);
             setProducts(true);
+            setUsers(false);
+            setSales(false);
+            setActiveButton(buttonName);
+        }
+        if (buttonName === "users") {
+            setDashboard(false);
+            setUpdateUserForm(false);
+            setAddresses(false);
+            setFavorities(false);
+            setOrders(false);
+            setProducts(false);
+            setUsers(true);
+            setSales(false);
+            setActiveButton(buttonName);
+        }
+        if (buttonName === "sales") {
+            setDashboard(false);
+            setUpdateUserForm(false);
+            setAddresses(false);
+            setFavorities(false);
+            setOrders(false);
+            setProducts(false);
+            setUsers(false);
+            setSales(true);
             setActiveButton(buttonName);
         }
 
     };
+
     if (isAuthenticated) {
         return (
             <div>
@@ -111,7 +144,7 @@ const Account = () => {
                         <LoadingScreen isLoading={isLoading} />
 
                         {/* {dashboard && <Dashboard /> } */}
-                        {updateUserForm && <UpdateUserForm />}
+                        {(updateUserForm && loggedUser) && <UpdateUserForm />}
                         {addresses && <Addresses />}
                         {favorities && <Favorities />}
                         {orders && <Orders />}
@@ -139,11 +172,13 @@ const Account = () => {
                         <LoadingScreen isLoading={isLoading} />
 
                         {/* {dashboard && <Dashboard /> } */}
-                        {updateUserForm && <UpdateUserForm />}
+                        {(updateUserForm && loggedUser) && <UpdateUserForm />}
                         {addresses && <Addresses />}
                         {favorities && <Favorities />}
                         {orders && <Orders />}
                         {products && <ProductsDash />}
+                        {users && <UsersDash />}
+                        {sales && <SalesDash />}
 
                         {/* <Dashboard isAuthenticated={isAuthenticated} /> */}
                         <footer style={{ textAlign: "center", padding: "10px" }}></footer>

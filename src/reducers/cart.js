@@ -40,7 +40,7 @@ export const cartReducer = (state = cartInitialState, action) => {
 
             } else {
                 updateLocalStorage([...state, { ...product, quantity }]);
-                return [...state, { ...product, quantity }];
+                return [...state, { ...product, quantity}];
             }
 
         case CART_ACTION_TYPES.REMOVE_FROM_CART:

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { formValidation } from "./formValidation";
 import { formatAndSend } from "./formatAndSend";
 import { useDispatch } from "react-redux";
+import Swal from 'sweetalert2'
 
 
 const Contact = () => {
@@ -32,31 +33,25 @@ const Contact = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        console.log('checkpoint: ', 1);
-
         if (!inputs.name || !inputs.email || !inputs.message) {
-            alert("Por favor, complete todos los campos obligatorios.");
+            Swal.fire("Por favor, complete todos los campos obligatorios.");
             return;
         }
 
         const emailRegex =
             /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
         if (!emailRegex.test(inputs.email)) {
-            alert("Por favor, ingrese un correo electrónico válido.");
+            Swal.fire("Por favor, ingrese un correo electrónico válido.");
             return;
         }
 
         const errores = formValidation(inputs);
         setErrors(errores);
+        console.log('errores form', errores)
         if (Object.keys(errors).length === 0) {
+            console.log('Podemos despachar la action', inputs)
             formatAndSend(inputs, dispatch);
         }
-        //     if (response) {
-        //         alert('Tu mensaje ha sido enviado!');
-        //     };
-        // } else {
-        //     alert('Hubo un error al enviar el mensaje');
-        // };
 
         setInputs({
             name: "",
@@ -92,11 +87,19 @@ const Contact = () => {
                                     placeholder="Nombre"
                                 />
                             </div>
+                            <div className="flex my-0 pt-0 pl-8 justify-around">
+                                <p
+                                    className={`text-warning text-xs font-extrabold py-0 m-0 ${errors.name ? "block" : "hidden"
+                                        }`}
+                                >
+                                    {errors.name}
+                                </p>
+                            </div>
 
-                            <div className="flex m-8">
+                            <div className={`flex ${errors.name ? "m-4" : "m-8"}`}>
                                 <label
                                     htmlFor="name"
-                                    className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
+                                    className="bg-quaternary rounded-l-xl w-40 h-8 flex items-center justify-center"
                                 >
                                     Correo :
                                 </label>
@@ -108,6 +111,14 @@ const Contact = () => {
                                     onChange={handleChange}
                                     placeholder="Correo electrónico"
                                 />
+                            </div>
+                            <div className="flex my-0 pt-0 pl-8 justify-around">
+                                <p
+                                    className={`text-warning text-xs font-extrabold py-0 m-0 ${errors.email ? "block" : "hidden"
+                                        }`}
+                                >
+                                    {errors.email}
+                                </p>
                             </div>
 
                             <div className="flex m-8">
@@ -126,6 +137,14 @@ const Contact = () => {
                                     onChange={handleChange}
                                     placeholder="Tu mensaje"
                                 />
+                            </div>
+                            <div className="flex my-0 pt-0 pl-8 justify-around">
+                                <p
+                                    className={`text-warning text-xs font-extrabold py-0 m-0 ${errors.message ? "block" : "hidden"
+                                        }`}
+                                >
+                                    {errors.message}
+                                </p>
                             </div>
                             <button
                                 type="submit"

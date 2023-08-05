@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux/es/hooks/useSelector";
+import { useNavigate } from "react-router-dom";
 // import Desk from "./Desk";
 
 const SideBarUser = ({
@@ -8,10 +9,11 @@ const SideBarUser = ({
     user,
     logout,
 }) => {
+    const navigate = useNavigate();
     const loggedUser = useSelector((state) => state.user);
     if (loggedUser.rol === "admin") {
         return (
-            <div className="w-3/12 bg-white rounded p-3 shadow-lg">
+            <div className="w-1/5 bg-white rounded p-3 shadow-lg">
 
                 <div className="flex items-center space-x-4 p-2 mb-5">
                     <img className="h-12 rounded-full" src="https://i.ibb.co/hM4qPfP/blank-profile-picture-973460-960-720.webp" alt="Profile" />
@@ -149,22 +151,9 @@ const SideBarUser = ({
 
                     <li>
                         <p
-                            onClick={() => handleButtonClick("products")}
+                            onClick={() => navigate('/admin')}
                             className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
                             <span className=" text-gray-600">
-                                {/* <svg
-                                    className="h-5"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth="2"
-                                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                                    />
-                                </svg> */}
                                 <svg
                                     className="h-5"
                                     xmlns="http://www.w3.org/2000/svg"
@@ -185,9 +174,61 @@ const SideBarUser = ({
                                         d="M16.5 10.5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
                                 </svg>
                             </span>
-                            <span>Productos</span>
+                            <span>Ir al Dashboard</span>
                         </p>
                     </li>
+                    {/* <li>
+                        <p
+                            onClick={() => handleButtonClick("users")}
+                            className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
+                            <span className=" text-gray-600">
+
+                                <svg
+                                    className="h-5"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2"
+                                        d="M0 0h24v24H0z"
+                                    />
+                                    <path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+                                    <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                                    <path d="M21 21v-2a4 4 0 0 0 -3 -3.85" />
+                                </svg>
+                            </span>
+                            <span>Usuarios</span>
+                        </p>
+                    </li>
+                    <li>
+                        <p
+                            onClick={() => handleButtonClick("sales")}
+                            className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
+                            <span className=" text-gray-600">
+                                <svg
+                                    className="h-5"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2"
+                                        d="M0 0h24v24H0z" />
+                                    <path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" />
+                                    <path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
+                                    <path d="M14 11h-2.5a1.5 1.5 0 0 0 0 3h1a1.5 1.5 0 0 1 0 3h-2.5" />
+                                    <path d="M12 17v1m0 -8v1" />
+                                </svg>
+                            </span>
+                            <span>Ventas</span>
+                        </p>
+                    </li> */}
 
                     <li>
                         <a

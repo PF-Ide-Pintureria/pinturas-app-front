@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import {useDispatch} from 'react-redux';
-import { productByName } from '../../redux/actions/productByName'
-import { allProducts } from '../../redux/actions/allProducts';
-import { setPage } from "../../redux/actions/setPage";
+import { productByName } from '../../redux/actions/Products/productByName'
+import { allProducts } from '../../redux/actions/Products/allProducts';
+import { setPage } from "../../redux/actions/Page/setPage";
 import { useSelector } from "react-redux";
 
 const SearchBar = () => {

@@ -2,18 +2,15 @@ import React, { useEffect, useState } from "react";
 import Products from "../Products/Products";
 import Paginated from "../Paginated/Paginated";
 import { useSelector, useDispatch } from "react-redux";
-import { allProducts } from "../../redux/actions/allProducts";
+import { allProducts } from "../../redux/actions/Products/allProducts";
 import { getProductFilter } from "../../redux/actions/getProductFilter";
-import { setPage } from "../../redux/actions/setPage";
+import { setPage } from "../../redux/actions/Page/setPage";
 import { setCategory } from "../../redux/actions/filters/setCategory";
 import { setLowPrice } from "../../redux/actions/filters/setLowPrice";
 import { setHighPrice } from "../../redux/actions/filters/setHighPrice";
 
 const ProductsContainer = () => {
     const dispatch = useDispatch();
-
-    // const { products, categories, totalPages, thisPage, filterCategory } =
-    // useSelector((state) => state);
     const products = useSelector((state) => state.products);
     const categories = useSelector((state) => state.categories);
     const totalPages = useSelector((state) => state.totalPages);
