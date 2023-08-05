@@ -39,6 +39,7 @@ import {
 
     //ORDERS
     GET_ALL_ORDERS,
+    GET_ORDERS_USER,
     POST_ORDER_CART,
     POST_ORDER_PAYMENT,
 
@@ -112,6 +113,7 @@ const initialState = {
 
     //ORDERS
     initPoint: "",
+    ordersUser: {},
 
     //AUTH0-USERS-INFO
     userData: {},
@@ -125,7 +127,7 @@ const initialState = {
 
     //FAVORITES
     favorites: [],
-    Allfavorites: [],
+    allFavorites: [],
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -212,6 +214,8 @@ const reducer = (state = initialState, { type, payload }) => {
         //ORDERS
         case POST_ORDER_PAYMENT:
             return { ...state, initPoint: payload };
+        case GET_ORDERS_USER:
+            return  { ...state, ordersUser: payload };
 
         //AUTH0-USERS-INFO
         case SET_USER_DATA:
@@ -237,9 +241,9 @@ const reducer = (state = initialState, { type, payload }) => {
         case ADD_FAVORITE:
             return { ...state, favorites: payload };
         case GET_FAVORITES:
-            return { ...state, Allfavorites: payload };
+            return { ...state, allFavorites: payload };
         case DELETE_FAVORITES:
-            return { ...state, Allfavorites: payload };
+            return { ...state, allFavorites: payload };
 
         default:
             return { ...state };
