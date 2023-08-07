@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { allCategories } from "../../redux/actions/allCategories";
+import { allCategories } from "../../redux/actions/Categories/allCategories";
 import validations from "./validations";
 import { formatAndPost } from "./formatAndPost";
 import { BASE_URL } from "../../redux/action-type";

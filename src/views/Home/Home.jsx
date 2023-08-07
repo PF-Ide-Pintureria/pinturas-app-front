@@ -6,7 +6,7 @@ import FeaturedContainer from "../../components/FeaturedContainer/FeaturedContai
 import CategoryContainer from "../../components/CategoryContainer/CategoryContainer";
 import Banner from "../../components/Banner/Banner";
 import BannerBlog from "../../components/BannerBlog/BannerBlog";
-import { bestSellers } from "../../redux/actions/bestSellers";
+import { bestSellers } from "../../redux/actions/Products/bestSellers";
 
 const Home = () => {
   const dispatch = useDispatch();

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { postRegisterEmail } from '../../redux/actions/Mail/postRegisterEmail';
-import { postRegisterUser } from '../../redux/actions/postRegisterUser';
+import { postRegisterUser } from '../../redux/actions/User/postRegisterUser';
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';

@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { productById } from "../../redux/actions/Products/productById";
 import FeaturedContainer from "../../components/FeaturedContainer/FeaturedContainer";
-import { bestSellers } from "../../redux/actions/bestSellers";
+import { bestSellers } from "../../redux/actions/Products/bestSellers";
 import "./Detail.Module.css";
 import { useCart } from "../../hooks/useCart";
 import { setCart } from "../../redux/actions/Cart/setCart"

@@ -1,4 +1,4 @@
-import { GET_PRODUCT_FILTER, SET_TOTAL_PAGES, BASE_URL } from "../action-type";
+import { GET_PRODUCT_FILTER, SET_TOTAL_PAGES, BASE_URL } from "../../action-type";
 import axios from "axios";
 
 

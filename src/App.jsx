@@ -33,7 +33,7 @@ import DebuggerFooter from "./components/debuggerFooter/debuggerFooter";
 const { VITE_NODE_ENV: NODE_ENV } = import.meta.env;
 import { useCart } from "./hooks/useCart";
 import { useDispatch, useSelector } from "react-redux";
-import { setUser } from "./redux/actions/setUser";
+import { setUser } from "./redux/actions/User/setUser";
 import { allProducts } from "./redux/actions/Products/allProducts";
 import { setCart } from "./redux/actions/Cart/setCart";
 import TestTable from "./TestTable";

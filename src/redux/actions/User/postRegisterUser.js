@@ -1,5 +1,5 @@
 import axios from "axios";
-import { POST_REGISTER_USER, BASE_URL } from '../action-type';
+import { POST_REGISTER_USER, BASE_URL } from '../../action-type';
 
 export const postRegisterUser = (userCreate) => {
     return async (dispatch) => {

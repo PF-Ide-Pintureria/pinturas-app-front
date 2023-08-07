@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
-import { saveReview } from "../../redux/actions/postSaveReview";
+import { saveReview } from "../../redux/actions/Review/postSaveReview";
 import Rating from "../Reviews/Rating";
 import "./Rating.css";
 import Swal from "sweetalert2";
