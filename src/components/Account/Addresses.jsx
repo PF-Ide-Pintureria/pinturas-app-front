@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { putUser } from "../../redux/actions/User/putUser";
 import { useDispatch, useSelector } from "react-redux";
 import getUserById from "../../redux/actions/User/getUserById";
+import Swal from 'sweetalert2';
 
 const Addresses = () => {
     const dispatch = useDispatch();
@@ -43,7 +44,7 @@ const Addresses = () => {
                 if (!response || response === undefined) {
                     throw new Error("No se ha podido modificar la informacion");
                 } else {
-                    alert('Información modificada correctamente')
+                    Swal.fire('Información modificada correctamente')
                 }
             })
         } catch (error) {
