@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import postPost from "../../redux/actions/Blog/postPost";
 import Swal from 'sweetalert2';
 import { useNavigate } from "react-router-dom";
+import img from '../../img/blog.jpg'
 
 const BlogCreate = () => {
     const dispatch = useDispatch();
@@ -40,7 +41,7 @@ const BlogCreate = () => {
         const blog = new FormData();
         blog.append("title", inputs.title);
         blog.append("description", inputs.description);
-        blog.append("image", inputs.image)
+        blog.append("image", inputs.image ? inputs.image : img)
 
         // const blog = {
         //     title: inputs.title,
@@ -55,8 +56,7 @@ const BlogCreate = () => {
         //     idUser
         // }
         console.log('blog a enviar', blog)
-        await postPost(blog, idUser)(dispatch).then(response => {
-            console.log('respuesta en el submit', response)
+        await postPost(blog)(dispatch).then(response => {
             if (response.status === 'success') {
                 Swal.fire('Blog creado');
             } else {
@@ -98,6 +98,9 @@ const BlogCreate = () => {
                                     className="bg-formBg rounded-r-lg w-72 h-50"
                                     type='textarea'
                                     name='description'
+                                    cols={40}
+                                    rows={15}
+                                    wrap='hard'
                                     onChange={handleChange} />
                             </div>
                             <button
