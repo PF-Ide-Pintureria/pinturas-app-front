@@ -35,15 +35,16 @@ export const formatAndSend = async ({ name, email, message }, dispatch) => {
             </body>
         </html>`
 
-        const emailToBeSent = {
+        const emailToBeSend = {
             name: name,
             message: formatedEmail,
             replyTo: email
         };
 
-        await postContactEmail(emailToBeSent)(dispatch).then((res) => {
+        console.log('emailTobeSent', emailToBeSend)
+        await postContactEmail(emailToBeSend)(dispatch).then((res) => {
             console.log('res', res)
-            if (res.message === "Email sent succesfuly") {
+            if (res.status === 200) {
                 Swal.fire("Correo enviado correctamente");
             } else {
                 Swal.fire('El mensaje no ha sido enviado')
