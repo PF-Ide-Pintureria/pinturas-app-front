@@ -12,7 +12,6 @@ export const getFavorites = (id) => {
             // console.log('user', user);
 
             const response = (await axios.post(`${BASE_URL}favorites/user`, user)).data;
-            console.log('response', response)
             dispatch({ type: GET_FAVORITES, payload: response });
 
             // console.log('response getFavorites', response);
