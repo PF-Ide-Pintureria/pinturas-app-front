@@ -1,11 +1,15 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { deleteFavorites } from "../../redux/actions/Favorites/deleteFavorite";
 
 const Favorities = () => {
     const favorites = useSelector((state) => state.allFavorites);
-    console.log('favorites Favorite N7', favorites)
-    const deleteProductCart = () => {
+    const user = useSelector((state) => state.user);
+    const dispatch = useDispatch()
+    
+    console.log('user', user)
+    const deleteProductCart = (id) => {
         if (user){
             let data = {
                 idUser: user.id,
@@ -52,7 +56,7 @@ const Favorities = () => {
                         <div className="flex flex-col justify-between p-5">
                             <div>
                                 <p className="text-base font-semibold ">{favorite.name}</p>
-                                <button className="text-indigo-500 font-medium font-sans text-left flex items-center pb-3" onClick={deleteProductCart}>Eliminar</button>
+                                <button className="text-indigo-500 font-medium font-sans text-left flex items-center pb-3" onClick={() => deleteProductCart(favorite.id)}>Eliminar</button>
                             </div>
                             <div>
                             {favorite.stock === 1 && <p className="text-red-700 font-semibold"> Producto sin stock </p>}
