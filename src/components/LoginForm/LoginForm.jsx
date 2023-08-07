@@ -144,54 +144,11 @@ const LoginForm = () => {
                     </p>
                 </div>
             <div className="mt-7">
-              <input
-                type="password"
-                placeholder="Contraseña"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className={`mt-1 pl-4 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${
-                  errors.password ? "border-red-500" : "border-gray-300"
-                }`}
-              />
-              {errors.password && (
-                <p className="text-red-500 text-sm mt-1">{errors.password}</p>
-              )}
-            </div>
 
-            <div className="pt-10">
-              <button
-                type="submit"
-                className="bg-blue-500 w-full py-3 rounded-xl text-white shadow-xl hover:bg-blue-600 hover:shadow-inner focus:outline-none transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105"
-              >
-                Iniciar sesión
-              </button>
-            </div>
-          </form>
-
-          <div className="mt-7">
-            <button
-              onClick={() => loginWithRedirect()}
-              type="submit"
-              className="bg-blue-500 w-full py-3 rounded-xl text-white shadow-xl hover:bg-blue-600 hover:shadow-inner focus:outline-none transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105"
-            >
-              Iniciar con Google
-            </button>
-          </div>
-
-          <p className="text-gray-400 pt-5 pb-10 text-m ">
-            ¿No tienes una cuenta?{" "}
-            <a
-              className="text-center text-blue-600 hover:text-blue-800"
-              href="#"
-              onClick={navigateToRegister}
-            >
-              Registrate
-            </a>{" "}
-          </p>
         </div>
-      </div>
-    </div>
-  );
+            </div>
+        </div>
+    );
 };
 
 export default LoginForm;

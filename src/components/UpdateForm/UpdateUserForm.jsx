@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllUsers } from "../../redux/actions/getAllUsers";
+import { getAllUsers } from "../../redux/actions/User/getAllUsers";
 import { putUser } from "../../redux/actions/User/putUser.js";
 import { useParams } from "react-router-dom";
 import getUserById from "../../redux/actions/User/getUserById";

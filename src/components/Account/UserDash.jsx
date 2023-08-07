@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import { useDispatch, useSelector } from "react-redux";
-import { getAllUsers } from "../../redux/actions/getAllUsers";
+import { getAllUsers } from "../../redux/actions/User/getAllUsers";
 import DeleteUserButton from "../../components/DeleteButton/DeleteUserButton";
 import UpdateUserButton from "../../components/UpdateButton/UpdateUserButton";
 import BanUserButton from "../../components/DeleteButton/BanUserButton";

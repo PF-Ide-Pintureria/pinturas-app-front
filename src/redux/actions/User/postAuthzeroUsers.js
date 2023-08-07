@@ -1,5 +1,5 @@
 import axios from "axios";
-import { SET_USER_DATA, URL_INFO_USER_AUTH0 } from "../action-type";
+import { SET_USER_DATA, URL_INFO_USER_AUTH0 } from "../../action-type";
 
 export const setUserData = (userData) => {
   return async (dispatch) => {
