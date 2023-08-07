@@ -3,13 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch, useSelector } from "react-redux";
 import { postLoginUser } from "../../redux/actions/User/postLoginUser";
-import axios from "axios";
 import { logoutUser } from "../../redux/actions/User/logoutUser";
 import Swal from 'sweetalert2';
 
 const LoginForm = () => {
-    const { isAuthenticated, loginWithRedirect, user } = useAuth0();
-    const [userInfo, setUserInfo] = useState(null);
+    const { isAuthenticated, loginWithPopup, user } = useAuth0();
+    const [userInfo, setUserInfo] = useState();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -22,33 +21,6 @@ const LoginForm = () => {
             setUserInfo(user);
         }
     }, [isAuthenticated, userInfo, user]);
-
-    // useEffect(() => {
-
-    // }, [])
-
-    // Si el usuario está autenticado, almacenamos su información en el estado local
-    // Esto te permitirá enviar la información al backend
-
-    // Función para enviar la información del usuario al backend
-    const sendUserInfoToBackend = () => {
-        axios
-            .post("/api/userInfo", userInfo) // Reemplaza "/api/userInfo" con el endpoint de tu API en el backend
-            .then((response) => {
-                // Manejo la respuesta exitosa si se envia la info corrrectamente al back
-                console.log(
-                    "Información del usuario enviada al backend:",
-                    response.data
-                );
-            })
-            .catch((error) => {
-                // Maneja el error si la solicitud falla
-                console.error(
-                    "Error al enviar la información del usuario al backend:",
-                    error
-                );
-            });
-    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -152,7 +124,7 @@ const LoginForm = () => {
 
                     <div className="mt-7">
                         <button
-                            onClick={() => loginWithRedirect()}
+                            onClick={() => loginWithPopup()}
                             type="submit"
                             className="bg-blue-500 w-full py-3 rounded-xl text-white shadow-xl hover:bg-blue-600 hover:shadow-inner focus:outline-none transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105"
                         >

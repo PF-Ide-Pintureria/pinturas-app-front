@@ -7,6 +7,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logoutUser } from "../../redux/actions/User/logoutUser";
+import axios from "axios";
 
 import UpdateUserForm from "../../components/Account/UpdateUserForm";
 import Addresses from "../../components/Account/Addresses";
@@ -46,6 +47,18 @@ const Account = () => {
             dispatch(getFavorites(loggedUser.id))
         }
     }, [loggedUser])
+
+    useEffect(() => {
+        if (user) {
+            axios.post("http://localhost:3000/users/login-authzero", user)
+                .then((response) => {
+                    console.log("Información del usuario enviada al backend:", response.data);
+                })
+                .catch((error) => {
+                    console.error("Error al enviar la información del usuario al backend:", error);
+                });
+        }
+    }, [user]); 
 
     const handleButtonClick = (buttonName) => {
         if (buttonName === "account") {
