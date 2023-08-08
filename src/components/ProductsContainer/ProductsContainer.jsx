@@ -102,23 +102,23 @@ const ProductsContainer = () => {
                         <div className="text-base flex flex-col">
 
                             {/* <div className="my-3.5 flex flex-col">
-                <select
-                  className="my-2 h-11 rounded border-indigo-800 border-solid border-2"
-                  name="orderBy"
-                  value={filters.orderBy}
-                  onChange={handleChangeFilter}
-                >
-                  <option value="" disabled className="text-gray-400">
-                    Ordenar por nombre
-                  </option>
-                  <option value="asc" className="h-11 bg-tertiary">
-                    Ascendente
-                  </option>
-                  <option value="desc" className="h-11 w-11 bg-tertiary">
-                    Descendente
-                  </option>
-                </select>
-              </div> */}
+                                <select
+                                className="my-2 h-11 rounded border-indigo-800 border-solid border-2"
+                                name="orderBy"
+                                value={filters.orderBy}
+                                onChange={handleChangeFilter}
+                                >
+                                <option value="" disabled className="text-gray-400">
+                                    Ordenar por nombre
+                                </option>
+                                <option value="asc" className="h-11 bg-tertiary">
+                                    Ascendente
+                                </option>
+                                <option value="desc" className="h-11 w-11 bg-tertiary">
+                                    Descendente
+                                </option>
+                                </select>
+                            </div> */}
                             <div className="gap-3">
                                 <div className="h-10 flex gap-1 mb-3"> {/*          CLEAR FILTERS        */}
                                     {filterCategory && <div className="flex items-center text-xs w-fit h-fit text-gray-400 rounded-lg border bg-white px-1 py-1 md:px-1"> {filterCategory} <button onClick={() => handleCategory("")}>X</button></div>}
