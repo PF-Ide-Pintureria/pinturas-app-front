@@ -1,17 +1,12 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { deleteFavorites } from "../../redux/actions/Favorites/deleteFavorite";
 
 const Favorities = () => {
     const favorites = useSelector((state) => state.allFavorites);
 
-    const user = useSelector((state) => state.user);
-    const dispatch = useDispatch()
-    
-    console.log('user', user)
-    const deleteProductCart = (id) => {
-        if (user){
+    const deleteProductCart = () => {
+        if (user) {
             let data = {
                 idUser: user.id,
                 idProduct: id
@@ -49,22 +44,22 @@ const Favorities = () => {
                 </p>
             </li>
             <div className="content flex-1 min-h-[500px] overflow-y-auto p-4 rounded bg-tertiary grid grid-cols-2">
-
-                {favorites 
-                ? (
-                    favorites.map((favorite) => 
-                    <div className="flex p-5  w-full rounded hover:bg-gray-200 ">
-                        <img src={favorite.image} alt={`${favorite.name} `} className="w-20" />
-                        <div className="flex flex-col justify-between p-5">
-                            <div>
-                                <p className="text-base font-semibold ">{favorite.name}</p>
-                                <button className="text-indigo-500 font-medium font-sans text-left flex items-center pb-3" onClick={() => deleteProductCart(favorite.id)}>Eliminar</button>
-                            </div>
-                            <div>
-                            {favorite.stock === 1 && <p className="text-red-700 font-semibold"> Producto sin stock </p>}
-                            {favorite.active === "false" && <p className="text-red-700 font-semibold"> Producto sin stock </p>}
-                                <p className="flex items-end text-2xl">${favorite.price}</p>
-
+                {favorites
+                    ? (
+                        favorites.map((favorite) =>
+                            <div className="flex p-5  w-full rounded hover:bg-gray-200 ">
+                                <img src={favorite.image} alt={`${favorite.name} `} className="w-20" />
+                                <div className="flex flex-col justify-between p-5">
+                                    <div>
+                                        <p className="text-base font-semibold ">{favorite.name}</p>
+                                        <button className="text-indigo-500 font-medium font-sans text-left flex items-center pb-3" onClick={deleteProductCart}>Eliminar</button>
+                                    </div>
+                                    <div>
+                                        {favorite.stock === 1 && <p className="text-red-700 font-semibold"> Producto sin stock </p>}
+                                        {favorite.active === "false" && <p className="text-red-700 font-semibold"> Producto sin stock </p>}
+                                        <p className="flex items-end text-2xl">${favorite.price}</p>
+                                    </div>
+                                </div>
                             </div>
                         )
                     )
