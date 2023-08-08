@@ -82,7 +82,7 @@ const CreateForm = () => {
                     text: 'Producto creado con éxito'
                 });
                 setInputsForm(defaultValues);
-                navigate("/products");
+                navigate(`/products/${response}`);
             };
         } else {
             Swal.fire({
