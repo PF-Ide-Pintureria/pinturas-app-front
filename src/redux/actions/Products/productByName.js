@@ -19,7 +19,7 @@ export const productByName = (name, page, category, low, high ) => {
             
         } catch (error) {
             console.log('error', error);
-            // dispatch({ type: GET_ALL_PRODUCTS, payload: [] })
+            dispatch({ type: GET_ALL_PRODUCTS, payload: [] })
         }
     }
 }
