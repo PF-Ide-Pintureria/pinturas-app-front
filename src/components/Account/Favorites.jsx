@@ -1,37 +1,14 @@
-
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { Link } from "react-router-dom";
+import FavoriteCard from "../FavoriteCard/FavoriteCard";
+import { getFavorites } from "../../redux/actions/Favorites/getFavorites"
 
 const Favorities = () => {
     const favorites = useSelector((state) => state.allFavorites);
-
-    const user = useSelector((state) => state.user);
     const dispatch = useDispatch();
-    const [delFav, setDelete] = useState(false);
+    const user = useSelector((state) => state.user);
 
-    let idProduct = ""
-    let idUser = user.id
-    const deleteProductCart = (favorite) => {
-        idProduct = favorite.idProduct
-        setDelete(true)
-        return idProduct
-    }
-    useEffect(() => {
-        if (delFav){
-            console.log('idProduct', idProduct)
-            console.log('idUser', idUser)
-            deleteFavorites(idUser, idProduct)(dispatch).then((response) =>{
-                setDelete(false)
-                if (response) {
-                    Swal.fire("eliminado");
-
-
-                }
-            }).catch((error) => console.log('error', error))
-        }
-    },[delFav])
 
     return (
         <div className="container mx-auto px-4">
@@ -58,30 +35,25 @@ const Favorities = () => {
             </li>
             <div className="content flex-1 min-h-[500px] overflow-y-auto p-4 rounded bg-tertiary grid grid-cols-2">
 
-                {favorites 
-                ? (
-                    favorites.map((favorite) => 
-                    <div className="flex p-5  w-full rounded hover:bg-gray-200">
-                        <img src={favorite.image} alt={`${favorite.name} `} className="w-20"/>
-                        <div className="flex flex-col justify-between p-5">
-                            <div>
-                                <p className="text-base font-semibold ">{favorite.name}</p>
-                                <button className="text-indigo-500 font-medium font-sans text-left flex items-center pb-3" onClick={() => deleteProductCart(favorite)}> Eliminar </button>
-                            </div>
-                            <div>
-                                {favorite.stock === 1 && <p className="text-red-700 font-semibold"> Producto sin stock </p>}
-                                {favorite.active === "false" && <p className="text-red-700 font-semibold"> Producto sin stock </p>}
-                                <p className="flex items-end text-2xl">${favorite.price}</p>
-
-                            </div>
-                        </div>
-                    </div>)
-                    )
-                    : (<p className="flex items-center space-x-3 text-gray-500 p-2 ">
-                        No tienes favoritos
-                    </p>
-                    )
-                    }
+            {favorites.length > 0 ? (
+    favorites.map((favorite) => (
+        <div >
+            <FavoriteCard 
+                key={favorite.id}
+                id={favorite.idProduct}
+                image={favorite.image}
+                name={favorite.name}
+                stock={favorite.stock}
+                active={favorite.active} 
+                price={favorite.price}
+            />
+        </div>
+    ))
+) : (
+    <p className="flex items-center space-x-3 text-gray-500 p-2 ">
+        No tienes favoritos
+    </p>
+)}
             </div>
             <div className="flex justify-between m-10">
                 <Link to="/products">
