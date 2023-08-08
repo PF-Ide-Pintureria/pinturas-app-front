@@ -73,4 +73,4 @@ export const BASE_URL = "https://back-server-pinturas-app.onrender.com/";
 // REVIEWS
 
 export const SAVE_REVIEW = "SAVE_REVIEW";
-export const URL_SAVE_REVIEW = "--";
+export const URL_SAVE_REVIEW = "https://back-server-pinturas-app.onrender.com";

@@ -13,6 +13,7 @@ const UserOrderDetail = () => {
   const products = productsRaw.map((product) => JSON.parse(product));
 
   const dispatch = useDispatch();
+
   const sendReview = () => {
     saveReview(user.id)(dispatch).then(() => {
       if (response) {
@@ -20,6 +21,7 @@ const UserOrderDetail = () => {
       }
     });
   };
+
   if (user.id === detail.userId) {
     return (
       <div className="flex flex-col p-16">
@@ -67,7 +69,7 @@ const UserOrderDetail = () => {
         <div className="flex items-center justify-evenly">
           {detail.state === "pending" && (
             <div>
-              <Link to="/reviews" className="underline">
+              <Link to={`/reviews/${detail.id}`} className="underline">
                 <button
                   onClick={sendReview}
                   className="bg-indigo-800 rounded-xl w-56 h-12 m-8 text-white border-2 border-solid border-gray-300 shadow-md font-bold hover:bg-indigo-700 hover:text-yellow-200 transition-transform transform hover:transform hover:scale-105"
