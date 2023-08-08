@@ -15,29 +15,31 @@ const Blog = () => {
   const posts = useSelector((state) => state.posts);
 
   return (
-    <div className="bg-primary min-h-screen">
-      <div
-        className="bg-cover bg-center"
-        style={{ backgroundImage: `url(${BlogBackground})` }}
-      >
-        <h1 className="text-3xl font-bold flex items-center justify-center">
-          BLOG
-        </h1>
-        <div className="my-10 flex justify-center items-center">
-          <div className="h-full w-full grid grid-cols-3 gap-3">
-            {posts.map((post) => {
-              return (
-                <BlogCard
-                  key={post.idBlog}
-                  id={post.idBlog}
-                  image={post.image ? post.image : img}
-                  title={post.title}
-                  date={Date(post.createdAt).slice(0, 15)}
-                  description={post.description}
-                  author={post.userId}
-                />
-              );
-            })}
+    <div
+      className="bg-cover bg-center min-h-screen flex justify-center items-center"
+      style={{ backgroundImage: `url(${BlogBackground})` }}
+    >
+      <div className="pb-30 ">
+        <div className="py-20">
+          <h1 className="text-5xl font-bold text-primary mb-5 text-center pb-4">
+            BLOG
+          </h1>
+          <div className="container mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-15">
+              {posts.map((post) => {
+                return (
+                  <BlogCard
+                    key={post.idBlog}
+                    id={post.idBlog}
+                    image={post.image ? post.image : img}
+                    title={post.title}
+                    date={Date(post.createdAt).slice(0, 15)}
+                    description={post.description}
+                    author={post.userId}
+                  />
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
