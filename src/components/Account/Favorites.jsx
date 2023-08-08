@@ -5,6 +5,7 @@ import { deleteFavorites } from "../../redux/actions/Favorites/deleteFavorite";
 
 const Favorities = () => {
     const favorites = useSelector((state) => state.allFavorites);
+
     const user = useSelector((state) => state.user);
     const dispatch = useDispatch()
     
@@ -16,9 +17,9 @@ const Favorities = () => {
                 idProduct: id
             }
             // console.log('data', data)
-            deleteFavorites(data)(dispatch).then((response) =>{
+            deleteFavorites(data)(dispatch).then((response) => {
                 if (response) {
-                    Swal.fire("eliminado");
+                    Swal.fire({ icon: 'success', text: "Eliminado" });
                 }
             }).catch((error) => console.log('error', error))
         }
@@ -48,6 +49,7 @@ const Favorities = () => {
                 </p>
             </li>
             <div className="content flex-1 min-h-[500px] overflow-y-auto p-4 rounded bg-tertiary grid grid-cols-2">
+
                 {favorites 
                 ? (
                     favorites.map((favorite) => 
@@ -62,15 +64,14 @@ const Favorities = () => {
                             {favorite.stock === 1 && <p className="text-red-700 font-semibold"> Producto sin stock </p>}
                             {favorite.active === "false" && <p className="text-red-700 font-semibold"> Producto sin stock </p>}
                                 <p className="flex items-end text-2xl">${favorite.price}</p>
+
                             </div>
-                        </div>
-                    </div>
+                        )
                     )
-                    )    
-                : (<p className="flex items-center space-x-3 text-gray-500 p-2 ">
-                    No tienes favoritos
+                    : (<p className="flex items-center space-x-3 text-gray-500 p-2 ">
+                        No tienes favoritos
                     </p>
-                )}
+                    )}
             </div>
             <div className="flex justify-between m-10">
                 <Link to="/products">
