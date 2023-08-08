@@ -5,7 +5,6 @@ export const postLoginUser = (userLogin) => {
     return async (dispatch) => {
         try {
             const response = (await axios.post(`${BASE_URL}users/login`, userLogin)).data;
-            console.log('respuesta en el action: ', response);
             if (response?.acceso?.user?.active) {
                 const loginUser = response.acceso.user;
                 const token = response.acceso.token;

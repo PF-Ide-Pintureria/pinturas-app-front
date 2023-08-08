@@ -22,7 +22,6 @@ const Dashboard = () => {
     const [blog, setBlog] = useState(false);
 
     const backToAccountAction = () => {
-        // console.log('Dispatch in Account:', dispatch);
         navigate('/account');
     }
 

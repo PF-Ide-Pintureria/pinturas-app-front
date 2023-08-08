@@ -24,7 +24,6 @@ const ProductCart = ({ id, name, quantity, image, price, stock}) => {
                 idUser: user.id,
                 idProduct: id
             }
-            // console.log('data', data)
             deleteFavorites(data)(dispatch).then((response) =>{
                 if (response) {
                     Swal.fire("eliminado");

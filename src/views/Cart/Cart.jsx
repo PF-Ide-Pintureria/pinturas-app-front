@@ -12,7 +12,6 @@ const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  console.log('user', user)
   // const [productsDetail, setProductsDetail] = useState([]);
   let sumPrices = [];
 
@@ -41,7 +40,6 @@ const Cart = () => {
           // console.log(response.data.idCart); 
           await postOrderByCart(order)(dispatch).then(async (response) => {
 
-            console.log('response', response)
             if (response){
 
               let idOrder = response.id;

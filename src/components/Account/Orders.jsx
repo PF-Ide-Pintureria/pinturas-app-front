@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 import DetailButton from "../DetailButton/DetailButton";
 const Orders = () => {
     const orders = useSelector(state => state.ordersUser);
-    console.log('orders', orders);
     const columns = [
         {field: "id", headerName: "Numero de orden", width: 320},
         {field: "state", headerName: "Estado", width: 110},

@@ -57,7 +57,6 @@ const EditBlog = () => {
         blog.append("description", inputs.description);
         blog.append("image", inputs.image)
 
-        console.log('blog a enviar', blog)
         await putPost(blog, idPost)(dispatch).then(response => {
             console.log('respuesta en el submit', response)
             if (response.status === 201) {
