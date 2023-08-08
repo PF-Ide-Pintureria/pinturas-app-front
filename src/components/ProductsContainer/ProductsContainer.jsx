@@ -17,9 +17,20 @@ const ProductsContainer = () => {
     const thisPage = useSelector((state) => state.thisPage);
     const filterCategory = useSelector((state) => state.filterCategory);
     const { high, low } = useSelector((state) => state.price);
-
+    const [error, setError] = useState("");
     const [isLoading, setIsLoading] = useState(true);
     const [filteredProducts, setFilteredProducts] = useState(products);
+    const [prices, setPrices] = useState({
+        min: "",
+        max: "",
+    });
+
+    const handleChange = (event) => {
+        const property = event.target.name;
+        const value = event.target.value;
+        setPrices({...prices, [property]: value});
+
+    }
 
     const handleCategory = (category) => {
         dispatch(setPage(1));
@@ -167,10 +178,27 @@ const ProductsContainer = () => {
                                         </h3>
                                     </div>
                                     <div className="w-fit h-fit flex items-center justify-center ">
-                                        <input type="number" placeholder=" Mínimo" className="px-2 w-24 h-7 rounded border-indigo-300 border-solid border-2" />
+                                        <input 
+                                            type="number" 
+                                            placeholder="Mínimo" 
+                                            name="min"
+                                            value={prices.min}
+                                            onChange={handleChange}
+                                            className="px-2 w-24 h-7 rounded border-indigo-300 border-solid border-2" 
+                                        />
                                         <p className="text-base p-3 mx-1 text-gray-500 flex justify-center">{" "} - {" "}</p>
-                                        <input type="number" placeholder="Máximo" className="px-2 w-24 h-7 rounded border-indigo-300 border-solid border-2" />
-                                        <button className="bg-gray-300 rounded-full flex justify-center items-center mx-3" onClick={() => { alert("no funcional"); }}>
+                                        <input 
+                                            type="number" 
+                                            placeholder="Máximo"
+                                            name="max"
+                                            value={prices.max}
+                                            onChange={handleChange}
+                                            className="px-2 w-24 h-7 rounded border-indigo-300 border-solid border-2" 
+                                        />
+                                        <button 
+                                            className="bg-gray-300 rounded-full flex justify-center items-center mx-3" 
+                                            onClick={() => { alert("no funcional"); }}
+                                            >
                                             <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-chevron-right" width="30" height="30" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#9e9e9e" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                 <path d="M9 6l6 6l-6 6" />
@@ -180,10 +208,10 @@ const ProductsContainer = () => {
                                 </div>
                                 {/*       FILTER COLOR         */}  {/* PROXIMAMENTE */}
                                 {/* <div className="mb-5">
-                  <h2 className="text-base font-semibold tracking-wide uppercase text-blue-600">
-                    Color
-                  </h2>
-                </div> */}
+                                    <h2 className="text-base font-semibold tracking-wide uppercase text-blue-600">
+                                    Color
+                                    </h2>
+                                </div> */}
                             </div>
                         </div>
                     </aside>

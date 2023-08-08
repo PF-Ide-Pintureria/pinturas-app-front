@@ -47,7 +47,6 @@ const Contact = () => {
 
         const errores = formValidation(inputs);
         setErrors(errores);
-        console.log('errores form', errores)
         if (Object.keys(errors).length === 0) {
             console.log('Podemos despachar la action', inputs)
             formatAndSend(inputs, dispatch);

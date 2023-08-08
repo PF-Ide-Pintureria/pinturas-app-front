@@ -55,7 +55,7 @@ const BlogCreate = () => {
         //     blog,
         //     idUser
         // }
-        console.log('blog a enviar', blog)
+
         await postPost(blog)(dispatch).then(response => {
             if (response.status === 'success') {
                 Swal.fire('Blog creado');

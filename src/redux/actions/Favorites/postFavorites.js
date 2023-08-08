@@ -6,7 +6,7 @@ export const postFavorites = (data) => {
         try {
             const response = (await (axios.post(`${BASE_URL}favorites`, data))).data;
             dispatch({type: ADD_FAVORITE, payload: response});
-            console.log('response', response)
+
             return response.error ? "existe" : response;
         } catch (error) {
             console.log('error postFavorites', error)

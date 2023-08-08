@@ -14,14 +14,9 @@ const UpdateUserForm = () => {
     useEffect(() => {
         getUserById(idUser)(dispatch)
     }, [dispatch])
-    // useEffect(() => {
-    //     console.log('entramos en el primer useEffect')
-    //     getAllUsers()(dispatch)
-    // }, [dispatch]);
+
     const findUser = useSelector((state) => state.userId);
-    // console.log('fullUsers: ', fullUsers);
-    // const findUser = fullUsers?.find((user) => parseInt(user.id) === parseInt(idUser));
-    // console.log('findUser: ', findUser)
+
 
     const [inputs, setInputs] = useState({
         name: "",
@@ -60,7 +55,6 @@ const UpdateUserForm = () => {
         const property = event.target.name;
         const value = event.target.type === "checkbox" ? event.target.checked : event.target.value;
         setInputs({ ...inputs, [property]: value })
-        console.log(inputs)
         setFormData({
             ...formData,
             [property]: value

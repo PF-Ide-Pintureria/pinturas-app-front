@@ -6,7 +6,6 @@ import Swal from 'sweetalert2'
 
 export const formatAndPost = async (inputsForm, dispatch) => {
     try {
-        console.log('file', inputsForm.file)
         // const newProduct = {
         //     ...inputsForm,
         // };

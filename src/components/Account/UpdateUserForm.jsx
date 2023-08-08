@@ -89,11 +89,6 @@ const UpdateUserForm = () => {
       email: inputs.email,
       password: inputs.newPassword,
     })(dispatch).then((response) => {
-      console.log("form update: ", {
-        name: inputs.name,
-        email: inputs.email,
-        password: inputs.newPassword,
-      });
       if (response.status === 200) {
         Swal.fire("Usuario Modificado");
       } else {

@@ -10,11 +10,10 @@ const DetailButton = ({ idOrder }) => {
 
     const handleClick = () => {
         getOrderById(idOrder)(dispatch).then((response) =>{
-            console.log('response N13', response)
             if (response){
                 navigate(`/orders/${idOrder}`)
             }
-        }).catch((error) => console.log('error N17', error));
+        }).catch((error) => console.log('error', error));
     };
 
     return (

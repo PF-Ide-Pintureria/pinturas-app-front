@@ -7,7 +7,6 @@ export const CART_ACTION_TYPES = {
 };
 
 export const updateLocalStorage = state => {
-    console.log('localStorage', localStorage);
     localStorage.setItem('cart', JSON.stringify(state));
 };
 
@@ -17,18 +16,9 @@ export const cartReducer = (state = cartInitialState, action) => {
 
         case CART_ACTION_TYPES.ADD_TO_CART:
 
-            console.log('Action add to cart');
-
             const { product, quantity } = action.payload;
 
-            console.log('product', product);
-            console.log('quantity', quantity);
-
-            console.log('state', state);
-
             const productInCart = state.find(item => item.id === product.id);
-
-            console.log('productInCart', productInCart);
 
             if (productInCart) {
 

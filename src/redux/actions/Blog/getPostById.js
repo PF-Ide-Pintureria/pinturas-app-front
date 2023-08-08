@@ -5,9 +5,7 @@ const getPostById = (idPost) => {
     return async (dispatch) => {
         try {
             const rawResponse = await axios.get(`${BASE_URL}blogs/details/${idPost}`);
-            console.log("rawResponse detail blog", rawResponse);
             const middleResponse = rawResponse?.data;
-            console.log("middleResponse detail:", middleResponse);
             const response = middleResponse?.blog;
             if (response) {
                 dispatch({
