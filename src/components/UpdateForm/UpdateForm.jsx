@@ -77,14 +77,23 @@ const UpdateForm = () => {
         if (Object.keys(errors).length === 0) {
             const response = await formatAndEdit(inputsForm, idProduct, dispatch);
             if (response) {
-                Swal.fire('Producto modificado con éxito');
+                Swal.fire({
+                    icon: 'success',
+                    text: 'Producto modificado con éxito'
+                });
             };
         } else {
-            Swal.fire('Hubo un error al modificar el producto');
+            Swal.fire({
+                icon: 'error',
+                text: 'Hubo un error al modificar el producto'
+            });
         };
     };
     if (user.rol !== 'admin') {
-        Swal.fire('No autorizado');
+        Swal.fire({
+            icon: 'error',
+            text: 'No autorizado'
+        });
         navigate(`/products/${idProduct}`);
     } else {
 

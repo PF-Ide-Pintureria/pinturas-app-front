@@ -30,9 +30,11 @@ const RegisterForm = () => {
                             style="font-size:1.4em;color: #00466a;text-decoration:none;font-weight:600">Ide Pintureria</a>
                     </div>
                     <h3>Hola ${name}!</h3>
-                    <p>Has recibido un nuevo mensaje desde el formulario de contacto.</p>
-                    <p>Puedes responder este mensaje para comunicarte con ${name}</p>
-                    <p>Mensaje: <br />
+                    <p>Bienvenido a la familia de Ide Pintureria.</p>
+                    <p>Puedes ir a ver modificar tus datos en la seccion de <a href="http://localhost:5173/account">Mi Cuenta</a></p>
+                    <p>En esta sección tambien encontrarás tu pedidos, tus favoritos y podrás cerrar sesión. <br />
+
+                    Ante cualquier cosa, no dudes en contactarnos a través de nuestro formulario de contacto.
                         
                     <p style="font-size:0.9em;">Saludos,<br />Ide Pintureria</p>
                     <hr style="border:none;border-top:1px solid #eee" />
@@ -79,7 +81,10 @@ const RegisterForm = () => {
             await postRegisterUser({ name, lastName, email, password })(dispatch).then((response) => {
                 if (response.status === 200) {
                     postRegisterEmail({ id: response.data.user.id, message: welcomeMessage })(dispatch);
-                    Swal.fire('Usuario registrado correctamente');
+                    Swal.fire({
+                        icon: 'success',
+                        text: 'Usuario registrado correctamente'
+                    });
                     navigate('/login');
                 }
 

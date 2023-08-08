@@ -51,15 +51,24 @@ const LoginForm = () => {
 
             if (primeraRes.status === 'fail') {
 
-                Swal.fire(primeraRes.message);
+                Swal.fire({
+                    icon: 'error',
+                    text: primeraRes.message
+                });
 
             } else if (primeraRes?.acceso?.user?.active === false) {
-                Swal.fire("Usuario no encontrado");
+                Swal.fire({
+                    icon: 'error',
+                    text: "Usuario no encontrado"
+                });
                 logoutUser(dispatch);
-                navigate('/');
+                navigate('/login/register');
             }
             else if (primeraRes.status === "success") {
-                Swal.fire("Usuario Logueado correctamente");
+                Swal.fire({
+                    icon: 'success',
+                    text: "Usuario Logueado correctamente"
+                });
             }
             // });
         } else {
@@ -143,9 +152,9 @@ const LoginForm = () => {
                         </a>{" "}
                     </p>
                 </div>
-            <div className="mt-7">
+                <div className="mt-7">
 
-        </div>
+                </div>
             </div>
         </div>
     );

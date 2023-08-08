@@ -66,7 +66,10 @@ const UpdateUserForm = () => {
         await putUser(findUser.id, formData)(dispatch).then(response => {
             if (!response) { Swal.fire("error") }
         })
-        Swal.fire('Usuario modificado correctamente');
+        Swal.fire({
+            icon: 'success',
+            text: 'Usuario modificado correctamente'
+        });
     }
 
     if (findUser.active) {

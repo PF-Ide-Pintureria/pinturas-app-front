@@ -44,7 +44,10 @@ const Addresses = () => {
                 if (!response || response === undefined) {
                     throw new Error("No se ha podido modificar la informacion");
                 } else {
-                    Swal.fire('Información modificada correctamente')
+                    Swal.fire({
+                        icon: 'success',
+                        text: 'Información modificada correctamente'
+                    })
                 }
             })
         } catch (error) {

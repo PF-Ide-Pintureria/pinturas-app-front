@@ -104,6 +104,17 @@ import Swal from 'sweetalert2'
 
 
 const BlogDash = () => {
+
+
+    const respuesta = [
+        "{\"id\":\"1\",\"name\":\"Base Latex Pastel(P) - x  1 lts.\",\"image\":\"http://www.pinturasfadepa.com.ar/latex/imgnotas/base_latex_opt.jpg\",\"price\":1420.91,\"stock\":10,\"quantity\":2}",
+        "{\"id\":\"5\",\"name\":\"Base Latex Tinte(T) - x  4 lts.\",\"image\":\"http://www.pinturasfadepa.com.ar/latex/imgnotas/base_latex_opt.jpg\",\"price\":4456.73,\"stock\":1,\"quantity\":1}",
+        "{\"id\":\"9\",\"name\":\"Base Latex Deep(D) - x 20 lts.\",\"image\":\"http://www.pinturasfadepa.com.ar/latex/imgnotas/base_latex_opt.jpg\",\"price\":19245.94,\"stock\":5,\"quantity\":4}",
+        "{\"id\":\"4\",\"name\":\"Base Latex Tinte(T) - x  1 lts.\",\"image\":\"http://www.pinturasfadepa.com.ar/latex/imgnotas/base_latex_opt.jpg\",\"price\":1265.16,\"stock\":2,\"quantity\":1}",
+        "{\"id\":\"8\",\"name\":\"Base Latex Deep(D) - x  4 lts.\",\"image\":\"http://www.pinturasfadepa.com.ar/latex/imgnotas/base_latex_opt.jpg\",\"price\":4083.65,\"stock\":10,\"quantity\":1}",
+        "{\"id\":\"11\",\"name\":\"Base Latex Clear(C) - x  4 lts.\",\"image\":\"http://www.pinturasfadepa.com.ar/latex/imgnotas/base_latex_opt.jpg\",\"price\":2844.79,\"stock\":7,\"quantity\":1}"
+    ];
+    console.log(respuesta.map(product => JSON.parse(product)))
     return (
         <div>
             <div>
