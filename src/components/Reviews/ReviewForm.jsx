@@ -27,13 +27,24 @@ const ReviewForm = () => {
     setIsReviewFocused(false);
   };
 
-  const handleSaveChanges = () => {
+  const handleSaveChanges = async () => {
     if (ratingValue > 0) {
       const userReviewData = {
         rating: ratingValue,
         reviewText: reviewText,
       };
-      dispatch(saveReview(userReviewData)); // Llamada a la acción saveReview utilizando el dispatcher de Redux
+
+      try {
+        await dispatch(saveReview(userReviewData));
+        console.log("Datos enviados con éxito");
+
+        await Swal.fire("Éxito", "¡Datos enviados con éxito!", "success");
+
+        setRatingValue(0);
+        setReviewText("");
+      } catch (error) {
+        console.log(error);
+      }
     } else {
       alert("Por favor, selecciona una estrella antes de guardar los cambios.");
     }
@@ -54,7 +65,10 @@ const ReviewForm = () => {
           <p className="text-sm text-gray-500 dark:text-gray-400">
             Da la puntuación a tu producto
           </p>
-          <Rating onRatingSelected={(rating) => setRatingValue(rating)} />
+          <Rating
+            onRatingSelected={(rating) => setRatingValue(rating)}
+            currentRating={ratingValue}
+          />
         </div>
       </div>
       <div className="rating">
@@ -92,7 +106,6 @@ const ReviewForm = () => {
       <div className="flex justify-center items-center mt-4">
         <button
           type="button"
-          disabled={ratingValue === 0} // El botón estará deshabilitado solo cuando ratingValue sea igual a cero
           onClick={handleSaveChanges}
           className="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 button-pointer "
         >
