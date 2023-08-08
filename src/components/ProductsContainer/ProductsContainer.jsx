@@ -226,7 +226,8 @@ const ProductsContainer = () => {
                                     <img src="https://i.pinimg.com/originals/6b/e0/89/6be0890f52e31d35d840d4fe2e10385b.gif" alt="loading"
                                         className="w-11/12 flex justify-center items-center" />
                                 ) : (<div className="w-11/12 grid grid-cols-3 gap-10"> {
-                                    filteredProducts.map((product) => (
+                                    filteredProducts.length>0? 
+                                       filteredProducts.map((product) => (
                                         <Products
                                             key={product.idProduct}
                                             idProduct={product.idProduct}
@@ -235,7 +236,7 @@ const ProductsContainer = () => {
                                             price={product.price}
                                             package={product.package}
                                         />
-                                    ))}
+                                    )): <h1>SOY EL SEÑOR DE LA NOCHE revisar!!!! </h1>}
                                 </div>
                                 )
                             }
