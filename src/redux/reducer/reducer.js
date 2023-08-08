@@ -92,7 +92,7 @@ const initialState = {
     categories: [],
 
     //USER
-    user: {},
+    user: { rol: "" },
     allUsers: [],
     token: "",
     userId: {},
@@ -217,9 +217,9 @@ const reducer = (state = initialState, { type, payload }) => {
         case POST_ORDER_PAYMENT:
             return { ...state, initPoint: payload };
         case GET_ORDERS_USER:
-            return  { ...state, ordersUser: payload };
+            return { ...state, ordersUser: payload };
         case GET_ORDER_BY_ID:
-            return  { ...state, orderDetail: payload };
+            return { ...state, orderDetail: payload };
 
         //AUTH0-USERS-INFO
         case SET_USER_DATA:
