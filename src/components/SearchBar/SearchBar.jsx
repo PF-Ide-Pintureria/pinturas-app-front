@@ -10,7 +10,6 @@ import { useSelector } from "react-redux";
 const SearchBar = () => {
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
-  const totalPages = useSelector((state) => state.totalPages);
   const thisPage = useSelector((state) => state.thisPage);
   const filterCategory = useSelector((state) => state.filterCategory);
   const { high, low } = useSelector((state) => state.price);

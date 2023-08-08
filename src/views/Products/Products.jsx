@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import SearchBar from "../../components/SearchBar/SearchBar";
 import FeaturedContainer from "../../components/FeaturedContainer/FeaturedContainer";
 import { bestSellers } from "../../redux/actions/Products/bestSellers";
 import ProductsContainer from "../../components/ProductsContainer/ProductsContainer";
@@ -28,9 +27,6 @@ const ProductsPage = () => {
 
   return (
     <div>
-      <div>
-        <SearchBar />
-      </div>
       <div>
         <ProductsContainer />
       </div>
