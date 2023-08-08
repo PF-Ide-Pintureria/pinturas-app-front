@@ -35,6 +35,7 @@ const Account = () => {
     const dispatch = useDispatch();
 
     const loggedUser = useSelector((state) => state.user);
+    const orderUser = useSelector((state) => state.ordersUser);
 
     const logoutUserAction = () => {
         // console.log('Dispatch in Account:', dispatch);

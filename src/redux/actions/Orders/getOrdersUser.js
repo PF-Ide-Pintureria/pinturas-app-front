@@ -6,7 +6,6 @@ const getOrdersUser = (userId) => {
         try {
             const rawResponse = await axios.get(`${BASE_URL}orders/user/${userId}`);
             const response = rawResponse?.data;
-            console.log('response', response)
             dispatch({ type: GET_ORDERS_USER, payload: response })
             return response
         }

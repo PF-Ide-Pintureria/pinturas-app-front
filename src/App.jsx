@@ -44,6 +44,7 @@ import Dashboard from "./views/Dashboard/Dashboard";
 import BlogCreate from "./views/Blog/BlogCreate";
 import EditBlog from "./views/Blog/EditBlog";
 import BlogDetail from "./views/Blog/BlogDetail";
+import UserOrderDetail from "./views/UserOrderDetail/UserOrderDetail";
 
 function App() {
     const dispatch = useDispatch();
@@ -99,6 +100,9 @@ function App() {
                         <Route path="/account" element={<Account />} />
                         <Route path="/about" element={<About />} />
                         <Route path="/location" element={<Location />} />
+
+                        <Route path="/orders/:idOrder" element={<UserOrderDetail />} />
+
                         <Route path="/blog" element={<Blog />} />
                         <Route path="/blog/:idBlog" element={<BlogDetail />} />
                         <Route path="/blog/create" element={<BlogCreate />} />
