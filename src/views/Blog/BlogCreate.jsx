@@ -58,9 +58,15 @@ const BlogCreate = () => {
         console.log('blog a enviar', blog)
         await postPost(blog)(dispatch).then(response => {
             if (response.status === 'success') {
-                Swal.fire('Blog creado');
+                Swal.fire({
+                    icon: 'success',
+                    text: 'Blog actualizado'
+                });
             } else {
-                Swal.fire('Hubo un error al crear el post')
+                Swal.fire({
+                    icon: 'error',
+                    text: 'Hubo un error al actualizars el post'
+                })
             }
         });
     }
@@ -94,12 +100,11 @@ const BlogCreate = () => {
                             </div>
                             <div className=" flex m-8 mb-0 h-40">
                                 <label htmlFor="" className="bg-quaternary rounded-l-xl w-40 h-40  flex items-center justify-center">Cuerpo</label>
-                                <input
+                                <textarea
                                     className="bg-formBg rounded-r-lg w-72 h-50"
-                                    type='textarea'
                                     name='description'
-                                    cols={40}
-                                    rows={15}
+                                    cols="40"
+                                    rows="15"
                                     wrap='hard'
                                     onChange={handleChange} />
                             </div>

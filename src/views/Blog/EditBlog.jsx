@@ -61,9 +61,15 @@ const EditBlog = () => {
         await putPost(blog, idPost)(dispatch).then(response => {
             console.log('respuesta en el submit', response)
             if (response.status === 201) {
-                Swal.fire('Blog creado');
+                Swal.fire({
+                    icon: 'success',
+                    text: 'Blog actualizado'
+                });
             } else {
-                Swal.fire('Hubo un error al crear el post')
+                Swal.fire({
+                    icon: 'error',
+                    text: 'Hubo un error al actualizars el post'
+                })
             }
         });
     }
@@ -103,10 +109,12 @@ const EditBlog = () => {
                             </div>
                             <div className=" flex m-8 mb-0 h-40">
                                 <label htmlFor="" className="bg-quaternary rounded-l-xl w-40 h-40  flex items-center justify-center">Cuerpo</label>
-                                <input
+                                <textarea
                                     className="bg-formBg rounded-r-lg w-72 h-50"
-                                    type='textarea'
                                     name='description'
+                                    cols="40"
+                                    rows="15"
+                                    wrap="hard"
                                     onChange={handleChange}
                                     value={inputs.description}
                                 />

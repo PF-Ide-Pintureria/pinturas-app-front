@@ -34,14 +34,20 @@ const Contact = () => {
         event.preventDefault();
 
         if (!inputs.name || !inputs.email || !inputs.message) {
-            Swal.fire("Por favor, complete todos los campos obligatorios.");
+            Swal.fire({
+                icon: 'error',
+                text: "Por favor, complete todos los campos obligatorios."
+            });
             return;
         }
 
         const emailRegex =
             /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
         if (!emailRegex.test(inputs.email)) {
-            Swal.fire("Por favor, ingrese un correo electrónico válido.");
+            Swal.fire({
+                icon: 'error',
+                text: "Por favor, ingrese un correo electrónico válido."
+            });
             return;
         }
 
@@ -49,7 +55,6 @@ const Contact = () => {
         setErrors(errores);
         console.log('errores form', errores)
         if (Object.keys(errors).length === 0) {
-            console.log('Podemos despachar la action', inputs)
             formatAndSend(inputs, dispatch);
         }
 
