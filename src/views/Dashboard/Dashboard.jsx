@@ -17,7 +17,7 @@ const Dashboard = () => {
     const [dashboard, setDashboard] = useState(false);
     const [orders, setOrders] = useState(false);
     const [products, setProducts] = useState(false);
-    const [users, setUsers] = useState(false);
+    const [users, setUsers] = useState(true);
     const [sales, setSales] = useState(false);
     const [blog, setBlog] = useState(false);
 

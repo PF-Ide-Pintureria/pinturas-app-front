@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logoutUser } from "../../redux/actions/User/logoutUser";
 import axios from "axios";
-
 import UpdateUserForm from "../../components/Account/UpdateUserForm";
 import Addresses from "../../components/Account/Addresses";
 import Favorities from "../../components/Account/Favorites";
@@ -19,6 +18,7 @@ import LoginForm from "../../components/LoginForm/LoginForm";
 import UsersDash from "../../components/Account/UserDash";
 import SalesDash from "../../components/Account/SalesDash";
 import { getFavorites } from "../../redux/actions/Favorites/getFavorites";
+import getOrdersUser from "../../redux/actions/Orders/getOrdersUser";
 
 const Account = () => {
     const { isAuthenticated, user, logout, isLoading } = useAuth0();
@@ -35,6 +35,7 @@ const Account = () => {
     const dispatch = useDispatch();
 
     const loggedUser = useSelector((state) => state.user);
+    const orderUser = useSelector((state) => state.ordersUser);
 
     const logoutUserAction = () => {
         // console.log('Dispatch in Account:', dispatch);
@@ -45,6 +46,7 @@ const Account = () => {
     useEffect(() => {
         if (loggedUser.id) {
             dispatch(getFavorites(loggedUser.id))
+            dispatch(getOrdersUser(loggedUser.id))
         }
     }, [loggedUser])
 

@@ -40,6 +40,7 @@ export const GET_CART = "GET_CART";
 
 //ORDERS
 export const GET_ALL_ORDERS = "GET_ALL_ORDERS";
+export const GET_ORDER_BY_ID = "GET_ORDER_BY_ID";
 export const GET_ORDERS_USER = "GET_ORDERS_USER";
 export const POST_ORDER_CART = "POST_ORDER_CART";
 export const POST_ORDER_PAYMENT = "POST_ORDER_PAYMENT";

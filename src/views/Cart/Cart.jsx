@@ -29,7 +29,8 @@ const Cart = () => {
       let buyCart = {
         idUser: user.id,
         products: cart
-        }
+      }
+
       await postCart(buyCart)(dispatch).then(async (response) => {
         if(response){
           
@@ -40,9 +41,10 @@ const Cart = () => {
           // console.log(response.data.idCart); 
           await postOrderByCart(order)(dispatch).then(async (response) => {
 
+            console.log('response', response)
             if (response){
 
-              let idOrder = response.order.id;
+              let idOrder = response.id;
 
               await postOrderPayment(idOrder)(dispatch).then((response) => {
                 if (response) navigate("/cart/detail");
