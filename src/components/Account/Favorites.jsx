@@ -69,17 +69,19 @@ const Favorities = () => {
                                 <button className="text-indigo-500 font-medium font-sans text-left flex items-center pb-3" onClick={() => deleteProductCart(favorite)}> Eliminar </button>
                             </div>
                             <div>
-                            {favorite.stock === 1 && <p className="text-red-700 font-semibold"> Producto sin stock </p>}
-                            {favorite.active === "false" && <p className="text-red-700 font-semibold"> Producto sin stock </p>}
+                                {favorite.stock === 1 && <p className="text-red-700 font-semibold"> Producto sin stock </p>}
+                                {favorite.active === "false" && <p className="text-red-700 font-semibold"> Producto sin stock </p>}
                                 <p className="flex items-end text-2xl">${favorite.price}</p>
 
                             </div>
-                        )
+                        </div>
+                    </div>)
                     )
                     : (<p className="flex items-center space-x-3 text-gray-500 p-2 ">
                         No tienes favoritos
                     </p>
-                    )}
+                    )
+                    }
             </div>
             <div className="flex justify-between m-10">
                 <Link to="/products">
