@@ -4,6 +4,7 @@ import { saveReview } from "../../redux/actions/Review/postSaveReview";
 import Rating from "../Reviews/Rating";
 import "./Rating.css";
 import Swal from "sweetalert2";
+import { useParams } from "react-router-dom";
 
 const ReviewForm = () => {
   const [characterCount, setCharacterCount] = useState(0);
@@ -12,7 +13,9 @@ const ReviewForm = () => {
   const [ratingValue, setRatingValue] = useState(0);
   const [reviewText, setReviewText] = useState("");
   const dispatch = useDispatch();
+  const { orderId } = useParams();
 
+  console.log("orderid", orderId);
   const handleReviewInput = () => {
     const text = reviewTextRef.current.innerText;
     setCharacterCount(text.length);
@@ -31,11 +34,12 @@ const ReviewForm = () => {
     if (ratingValue > 0) {
       const userReviewData = {
         rating: ratingValue,
-        reviewText: reviewText,
+        description: reviewText,
+        productsReviews: [{ id: 1, rating: 5 }],
       };
-
+      console.log("orderID", orderId);
       try {
-        await dispatch(saveReview(userReviewData));
+        await dispatch(saveReview(userReviewData, orderId));
         console.log("Datos enviados con éxito");
 
         await Swal.fire("Éxito", "¡Datos enviados con éxito!", "success");
