@@ -45,6 +45,7 @@ const Cart = () => {
               await postOrderPayment(idOrder)(dispatch).then((response) => {
                 if (response) navigate("/cart/detail");
                 console.log('response postOrderPayment N46', response.response.initPoint);
+                dispatch(setCart([]))
               }).catch((err) => {
                 console.log('err postOrderPayment', err)
               })
@@ -53,7 +54,6 @@ const Cart = () => {
           }).catch((err)=> {
             console.log('err postOrderByCart', err)
           })
-          // dispatch(setCart([]))
           // localStorage.clear();
         }
       }).catch((err) => {
