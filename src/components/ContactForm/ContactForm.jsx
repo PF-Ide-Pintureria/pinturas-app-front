@@ -82,6 +82,7 @@ const Contact = () => {
                                     className=" rounded-r-lg w-72 h-8  "
                                     id="name"
                                     name="name"
+                                    type="text"
                                     value={inputs.name}
                                     onChange={handleChange}
                                     placeholder="Nombre"
@@ -107,6 +108,7 @@ const Contact = () => {
                                     className=" rounded-r-lg w-72 h-8"
                                     id="email"
                                     name="email"
+                                    type="email"
                                     value={inputs.email}
                                     onChange={handleChange}
                                     placeholder="Correo electrónico"
@@ -124,15 +126,17 @@ const Contact = () => {
                             <div className="flex m-8">
                                 <label
                                     htmlFor="name"
-                                    className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
+                                    className="bg-quaternary rounded-l-xl w-40 h-32  flex items-center justify-center"
                                 >
                                     Tu Mensaje:
                                 </label>
-                                <input
-                                    className=" rounded-r-lg w-72 h-8"
+                                <textarea
+                                    className=" rounded-r-lg w-72 h-32"
                                     id="message"
                                     name="message"
-                                    rows="3"
+                                    rows="4"
+                                    cols="10"
+                                    wrap="soft"
                                     value={inputs.message}
                                     onChange={handleChange}
                                     placeholder="Tu mensaje"
