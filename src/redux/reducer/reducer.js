@@ -40,6 +40,7 @@ import {
     //ORDERS
     GET_ALL_ORDERS,
     GET_ORDERS_USER,
+    GET_ORDER_BY_ID,
     POST_ORDER_CART,
     POST_ORDER_PAYMENT,
 
@@ -114,6 +115,7 @@ const initialState = {
     //ORDERS
     initPoint: "",
     ordersUser: {},
+    orderDetail: {},
 
     //AUTH0-USERS-INFO
     userData: {},
@@ -216,6 +218,8 @@ const reducer = (state = initialState, { type, payload }) => {
             return { ...state, initPoint: payload };
         case GET_ORDERS_USER:
             return  { ...state, ordersUser: payload };
+        case GET_ORDER_BY_ID:
+            return  { ...state, orderDetail: payload };
 
         //AUTH0-USERS-INFO
         case SET_USER_DATA:
