@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./views/Home/Home";
 import About from "./views/About/About";
@@ -45,9 +45,27 @@ import BlogCreate from "./views/Blog/BlogCreate";
 import EditBlog from "./views/Blog/EditBlog";
 import BlogDetail from "./views/Blog/BlogDetail";
 import UserOrderDetail from "./views/UserOrderDetail/UserOrderDetail";
+import { ThemeProvider } from "styled-components";
+import ChatBot from "react-simple-chatbot";
+import { steps } from "../src/assets/steps";
+import { theme } from "../src/assets/theme";
+import { SiChatbot } from "react-icons/si";
+import person from "../src/img/user.jpg";
 
 function App() {
   const dispatch = useDispatch();
+  const [showChatbot, setShowChatbot] = useState(false);
+  const [showButton, setShowButton] = useState(true);
+
+  const toggleChatbot = () => {
+    setShowChatbot(!showChatbot);
+    setShowButton(false);
+  };
+
+  const hideChatbot = () => {
+    setShowChatbot(false);
+    setShowButton(true);
+  };
 
   useEffect(() => {
     const user = localStorage.getItem("user");
@@ -63,66 +81,115 @@ function App() {
   }, []);
 
   return (
-    <BrowserRouter>
-      <div className="h-full w-full">
-        <div className="">
-          <header>
-            <NavBar />
-          </header>
-          <Routes>
-            <Route exact path="/" element={<Home />} />
+    <div>
+      <BrowserRouter>
+        <div className="h-full w-full">
+          <div className="">
+            <header>
+              <NavBar />
+            </header>
+            <Routes>
+              <Route exact path="/" element={<Home />} />
 
-            <Route path="/products" element={<Products />} />
-            <Route path="/products/:idProduct" element={<Detail />} />
-            <Route
-              path="/products/edit/:idProduct"
-              element={<UpdateProduct />}
-            />
+              <Route path="/products" element={<Products />} />
+              <Route path="/products/:idProduct" element={<Detail />} />
+              <Route
+                path="/products/edit/:idProduct"
+                element={<UpdateProduct />}
+              />
 
-            <Route path="/login" element={<Login />} />
-            <Route path="/login/register" element={<Register />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/login/register" element={<Register />} />
 
-            <Route path="/admin" element={<Dashboard />} />
-            <Route path="/admin/users" element={<AdminUsers />} />
-            <Route path="/admin/products" element={<AdminProducts />} />
-            <Route path="/admin/blog" element={<AdminBlog />} />
-            <Route path="/admin/create" element={<CreateProduct />} />
-            <Route path="/admin/edit/:idUser" element={<UpdateUserForm />} />
+              <Route path="/admin" element={<Dashboard />} />
+              <Route path="/admin/users" element={<AdminUsers />} />
+              <Route path="/admin/products" element={<AdminProducts />} />
+              <Route path="/admin/blog" element={<AdminBlog />} />
+              <Route path="/admin/create" element={<CreateProduct />} />
+              <Route path="/admin/edit/:idUser" element={<UpdateUserForm />} />
 
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/cart/buying" element={<Purchases />} />
-            <Route path="/cart/detail" element={<OrderDetail />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/cart/buying" element={<Purchases />} />
+              <Route path="/cart/detail" element={<OrderDetail />} />
 
-            <Route path="/payment/successful" element={<SuccessfulPayment />} />
-            <Route path="/payment/failure" element={<FailurePayment />} />
-            <Route path="/payment/pending" element={<PendingPayment />} />
+              <Route
+                path="/payment/successful"
+                element={<SuccessfulPayment />}
+              />
+              <Route path="/payment/failure" element={<FailurePayment />} />
+              <Route path="/payment/pending" element={<PendingPayment />} />
 
-            <Route path="/reviews/:orderId" element={<ReviewsPage />} />
-            <Route path="/favorite" element={<Favorite />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/account" element={<Account />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/location" element={<Location />} />
+              <Route path="/reviews/:orderId" element={<ReviewsPage />} />
+              <Route path="/favorite" element={<Favorite />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/account" element={<Account />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/location" element={<Location />} />
 
-            <Route path="/orders/:idOrder" element={<UserOrderDetail />} />
+              <Route path="/orders/:idOrder" element={<UserOrderDetail />} />
 
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/blog/:idBlog" element={<BlogDetail />} />
-            <Route path="/blog/create" element={<BlogCreate />} />
-            <Route path="/blog/edit/:id" element={<EditBlog />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:idBlog" element={<BlogDetail />} />
+              <Route path="/blog/create" element={<BlogCreate />} />
+              <Route path="/blog/edit/:id" element={<EditBlog />} />
 
-            <Route path="/developers" element={<Developers />} />
+              <Route path="/developers" element={<Developers />} />
 
-            <Route path="/testing" element={<TestTable />} />
+              <Route path="/testing" element={<TestTable />} />
 
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </div>
+          <footer className="flex">
+            <Footer />
+          </footer>
         </div>
-        <footer className="flex">
-          <Footer />
-        </footer>
-      </div>
-    </BrowserRouter>
+      </BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <div
+          style={{
+            position: "fixed",
+            bottom: "20px",
+            right: "20px",
+            zIndex: 9999,
+          }}
+        >
+          {showButton && (
+            <button
+              className="bg-blue-100 text-blue-800 text-3xl font-semibold mb-2 px-3 py-3 rounded-full dark:bg-blue-200 dark:text-blue-800 mr-2"
+              onClick={toggleChatbot}
+            >
+              <SiChatbot />
+            </button>
+          )}
+          {showChatbot && (
+            <div style={{ position: "relative" }}>
+              <ChatBot
+                steps={steps}
+                headerTitle="Chatbot"
+                userAvatar={person}
+              />
+              <button
+                className="text-white hover:text-white-900 dark:hover:text-white text-m mr-5 mt-3"
+                onClick={hideChatbot}
+                style={{
+                  position: "absolute",
+                  top: "5px",
+                  right: "5px",
+                  background: "none",
+                  border: "none",
+                  cursor: "pointer",
+                  transition: "right 1s ease-in-out",
+                  zIndex: 9999,
+                }}
+              >
+                X
+              </button>
+            </div>
+          )}
+        </div>
+      </ThemeProvider>
+    </div>
   );
 }
 
