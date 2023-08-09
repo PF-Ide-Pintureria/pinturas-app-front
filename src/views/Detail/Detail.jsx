@@ -55,7 +55,6 @@ const Detail = () => {
         }
     };
 
-
     const renderStars = (rating) => {
         const MAX_STARS = 5;
         const stars = [];

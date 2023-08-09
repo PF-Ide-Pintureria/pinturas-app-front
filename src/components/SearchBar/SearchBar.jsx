@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { useLocation } from 'react-router-dom';
-import { useNavigate } from "react-router-dom";
 import {useDispatch} from 'react-redux';
 import { productByName } from '../../redux/actions/Products/productByName'
 import { allProducts } from '../../redux/actions/Products/allProducts';
