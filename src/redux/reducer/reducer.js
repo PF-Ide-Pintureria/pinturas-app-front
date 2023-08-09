@@ -92,7 +92,7 @@ const initialState = {
     categories: [],
 
     //USER
-    user: { rol: "" },
+    user: {},
     allUsers: [],
     token: "",
     userId: {},
