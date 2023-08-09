@@ -6,7 +6,7 @@ const postPost = (formData) => {
         try {
             const rawResponse = await axios.post(`${BASE_URL}blogs`, formData, {
                 headers: {
-                    'Content-Type': 'multipart/form-data'
+                    'Content-Type': 'multipart/form-data',
                 }
             })
             const middleResponse = rawResponse?.data;
