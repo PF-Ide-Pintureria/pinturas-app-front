@@ -18,21 +18,11 @@ const Home = () => {
   return (
     <div className="w-full h-full">
       <main className="w-full h-full">
-        <div>
-          <Banner />
-        </div>
-        <div>
-          <FeaturedContainer />
-        </div>
-        <div>
-          <CategoryContainer />
-        </div>
-        <div>
-          <BannerBlog />
-        </div>
-        <div>
-          <AboutCard />
-        </div>
+        <Banner />
+        <FeaturedContainer />
+        <CategoryContainer />
+        <AboutCard />
+        <BannerBlog />
       </main>
     </div>
   );
