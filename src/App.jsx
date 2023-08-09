@@ -156,7 +156,7 @@ function App() {
         >
           {showButton && (
             <button
-              className="bg-blue-100 text-blue-800 text-3xl font-semibold mb-2 px-3 py-3 rounded-full dark:bg-blue-200 dark:text-blue-800 mr-2"
+              className="bg-purple-100 text-primary text-3xl font-semibold mb-2 px-3 py-3 rounded-full mr-2 hover:scale-125"
               onClick={toggleChatbot}
             >
               <SiChatbot />
@@ -170,7 +170,7 @@ function App() {
                 userAvatar={person}
               />
               <button
-                className="text-white hover:text-white-900 dark:hover:text-white text-m mr-5 mt-3"
+                className="text-white hover:text-white-900 text-m mr-5 mt-3"
                 onClick={hideChatbot}
                 style={{
                   position: "absolute",
