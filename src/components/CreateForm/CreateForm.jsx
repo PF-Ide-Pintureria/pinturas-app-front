@@ -221,7 +221,7 @@ const CreateForm = () => {
                             />
                         </label>
                         <span className="bg-formBg rounded-r-lg w-72 h-8 flex items-center px-3">
-                            {inputsForm.imagen && `Imagen seleccionada: ${inputsForm.imagen}`}
+                            {inputsForm.image && `Imagen seleccionada: ${inputsForm.image}`}
                         </span>
                     </div>
                     <div className="flex m-8">

@@ -43,6 +43,7 @@ import {
     GET_ORDER_BY_ID,
     POST_ORDER_CART,
     POST_ORDER_PAYMENT,
+    PUT_ORDER,
 
     //NODE MAILER
     POST_CONTACT_EMAIL,
@@ -219,6 +220,8 @@ const reducer = (state = initialState, { type, payload }) => {
         case GET_ORDERS_USER:
             return { ...state, ordersUser: payload };
         case GET_ORDER_BY_ID:
+            return { ...state, orderDetail: payload };
+        case PUT_ORDER:
             return { ...state, orderDetail: payload };
 
         //AUTH0-USERS-INFO
