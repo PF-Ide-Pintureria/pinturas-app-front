@@ -3,11 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import Swal from 'sweetalert2';
 import { postFavorites } from "../../redux/actions/Favorites/postFavorites";
 import { deleteFavorites } from "../../redux/actions/Favorites/deleteFavorite";
+import { useCart } from "../../hooks/useCart";
+import { setCart } from "../../redux/actions/Cart/setCart"
 
 const ProductCart = ({ id, name, quantity, image, price, stock}) => {
-    const [count, setCount] = useState(quantity)
     const dispatch = useDispatch()
     const user = useSelector(state => state.user)
+    const [count, setCount] = useState(quantity)
+    const { cartState, addToCart, removeFromCart, clearCart } = useCart();
 
     const calcPrice = (quant, pric) => {
         let sum = Number(quant) * Number(pric)
@@ -19,18 +22,14 @@ const ProductCart = ({ id, name, quantity, image, price, stock}) => {
     }
 
     const deleteProductCart = () => {
-        if (user){
-            let data = {
-                idUser: user.id,
-                idProduct: id
-            }
-            deleteFavorites(data)(dispatch).then((response) =>{
-                if (response) {
-                    Swal.fire("eliminado");
-                }
-            }).catch((error) => console.log('error', error))
-        }
+        removeFromCart(id, cartState)
+        dispatch(setCart([cartState]));
+        // Swal.fire({
+        //     icon: 'success',
+        //     text: 'Producto removido del carrito'
+        // })
     }
+
     const addFavorite = () => {
         if (user){
             let data = {

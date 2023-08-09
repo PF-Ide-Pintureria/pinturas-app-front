@@ -48,6 +48,7 @@ export const cartReducer = (state = cartInitialState, action) => {
             if (productToRemove) {
 
                 productToRemove.quantity--;
+                localStorage.removeItem(id);
 
                 if (productToRemove.quantity === 0) {
 

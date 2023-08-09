@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import ProductCart from "../../components/ProductCart/ProductCart"
 import { postCart } from "../../redux/actions/Cart/postCart";
 import { setCart } from "../../redux/actions/Cart/setCart";
 import { postOrderByCart } from "../../redux/actions/Orders/postOrderByCart";
 import { postOrderPayment } from "../../redux/actions/Orders/postOrderPayment";
+import { getCart } from "../../redux/actions/Cart/getCart";
 
 const Cart = () => {
   const user = useSelector((state) => state.user);
@@ -13,7 +14,6 @@ const Cart = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   let sumPrices = [];
-
   const addPrice = (quantity, price) =>{
     sumPrices.push(quantity * price);
   }
@@ -46,6 +46,7 @@ const Cart = () => {
                 if (response) navigate("/cart/detail");
                 console.log('response postOrderPayment N46', response.response.initPoint);
                 dispatch(setCart([]))
+                localStorage.removeItem("cart")
               }).catch((err) => {
                 console.log('err postOrderPayment', err)
               })
@@ -54,7 +55,6 @@ const Cart = () => {
           }).catch((err)=> {
             console.log('err postOrderByCart', err)
           })
-          // localStorage.clear();
         }
       }).catch((err) => {
         alert(err);
@@ -70,6 +70,15 @@ const Cart = () => {
     }
     return sum.toFixed(2);
   }
+
+  useEffect(() => {
+    // Obtener los productos del carrito al cargar la página
+    if (user.id){
+      console.log('user', user)
+      console.log('user.id', user.id)
+      dispatch(getCart(user.id)); // Asegúrate de que user.id esté disponible
+    }
+}, []);
 
   return (
     <div className="my-10 w-full">
@@ -104,8 +113,8 @@ const Cart = () => {
                 </div>
                 <div>
                 {cart.map((product) =>
-                  product && product.id ? (
-                    <div>
+                  product && product.id 
+                  ? (<div>
                       {addPrice(product.quantity, product.price)}
                       <ProductCart 
                         // key={product.id}
@@ -117,8 +126,8 @@ const Cart = () => {
                         // color={product.color}
                         image={product.image}
                       />
-                    </div>
-                    ) : null
+                    </div>) 
+                  : null
                   )
                 }
                 </div>
