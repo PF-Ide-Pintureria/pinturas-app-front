@@ -133,7 +133,7 @@ const Footer = () => {
           <img src={mercadopago} alt="logo Mercado Pago" className="w-32" />
         </div>
       </div>
-      <div className="w-full flex items-center justify-center space-x-1 mb-6">
+      <div className="w-full flex items-center justify-center ms:justify-start space-x-1 mb-6">
         <p className="font-sans mx-2 text-white">
           {" "}
           © Copyright 2023. Todos los derechos reservados a{" "}
