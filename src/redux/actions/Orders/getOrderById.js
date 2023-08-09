@@ -4,12 +4,12 @@ import axios from "axios";
 export const getOrderById = (idOrder) => {
     return async (dispatch) => {
         try {
-            const order = (await axios.get(`${BASE_URL}orders?idOrder=${idOrder}`)).data.orders[0]
-            console.log('order', order)
-            dispatch({ type: GET_ORDER_BY_ID, payload: order });
-            return order;
+            const response = (await axios.get(`${BASE_URL}orders?idOrder=${idOrder}`)).data.orders[0]
+            const parser = response?.products?.map((product) => JSON.parse(product));
+            dispatch({ type: GET_ORDER_BY_ID, payload: response });
+            return response;
         } catch (error) {
-            console.log("getOrderById",error);
+            console.log("getOrderById", error);
         }
     };
 };

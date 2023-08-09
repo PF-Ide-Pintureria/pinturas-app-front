@@ -410,9 +410,9 @@ const Detail = () => {
                                     {product?.rating}
                                 </span>
                             </div>
-                            <p className=" mt-2 ml-2 text-sm font-medium text-gray-500">
+                            {/* <p className=" mt-2 ml-2 text-sm font-medium text-gray-500">
                                 3 Reviews
-                            </p>
+                            </p> */}
                             <p className=" mt-2 ml-2 text-sm font-medium text-gray-500">
                                 Presentación: {"  "}
                                 {product?.package}
