@@ -310,8 +310,9 @@ const ProductsContainer = () => {
                     ))
                   ) : (
                     <div>
-                      <h1 className="text-gray-500 text-lg mb-8 text-center">
-                        Oops! El poducto que estás buscando no lo tenemos
+                      <h1 className="text-gray-300 text-lg mb-8 text-center">
+                        Oops! Actualmente no tenemos el producto que estás
+                        buscando.
                       </h1>
                       <img src={imgNO} alt="NO Encontrado" className="w-120" />
                     </div>
