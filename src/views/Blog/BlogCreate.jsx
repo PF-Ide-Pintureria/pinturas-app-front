@@ -35,6 +35,7 @@ const BlogCreate = () => {
             })
         }
     }
+    // console.log('user', user);
 
     const handleSubmit = async (event) => {
         event.preventDefault()
