@@ -38,7 +38,7 @@ const Account = () => {
     const orderUser = useSelector((state) => state.ordersUser);
 
     const logoutUserAction = () => {
-        localStorage.removeItem("user");
+        localStorage.clear();
         logoutUser(dispatch);
         navigate('/');
     }
