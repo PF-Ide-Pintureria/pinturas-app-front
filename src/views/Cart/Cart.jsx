@@ -72,11 +72,9 @@ const Cart = () => {
   }
 
   useEffect(() => {
-    // Obtener los productos del carrito al cargar la página
+
     if (user.id){
-      console.log('user', user)
-      console.log('user.id', user.id)
-      dispatch(getCart(user.id)); // Asegúrate de que user.id esté disponible
+      dispatch(getCart(user.id));
     }
 }, []);
 
