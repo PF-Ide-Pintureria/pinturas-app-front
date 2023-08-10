@@ -1,12 +1,14 @@
 import React from "react";
 import deletePost from "../../../redux/actions/Blog/deletePost";
 import { useDispatch } from "react-redux";
+import Swal from "sweetalert2";
 
 const DeleteBlogButton = ({ idBlog }) => {
     const dispatch = useDispatch()
 
-    const handleClick = () => {
-        deletePost(idBlog)(dispatch);
+    const handleClick = (event) => {
+        event.preventDefault();
+        deletePost(idBlog)(dispatch)
     }
     return (
         <div className="justify-end">

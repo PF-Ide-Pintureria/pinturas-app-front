@@ -61,12 +61,12 @@ const BlogCreate = () => {
             if (response.status === 'success') {
                 Swal.fire({
                     icon: 'success',
-                    text: 'Blog actualizado'
+                    text: 'Blog creado'
                 });
             } else {
                 Swal.fire({
                     icon: 'error',
-                    text: 'Hubo un error al actualizars el post'
+                    text: 'Hubo un error al crear el post'
                 })
             }
         });

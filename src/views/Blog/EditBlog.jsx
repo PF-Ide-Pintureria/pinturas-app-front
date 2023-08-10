@@ -20,9 +20,6 @@ const EditBlog = () => {
     const [image, setImage] = useState('');
     const [description, setDescription] = useState("");
 
-    console.log('user', user);
-    console.log('post', post);
-
     useEffect(() => {
         if (user.rol != "") {
             if (user.rol !== 'admin') {
@@ -35,7 +32,7 @@ const EditBlog = () => {
         }
         getPostById(id)(dispatch);
 
-    }, [post, user]);
+    }, [dispatch]);
 
     useEffect(() => {
         if (post.title !== "") {
@@ -67,12 +64,12 @@ const EditBlog = () => {
         const blog = new FormData();
         blog.append("title", title);
         blog.append("description", description);
-        if (image !== "") {
+        if (image !== undefined) {
             blog.append("image", image)
         }
 
         await putPost(blog, id)(dispatch).then(response => {
-            if (response.status === 201) {
+            if (response.status === 'success') {
                 Swal.fire({
                     icon: 'success',
                     text: 'Blog actualizado'
@@ -80,7 +77,7 @@ const EditBlog = () => {
             } else {
                 Swal.fire({
                     icon: 'error',
-                    text: 'Hubo un error al actualizars el post'
+                    text: 'Hubo un error al actualizar el post'
                 })
             }
         });

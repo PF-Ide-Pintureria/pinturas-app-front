@@ -3,15 +3,13 @@ import { BASE_URL, POST_POST } from "../../action-type";
 
 const postPost = (formData) => {
     return async (dispatch) => {
-        const rawToken = localStorage.getItem("token");
-        const token = rawToken.trim();
         try {
-            console.log('token', token);
-            console.log('rawToken', rawToken);
+            const token = localStorage.getItem('token');
+            const tokenLimpio = token.replace(/['"]+/g, '');
             const rawResponse = await axios.post(`${BASE_URL}blogs`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
-                    'Authorization': localStorage.getItem("token")
+                    'Authorization': tokenLimpio
                 }
             })
             console.log('response', rawResponse);
@@ -23,7 +21,7 @@ const postPost = (formData) => {
                     type: POST_POST,
                     payload: response,
                 })
-                return response;
+                return middleResponse;
             }
 
         } catch (error) {
