@@ -130,7 +130,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="hidden sm:block">
-          <img src={mercadopago} alt="logo Mercado Pago" className="w-32" />
+          <img src={mercadopago} alt="logo Mercado Pago" className="w-24" />
         </div>
       </div>
       <div className="w-full flex items-center justify-center ms:justify-start space-x-1 mb-6">
