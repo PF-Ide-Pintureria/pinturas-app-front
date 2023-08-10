@@ -282,7 +282,7 @@ const Detail = () => {
               </p>
               <p className=" mt-2 ml-2 text-sm font-medium text-gray-500">
                 Stock disponible: {"  "}
-                {product?.stock || 0}
+                {product?.stock}
               </p>
               <div className=" flex items-end justify-start gap-2 sm:flex-row sm:space-y-0">
                 <div className="flex flex-col">
@@ -315,44 +315,52 @@ const Detail = () => {
                   <h1 className="text-3xl font-bold">$ {product?.price}</h1>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
-                  <button
-                    type="button"
-                    disabled={!isValidQuantity}
-                    className={`flex items-center justify-center rounded-md border-2 border-transparent bg-purple-100 bg-none text-center text-base font-bold text-purple-800 transition-all duration-200 ease-in-out focus:shadow ${
-                      isValidQuantity
-                        ? "hover:bg-purple-200"
-                        : "cursor-not-allowed"
-                    }`}
-                    onClick={handleAddToCart}
-                  >
-                    Agregar al carrito
-                  </button>
-                  <button
-                    type="button"
-                    className={`inline-flex items-center justify-center rounded-md border-2 border-transparent bg-purple-800 bg-none px-12 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow ${
-                      isValidQuantity
-                        ? "hover:bg-gray-800"
-                        : "cursor-not-allowed"
-                    }`}
-                    onClick={shopCart}
-                    disabled={!isValidQuantity}
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="shrink-0 mr-3 h-5 w-5"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-                      />
-                    </svg>
-                    Comprar
-                  </button>
+
+                  {product.stock > 0
+                    ?(<div className="grid grid-cols-2 gap-4">
+                      {console.log('product.stock', product.stock)}
+                      <button
+                        type="button"
+                        disabled={!isValidQuantity}
+                        className={`flex items-center justify-center rounded-md border-2 border-transparent bg-purple-100 bg-none text-center text-base font-bold text-purple-800 transition-all duration-200 ease-in-out focus:shadow ${
+                          isValidQuantity
+                            ? "hover:bg-purple-200"
+                            : "cursor-not-allowed"
+                        }`}
+                        onClick={handleAddToCart}
+                        >
+                        Agregar al carrito
+                      </button>
+                      <button
+                        type="button"
+                        className={`inline-flex items-center justify-center rounded-md border-2 border-transparent bg-purple-800 bg-none px-12 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow ${
+                          isValidQuantity
+                            ? "hover:bg-gray-800"
+                            : "cursor-not-allowed"
+                        }`}
+                        onClick={shopCart}
+                        disabled={!isValidQuantity}
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="shrink-0 mr-3 h-5 w-5"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                          />
+                        </svg>
+                        Comprar
+                      </button>
+                    </div>
+                  )
+                  :( <p> Producto sin Stock </p>)}
+                  
                 </div>
               </div>
             </div>
@@ -512,7 +520,8 @@ const Detail = () => {
                 <div className="flex items-end">
                   <h1 className="text-3xl font-bold">$ {product?.price}</h1>
                 </div>
-                <div className="grid grid-cols-2 gap-4">
+                {product.stock > 0
+                ? (<div className="grid grid-cols-2 gap-4">
                   <button
                     type="button"
                     disabled={!isValidQuantity}
@@ -553,7 +562,9 @@ const Detail = () => {
                     </svg>
                     Comprar
                   </button>
-                </div>
+                </div>)
+                : <p className="text-red-700 font-semibold">Stock no disponible</p>
+                }
               </div>
             </div>
           </div>

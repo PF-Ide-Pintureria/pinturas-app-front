@@ -38,9 +38,9 @@ const Products = ({ idProduct, name, image, price, prodpackage }) => {
   return (
     <div className="w-64 h-96  flex flex-col items-center text-secondary justify-center bg-tertiary rounded-3xl transition-transform duration-300 ease-in-out hover:scale-105">
       <div className="absolute top-4 right-4">
-        <span className="cursor-pointer" onClick={addFavorite}>
+        {/* <span className="cursor-pointer" onClick={addFavorite}>
           🤍
-        </span>
+        </span> */}
       </div>
       <div>
         <img src={image} alt="image" className="w-40 h-48 mx-auto" />
