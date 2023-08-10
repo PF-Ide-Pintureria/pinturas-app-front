@@ -108,7 +108,6 @@ const Detail = () => {
     return <div className="stars-container">{stars}</div>;
   };
 
-
     const shopCart = () => {
         if (isValidQuantity) {
             addToCart({
@@ -130,7 +129,6 @@ const Detail = () => {
                 stock: product.stock
             });
             setAddedBuy(true);
-            
         }
     };
 
@@ -171,7 +169,7 @@ const Detail = () => {
 
         }
         if(addedBuy){
-            dispatch(setCart([addProduct]));
+            dispatch(setCart(addProduct));
             setAddedBuy(false);
             navigate("/cart");
         }

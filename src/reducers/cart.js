@@ -37,7 +37,6 @@ export const cartReducer = (state = cartInitialState, action) => {
         case CART_ACTION_TYPES.ADD_ALL_TO_CART:
 
             const products = action.payload;
-            console.log('products', products)
             let stateCopy = [ ...state ];
             
             products.map(product => {

@@ -201,7 +201,7 @@ const reducer = (state = initialState, { type, payload }) => {
 
             if (productoExistente) {
                 return { ...state,
-                    cart: state.cart.map(item => item.id == payload.id ? { ...item, quantity: item.quantity + payload.quantity } : item
+                    cart: state?.cart?.map(item => item.id == payload.id ? { ...item, quantity: item.quantity + payload.quantity } : item
                 ),
                 };
             } else {
@@ -215,7 +215,7 @@ const reducer = (state = initialState, { type, payload }) => {
         case GET_CART_ID:
             return { ...state, cartID: payload };
         case GET_CART:
-            return { ...state, cart: [...state.cart, ...payload] };
+            return { ...state, cart: payload };
         case PUT_CART:
             return { ...state, cart: payload };
         case ADD_CART:
