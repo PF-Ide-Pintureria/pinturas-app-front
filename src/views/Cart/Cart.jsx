@@ -83,7 +83,7 @@ const Cart = () => {
   };
   
   const calcTotal = (price) => {
-
+    
   };
 
   console.log('sum', sum)

@@ -60,11 +60,17 @@ function App() {
   const [showButton, setShowButton] = useState(true);
   const cart = useSelector((state) => state.cart);
   const userDb = useSelector((state) => state.user);
-  const { cartState, addToCart, addAllToCart, removeFromCart, clearCart } = useCart();
+  const {
+    cartState,
+    addToCart,
+    addAllToCart,
+    removeFromCart,
+    clearCart,
+  } = useCart();
   const idCart = localStorage.getItem("idCart");
   const user = localStorage.getItem("user");
   const cartLocalS = localStorage.getItem("cart");
-  
+
   const toggleChatbot = () => {
     setShowChatbot(!showChatbot);
     setShowButton(false);
@@ -75,29 +81,26 @@ function App() {
     setShowButton(true);
   };
 
-  useEffect(() =>{
-
+  useEffect(() => {
     if (cartLocalS) dispatch(addCart(JSON.parse(cartLocalS)));
 
-    if ( user ) dispatch(setUser(JSON.parse(user)));
+    if (user) dispatch(setUser(JSON.parse(user)));
 
     dispatch(allProducts());
-
   }, []);
 
-  useEffect(()=>{
-    if ( userDb ) {
-
-      dispatch(getCart(JSON.parse(user).id)).then((response)=>{
-        if (response){
+  useEffect(() => {
+    if (userDb) {
+      dispatch(getCart(JSON.parse(user)?.id)).then((response) => {
+        if (response) {
           addAllToCart(response);
         }
-      })
+      });
     }
-  }, [user])
-  
+  }, [user]);
+
   // useEffect(() => {
-    
+
   //   if (idCart){
   //     Swal.fire({
   //       title: "Ya tienes un carrito",
@@ -107,7 +110,7 @@ function App() {
   //       confirmButtonText: "Sí, agregar",
   //       cancelButtonText: "No, mantener carrito",
   //     }).then(resultado => {
-        
+
   //       if (resultado.value) {
   //         dispatch(putCart({
   //                 idUser: JSON.parse(user).id,
@@ -119,7 +122,6 @@ function App() {
   //     });
   //   }
   // },[idCart])
-
 
   return (
     <div>

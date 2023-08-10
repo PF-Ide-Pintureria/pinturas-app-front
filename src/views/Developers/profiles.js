@@ -6,6 +6,7 @@ import Jamer from "../../img/Team/Jamer.jpeg";
 import Juan from "../../img/Team/Juan.jpg";
 import Nicole from "../../img/Team/Nicole.jpg";
 import Roberto from "../../img/Team/Roberto.jpeg";
+import Daniel from '../../img/Team/Daniel.png'
 
 export const teamMembers = [
     {
@@ -81,5 +82,14 @@ export const teamMembers = [
         github: "https://github.com/charliejp21",
         gmail: "mailto:charliejp21@gmail.com",
         linkedin: "https://www.linkedin.com/in/roberto-jardines/",
+    },
+    {
+        name: "Daniel Briceño",
+        image: Daniel,
+        description:
+            "Daniel, Desarrollador Fullstack. Henry Mentor. Experto en metodologías ágiles. El mejor mentor que nos podría haber tocado",
+        github: " https://github.com/dbriceno10 ",
+        gmail: "mailto:daniel.b100726@gmail.com",
+        linkedin: "https://www.linkedin.com/in/dbriceno10/",
     },
 ];
