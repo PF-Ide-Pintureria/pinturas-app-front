@@ -29,7 +29,7 @@ const FavoriteCard = ({ id, image, name, stock, active, price }) => {
                     </div>
                 <div>
                     {stock === 1 && <p className="text-red-700 font-semibold"> Producto sin stock </p>}
-                    {active === "false" && <p className="text-red-700 font-semibold"> Producto sin stock </p>}
+                    {active === "false" && <p className="text-red-700 font-semibold"> Producto no disponible</p>}
                     <p className="flex items-end text-2xl">${price}</p>
                 </div>
             </div>

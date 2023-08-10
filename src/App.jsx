@@ -35,7 +35,6 @@ import { useCart } from "./hooks/useCart";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "./redux/actions/User/setUser";
 import { allProducts } from "./redux/actions/Products/allProducts";
-import { setCart } from "./redux/actions/Cart/setCart";
 import TestTable from "./TestTable";
 import UpdateUserForm from "./components/UpdateForm/UpdateUserForm";
 import { getCart } from "./redux/actions/Cart/getCart";
@@ -51,12 +50,20 @@ import { steps } from "../src/assets/steps";
 import { theme } from "../src/assets/theme";
 import { SiChatbot } from "react-icons/si";
 import person from "../src/img/user.jpg";
+import Swal from "sweetalert2";
+import { putCart } from "./redux/actions/Cart/putCart";
+import { addCart } from "./redux/actions/Cart/addCart";
 
 function App() {
   const dispatch = useDispatch();
   const [showChatbot, setShowChatbot] = useState(false);
   const [showButton, setShowButton] = useState(true);
-
+  const cart = useSelector((state) => state.cart);
+  const { cartState, addToCart, addAllToCart, removeFromCart, clearCart } = useCart();
+  const idCart = localStorage.getItem("idCart");
+  const user = localStorage.getItem("user");
+  const cartLocalS = localStorage.getItem("cart");
+  
   const toggleChatbot = () => {
     setShowChatbot(!showChatbot);
     setShowButton(false);
@@ -66,19 +73,50 @@ function App() {
     setShowChatbot(false);
     setShowButton(true);
   };
-
   useEffect(() => {
-    const user = localStorage.getItem("user");
-    const cart = localStorage.getItem("cart");
+
     if (user) {
-      dispatch(setUser(JSON.parse(user)));
-      // cartId !== null && dispatch(getCart(cartId));
+        dispatch(setUser(JSON.parse(user)));
+      //   dispatch(getCart(JSON.parse(user).id)).then((response)=>{
+      //     console.log('response', response)
+      //     if (response){
+      //       addAllToCart(response);
+      //     }
+      // })
+    // if (cartLocalS.length > 0) dispatch(addCart([JSON.parse(cartLocalS)]))
     }
-    if (cart) {
-      dispatch(setCart(JSON.parse(cart)));
-    }
+    // if (cartLocalS) dispatch(setCart(JSON.parse(cartLocalS)));
+
     dispatch(allProducts());
   }, []);
+
+  // useEffect(() => {
+    
+  //   if (idCart){
+  //     Swal.fire({
+  //       title: "Ya tienes un carrito",
+  //       text: "¿Desea unir los carritos?",
+  //       icon: 'warning',
+  //       showCancelButton: true,
+  //       confirmButtonText: "Sí, agregar",
+  //       cancelButtonText: "No, mantener carrito",
+  //     }).then(resultado => {
+        
+  //       console.log('JSON.parse(user)', JSON.parse(user))
+  //       if (resultado.value) {
+  //         dispatch(putCart({
+  //                 idUser: JSON.parse(user).id,
+  //                 idCart: idCart,
+  //                 products: JSON.parse(cartLocalS)}))
+  //           console.log("*se suman los carritos*");
+  //       } else {
+  //           //Dijeron que no
+  //           console.log("*NO se elimina la venta*");
+  //       }
+  //     });
+  //   }
+  // },[idCart])
+
 
   return (
     <div>

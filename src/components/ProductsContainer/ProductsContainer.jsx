@@ -44,18 +44,22 @@ const ProductsContainer = () => {
       dispatch(setPage(1));
       dispatch(setLowPrice(0));
       dispatch(setHighPrice(10000));
+
     } else if (priceFilter === "$10000 a $20000") {
       dispatch(setPage(1));
       dispatch(setLowPrice(10000));
       dispatch(setHighPrice(20000));
+
     } else if (priceFilter === "Mas de $20000") {
       dispatch(setPage(1));
       dispatch(setLowPrice(20000));
       dispatch(setHighPrice(0));
+
     } else if (priceFilter === "no price") {
       dispatch(setPage(1));
       dispatch(setLowPrice(0));
       dispatch(setHighPrice(0));
+
     }
   };
 
@@ -225,7 +229,7 @@ const ProductsContainer = () => {
                       </h3>
                     </div>
                     <div className="w-fit h-fit flex items-center justify-center ">
-                      <input
+                      {/* <input
                         type="number"
                         placeholder="Mínimo"
                         name="min"
@@ -270,7 +274,7 @@ const ProductsContainer = () => {
                           <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                           <path d="M9 6l6 6l-6 6" />
                         </svg>
-                      </button>
+                      </button> */}
                     </div>
                   </div>
                   {/*       FILTER COLOR         */} {/* PROXIMAMENTE */}

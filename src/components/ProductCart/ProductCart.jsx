@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from 'sweetalert2';
 import { postFavorites } from "../../redux/actions/Favorites/postFavorites";
@@ -9,8 +9,10 @@ import { setCart } from "../../redux/actions/Cart/setCart"
 const ProductCart = ({ id, name, quantity, image, price, stock}) => {
     const dispatch = useDispatch()
     const user = useSelector(state => state.user)
+    const cart = useSelector(state => state.cart)
     const [count, setCount] = useState(quantity)
     const { cartState, addToCart, removeFromCart, clearCart } = useCart();
+    const [isRemove, setIsRemove] = useState(false);
 
     const calcPrice = (quant, pric) => {
         let sum = Number(quant) * Number(pric)
@@ -22,13 +24,16 @@ const ProductCart = ({ id, name, quantity, image, price, stock}) => {
     }
 
     const deleteProductCart = () => {
-        removeFromCart(id, cartState)
-        dispatch(setCart([cartState]));
-        // Swal.fire({
-        //     icon: 'success',
-        //     text: 'Producto removido del carrito'
-        // })
+        setIsRemove(true)
     }
+
+    useEffect(() => {
+        if (isRemove) {
+            removeFromCart(id)
+            window.location.reload();
+            setIsRemove(false)
+        }
+    },[isRemove])
 
     const addFavorite = () => {
         if (user){
@@ -79,11 +84,15 @@ const ProductCart = ({ id, name, quantity, image, price, stock}) => {
                                         disabled={count == stock}>
                                         +
                                     </button>
-                                </div>
-                                <h1 className="text-gray-500"> {stock} disponibles </h1>
+                                </div>{
+                                    stock > 0
+                                    ? <h1 className="text-gray-500"> {stock} disponibles </h1>
+                                    : <p className="text-red-700 font-semibold"> Producto sin stock </p>}
                             </div>
                             <div className="w-80 flex justify-end items-center">
-                                <h1 className="text-xl font-bold text-gray-700">$ {calcPrice(count, price)}</h1>
+                                {stock > 0
+                                ? <h1 className="text-xl font-bold text-gray-700">$ {calcPrice(count, price)}</h1>
+                                : <p className="text-red-700 font-semibold"> Producto no disponible </p>}
                             </div>
                         </div>
                     </div>

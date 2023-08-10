@@ -14,6 +14,7 @@ import Swal from 'sweetalert2';
 const Detail = () => {
 
     const loggedUser = useSelector((state) => state.user);
+    const cart = useSelector((state) => state.cart);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { idProduct } = useParams();
@@ -22,6 +23,8 @@ const Detail = () => {
 
     const [isValidQuantity, setIsValidQuantity] = useState(true);
     const [error, setError] = useState("");
+    const [added, setAdded] = useState(false);
+    const [addedBuy, setAddedBuy] = useState(false);
     const [addProduct, setAddProduct] = useState({
         id: idProduct,
         quantity: 1,
@@ -116,8 +119,8 @@ const Detail = () => {
                 price: product.price,
                 stock: product.stock
             });
-            dispatch(setCart([addProduct]));
-            navigate("/cart");
+            setAddedBuy(true);
+            
         }
     };
 
@@ -141,13 +144,28 @@ const Detail = () => {
                 price: product.price,
                 stock: product.stock
             });
-            Swal.fire("Producto agregado al carrito");
-            dispatch(setCart([addProduct]));
-
+            
+            setAdded(true)
         } else {
             Swal.fire("Ingrese una cantidad válida");
         }
     };
+
+    useEffect(() => {
+        if(added){
+
+                dispatch(setCart(addProduct));
+                Swal.fire("Producto agregado al carrito");
+                console.log('addProduct', addProduct)
+                setAdded(false);
+
+        }
+        if(addedBuy){
+            dispatch(setCart([addProduct]));
+            setAddedBuy(false);
+            navigate("/cart");
+        }
+    },[added, addedBuy])
 
     useEffect(() => {
         dispatch(productById(idProduct));
