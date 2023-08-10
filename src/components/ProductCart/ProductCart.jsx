@@ -15,14 +15,14 @@ const ProductCart = ({ id, name, quantity, image, price, stock}) => {
     const { cartState, addToCart, removeFromCart, clearCart } = useCart();
     const [isRemove, setIsRemove] = useState(false);
 
-  const calcPrice = (quant, pric) => {
-    let sum = Number(quant) * Number(pric);
-    return sum.toFixed(2);
-  };
-  const moreOrLessQuantity = (algo) => {
-    if (algo === "more") setCount(count + 1);
-    if (algo === "less") setCount(count - 1);
-  };
+    const calcPrice = (quant, pric) => {
+        let sum = Number(quant) * Number(pric);
+        return sum.toFixed(2);
+    };
+    const moreOrLessQuantity = (algo) => {
+        if (algo === "more") setCount(count + 1);
+        if (algo === "less") setCount(count - 1);
+    };
 
 
     const deleteProductCart = () => {
@@ -46,21 +46,22 @@ const ProductCart = ({ id, name, quantity, image, price, stock}) => {
             dispatch(postFavorites(data)).then((response) => {
                 if (response === "existe"){
                     Swal.fire("Ya exite este producto en favoritos");
-                }else{
+                } else {
                     Swal.fire({
-                      icon: "success",
-                      title: "Producto agregado a favoritos",
-                      timer: 2000,
-                      showConfirmButton: false,
+                        icon: "success",
+                        title: "Producto agregado a favoritos",
+                        timer: 2000,
+                        showConfirmButton: false,
 
                         })
+                }
             }).catch((error) => {
                 console.log('error productCart', error)
         });
-    } else {
-      Swal.fire("Debes estar logeado para agregar favoritos");
-    }
-  };
+        } else {
+            Swal.fire("Debes estar logeado para agregar favoritos");
+        }
+    };
 
 
     return (
@@ -104,8 +105,9 @@ const ProductCart = ({ id, name, quantity, image, price, stock}) => {
                         </div>
                     </div>
                 </div>
-          </div>
-    </div>
+            </div>
+        </div>
+    )
 };
 
 export default ProductCart;
