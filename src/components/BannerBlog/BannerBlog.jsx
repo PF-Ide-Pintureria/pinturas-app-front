@@ -3,61 +3,16 @@ import { Link } from "react-router-dom";
 import banner4 from "../../img/banner4.png";
 
 const BannerCarousel = () => {
-  const [currentImage, setCurrentImage] = useState(0);
-  const images = [
-    {
-      src: banner4,
-      link: "/blog",
-    },
-  ];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImage((prevImage) => (prevImage + 1) % images.length);
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  const goToPrevImage = () => {
-    setCurrentImage(
-      (prevImage) => (prevImage - 1 + images.length) % images.length
-    );
-  };
-
-  const goToNextImage = () => {
-    setCurrentImage((prevImage) => (prevImage + 1) % images.length);
-  };
-
   return (
-    <div className="relative w-full h-80 sm:h-96 md:h-120">
-      {images.map((image, index) => (
-        <Link
-          key={index}
-          to={image.link}
-          className={`absolute top-0 left-0 w-full h-full transition-opacity duration-500 ease-in-out ${
-            index === currentImage ? "opacity-100" : "opacity-0"
-          }`}>
+    <div className="mt-15 mb-15">
+      <div className="w-full h-full">
+        <Link to="/blog">
           <img
-            src={image.src}
-            alt={`Image ${index + 1}`}
-            className="absolute w-full h-full object-cover"
+            src={banner4}
+            alt="banner4"
+            className="w-full h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-105"
           />
         </Link>
-      ))}
-      <div className="absolute bottom-4 left-4 flex items-center space-x-2">
-        <button
-          className="w-8 h-8 p-1 bg-gray-800 bg-opacity-20 text-white rounded-full focus:outline-none"
-          onClick={goToPrevImage}>
-          &lt;
-        </button>
-      </div>
-      <div className="absolute bottom-4 right-4 flex items-center space-x-2">
-        <button
-          className="w-8 h-8 p-1 bg-gray-800 bg-opacity-20 text-white rounded-full focus:outline-none"
-          onClick={goToNextImage}>
-          &gt;
-        </button>
       </div>
     </div>
   );

@@ -1,25 +1,22 @@
 import React, { useState } from "react";
-import { useLocation } from 'react-router-dom';
-import { useNavigate } from "react-router-dom";
 import {useDispatch} from 'react-redux';
-import { productByName } from '../../redux/actions/productByName'
-import { allProducts } from '../../redux/actions/allProducts';
-import { setPage } from "../../redux/actions/setPage";
+import { productByName } from '../../redux/actions/Products/productByName'
+import { allProducts } from '../../redux/actions/Products/allProducts';
+import { setPage } from "../../redux/actions/Page/setPage";
 import { useSelector } from "react-redux";
 
 const SearchBar = () => {
   const [search, setSearch] = useState("");
-  const location = useLocation();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { products, thisPage } = useSelector((state) => state)
+  const thisPage = useSelector((state) => state.thisPage);
+  const filterCategory = useSelector((state) => state.filterCategory);
+  const { high, low } = useSelector((state) => state.price);
 
   const handleChange = (event) => {
-    dispatch(setPage(thisPage));
-    // event.preventDefault();
+    dispatch(setPage(1));
     setSearch(event.target.value);
-      event.target.value.length 
-      ? dispatch(productByName(event.target.value))
+      event.target.value.length
+      ? dispatch(productByName(event.target.value, thisPage, filterCategory, low, high))
       : dispatch(allProducts())
   };
   

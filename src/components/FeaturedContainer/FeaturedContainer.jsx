@@ -5,23 +5,28 @@ import { useSelector } from "react-redux";
 
 const FeaturedContainer = () => {
   const bestSellers = useSelector((state) => state.bestSell);
-  
+
   return (
-    <div className="flex  w-full m-auto">
-      <div className="flex flex-col justify-center m-0 w-full">
-        
-        <img src={featuredBanner} alt="banner" className="w-full mt-20" />
-        <div className="flex w-4/5 column-4 gap-5 my-10 self-center justify-around object-center">
-          {bestSellers.map((bestSeller) => (
-            <Featured
-              key={bestSeller.idProduct}
-              id={bestSeller.idProduct}
-              image={bestSeller.image}
-              name={bestSeller.name}
-              price={bestSeller.price}
-              prodpackage={bestSeller.prodpackage}
-            />
-          ))}
+    <div className="flex  justify-center w-full m-auto">
+      <div className="flex flex-col m-0 w-full">
+        <img
+          src={featuredBanner}
+          alt="banner"
+          className="w-full h-[120px] min-h-[100px] md:w-full object-cover mt-20"
+        />
+        <div className="container mt-10 mx-auto justify-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 place-items-center">
+            {bestSellers.map((bestSeller) => (
+              <Featured
+                key={bestSeller.idProduct}
+                id={bestSeller.idProduct}
+                image={bestSeller.image}
+                name={bestSeller.name}
+                price={bestSeller.price}
+                prodpackage={bestSeller.prodpackage}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>

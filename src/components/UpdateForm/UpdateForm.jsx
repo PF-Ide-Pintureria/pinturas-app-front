@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { allCategories } from "../../redux/actions/allCategories";
-import { productById } from "../../redux/actions/productById"
+import { allCategories } from "../../redux/actions/Categories/allCategories";
+import { productById } from "../../redux/actions/Products/productById"
 import validations from "./validations";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { formatAndEdit } from "./formatAndEdit";
-import axios from "axios";
-import { BASE_URL } from "../../redux/action-type";
+import Swal from 'sweetalert2';
 
 const UpdateForm = () => {
 
@@ -20,8 +19,12 @@ const UpdateForm = () => {
         dispatch(productById(idProduct))
     }, [dispatch]);
 
+    const navigate = useNavigate();
+
+
     const detail = useSelector(state => state.detail);
-    const categories = useSelector(state => state.categories)
+    const categories = useSelector(state => state.categories);
+    const user = useSelector(state => state.user)
 
     const [inputsForm, setInputsForm] = useState({
         name: "",
@@ -39,14 +42,6 @@ const UpdateForm = () => {
         if (detail) {
             setInputsForm({
                 ...detail
-                // name: detail.name,
-                // price: detail.price,
-                // category: detail.category,
-                // patent: detail.patent,
-                // image: detail.image,
-                // color: detail.color,
-                // // package: detail.package,
-                // stock: detail.stock
             })
         }
     },
@@ -82,171 +77,354 @@ const UpdateForm = () => {
         if (Object.keys(errors).length === 0) {
             const response = await formatAndEdit(inputsForm, idProduct, dispatch);
             if (response) {
-                alert('Producto modificado con éxito');
+                Swal.fire({
+                    icon: 'success',
+                    text: 'Producto modificado con éxito'
+                });
             };
         } else {
-            alert('Hubo un error al modificar el producto');
+            Swal.fire({
+                icon: 'error',
+                text: 'Hubo un error al modificar el producto'
+            });
         };
     };
+    if (user.rol !== 'admin') {
+        Swal.fire({
+            icon: 'error',
+            text: 'No autorizado'
+        });
+        navigate(`/products/${idProduct}`);
+    } else {
 
-    return (
+        if (!detail.active) {
+            return (
 
-        <div>
-            <h2 className="text-primary uppercase font-bold  flex items-center justify-center">
-                Actualizar producto
-            </h2>
-            <form className="justify-start" onSubmit={handleSubmit} encType="multipart/form-data">
-                <div className=" flex m-8 mb-0">
-                    <label
-                        htmlFor="name"
-                        className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
-                    >
-                        Nombre:
-                    </label>
-                    <input
-                        className="bg-formBg rounded-r-lg w-72 h-8"
-                        type="text"
-                        name="name"
-                        value={inputsForm.name}
-                        onChange={handleInputChange}
-                    />
-                </div>
-                <div className="flex my-0 pt-0 pl-8 justify-around">
-                    <p
-                        className={`text-warning text-xs font-extrabold py-0 m-0 ${errors.name ? "block" : "hidden"
-                            }`}
-                    >
-                        {errors.name}
-                    </p>
-                </div>
-                <div className={`flex m-8 mb-0 ${errors.name ? "mt-4" : "mt-8"}`}>
-                    <label
-                        htmlFor="price"
-                        className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
-                    >
-                        Precio:
-                    </label>
-                    <input
-                        className="bg-formBg rounded-r-lg w-72 h-8"
-                        type="number"
-                        name="price"
-                        value={inputsForm.price}
-                        onChange={handleInputChange}
-                    />
-                </div>
-                <div className="flex my-0 pt-0 pl-8 justify-around">
-                    {errors.price && <p className="text-warning text-xs font-extrabold py-0 m-0">{errors.price}</p>}
-                </div>
+                <div>
+                    <h2 className="text-primary uppercase font-bold  flex items-center justify-center">
+                        Actualizar producto
+                    </h2>
+                    <form className="justify-start" onSubmit={handleSubmit} encType="multipart/form-data">
+                        <div className=" flex m-8 mb-0">
+                            <label
+                                htmlFor="name"
+                                className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
+                            >
+                                Nombre:
+                            </label>
+                            <input
+                                className="bg-formBg rounded-r-lg w-72 h-8"
+                                type="text"
+                                name="name"
+                                value={inputsForm.name}
+                                onChange={handleInputChange}
+                                disabled="true"
+                            />
+                        </div>
+                        <div className="flex my-0 pt-0 pl-8 justify-around">
+                            <p
+                                className={`text-warning text-xs font-extrabold py-0 m-0 ${errors.name ? "block" : "hidden"
+                                    }`}
+                            >
+                                {errors.name}
+                            </p>
+                        </div>
+                        <div className={`flex m-8 mb-0 ${errors.name ? "mt-4" : "mt-8"}`}>
+                            <label
+                                htmlFor="price"
+                                className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
+                            >
+                                Precio:
+                            </label>
+                            <input
+                                className="bg-formBg rounded-r-lg w-72 h-8"
+                                type="number"
+                                name="price"
+                                value={inputsForm.price}
+                                onChange={handleInputChange}
+                                disabled="true"
+                            />
+                        </div>
+                        <div className="flex my-0 pt-0 pl-8 justify-around">
+                            {errors.price && <p className="text-warning text-xs font-extrabold py-0 m-0">{errors.price}</p>}
+                        </div>
 
-                <div className={`flex m-8 mb-0 ${errors.price ? "mt-4" : "mt-8"}`}>
-                    <label
-                        htmlFor="category"
-                        className="bg-quaternary rounded-l-xl w-40 h-8 flex items-center justify-center"
-                    >
-                        Categoría:
-                    </label>
-                    <select
-                        className="bg-formBg rounded-r-lg w-72 h-8"
-                        value={inputsForm.category}
-                        onChange={handleInputChange}
-                        name="category"
-                    >
-                        <option value="">Seleccione una categoría</option>
-                        {categories.map((category, index) => (
-                            <option key={index} value={category}>
-                                {category}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-                <div className="flex m-8">
-                    <label
-                        htmlFor="patent"
-                        className="bg-quaternary rounded-l-xl w-40 h-8 flex items-center justify-center"
-                    >
-                        Marca:
-                    </label>
-                    <input
-                        className="bg-formBg rounded-r-lg w-72 h-8"
-                        type="text"
-                        name="patent"
-                        value={inputsForm.patent}
-                        onChange={handleInputChange}
-                    />
-                </div>
+                        <div className={`flex m-8 mb-0 ${errors.price ? "mt-4" : "mt-8"}`}>
+                            <label
+                                htmlFor="category"
+                                className="bg-quaternary rounded-l-xl w-40 h-8 flex items-center justify-center"
+                            >
+                                Categoría:
+                            </label>
+                            <select
+                                className="bg-formBg rounded-r-lg w-72 h-8"
+                                value={inputsForm.category}
+                                onChange={handleInputChange}
+                                name="category"
+                                disabled="true"
+                            >
+                                <option value="">Seleccione una categoría</option>
+                                {categories.map((category, index) => (
+                                    <option key={index} value={category}>
+                                        {category}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                        <div className="flex m-8">
+                            <label
+                                htmlFor="patent"
+                                className="bg-quaternary rounded-l-xl w-40 h-8 flex items-center justify-center"
+                            >
+                                Marca:
+                            </label>
+                            <input
+                                className="bg-formBg rounded-r-lg w-72 h-8"
+                                type="text"
+                                name="patent"
+                                value={inputsForm.patent}
+                                onChange={handleInputChange}
+                                disabled="true"
+                            />
+                        </div>
 
-                <div className="flex m-8">
-                    <label
-                        htmlFor="image"
-                        className="bg-quaternary rounded-l-xl w-40 h-8 flex items-center justify-center cursor-pointer"
-                    >
-                        Selecciona tu img:
-                        <input
-                            className="opacity-0 absolute"
-                            type="file"
-                            name="image"
-                            accept="image/*"
-                            // value={inputsForm?.image?.name}
-                            onChange={handleInputChange}
+                        <div className="flex m-8">
+                            <label
+                                htmlFor="image"
+                                className="bg-quaternary rounded-l-xl w-40 h-8 flex items-center justify-center cursor-pointer"
+                            >
+                                Selecciona tu img:
+                                <input
+                                    className="opacity-0 absolute"
+                                    type="file"
+                                    name="image"
+                                    accept="image/*"
+                                    // value={inputsForm?.image?.name}
+                                    onChange={handleInputChange}
+                                    disabled="true"
 
-                        />
-                    </label>
-                    <span className="bg-formBg rounded-r-lg w-72 h-8 flex items-center px-3">
-                        {inputsForm.image && `Imagen seleccionada: ${inputsForm.image}`}
-                    </span>
-                </div>
+                                />
+                            </label>
+                            <span className="bg-formBg rounded-r-lg w-72 h-8 flex items-center px-3">
+                                {inputsForm.image && `Imagen seleccionada: ${inputsForm.image}`}
+                            </span>
+                        </div>
 
-                <div className="flex m-8 mb-0">
-                    <label
-                        htmlFor="stock"
-                        className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
-                    >
-                        Stock:
-                    </label>
-                    <input
-                        className="bg-formBg rounded-r-lg w-72 h-8"
-                        type="text"
-                        name="stock"
-                        value={inputsForm.stock}
-                        onChange={handleInputChange}
-                    />
+                        <div className="flex m-8 mb-0">
+                            <label
+                                htmlFor="stock"
+                                className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
+                            >
+                                Stock:
+                            </label>
+                            <input
+                                className="bg-formBg rounded-r-lg w-72 h-8"
+                                type="text"
+                                name="stock"
+                                value={inputsForm.stock}
+                                onChange={handleInputChange}
+                                disabled="true"
+                            />
+                        </div>
+                        <div className="flex mt-0 pt-0 pl-8 justify-around">
+                            {errors.stock && <p className="text-warning text-xs font-extrabold py-0 m-0">{errors.stock}</p>}
+                        </div>
+                        <div className={`flex m-8 mb-0 ${errors.stock ? "mt-4" : "mt-8"}`}>
+                            <label
+                                htmlFor="color"
+                                className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
+                            >
+                                Color:
+                            </label>
+                            <input
+                                className="bg-formBg rounded-r-lg w-72 h-8"
+                                type="text"
+                                name="color"
+                                value={inputsForm.color}
+                                disabled="true"
+                            />
+                        </div>
+                        <div className="flex mt-0 pt-0 pl-8 justify-around">
+                            {errors.color && <p className="text-warning text-xs font-extrabold py-0 m-0">{errors.color}</p>}
+                        </div>
+                        <div className={`m-10 flex justify-center ${errors.color ? "mt-4" : "mt-8"}`}>
+                            <button
+                                className="rounded-xl w-4/5 h-12 hover:translate-y-1.5 bg-primary text-tertiary border border-solid border-black m-5 font-bold flex items-center justify-center"
+                                type="submit"
+                                disabled="true"
+                            >
+                                <h2
+                                    className="text-primary uppercase font-bold flex items-center justify-center"
+                                    style={{ color: "white", fontWeight: "bold" }}
+                                >
+                                    Actualizar producto
+                                </h2>
+                            </button>
+                        </div>
+                    </form>
                 </div>
-                <div className="flex mt-0 pt-0 pl-8 justify-around">
-                    {errors.stock && <p className="text-warning text-xs font-extrabold py-0 m-0">{errors.stock}</p>}
+            );
+        }
+        else {
+            return (
+                <div>
+                    <h2 className="text-primary uppercase font-bold  flex items-center justify-center">
+                        Actualizar producto
+                    </h2>
+                    <form className="justify-start" onSubmit={handleSubmit} encType="multipart/form-data">
+                        <div className=" flex m-8 mb-0">
+                            <label
+                                htmlFor="name"
+                                className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
+                            >
+                                Nombre:
+                            </label>
+                            <input
+                                className="bg-formBg rounded-r-lg w-72 h-8"
+                                type="text"
+                                name="name"
+                                value={inputsForm.name}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                        <div className="flex my-0 pt-0 pl-8 justify-around">
+                            <p
+                                className={`text-warning text-xs font-extrabold py-0 m-0 ${errors.name ? "block" : "hidden"
+                                    }`}
+                            >
+                                {errors.name}
+                            </p>
+                        </div>
+                        <div className={`flex m-8 mb-0 ${errors.name ? "mt-4" : "mt-8"}`}>
+                            <label
+                                htmlFor="price"
+                                className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
+                            >
+                                Precio:
+                            </label>
+                            <input
+                                className="bg-formBg rounded-r-lg w-72 h-8"
+                                type="number"
+                                name="price"
+                                value={inputsForm.price}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                        <div className="flex my-0 pt-0 pl-8 justify-around">
+                            {errors.price && <p className="text-warning text-xs font-extrabold py-0 m-0">{errors.price}</p>}
+                        </div>
+
+                        <div className={`flex m-8 mb-0 ${errors.price ? "mt-4" : "mt-8"}`}>
+                            <label
+                                htmlFor="category"
+                                className="bg-quaternary rounded-l-xl w-40 h-8 flex items-center justify-center"
+                            >
+                                Categoría:
+                            </label>
+                            <select
+                                className="bg-formBg rounded-r-lg w-72 h-8"
+                                value={inputsForm.category}
+                                onChange={handleInputChange}
+                                name="category"
+                            >
+                                <option value="">Seleccione una categoría</option>
+                                {categories.map((category, index) => (
+                                    <option key={index} value={category}>
+                                        {category}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                        <div className="flex m-8">
+                            <label
+                                htmlFor="patent"
+                                className="bg-quaternary rounded-l-xl w-40 h-8 flex items-center justify-center"
+                            >
+                                Marca:
+                            </label>
+                            <input
+                                className="bg-formBg rounded-r-lg w-72 h-8"
+                                type="text"
+                                name="patent"
+                                value={inputsForm.patent}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+
+                        <div className="flex m-8">
+                            <label
+                                htmlFor="image"
+                                className="bg-quaternary rounded-l-xl w-40 h-8 flex items-center justify-center cursor-pointer"
+                            >
+                                Selecciona tu img:
+                                <input
+                                    className="opacity-0 absolute"
+                                    type="file"
+                                    name="image"
+                                    accept="image/*"
+                                    // value={inputsForm?.image?.name}
+                                    onChange={handleInputChange}
+
+                                />
+                            </label>
+                            <span className="bg-formBg rounded-r-lg w-72 h-8 flex items-center px-3">
+                                {inputsForm.image && `Imagen seleccionada: ${inputsForm.image}`}
+                            </span>
+                        </div>
+
+                        <div className="flex m-8 mb-0">
+                            <label
+                                htmlFor="stock"
+                                className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
+                            >
+                                Stock:
+                            </label>
+                            <input
+                                className="bg-formBg rounded-r-lg w-72 h-8"
+                                type="text"
+                                name="stock"
+                                value={inputsForm.stock}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                        <div className="flex mt-0 pt-0 pl-8 justify-around">
+                            {errors.stock && <p className="text-warning text-xs font-extrabold py-0 m-0">{errors.stock}</p>}
+                        </div>
+                        <div className={`flex m-8 mb-0 ${errors.stock ? "mt-4" : "mt-8"}`}>
+                            <label
+                                htmlFor="color"
+                                className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
+                            >
+                                Color:
+                            </label>
+                            <input
+                                className="bg-formBg rounded-r-lg w-72 h-8"
+                                type="text"
+                                name="color"
+                                value={inputsForm.color}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                        <div className="flex mt-0 pt-0 pl-8 justify-around">
+                            {errors.color && <p className="text-warning text-xs font-extrabold py-0 m-0">{errors.color}</p>}
+                        </div>
+                        <div className={`m-10 flex justify-center ${errors.color ? "mt-4" : "mt-8"}`}>
+                            <button
+                                className="rounded-xl w-4/5 h-12 hover:translate-y-1.5 bg-primary text-tertiary border border-solid border-black m-5 font-bold flex items-center justify-center"
+                                type="submit"
+                            >
+                                <h2
+                                    className="text-primary uppercase font-bold flex items-center justify-center"
+                                    style={{ color: "white", fontWeight: "bold" }}
+                                >
+                                    Actualizar producto
+                                </h2>
+                            </button>
+                        </div>
+                    </form>
                 </div>
-                <div className={`flex m-8 mb-0 ${errors.stock ? "mt-4" : "mt-8"}`}>
-                    <label
-                        htmlFor="color"
-                        className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
-                    >
-                        Color:
-                    </label>
-                    <input
-                        className="bg-formBg rounded-r-lg w-72 h-8"
-                        type="text"
-                        name="color"
-                        value={inputsForm.color}
-                        onChange={handleInputChange}
-                    />
-                </div>
-                <div className="flex mt-0 pt-0 pl-8 justify-around">
-                    {errors.color && <p className="text-warning text-xs font-extrabold py-0 m-0">{errors.color}</p>}
-                </div>
-                <div className={`m-10 flex justify-center ${errors.color ? "mt-4" : "mt-8"}`}>
-                    <button
-                        className="rounded-xl w-4/5 h-12 hover:translate-y-1.5 bg-primary text-tertiary border border-solid border-black m-5 font-bold flex items-center justify-center"
-                        type="submit"
-                    >
-                        <h2
-                            className="text-primary uppercase font-bold flex items-center justify-center"
-                            style={{ color: "white", fontWeight: "bold" }}
-                        >
-                            Actualizar producto
-                        </h2>
-                    </button>
-                </div>
-            </form>
-        </div>
-    );
+            );
+        }
+    }
 };
 export default UpdateForm;

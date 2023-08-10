@@ -1,25 +1,26 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./style.css";
-// import { BrowserRouter } from 'react-router-dom';
 import App from "./App";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import { Auth0Provider } from "@auth0/auth0-react";
-
-// const domain = import.meta.env.VITE_AUTH0_CLIENT_ID;
-// const clientId = import.meta.env.VITE_AUTH0_DOMAIN;
+import { CartProvider } from "./context/cart";
+const { VITE_DOMAIN: DOMAIN, VITE_AUTH0_CLIENT_ID: CLIENT_ID } = import.meta
+  .env;
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={store}>
     <Auth0Provider
-      domain="dev-0nawgxvbxbmfnvw2.us.auth0.com"
-      clientId="w3p283H646O3OmbUMppYSR69WvAv86AJ"
+      domain={DOMAIN}
+      clientId={CLIENT_ID}
       authorizationParams={{
         redirect_uri: window.location.origin,
       }}
     >
-      <App />
+      <CartProvider>
+        <App />
+      </CartProvider>
     </Auth0Provider>
   </Provider>
 );
