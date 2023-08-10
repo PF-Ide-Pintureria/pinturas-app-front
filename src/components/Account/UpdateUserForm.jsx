@@ -47,6 +47,14 @@ const UpdateUserForm = () => {
             })
         }
     }, [user])
+    useEffect(() => {
+        setDataToSend({
+            name: inputs.name,
+            lastName: inputs.lastName,
+            email: inputs.email
+        });
+        console.log('data en el effect', dataToSend);
+    }, [inputs])
     console.log('user', user)
     const handleChange = (event) => {
         const property = event.target.name;
@@ -69,6 +77,8 @@ const UpdateUserForm = () => {
                 [property]: value,
             });
         }
+
+        console.log('data en el change', dataToSend)
     };
 
     // Función para manejar el envío del formulario
@@ -88,6 +98,7 @@ const UpdateUserForm = () => {
             lastName: inputs.lastName,
             email: inputs.email
         });
+        console.log('dataToSend', dataToSend)
 
 
         // Validar que las contraseñas coincidan
@@ -108,6 +119,13 @@ const UpdateUserForm = () => {
             setDataToSend({
                 ...dataToSend,
                 password: inputs.newPassword
+            })
+        } else {
+            setDataToSend({
+                ...dataToSend,
+                name: inputs.name,
+                lastName: inputs.lastName,
+                email: inputs.email
             })
         }
         await putUser(user.id, dataToSend)(dispatch).then((response) => {
