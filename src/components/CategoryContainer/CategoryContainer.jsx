@@ -52,7 +52,8 @@ const CategoryContainer = () => {
         <div className="w-full">
           <Link
             to={`/products?category=${encodeURIComponent("Linea Latex")}`}
-            onClick={() => handleCategory("Linea Latex")}>
+            onClick={() => handleCategory("Linea Latex")}
+          >
             <img
               src={category1}
               alt="category1"
@@ -60,11 +61,12 @@ const CategoryContainer = () => {
             />
           </Link>
         </div>
-        <div className="flex w-full">
-          <div className="w-1/2">
+        <div className="flex flex-col sm:flex-row w-fulll">
+          <div className="w-full sm:w-1/2">
             <Link
               to={`/products?category=${encodeURIComponent("Linea Maderas")}`}
-              onClick={() => handleCategory("Linea Maderas")}>
+              onClick={() => handleCategory("Linea Maderas")}
+            >
               <img
                 src={category14}
                 alt="category14"
@@ -72,10 +74,11 @@ const CategoryContainer = () => {
               />
             </Link>
           </div>
-          <div className="w-1/2">
+          <div className="w-full sm:w-1/2">
             <Link
               to={`/products?category=${encodeURIComponent("Linea Esmaltes")}`}
-              onClick={() => handleCategory("Linea Esmaltes")}>
+              onClick={() => handleCategory("Linea Esmaltes")}
+            >
               <img
                 src={category3}
                 alt="category3"
@@ -84,13 +87,14 @@ const CategoryContainer = () => {
             </Link>
           </div>
         </div>
-        <div className="flex w-full">
-          <div className="w-1/2">
+        <div className="flex flex-col sm:flex-row w-fulll">
+          <div className="w-full sm:w-1/2">
             <Link
               to={`/products?category=${encodeURIComponent(
                 "Linea Pinturas a la Cal"
               )}`}
-              onClick={() => handleCategory("Linea Pinturas a la Cal")}>
+              onClick={() => handleCategory("Linea Pinturas a la Cal")}
+            >
               <img
                 src={category4}
                 alt="category4"
@@ -98,10 +102,11 @@ const CategoryContainer = () => {
               />
             </Link>
           </div>
-          <div className="w-1/2">
+          <div className="w-full sm:w-1/2">
             <Link
               to={`/products?category=${encodeURIComponent("Linea Fondos")}`}
-              onClick={() => handleCategory("Linea Fondos")}>
+              onClick={() => handleCategory("Linea Fondos")}
+            >
               <img
                 src={category5}
                 alt="category5"
@@ -110,13 +115,14 @@ const CategoryContainer = () => {
             </Link>
           </div>
         </div>
-        <div className="flex w-full">
-          <div className="w-1/2">
+        <div className="flex flex-col sm:flex-row w-fulll">
+          <div className="w-full sm:w-1/2">
             <Link
               to={`/products?category=${encodeURIComponent(
                 "Linea Entonadores y Tintas"
               )}`}
-              onClick={() => handleCategory("Linea Entonadores y Tintas")}>
+              onClick={() => handleCategory("Linea Entonadores y Tintas")}
+            >
               <img
                 src={category6}
                 alt="category6"
@@ -124,10 +130,11 @@ const CategoryContainer = () => {
               />
             </Link>
           </div>
-          <div className="w-1/2">
+          <div className="w-full sm:w-1/2">
             <Link
               to={`/products?category=${encodeURIComponent("Linea Ecologica")}`}
-              onClick={() => handleCategory("Linea Ecologica")}>
+              onClick={() => handleCategory("Linea Ecologica")}
+            >
               <img
                 src={category7}
                 alt="category7"
@@ -136,13 +143,14 @@ const CategoryContainer = () => {
             </Link>
           </div>
         </div>
-        <div className="flex w-full">
-          <div className="w-1/2">
+        <div className="flex flex-col sm:flex-row w-fulll">
+          <div className="w-full sm:w-1/2">
             <Link
               to={`/products?category=${encodeURIComponent(
                 "Linea Esmaltes Industriales"
               )}`}
-              onClick={() => handleCategory("Linea Esmaltes Industriales")}>
+              onClick={() => handleCategory("Linea Esmaltes Industriales")}
+            >
               <img
                 src={category8}
                 alt="category8"
@@ -150,12 +158,13 @@ const CategoryContainer = () => {
               />
             </Link>
           </div>
-          <div className="w-1/2">
+          <div className="w-full sm:w-1/2">
             <Link
               to={`/products?category=${encodeURIComponent(
                 "Linea Productos Especiales"
               )}`}
-              onClick={() => handleCategory("Linea Productos Especiales")}>
+              onClick={() => handleCategory("Linea Productos Especiales")}
+            >
               <img
                 src={category2}
                 alt="category2"
@@ -164,13 +173,14 @@ const CategoryContainer = () => {
             </Link>
           </div>
         </div>
-        <div className="flex w-full">
-          <div className="w-1/2">
+        <div className="flex flex-col sm:flex-row w-fulll">
+          <div className="w-full sm:w-1/2">
             <Link
               to={`/products?category=${encodeURIComponent(
                 "Linea Impermeabilizantes"
               )}`}
-              onClick={() => handleCategory("Linea Impermeabilizantes")}>
+              onClick={() => handleCategory("Linea Impermeabilizantes")}
+            >
               <img
                 src={category10}
                 alt="category10"
@@ -178,12 +188,13 @@ const CategoryContainer = () => {
               />
             </Link>
           </div>
-          <div className="w-1/2">
+          <div className="w-full sm:w-1/2">
             <Link
               to={`/products?category=${encodeURIComponent(
                 "Linea Fijadores - Aditivos -"
               )}`}
-              onClick={() => handleCategory("Linea Fijadores - Aditivos -")}>
+              onClick={() => handleCategory("Linea Fijadores - Aditivos -")}
+            >
               <img
                 src={category11}
                 alt="category11"
@@ -192,13 +203,14 @@ const CategoryContainer = () => {
             </Link>
           </div>
         </div>
-        <div className="flex w-full">
-          <div className="w-1/2">
+        <div className="flex flex-col sm:flex-row w-fulll">
+          <div className="w-full sm:w-1/2">
             <Link
               to={`/products?category=${encodeURIComponent(
                 "Linea Bases Tintometricas"
               )}`}
-              onClick={() => handleCategory("Linea Bases Tintometricas")}>
+              onClick={() => handleCategory("Linea Bases Tintometricas")}
+            >
               <img
                 src={category12}
                 alt="category12"
@@ -206,12 +218,13 @@ const CategoryContainer = () => {
               />
             </Link>
           </div>
-          <div className="w-1/2">
+          <div className="w-full sm:w-1/2">
             <Link
               to={`/products?category=${encodeURIComponent(
                 "Linea Productos Auxiliares"
               )}`}
-              onClick={() => handleCategory("Linea Productos Auxiliares")}>
+              onClick={() => handleCategory("Linea Productos Auxiliares")}
+            >
               <img
                 src={category13}
                 alt="category13"

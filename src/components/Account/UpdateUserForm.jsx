@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { putUser } from "../../redux/actions/User/putUser"
-import { useAuth0 } from "@auth0/auth0-react"
-import { deleteUser } from "../../redux/actions/deleteUser";
+import { putUser } from "../../redux/actions/User/putUser";
+import { useAuth0 } from "@auth0/auth0-react";
+import { deleteUser } from "../../redux/actions/User/deleteUser";
 import { logoutUser } from "../../redux/actions/User/logoutUser";
 import { useNavigate } from "react-router-dom";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 
 const UpdateUserForm = () => {
     // const [name, setName] = useState("");
@@ -24,11 +24,11 @@ const UpdateUserForm = () => {
         newPassword: "",
         confirmPassword: "",
         passwordMatch: true,
-    })
+    });
 
     const user = useSelector((state) => state.user);
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { isAuthenticated } = useAuth0();
 
     // Funciones para manejar los cambios en los campos
@@ -38,110 +38,104 @@ const UpdateUserForm = () => {
     // const handleNewPasswordChange = (e) => setNewPassword(e.target.value);
     // const handleConfirmPasswordChange = (e) => setConfirmPassword(e.target.value);
 
-
     const handleChange = (event) => {
         const property = event.target.name;
         const value = event.target.value;
-        setInputs({
-            ...inputs,
-            [property]: value
-        });
 
-    }
-    //precargar el formulario con informacion de user:
-    useEffect(() => {
-        // Cargar información del usuario al cargar el componente
-        if (user) {
+        // Special case for password fields to check if they match
+        if (property === "newPassword" || property === "confirmPassword") {
+            const passwordMatch =
+                property === "newPassword"
+                    ? inputs.confirmPassword === value
+                    : inputs.newPassword === value;
             setInputs({
-                name: user.name,
-                lastName: user.lastName,
-                email: user.email,
+                ...inputs,
+                [property]: value,
+                passwordMatch: passwordMatch,
+            });
+        } else {
+            setInputs({
+                ...inputs,
+                [property]: value,
             });
         }
-    }, [user]);
+    };
 
     // Función para manejar el envío del formulario
     const handleSubmit = async (e) => {
         e.preventDefault();
         // Validar que los campos no estén vacíos
-        if (
-            !inputs.name ||
-            !inputs.email
-        ) {
-            Swal.fire("Por favor, completa todos los campos.");
+        if (!inputs.name || !inputs.email) {
+            Swal.fire({
+                icon: 'error',
+                text: "Por favor, completa todos los campos."
+            });
             return;
         }
-
 
         // Validar que las contraseñas coincidan
         if (inputs.newPassword !== inputs.confirmPassword) {
             setInputs({
                 ...inputs,
-                passwordMatch: false
+                passwordMatch: false,
             });
             return;
         } else {
             setInputs({
                 ...inputs,
-                passwordMatch: true
+                passwordMatch: true,
             });
         }
 
+    await putUser(user.id, {
+      name: inputs.name,
+      email: inputs.email,
+      password: inputs.newPassword,
+    })(dispatch).then((response) => {
+      if (response.status === 200) {
+        Swal.fire("Usuario Modificado");
+      } else {
+        Swal.fire("HUBO UN ERROR PTTMMMMMMM");
+      }
+    });
+  };
+  const handleDelete = () => {
+    deleteUser(user.id)(dispatch);
+    Swal.fire("Usuario eliminado");
+    logoutUser(dispatch);
+    navigate("/");
+  };
+  if (isAuthenticated) {
+    return (
+      <div className="container mx-auto px-4">
+        <form className="w-full max-w-md" onSubmit={handleSubmit}>
+          <div className="mb-6">
+            <label
+              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+              htmlFor="grid-first-name"
+            >
+              Nombre
+            </label>
+            <input
+              className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+              id="grid-first-name"
+              type="text"
+              name="name"
+              placeholder="Nombre"
+              value={inputs.name}
+              onChange={handleChange}
+            />
+            <p className="text-gray-600 text-xs mt-1">
+              Así será como se mostrará tu nombre en la sección de tu cuenta.
+            </p>
+          </div>
 
-
-        await putUser(user.id, {
-            name: inputs.name,
-            email: inputs.email,
-            password: inputs.newPassword
-        })(dispatch).then((response) => {
-            console.log("form update: ", {
-                name: inputs.name,
-                email: inputs.email,
-                password: inputs.newPassword
-            });
-            if (response.status === 200) {
-                Swal.fire("Usuario Modificado");
-            } else {
-                Swal.fire("HUBO UN ERROR PTTMMMMMMM")
-            }
-        })
-
-
-    };
-    const handleDelete = () => {
-        deleteUser(user.id)(dispatch)
-        Swal.fire("Usuario eliminado")
-        logoutUser(dispatch);
-        navigate('/');
-    }
-    if (isAuthenticated) {
-        return (
-            <div className="container mx-auto px-4">
-                <form className="w-full max-w-md" onSubmit={handleSubmit}>
-                    <div className="mb-6">
-                        <label
-                            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                            htmlFor="grid-first-name">
-                            Nombre
-                        </label>
-                        <input
-                            className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
-                            id="grid-first-name"
-                            type="text"
-                            name="name"
-                            placeholder="Nombre"
-                            value={inputs.name}
-                            onChange={handleChange}
-                        />
-                        <p className="text-gray-600 text-xs mt-1">
-                            Así será como se mostrará tu nombre en la sección de tu cuenta.
-                        </p>
-                    </div>
 
                     <div className="mb-6">
                         <label
                             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                            htmlFor="grid-last-name">
+                            htmlFor="grid-last-name"
+                        >
                             Apellido
                         </label>
                         <input
@@ -158,7 +152,8 @@ const UpdateUserForm = () => {
                     <div className="mb-6">
                         <label
                             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                            htmlFor="grid-email">
+                            htmlFor="grid-email"
+                        >
                             Actualiza dirección de correo electrónico
                         </label>
                         <input
@@ -177,7 +172,8 @@ const UpdateUserForm = () => {
                         <p className="font-bold mb-2">CAMBIO DE CONTRASEÑA</p>
                         <label
                             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                            htmlFor="grid-current-password">
+                            htmlFor="grid-current-password"
+                        >
                             Contraseña actual (déjalo en blanco para no cambiarla)
                         </label>
                         <input
@@ -195,7 +191,8 @@ const UpdateUserForm = () => {
                     <div className="mb-6">
                         <label
                             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                            htmlFor="grid-new-password">
+                            htmlFor="grid-new-password"
+                        >
                             Nueva contraseña (déjalo en blanco para no cambiarla)
                         </label>
                         <input
@@ -212,7 +209,8 @@ const UpdateUserForm = () => {
                     <div className="mb-6">
                         <label
                             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                            htmlFor="grid-confirm-password">
+                            htmlFor="grid-confirm-password"
+                        >
                             Confirmar nueva contraseña (déjalo en blanco para no cambiarla)
                         </label>
                         <input
@@ -234,13 +232,15 @@ const UpdateUserForm = () => {
                     <div className="flex justify-between">
                         <button
                             type="submit"
-                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        >
                             Guardar cambios
                         </button>
                         <button
                             type="button"
                             className="bg-red-500 hover:bg-red-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                            onClick={handleDelete}>
+                            onClick={handleDelete}
+                        >
                             Eliminar Cuenta
                         </button>
                     </div>
@@ -255,7 +255,8 @@ const UpdateUserForm = () => {
                     <div className="mb-6">
                         <label
                             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                            htmlFor="grid-first-name">
+                            htmlFor="grid-first-name"
+                        >
                             Nombre
                         </label>
                         <input
@@ -275,7 +276,8 @@ const UpdateUserForm = () => {
                     <div className="mb-6">
                         <label
                             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                            htmlFor="grid-last-name">
+                            htmlFor="grid-last-name"
+                        >
                             Apellido
                         </label>
                         <input
@@ -292,7 +294,8 @@ const UpdateUserForm = () => {
                     <div className="mb-6">
                         <label
                             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                            htmlFor="grid-email">
+                            htmlFor="grid-email"
+                        >
                             Actualiza dirección de correo electrónico
                         </label>
                         <input
@@ -310,7 +313,8 @@ const UpdateUserForm = () => {
                         <p className="font-bold mb-2">CAMBIO DE CONTRASEÑA</p>
                         <label
                             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                            htmlFor="grid-current-password">
+                            htmlFor="grid-current-password"
+                        >
                             Contraseña actual (déjalo en blanco para no cambiarla)
                         </label>
                         <input
@@ -328,7 +332,8 @@ const UpdateUserForm = () => {
                     <div className="mb-6">
                         <label
                             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                            htmlFor="grid-new-password">
+                            htmlFor="grid-new-password"
+                        >
                             Nueva contraseña (déjalo en blanco para no cambiarla)
                         </label>
                         <input
@@ -345,7 +350,8 @@ const UpdateUserForm = () => {
                     <div className="mb-6">
                         <label
                             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                            htmlFor="grid-confirm-password">
+                            htmlFor="grid-confirm-password"
+                        >
                             Confirmar nueva contraseña (déjalo en blanco para no cambiarla)
                         </label>
                         <input
@@ -368,14 +374,16 @@ const UpdateUserForm = () => {
                         <button
                             type="submit"
                             name="update"
-                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        >
                             Guardar cambios
                         </button>
                         <button
                             type="button"
                             name="delete"
                             className="bg-red-500 hover:bg-red-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                            onClick={handleDelete}>
+                            onClick={handleDelete}
+                        >
                             Eliminar Cuenta
                         </button>
                     </div>

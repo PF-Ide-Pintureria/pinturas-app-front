@@ -1,13 +1,11 @@
 import React from "react";
 import ProductOrderDetail from "../../components/ProductOrderDetail/ProductOrderDetail";
 import { useSelector } from "react-redux";
-import { DataGrid } from "@mui/x-data-grid";
 
 const OrderDetail = () => {
     const initPoint = useSelector((state) => state.initPoint);
     const cart = useSelector((state) => state.cart);
-    let prices = []
-    console.log('prices', prices)
+    let prices = [];
     const pushPrice = () =>{
         
     }
@@ -21,10 +19,7 @@ const OrderDetail = () => {
         console.log('sum', sum)
         return sum.toFixed(2);
     }
-    // const colums = [{field: "item", headerName: "item", width: 50 },
-    //                 {field: "name", headerName: "producto", width: 300 },
-    //                 {field: "qty", headerName: "cantidad", width: 50 },
-    //                 {field: "price", headerName: "precio unitario", width: 100 },]
+
     return (
         <div className="flex items-center justify-center"> 
             <div className=" w-11/12 rounded-lg border bg-white py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32 my-32">
@@ -35,8 +30,6 @@ const OrderDetail = () => {
                 </div>
                 <div className="flex justify-between">
                     <div>
-                        {/* <DataGrid 
-                        rows= */}
                         {cart.map((product) => 
                             product && product.id 
                                 ? (<div className="flex ">
@@ -51,8 +44,6 @@ const OrderDetail = () => {
                                 </div> 
                                 ) : null
                             )}
-                        {/* columns={colums}
-                        /> */}
                     </div>
                     <div className="flex justify-center bg-white px-2 py-4 md:px-6">
                         <div className="flex flex-col">

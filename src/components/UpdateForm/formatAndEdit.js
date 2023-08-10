@@ -16,9 +16,7 @@ export const formatAndEdit = async (inputsForm, idProduct, dispatch) => {
         formData.append('stock', inputsForm.stock);
         formData.append('image', inputsForm.image);
 
-        console.log('formData', formData)
         await putProduct(idProduct, formData)(dispatch).then((res) => {
-            console.log('respuesta', res)
             if (res.status === 201) {
                 Swal.fire(`Producto ${res.data.product.idProduct} modificado correctamente`);
             }

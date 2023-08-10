@@ -6,7 +6,7 @@ import FeaturedContainer from "../../components/FeaturedContainer/FeaturedContai
 import CategoryContainer from "../../components/CategoryContainer/CategoryContainer";
 import Banner from "../../components/Banner/Banner";
 import BannerBlog from "../../components/BannerBlog/BannerBlog";
-import { bestSellers } from "../../redux/actions/bestSellers";
+import { bestSellers } from "../../redux/actions/Products/bestSellers";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -18,21 +18,11 @@ const Home = () => {
   return (
     <div className="w-full h-full">
       <main className="w-full h-full">
-        <div>
-          <Banner />
-        </div>
-        <div>
-          <FeaturedContainer />
-        </div>
-        <div>
-          <CategoryContainer />
-        </div>
-        <div>
-          <BannerBlog />
-        </div>
-        <div>
-          <AboutCard />
-        </div>
+        <Banner />
+        <FeaturedContainer />
+        <CategoryContainer />
+        <AboutCard />
+        <BannerBlog />
       </main>
     </div>
   );

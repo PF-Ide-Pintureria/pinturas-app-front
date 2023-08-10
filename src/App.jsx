@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./views/Home/Home";
 import About from "./views/About/About";
@@ -33,9 +33,8 @@ import DebuggerFooter from "./components/debuggerFooter/debuggerFooter";
 const { VITE_NODE_ENV: NODE_ENV } = import.meta.env;
 import { useCart } from "./hooks/useCart";
 import { useDispatch, useSelector } from "react-redux";
-import { setUser } from "./redux/actions/setUser";
+import { setUser } from "./redux/actions/User/setUser";
 import { allProducts } from "./redux/actions/Products/allProducts";
-import { setCart } from "./redux/actions/Cart/setCart";
 import TestTable from "./TestTable";
 import UpdateUserForm from "./components/UpdateForm/UpdateUserForm";
 import { getCart } from "./redux/actions/Cart/getCart";
@@ -44,79 +43,192 @@ import Dashboard from "./views/Dashboard/Dashboard";
 import BlogCreate from "./views/Blog/BlogCreate";
 import EditBlog from "./views/Blog/EditBlog";
 import BlogDetail from "./views/Blog/BlogDetail";
+import UserOrderDetail from "./views/UserOrderDetail/UserOrderDetail";
+import { ThemeProvider } from "styled-components";
+import ChatBot from "react-simple-chatbot";
+import { steps } from "../src/assets/steps";
+import { theme } from "../src/assets/theme";
+import { SiChatbot } from "react-icons/si";
+import person from "../src/img/user.jpg";
+import Swal from "sweetalert2";
+import { putCart } from "./redux/actions/Cart/putCart";
+import { addCart } from "./redux/actions/Cart/addCart";
 
 function App() {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const [showChatbot, setShowChatbot] = useState(false);
+  const [showButton, setShowButton] = useState(true);
+  const cart = useSelector((state) => state.cart);
+  const { cartState, addToCart, addAllToCart, removeFromCart, clearCart } = useCart();
+  const idCart = localStorage.getItem("idCart");
+  const user = localStorage.getItem("user");
+  const cartLocalS = localStorage.getItem("cart");
+  
+  const toggleChatbot = () => {
+    setShowChatbot(!showChatbot);
+    setShowButton(false);
+  };
 
-    useEffect(() => {
-        const user = localStorage.getItem("user");
-        const cart = localStorage.getItem("cart");
-        if (user) {
-            dispatch(setUser(JSON.parse(user)));
-            // cartId !== null && dispatch(getCart(cartId));
-        }
-        if (cart) {
-            dispatch(setCart(JSON.parse(cart)));
-        }
-        dispatch(allProducts());
-    }, []);
+  const hideChatbot = () => {
+    setShowChatbot(false);
+    setShowButton(true);
+  };
+  useEffect(() => {
 
-    return (
-        <BrowserRouter>
-            <div className="h-full w-full">
-                <div className="">
-                    <header>
-                        <NavBar />
-                    </header>
-                    <Routes >
-                        <Route exact path="/" element={<Home />} />
+    if (user) {
+        dispatch(setUser(JSON.parse(user)));
+      //   dispatch(getCart(JSON.parse(user).id)).then((response)=>{
+      //     console.log('response', response)
+      //     if (response){
+      //       addAllToCart(response);
+      //     }
+      // })
+    // if (cartLocalS.length > 0) dispatch(addCart([JSON.parse(cartLocalS)]))
+    }
+    // if (cartLocalS) dispatch(setCart(JSON.parse(cartLocalS)));
 
-                        <Route path="/products" element={<Products />} />
-                        <Route path="/products/:idProduct" element={<Detail />} />
-                        <Route path="/products/edit/:idProduct" element={<UpdateProduct />} />
+    dispatch(allProducts());
+  }, []);
 
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/login/register" element={<Register />} />
+  // useEffect(() => {
+    
+  //   if (idCart){
+  //     Swal.fire({
+  //       title: "Ya tienes un carrito",
+  //       text: "¿Desea unir los carritos?",
+  //       icon: 'warning',
+  //       showCancelButton: true,
+  //       confirmButtonText: "Sí, agregar",
+  //       cancelButtonText: "No, mantener carrito",
+  //     }).then(resultado => {
+        
+  //       console.log('JSON.parse(user)', JSON.parse(user))
+  //       if (resultado.value) {
+  //         dispatch(putCart({
+  //                 idUser: JSON.parse(user).id,
+  //                 idCart: idCart,
+  //                 products: JSON.parse(cartLocalS)}))
+  //           console.log("*se suman los carritos*");
+  //       } else {
+  //           //Dijeron que no
+  //           console.log("*NO se elimina la venta*");
+  //       }
+  //     });
+  //   }
+  // },[idCart])
 
-                        <Route path="/admin" element={<Dashboard />} />
-                        <Route path="/admin/users" element={<AdminUsers />} />
-                        <Route path="/admin/products" element={<AdminProducts />} />
-                        <Route path="/admin/blog" element={<AdminBlog />} />
-                        <Route path="/admin/create" element={<CreateProduct />} />
-                        <Route path="/admin/edit/:idUser" element={<UpdateUserForm />} />
 
-                        <Route path="/cart" element={<Cart />} />
-                        <Route path="/cart/buying" element={<Purchases />} />
-                        <Route path="/cart/detail" element={<OrderDetail />} />
+  return (
+    <div>
+      <BrowserRouter>
+        <div className="h-full w-full">
+          <div className="">
+            <header>
+              <NavBar />
+            </header>
+            <Routes>
+              <Route exact path="/" element={<Home />} />
 
-                        <Route path="/payment/successful" element={<SuccessfulPayment />} />
-                        <Route path="/payment/failure" element={<FailurePayment />} />
-                        <Route path="/payment/pending" element={<PendingPayment />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/products/:idProduct" element={<Detail />} />
+              <Route
+                path="/products/edit/:idProduct"
+                element={<UpdateProduct />}
+              />
 
-                        <Route path="/reviews" element={<ReviewsPage />} />
-                        <Route path="/favorite" element={<Favorite />} />
-                        <Route path="/contact" element={<Contact />} />
-                        <Route path="/account" element={<Account />} />
-                        <Route path="/about" element={<About />} />
-                        <Route path="/location" element={<Location />} />
-                        <Route path="/blog" element={<Blog />} />
-                        <Route path="/blog/:idBlog" element={<BlogDetail />} />
-                        <Route path="/blog/create" element={<BlogCreate />} />
-                        <Route path="/blog/edit/:id" element={<EditBlog />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/login/register" element={<Register />} />
 
-                        <Route path="/developers" element={<Developers />} />
+              <Route path="/admin" element={<Dashboard />} />
+              <Route path="/admin/users" element={<AdminUsers />} />
+              <Route path="/admin/products" element={<AdminProducts />} />
+              <Route path="/admin/blog" element={<AdminBlog />} />
+              <Route path="/admin/create" element={<CreateProduct />} />
+              <Route path="/admin/edit/:idUser" element={<UpdateUserForm />} />
 
-                        <Route path="/testing" element={<TestTable />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/cart/buying" element={<Purchases />} />
+              <Route path="/cart/detail" element={<OrderDetail />} />
 
-                        <Route path="*" element={<NotFound />} />
-                    </Routes>
-                </div>
-                <footer className="flex">
-                    <Footer />
-                </footer>
+              <Route
+                path="/payment/successful"
+                element={<SuccessfulPayment />}
+              />
+              <Route path="/payment/failure" element={<FailurePayment />} />
+              <Route path="/payment/pending" element={<PendingPayment />} />
+
+              <Route path="/reviews/:orderId" element={<ReviewsPage />} />
+              <Route path="/favorite" element={<Favorite />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/account" element={<Account />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/location" element={<Location />} />
+
+              <Route path="/orders/:idOrder" element={<UserOrderDetail />} />
+
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:idBlog" element={<BlogDetail />} />
+              <Route path="/blog/create" element={<BlogCreate />} />
+              <Route path="/blog/edit/:id" element={<EditBlog />} />
+
+              <Route path="/developers" element={<Developers />} />
+
+              <Route path="/testing" element={<TestTable />} />
+
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </div>
+          <footer className="flex">
+            <Footer />
+          </footer>
+        </div>
+      </BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <div
+          style={{
+            position: "fixed",
+            bottom: "20px",
+            right: "20px",
+            zIndex: 9999,
+          }}
+        >
+          {showButton && (
+            <button
+              className="bg-purple-100 text-primary text-3xl font-semibold mb-2 px-3 py-3 rounded-full mr-2 hover:scale-125"
+              onClick={toggleChatbot}
+            >
+              <SiChatbot />
+            </button>
+          )}
+          {showChatbot && (
+            <div style={{ position: "relative" }}>
+              <ChatBot
+                steps={steps}
+                headerTitle="Chatbot"
+                userAvatar={person}
+              />
+              <button
+                className="text-white hover:text-white-900 text-m mr-5 mt-3"
+                onClick={hideChatbot}
+                style={{
+                  position: "absolute",
+                  top: "5px",
+                  right: "5px",
+                  background: "none",
+                  border: "none",
+                  cursor: "pointer",
+                  transition: "right 1s ease-in-out",
+                  zIndex: 9999,
+                }}
+              >
+                X
+              </button>
             </div>
-        </BrowserRouter>
-    );
+          )}
+        </div>
+      </ThemeProvider>
+    </div>
+  );
 }
 
 export default App;

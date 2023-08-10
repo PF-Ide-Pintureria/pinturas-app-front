@@ -1,27 +1,25 @@
 import axios from "axios";
 import { BASE_URL, PUT_POST } from "../../action-type";
 
-const putPost = (formData, { id }) => {
+const putPost = (formData, id) => {
     return async (dispatch) => {
-        console.log('formData en el action', formData);
-        console.log("idBlog en el action:", id)
         try {
+            const token = localStorage.getItem('token');
+            const tokenLimpio = token.replace(/['"]+/g, '');
             const rawResponse = await axios.put(`${BASE_URL}blogs/${id}`, formData, {
                 headers: {
-                    'Content-Type': 'multipart/form-data'
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization': tokenLimpio
                 }
             })
-            console.log("rawResponse", rawResponse);
             const middleResponse = rawResponse?.data;
-            console.log("middleResponse", middleResponse);
-            const response = middleResponse?.blog
-            console.log('response en el action: ', response)
+            const response = middleResponse?.blog;
             if (response) {
                 dispatch({
                     type: PUT_POST,
                     payload: response
                 })
-                return response
+                return middleResponse
             }
 
         } catch (error) {

@@ -1,37 +1,36 @@
 import React, { useState, useEffect } from "react";
 import "./Rating.css";
 
-const Rating = () => {
-  const [rating, setRating] = useState(() => {
-    const storedRating = localStorage.getItem("rating");
-    return storedRating ? parseInt(storedRating, 10) : 0;
-  });
+const Rating = ({ onRatingSelected, currentRating }) => {
+    const [rating, setRating] = useState(currentRating);
 
-  useEffect(() => {
-    localStorage.setItem("rating", rating.toString());
-  }, [rating]);
+    useEffect(() => {
+        setRating(currentRating);
+    }, [currentRating]);
 
-  const handleRatingChange = (value) => {
-    if (value === rating) {
-      setRating(0);
-    } else {
-      setRating(value);
-    }
-  };
+    const handleRatingChange = (value) => {
+        if (value === rating) {
+            setRating(0);
+            onRatingSelected(0);
+        } else {
+            setRating(value);
+            onRatingSelected(value);
+        }
+    };
 
-  return (
-    <div>
-      {[1, 2, 3, 4, 5].map((value) => (
-        <label
-          key={value}
-          className={`heart ${rating >= value ? "active" : ""}`}
-          onClick={() => handleRatingChange(value)}
-        >
-          &#x2605;
-        </label>
-      ))}
-    </div>
-  );
+    return (
+        <div>
+            {[1, 2, 3, 4, 5].map((value) => (
+                <label
+                    key={value}
+                    className={`heart ${rating >= value ? "active" : ""}`}
+                    onClick={() => handleRatingChange(value)}
+                >
+                    &#x2605;
+                </label>
+            ))}
+        </div>
+    );
 };
 
 export default Rating;

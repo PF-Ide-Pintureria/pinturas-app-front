@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllUsers } from "../../redux/actions/getAllUsers";
+import { getAllUsers } from "../../redux/actions/User/getAllUsers";
 import { putUser } from "../../redux/actions/User/putUser.js";
 import { useParams } from "react-router-dom";
 import getUserById from "../../redux/actions/User/getUserById";
@@ -14,14 +14,9 @@ const UpdateUserForm = () => {
     useEffect(() => {
         getUserById(idUser)(dispatch)
     }, [dispatch])
-    // useEffect(() => {
-    //     console.log('entramos en el primer useEffect')
-    //     getAllUsers()(dispatch)
-    // }, [dispatch]);
+
     const findUser = useSelector((state) => state.userId);
-    // console.log('fullUsers: ', fullUsers);
-    // const findUser = fullUsers?.find((user) => parseInt(user.id) === parseInt(idUser));
-    // console.log('findUser: ', findUser)
+
 
     const [inputs, setInputs] = useState({
         name: "",
@@ -60,7 +55,6 @@ const UpdateUserForm = () => {
         const property = event.target.name;
         const value = event.target.type === "checkbox" ? event.target.checked : event.target.value;
         setInputs({ ...inputs, [property]: value })
-        console.log(inputs)
         setFormData({
             ...formData,
             [property]: value
@@ -72,7 +66,10 @@ const UpdateUserForm = () => {
         await putUser(findUser.id, formData)(dispatch).then(response => {
             if (!response) { Swal.fire("error") }
         })
-        Swal.fire('Usuario modificado correctamente');
+        Swal.fire({
+            icon: 'success',
+            text: 'Usuario modificado correctamente'
+        });
     }
 
     if (findUser.active) {

@@ -37,12 +37,16 @@ export const SET_CART = "SET_CART";
 export const POST_CART = "POST_CART";
 export const GET_CART_ID = "GET_CART_ID";
 export const GET_CART = "GET_CART";
+export const PUT_CART = "PUT_CART";
+export const ADD_CART = "ADD_CART";
 
 //ORDERS
 export const GET_ALL_ORDERS = "GET_ALL_ORDERS";
+export const GET_ORDER_BY_ID = "GET_ORDER_BY_ID";
 export const GET_ORDERS_USER = "GET_ORDERS_USER";
 export const POST_ORDER_CART = "POST_ORDER_CART";
 export const POST_ORDER_PAYMENT = "POST_ORDER_PAYMENT";
+export const PUT_ORDER = 'PUT_ORDER';
 
 //NODE MAILER
 export const POST_CONTACT_EMAIL = "POST_CONTACT_EMAIL";
@@ -72,4 +76,4 @@ export const BASE_URL = "https://back-server-pinturas-app.onrender.com/";
 // REVIEWS
 
 export const SAVE_REVIEW = "SAVE_REVIEW";
-export const URL_SAVE_REVIEW = "--";
+export const URL_SAVE_REVIEW = "https://back-server-pinturas-app.onrender.com";

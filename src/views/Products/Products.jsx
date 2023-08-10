@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import SearchBar from "../../components/SearchBar/SearchBar";
 import FeaturedContainer from "../../components/FeaturedContainer/FeaturedContainer";
-import { bestSellers } from "../../redux/actions/bestSellers";
+import { bestSellers } from "../../redux/actions/Products/bestSellers";
 import ProductsContainer from "../../components/ProductsContainer/ProductsContainer";
 import { useDispatch, useSelector } from "react-redux";
 import { allProducts } from "../../redux/actions/Products/allProducts";
-import { allCategories } from "../../redux/actions/allCategories";
-import { getProductFilter } from "../../redux/actions/getProductFilter";
+import { allCategories } from "../../redux/actions/Categories/allCategories";
+import { getProductFilter } from "../../redux/actions/filters/getProductFilter";
 
 const ProductsPage = () => {
   const dispatch = useDispatch();
@@ -28,9 +27,6 @@ const ProductsPage = () => {
 
   return (
     <div>
-      <div>
-        <SearchBar />
-      </div>
       <div>
         <ProductsContainer />
       </div>

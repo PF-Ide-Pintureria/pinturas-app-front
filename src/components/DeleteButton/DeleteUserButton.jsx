@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { deleteUser } from "../../redux/actions/deleteUser";
+import { deleteUser } from "../../redux/actions/User/deleteUser";
 import Swal from 'sweetalert2';
 
 

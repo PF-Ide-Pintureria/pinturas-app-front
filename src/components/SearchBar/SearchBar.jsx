@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { useLocation } from 'react-router-dom';
-import { useNavigate } from "react-router-dom";
 import {useDispatch} from 'react-redux';
 import { productByName } from '../../redux/actions/Products/productByName'
 import { allProducts } from '../../redux/actions/Products/allProducts';
@@ -11,13 +9,14 @@ const SearchBar = () => {
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
   const thisPage = useSelector((state) => state.thisPage);
+  const filterCategory = useSelector((state) => state.filterCategory);
+  const { high, low } = useSelector((state) => state.price);
 
   const handleChange = (event) => {
-    dispatch(setPage(thisPage));
-    // event.preventDefault();
+    dispatch(setPage(1));
     setSearch(event.target.value);
-      event.target.value.length 
-      ? dispatch(productByName(event.target.value))
+      event.target.value.length
+      ? dispatch(productByName(event.target.value, thisPage, filterCategory, low, high))
       : dispatch(allProducts())
   };
   

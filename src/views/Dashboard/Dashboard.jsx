@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import NavbarAdmin from "../../components/NavbarAdmin/NavbarAdmin";
-
 import UsersDash from "../../components/Account/UserDash";
 import SalesDash from "../../components/Account/SalesDash";
 import ProductsDash from "../../components/Account/ProductsDash";
@@ -17,12 +16,11 @@ const Dashboard = () => {
     const [dashboard, setDashboard] = useState(false);
     const [orders, setOrders] = useState(false);
     const [products, setProducts] = useState(false);
-    const [users, setUsers] = useState(false);
+    const [users, setUsers] = useState(true);
     const [sales, setSales] = useState(false);
     const [blog, setBlog] = useState(false);
 
     const backToAccountAction = () => {
-        // console.log('Dispatch in Account:', dispatch);
         navigate('/account');
     }
 

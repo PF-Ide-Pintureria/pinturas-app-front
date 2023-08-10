@@ -1,4 +1,4 @@
-import { GET_BEST_SELL, BASE_URL } from "../action-type";
+import { GET_BEST_SELL, BASE_URL } from "../../action-type";
 import axios from "axios";
 
 const limit = 4

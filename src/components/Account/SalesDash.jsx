@@ -2,13 +2,17 @@ import React, { useEffect } from "react";
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import { useDispatch, useSelector } from "react-redux";
 import getAllOrders from "../../redux/actions/Orders/getAllOrders";
+import PendingButton from "../OrdersButtons/PendingButton";
+import PaidButton from "../OrdersButtons/PaidButton";
+import CompletedButton from "../OrdersButtons/CompletedButton";
+import CancelledButton from "../OrdersButtons/CancelledButton";
 
 const SalesDash = () => {
     const dispatch = useDispatch();
+    const orders = useSelector(state => state.allOrders);
     useEffect(() => {
         getAllOrders()(dispatch)
-    }, [dispatch])
-    const orders = useSelector(state => state.allOrders);
+    }, [orders])
 
     const columns = [
         {
@@ -36,6 +40,39 @@ const SalesDash = () => {
             headerName: 'Estado',
             width: 90
         },
+        {
+            field: 'pending',
+            headerName: 'Pendiente',
+            width: 150,
+            renderCell: (params) => (
+                <PendingButton idOrder={params.row.id} />
+            )
+        },
+        {
+            field: 'paid',
+            headerName: 'Pagado',
+            width: 150,
+            renderCell: (params) => (
+                <PaidButton idOrder={params.row.id} />
+            )
+        },
+        {
+            field: 'complete',
+            headerName: 'Completado',
+            width: 150,
+            renderCell: (params) => (
+                <CompletedButton idOrder={params.row.id} />
+            )
+        },
+        {
+            field: 'cancelled',
+            headerName: 'Cancelado',
+            width: 150,
+            renderCell: (params) => (
+                <CancelledButton idOrder={params.row.id} />
+            )
+        },
+
     ]
 
     return (
@@ -46,7 +83,7 @@ const SalesDash = () => {
                     date: order.createdAt,
                     userId: order.userId,
                     total: order.total,
-                    state: order.state,
+                    state: order.state
                 }))}
                 columns={columns}
                 initialState={{
