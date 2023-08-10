@@ -227,7 +227,7 @@ const Detail = () => {
               </li>
             </ol>
           </div>
-          <div className="lg:col-gap-12 xl:col-gap-16 mt-8 grid grid-cols-1 gap-12 lg:mt-12 lg:grid-cols-2 lg:gap-10">
+          <div className="lg:col-gap-12 mt-8 grid grid-cols-1 gap-12 md:grid-cols-2 lg:mt-12 lg:grid-cols-2 lg:gap-10 xl:col-gap-16">
             <div className="lg:col-span-3 lg:row-end-1">
               <div className="lg:flex lg:items-start">
                 <div className="lg:order-2 lg:ml-5">
