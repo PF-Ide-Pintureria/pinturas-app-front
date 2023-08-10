@@ -38,6 +38,12 @@ const UpdateUserForm = () => {
     // const handleNewPasswordChange = (e) => setNewPassword(e.target.value);
     // const handleConfirmPasswordChange = (e) => setConfirmPassword(e.target.value);
 
+    useEffect(() => {
+        if (user) {
+            setInputs({ ...user })
+        }
+    }, [user])
+
     const handleChange = (event) => {
         const property = event.target.name;
         const value = event.target.value;
@@ -87,48 +93,48 @@ const UpdateUserForm = () => {
             });
         }
 
-    await putUser(user.id, {
-      name: inputs.name,
-      email: inputs.email,
-      password: inputs.newPassword,
-    })(dispatch).then((response) => {
-      if (response.status === 200) {
-        Swal.fire("Usuario Modificado");
-      } else {
-        Swal.fire("HUBO UN ERROR PTTMMMMMMM");
-      }
-    });
-  };
-  const handleDelete = () => {
-    deleteUser(user.id)(dispatch);
-    Swal.fire("Usuario eliminado");
-    logoutUser(dispatch);
-    navigate("/");
-  };
-  if (isAuthenticated) {
-    return (
-      <div className="container mx-auto px-4">
-        <form className="w-full max-w-md" onSubmit={handleSubmit}>
-          <div className="mb-6">
-            <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              htmlFor="grid-first-name"
-            >
-              Nombre
-            </label>
-            <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
-              id="grid-first-name"
-              type="text"
-              name="name"
-              placeholder="Nombre"
-              value={inputs.name}
-              onChange={handleChange}
-            />
-            <p className="text-gray-600 text-xs mt-1">
-              Así será como se mostrará tu nombre en la sección de tu cuenta.
-            </p>
-          </div>
+        await putUser(user.id, {
+            name: inputs.name,
+            email: inputs.email,
+            password: inputs.newPassword,
+        })(dispatch).then((response) => {
+            if (response.status === 200) {
+                Swal.fire("Usuario Modificado");
+            } else {
+                Swal.fire("HUBO UN ERROR PTTMMMMMMM");
+            }
+        });
+    };
+    const handleDelete = () => {
+        deleteUser(user.id)(dispatch);
+        Swal.fire("Usuario eliminado");
+        logoutUser(dispatch);
+        navigate("/");
+    };
+    if (isAuthenticated) {
+        return (
+            <div className="container mx-auto px-4">
+                <form className="w-full max-w-md" onSubmit={handleSubmit}>
+                    <div className="mb-6">
+                        <label
+                            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                            htmlFor="grid-first-name"
+                        >
+                            Nombre
+                        </label>
+                        <input
+                            className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+                            id="grid-first-name"
+                            type="text"
+                            name="name"
+                            placeholder="Nombre"
+                            value={inputs.name}
+                            onChange={handleChange}
+                        />
+                        <p className="text-gray-600 text-xs mt-1">
+                            Así será como se mostrará tu nombre en la sección de tu cuenta.
+                        </p>
+                    </div>
 
 
                     <div className="mb-6">
