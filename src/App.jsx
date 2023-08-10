@@ -59,6 +59,7 @@ function App() {
   const [showChatbot, setShowChatbot] = useState(false);
   const [showButton, setShowButton] = useState(true);
   const cart = useSelector((state) => state.cart);
+  const userDb = useSelector((state) => state.user);
   const { cartState, addToCart, addAllToCart, removeFromCart, clearCart } = useCart();
   const idCart = localStorage.getItem("idCart");
   const user = localStorage.getItem("user");
@@ -73,23 +74,28 @@ function App() {
     setShowChatbot(false);
     setShowButton(true);
   };
-  useEffect(() => {
 
-    if (user) {
-        dispatch(setUser(JSON.parse(user)));
-      //   dispatch(getCart(JSON.parse(user).id)).then((response)=>{
-      //     console.log('response', response)
-      //     if (response){
-      //       addAllToCart(response);
-      //     }
-      // })
-    // if (cartLocalS.length > 0) dispatch(addCart([JSON.parse(cartLocalS)]))
-    }
-    // if (cartLocalS) dispatch(setCart(JSON.parse(cartLocalS)));
+  useEffect(() =>{
+
+    if (cartLocalS) dispatch(addCart(JSON.parse(cartLocalS)));
+
+    if ( user ) dispatch(setUser(JSON.parse(user)));
 
     dispatch(allProducts());
+
   }, []);
 
+  useEffect(()=>{
+    if ( userDb ) {
+
+      dispatch(getCart(JSON.parse(user).id)).then((response)=>{
+        if (response){
+          addAllToCart(response);
+        }
+      })
+    }
+  }, [user])
+  
   // useEffect(() => {
     
   //   if (idCart){
@@ -102,16 +108,13 @@ function App() {
   //       cancelButtonText: "No, mantener carrito",
   //     }).then(resultado => {
         
-  //       console.log('JSON.parse(user)', JSON.parse(user))
   //       if (resultado.value) {
   //         dispatch(putCart({
   //                 idUser: JSON.parse(user).id,
   //                 idCart: idCart,
   //                 products: JSON.parse(cartLocalS)}))
-  //           console.log("*se suman los carritos*");
   //       } else {
   //           //Dijeron que no
-  //           console.log("*NO se elimina la venta*");
   //       }
   //     });
   //   }

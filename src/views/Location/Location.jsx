@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Banner5 from "../../img/banner5.png";
+import Banner5 from "../../img/pet.png";
 import Local from "../../img/location.png";
 import Map from "../../img/map.png";
 
@@ -17,7 +17,8 @@ const Location = () => {
             href="https://www.google.com/maps/place/Pintureria+Fadepa/@-31.727083,-64.407546,14z/data=!4m6!3m5!1s0x942d54233a91322b:0x171ba1f406068069!8m2!3d-31.7294921!4d-64.4100351!16s%2Fg%2F11h75pz_n7?hl=es-419&entry=ttu"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-initial w-full lg:w-1/2 mr-5">
+            className="flex-initial w-full lg:w-1/2 mr-5"
+          >
             <img src={Map} alt="Map" className="rounded-lg" />
           </a>
           <div className="flex-initial lg:w-1/2 mb-6 md:mb-0 lg:-ml-12 max-w-200">
