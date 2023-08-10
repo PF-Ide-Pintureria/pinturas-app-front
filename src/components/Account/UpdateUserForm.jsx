@@ -40,7 +40,11 @@ const UpdateUserForm = () => {
 
     useEffect(() => {
         if (user) {
-            setInputs({ ...user })
+            setInputs({
+                name: user?.name,
+                lastName: user?.lastName,
+                email: user?.email
+            })
         }
     }, [user])
 
