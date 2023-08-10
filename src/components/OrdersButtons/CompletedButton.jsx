@@ -7,8 +7,6 @@ const CompletedButton = ({ idOrder }) => {
     const dispatch = useDispatch();
     const handleClick = () => {
         const edition = { 'state': 'completed' }
-        console.log('edition en el submit', edition);
-        console.log('idOrder en el submit', idOrder);
         try {
             putOrder(idOrder, edition)(dispatch).then(response => {
                 console.log('response en el submit', response);

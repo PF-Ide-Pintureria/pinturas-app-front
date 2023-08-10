@@ -6,14 +6,16 @@ import { postCart } from "../../redux/actions/Cart/postCart";
 import { setCart } from "../../redux/actions/Cart/setCart";
 import { postOrderByCart } from "../../redux/actions/Orders/postOrderByCart";
 import { postOrderPayment } from "../../redux/actions/Orders/postOrderPayment";
-import { getCart } from "../../redux/actions/Cart/getCart";
+// import { getCart } from "../../redux/actions/Cart/getCart";
 import Swal from "sweetalert2";
 import { putCart } from "../../redux/actions/Cart/putCart";
+import { useState } from "react";
 
 const Cart = () => {
   const user = useSelector((state) => state.user);
   const cart = useSelector((state) => state.cart);
   const cartID = useSelector((state) => state.cartID);
+  // const [price, setPrice] = useState(0);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   let sumPrices = [];
@@ -72,14 +74,19 @@ const Cart = () => {
         });
     }
   };
-
+  let sum = 0;
   const totalPrice = () => {
-    let sum = 0;
     for (let i = 0; i < sumPrices.length; i++) {
       sum = sum + sumPrices[i];
     }
     return sum.toFixed(2);
   };
+  
+  const calcTotal = (price) => {
+
+  };
+
+  console.log('sum', sum)
 
   return (
     <div className="my-10 w-full">
@@ -108,16 +115,19 @@ const Cart = () => {
           <div className=" mt-3 space-y-3 rounded-lg border bg-white px-2 py-4 md:px-6">
             {cart?.length > 0 && (
               <div>
+                {console.log('cart', cart)}
                 <div className="w-full flex justify-between px-4">
                   <h1 className="text-lg font-semibold"> Detalle </h1>
                   <h1 className="text-lg font-semibold text-right"> Precio </h1>
                 </div>
                 <div>
                   {cart?.map((product) =>
-                    product && product?.id ? (
+                    product && product?.id 
+                    ? (
                       <div>
                         {addPrice(product.quantity, product.price)}
                         <ProductCart
+                          calcTotal={calcTotal}
                           // key={product.id}
                           id={product.id}
                           name={product.name}
@@ -127,11 +137,11 @@ const Cart = () => {
                           // color={product.color}
                           image={product.image}
                         />
-                      </div>
-                    ) : null
+                      </div>) 
+                      : null
                   )}
                 </div>
-                <div className="w-full flex justify-between px-4 pt-4 border-t">
+                {/* <div className="w-full flex justify-between px-4 pt-4 border-t">
                   <h1 className="text-2xl font-bold text-gray-800 pb-2 my-5">
                     {" "}
                     Total{" "}
@@ -140,7 +150,7 @@ const Cart = () => {
                     {" "}
                     $ {totalPrice()}
                   </h1>
-                </div>
+                </div> */}
               </div>
             )}
             {cart.length == 0 && (

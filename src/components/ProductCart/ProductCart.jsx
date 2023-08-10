@@ -5,13 +5,16 @@ import { postFavorites } from "../../redux/actions/Favorites/postFavorites";
 import { deleteFavorites } from "../../redux/actions/Favorites/deleteFavorite";
 import { useCart } from "../../hooks/useCart";
 import { setCart } from "../../redux/actions/Cart/setCart";
+import { putCart } from "../../redux/actions/Cart/putCart";
 
 
-const ProductCart = ({ id, name, quantity, image, price, stock}) => {
+const ProductCart = ({ id, name, quantity, image, price, stock, calcTotal}) => {
     const dispatch = useDispatch()
     const user = useSelector(state => state.user)
     const cart = useSelector(state => state.cart)
+    const cartID = useSelector(state => state.cartID)
     const [count, setCount] = useState(quantity)
+    const [removeCart, setRemoveCart] = useState(false)
     const { cartState, addToCart, removeFromCart, clearCart } = useCart();
     const [isRemove, setIsRemove] = useState(false);
 
@@ -24,17 +27,43 @@ const ProductCart = ({ id, name, quantity, image, price, stock}) => {
         if (algo === "less") setCount(count - 1);
     };
 
-
     const deleteProductCart = () => {
-        setIsRemove(true)
+        setIsRemove(true);
     }
 
     useEffect(() => {
         if (isRemove) {
-            removeFromCart(id)
-            window.location.reload();
-            setIsRemove(false)
-        }
+            
+            if (user){
+                if (cart.length ==  1){
+                    dispatch(putCart({
+
+                        idUser: user.id,
+                        idCart: cartID,
+                        products: []})).then((response) => {
+                            if (response) window.location.reload();
+                        });
+
+                        removeFromCart(id)
+
+                    } else {
+                        let copyCart = cart.filter((elem)=> elem.id != id)
+
+                        removeFromCart(id)
+
+                        dispatch(putCart({
+                        idUser: user.id,
+                        idCart: cartID,
+                        products: copyCart})).then((response) => {
+                            if (response) window.location.reload();
+                        });
+                    }
+            } else {
+                removeFromCart(id)
+                window.location.reload();
+            }
+                setIsRemove(false)
+            }
     },[isRemove])
 
     const addFavorite = () => {
@@ -52,7 +81,6 @@ const ProductCart = ({ id, name, quantity, image, price, stock}) => {
                         title: "Producto agregado a favoritos",
                         timer: 2000,
                         showConfirmButton: false,
-
                         })
                 }
             }).catch((error) => {
