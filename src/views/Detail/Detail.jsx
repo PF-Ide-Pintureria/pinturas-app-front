@@ -13,47 +13,51 @@ import Swal from "sweetalert2";
 import { postFavorites } from "../../redux/actions/Favorites/postFavorites";
 
 const Detail = () => {
-  const loggedUser = useSelector((state) => state.user);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { idProduct } = useParams();
-  const product = useSelector((state) => state.detail);
-  const { cartState, addToCart, removeFromCart, clearCart } = useCart();
 
-  const [isValidQuantity, setIsValidQuantity] = useState(true);
-  const [error, setError] = useState("");
-  const [addProduct, setAddProduct] = useState({
-    id: idProduct,
-    quantity: 1,
-    name: product.name,
-    image: product.image,
-    price: product.price,
-    stock: product.stock,
-  });
+    const loggedUser = useSelector((state) => state.user);
+    const cart = useSelector((state) => state.cart);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const { idProduct } = useParams();
+    const product = useSelector((state) => state.detail);
+    const { cartState, addToCart, removeFromCart, clearCart } = useCart();
 
-  const handleInputChange = (event) => {
-    const { value } = event.target;
-    const parsedValue = Number(value);
+    const [isValidQuantity, setIsValidQuantity] = useState(true);
+    const [error, setError] = useState("");
+    const [added, setAdded] = useState(false);
+    const [addedBuy, setAddedBuy] = useState(false);
+    const [addProduct, setAddProduct] = useState({
+        id: idProduct,
+        quantity: 1,
+        name: product.name,
+        image: product.image,
+        price: product.price,
+        stock: product.stock
+    });
 
-    if (value === "" || isNaN(parsedValue) || parsedValue < 1) {
-      setAddProduct((prevProduct) => ({
-        ...prevProduct,
-        quantity: "",
-      }));
-      setError("Ingrese una cantidad válida");
-      setIsValidQuantity(false);
-    } else if (parsedValue > product.stock) {
-      setError("Stock no disponible");
-      setIsValidQuantity(false);
-    } else {
-      setAddProduct((prevProduct) => ({
-        ...prevProduct,
-        quantity: parsedValue,
-      }));
-      setError("");
-      setIsValidQuantity(true);
-    }
-  };
+    const handleInputChange = (event) => {
+        const { value } = event.target;
+        const parsedValue = Number(value);
+
+        if (value === "" || isNaN(parsedValue) || parsedValue < 1) {
+            setAddProduct((prevProduct) => ({
+                ...prevProduct,
+                quantity: "",
+            }));
+            setError("Ingrese una cantidad válida");
+            setIsValidQuantity(false);
+        } else if (parsedValue > product.stock) {
+            setError("Stock no disponible");
+            setIsValidQuantity(false);
+        } else {
+            setAddProduct((prevProduct) => ({
+                ...prevProduct,
+                quantity: parsedValue,
+            }));
+            setError("");
+            setIsValidQuantity(true);
+        }
+    };
 
   const addFavorite = () => {
     if (loggedUser) {
@@ -101,85 +105,82 @@ const Detail = () => {
         </svg>
       );
     }
-
-    // Generar estrellas vacías (restantes)
-    for (let i = rating + 1; i <= MAX_STARS; i++) {
-      stars.push(
-        <svg
-          key={`star-empty-${i}`}
-          className="star-empty"
-          width="24"
-          height="24"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke="black"
-            d="M12 2l2.899 8.919h9.273l-7.491 5.45 2.899 8.92-7.395-5.439-7.394 5.438 2.899-8.919-7.492-5.45h9.274z"
-          />
-        </svg>
-      );
-    }
-
     return <div className="stars-container">{stars}</div>;
   };
 
-  const shopCart = () => {
-    if (isValidQuantity) {
-      addToCart({
-        product: {
-          id: addProduct.id,
-          name: product.name,
-          image: product.image,
-          price: product.price,
-          stock: product.stock,
-        },
-        quantity: addProduct.quantity,
-      });
-      setAddProduct({
-        id: idProduct,
-        quantity: 1,
-        name: product.name,
-        image: product.image,
-        price: product.price,
-        stock: product.stock,
-      });
-      dispatch(setCart([addProduct]));
-      navigate("/cart");
-    }
-  };
 
-  const handleAddToCart = () => {
-    if (isValidQuantity) {
-      addToCart({
-        product: {
-          id: addProduct.id,
-          name: product.name,
-          image: product.image,
-          price: product.price,
-          stock: product.stock,
-        },
-        quantity: addProduct.quantity,
-      });
-      setAddProduct({
-        id: idProduct,
-        quantity: 1,
-        name: product.name,
-        image: product.image,
-        price: product.price,
-        stock: product.stock,
-      });
-      Swal.fire("Producto agregado al carrito");
-      dispatch(setCart([addProduct]));
-    } else {
-      Swal.fire("Ingrese una cantidad válida");
-    }
-  };
+    const shopCart = () => {
+        if (isValidQuantity) {
+            addToCart({
+                product: {
+                    id: addProduct.id,
+                    name: product.name,
+                    image: product.image,
+                    price: product.price,
+                    stock: product.stock
+                },
+                quantity: addProduct.quantity,
+            });
+            setAddProduct({
+                id: idProduct,
+                quantity: 1,
+                name: product.name,
+                image: product.image,
+                price: product.price,
+                stock: product.stock
+            });
+            setAddedBuy(true);
+            
+        }
+    };
 
-  useEffect(() => {
-    dispatch(productById(idProduct));
-    dispatch(bestSellers());
-  }, [dispatch, idProduct]);
+    const handleAddToCart = () => {
+        if (isValidQuantity) {
+            addToCart({
+                product: {
+                    id: addProduct.id,
+                    name: product.name,
+                    image: product.image,
+                    price: product.price,
+                    stock: product.stock
+                },
+                quantity: addProduct.quantity,
+            });
+            setAddProduct({
+                id: idProduct,
+                quantity: 1,
+                name: product.name,
+                image: product.image,
+                price: product.price,
+                stock: product.stock
+            });
+            
+            setAdded(true)
+        } else {
+            Swal.fire("Ingrese una cantidad válida");
+        }
+    };
+
+    useEffect(() => {
+        if(added){
+
+                dispatch(setCart(addProduct));
+                Swal.fire("Producto agregado al carrito");
+                console.log('addProduct', addProduct)
+                setAdded(false);
+
+        }
+        if(addedBuy){
+            dispatch(setCart([addProduct]));
+            setAddedBuy(false);
+            navigate("/cart");
+        }
+    },[added, addedBuy])
+
+    useEffect(() => {
+        dispatch(productById(idProduct));
+        dispatch(bestSellers());
+    }, [dispatch, idProduct]);
 
   if (loggedUser.rol === "admin") {
     return (

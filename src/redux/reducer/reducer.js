@@ -36,6 +36,8 @@ import {
     POST_CART,
     GET_CART_ID,
     GET_CART,
+    PUT_CART,
+    ADD_CART,
 
     //ORDERS
     GET_ALL_ORDERS,
@@ -195,12 +197,28 @@ const reducer = (state = initialState, { type, payload }) => {
 
         //CART
         case SET_CART:
-            return { ...state, cart: [...state.cart, ...payload] };
+            const productoExistente = state.cart.find(item => item.id === payload.id);
+
+            if (productoExistente) {
+                return { ...state,
+                    cart: state.cart.map(item => item.id == payload.id ? { ...item, quantity: item.quantity + payload.quantity } : item
+                ),
+                };
+            } else {
+                return {
+                ...state,
+                cart: [...state.cart, payload],
+                };
+            }
         case POST_CART:
             return { ...state, sendCart: payload };
         case GET_CART_ID:
             return { ...state, cartID: payload };
         case GET_CART:
+            return { ...state, cart: [...state.cart, ...payload] };
+        case PUT_CART:
+            return { ...state, cart: payload };
+        case ADD_CART:
             return { ...state, cart: [...state.cart, ...payload] };
 
         case GET_ALL_ORDERS:

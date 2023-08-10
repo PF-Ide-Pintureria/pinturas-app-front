@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import SideBarAuth from "../../components/Account/SidebarAuth";
 import SideBarUser from "../../components/Account/SideBarUser";
 import LoadingScreen from "../../components/Account/LoadingScreen";
-import Dashboard from "../../components/Account/Dashboard";
+// import Dashboard from "../../components/Account/Dashboard";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -19,6 +19,7 @@ import UsersDash from "../../components/Account/UserDash";
 import SalesDash from "../../components/Account/SalesDash";
 import { getFavorites } from "../../redux/actions/Favorites/getFavorites";
 import getOrdersUser from "../../redux/actions/Orders/getOrdersUser";
+import { postAuthzeroUsers } from "../../redux/actions/User/postAuthzeroUsers";
 
 const Account = () => {
     const { isAuthenticated, user, logout, isLoading } = useAuth0();
@@ -51,7 +52,8 @@ const Account = () => {
 
     useEffect(() => {
         if (user) {
-            axios.post("http://localhost:3000/users/login-authzero", user)
+            console.log('user', user)
+            dispatch(postAuthzeroUsers(user))
                 .then((response) => {
                     console.log("Información del usuario enviada al backend:", response.data);
                 })

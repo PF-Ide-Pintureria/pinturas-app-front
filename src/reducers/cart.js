@@ -2,6 +2,7 @@ export const cartInitialState = JSON.parse(localStorage.getItem('cart') || '[]')
 
 export const CART_ACTION_TYPES = {
     ADD_TO_CART: 'ADD_TO_CART',
+    ADD_ALL_TO_CART: 'ADD_ALL_TO_CART',
     REMOVE_FROM_CART: 'REMOVE_FROM_CART',
     CLEAR_CART: 'CLEAR_CART',
 };
@@ -18,7 +19,7 @@ export const cartReducer = (state = cartInitialState, action) => {
 
             const { product, quantity } = action.payload;
 
-            const productInCart = state.find(item => item.id === product.id);
+            const productInCart = state.find(item => item.id == product.id);
 
             if (productInCart) {
 
@@ -33,32 +34,31 @@ export const cartReducer = (state = cartInitialState, action) => {
                 return [...state, { ...product, quantity}];
             }
 
+        case CART_ACTION_TYPES.ADD_ALL_TO_CART:
+
+            const products = action.payload;
+            console.log('products', products)
+            let stateCopy = [ ...state ];
+            
+            products.map(product => {
+                let prod = stateCopy.find(item => item.id == product.id) 
+                if (prod) prod.quantity += product.quantity
+                else stateCopy.push(product)
+            });
+
+                updateLocalStorage(stateCopy);
+                return [...stateCopy];
+
         case CART_ACTION_TYPES.REMOVE_FROM_CART:
 
-            const { id, all } = action.payload;
+            const id  = action.payload;
 
-            if (all) {
+            console.log('id N56', id)
+                let stateCopiado = [...state].filter(item => item.id != id)
 
-                return state.filter(item => item.id !== id);
-
-            }
-
-            const productToRemove = state.find(item => item.id === id);
-
-            if (productToRemove) {
-
-                productToRemove.quantity--;
-                localStorage.removeItem(id);
-
-                if (productToRemove.quantity === 0) {
-
-                    return state.filter(item => item.id !== id);
-
-                }
-
-            }
-
-            return [...state];
+                updateLocalStorage(stateCopiado);
+            console.log('state', state)
+                return stateCopiado
 
         case CART_ACTION_TYPES.CLEAR_CART:
 

@@ -8,13 +8,16 @@ import { postOrderByCart } from "../../redux/actions/Orders/postOrderByCart";
 import { postOrderPayment } from "../../redux/actions/Orders/postOrderPayment";
 import { getCart } from "../../redux/actions/Cart/getCart";
 import Swal from "sweetalert2";
+import { putCart } from "../../redux/actions/Cart/putCart";
 
 const Cart = () => {
   const user = useSelector((state) => state.user);
   const cart = useSelector((state) => state.cart);
+  const cartID = useSelector((state) => state.cartID);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   let sumPrices = [];
+
   const addPrice = (quantity, price) => {
     sumPrices.push(quantity * price);
   };
@@ -78,12 +81,6 @@ const Cart = () => {
     return sum.toFixed(2);
   };
 
-  useEffect(() => {
-    if (user.id) {
-      dispatch(getCart(user.id));
-    }
-  }, []);
-
   return (
     <div className="my-10 w-full">
       <div className="flex flex-col items-center border-b bg-white py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
@@ -109,15 +106,15 @@ const Cart = () => {
       <div className="w-full h-full flex flex-wrap justify-center items-stretch md:px-10  lg:px-20 xl:px-32">
         <div className="w-11/12 h-5/6 mx-3 mt-3 flex justify-center flex-col ">
           <div className=" mt-3 space-y-3 rounded-lg border bg-white px-2 py-4 md:px-6">
-            {cart.length > 0 && (
+            {cart?.length > 0 && (
               <div>
                 <div className="w-full flex justify-between px-4">
                   <h1 className="text-lg font-semibold"> Detalle </h1>
                   <h1 className="text-lg font-semibold text-right"> Precio </h1>
                 </div>
                 <div>
-                  {cart.map((product) =>
-                    product && product.id ? (
+                  {cart?.map((product) =>
+                    product && product?.id ? (
                       <div>
                         {addPrice(product.quantity, product.price)}
                         <ProductCart

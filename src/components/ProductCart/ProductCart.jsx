@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import { postFavorites } from "../../redux/actions/Favorites/postFavorites";
@@ -6,11 +6,14 @@ import { deleteFavorites } from "../../redux/actions/Favorites/deleteFavorite";
 import { useCart } from "../../hooks/useCart";
 import { setCart } from "../../redux/actions/Cart/setCart";
 
-const ProductCart = ({ id, name, quantity, image, price, stock }) => {
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
-  const [count, setCount] = useState(quantity);
-  const { cartState, addToCart, removeFromCart, clearCart } = useCart();
+
+const ProductCart = ({ id, name, quantity, image, price, stock}) => {
+    const dispatch = useDispatch()
+    const user = useSelector(state => state.user)
+    const cart = useSelector(state => state.cart)
+    const [count, setCount] = useState(quantity)
+    const { cartState, addToCart, removeFromCart, clearCart } = useCart();
+    const [isRemove, setIsRemove] = useState(false);
 
   const calcPrice = (quant, pric) => {
     let sum = Number(quant) * Number(pric);
@@ -21,103 +24,88 @@ const ProductCart = ({ id, name, quantity, image, price, stock }) => {
     if (algo === "less") setCount(count - 1);
   };
 
-  const deleteProductCart = () => {
-    removeFromCart(id, cartState);
-    dispatch(setCart([cartState]));
-    // Swal.fire({
-    //     icon: 'success',
-    //     text: 'Producto removido del carrito'
-    // })
-  };
 
-  const addFavorite = () => {
-    if (user) {
-      let data = {
-        idUser: user.id,
-        idProduct: id,
-      };
-      dispatch(postFavorites(data))
-        .then((response) => {
-          if (response === "existe") {
-            Swal.fire("Ya exite este producto en favoritos");
-          } else {
-            Swal.fire({
-              icon: "success",
-              title: "Producto agregado a favoritos",
-              timer: 2000,
-              showConfirmButton: false,
-            });
-          }
-        })
-        .catch((error) => {
-          console.log("error productCart", error);
+    const deleteProductCart = () => {
+        setIsRemove(true)
+    }
+
+    useEffect(() => {
+        if (isRemove) {
+            removeFromCart(id)
+            window.location.reload();
+            setIsRemove(false)
+        }
+    },[isRemove])
+
+    const addFavorite = () => {
+        if (user){
+            let data = {
+                "idUser": user.id,
+                "idProduct": id
+            }
+            dispatch(postFavorites(data)).then((response) => {
+                if (response === "existe"){
+                    Swal.fire("Ya exite este producto en favoritos");
+                }else{
+                    Swal.fire({
+                      icon: "success",
+                      title: "Producto agregado a favoritos",
+                      timer: 2000,
+                      showConfirmButton: false,
+
+                        })
+            }).catch((error) => {
+                console.log('error productCart', error)
         });
     } else {
       Swal.fire("Debes estar logeado para agregar favoritos");
     }
   };
 
-  return (
-    <div className=" py-3 my-5 w-full border-t">
-      <div className="">
-        <div className="flex flex-row">
-          <div className="w-fit">
-            <img src={image} alt="" className="w-20" />
-          </div>
-          <div className="flex px-5 flex-col w-11/12">
-            <p
-              className=" mt-2 ml-auto text-xs font-medium text-right text-blue-500 cursor-pointer m-5 hover:scale-110"
-              onClick={addFavorite}
-            >
-              Agregar a Favoritos 🤍
-            </p>
-            <h1 className="text-base text-ms font-semibold">{name}</h1>
-            <div className="flex gap-5">
-              <button
-                className="text-indigo-500 font-medium font-sans text-left flex items-center pb-3"
-                onClick={deleteProductCart}
-              >
-                Eliminar
-              </button>
-            </div>
-            <div className="flex justify-between ">
-              <div className="flex items-center justify-center flex-col">
-                <div className="grid grid-cols-3 w-28 h-8 border border-gray-500 rounded">
-                  <button
-                    className={`text-2xl ${
-                      count == 1 ? "cursor-not-allowed" : "hover:bg-gray-100"
-                    } `}
-                    onClick={() => moreOrLessQuantity("less")}
-                    disabled={count == 1}
-                  >
-                    -
-                  </button>
-                  <h1 className="flex justify-center items-center">{count}</h1>
-                  <button
-                    className={`text-2xl ${
-                      count == stock
-                        ? "cursor-not-allowed"
-                        : "hover:bg-gray-100"
-                    } `}
-                    onClick={() => moreOrLessQuantity("more")}
-                    disabled={count == stock}
-                  >
-                    +
-                  </button>
+
+    return (
+        <div className=" py-3 my-5 w-full border-t">
+            <div className="">
+                <div className="flex flex-row">
+                    <div className="w-fit">
+                        <img src={image} alt="" className="w-20" />
+                    </div>
+                    <div className="flex px-5 flex-col w-11/12">
+                        <h1 className="text-base text-ms font-semibold">{name}</h1>
+                        <div className="flex gap-5">
+                            <button className="text-indigo-500 font-medium font-sans text-left flex items-center pb-3" onClick={deleteProductCart}>Eliminar</button>
+                            <button className="mt-2 ml-auto text-xs font-medium text-right text-blue-500 cursor-pointer m-5 hover:scale-110" onClick={addFavorite}>Agregar a Favoritos 🤍</button>
+                        </div>
+                        <div className="flex justify-between ">
+                            <div className="flex items-center justify-center flex-col">
+                                <div className="grid grid-cols-3 w-28 h-8 border border-gray-500 rounded">
+                                    <button className={`text-2xl ${count == 1 ? "cursor-not-allowed" : "hover:bg-gray-100"} `}
+                                        onClick={() => moreOrLessQuantity("less")}
+                                        disabled={count == 1}>
+                                        -
+                                    </button>
+                                    <h1 className="flex justify-center items-center">{count}</h1>
+                                    <button
+                                        className={`text-2xl ${count == stock ? "cursor-not-allowed" : "hover:bg-gray-100"} `}
+                                        onClick={() => moreOrLessQuantity("more")}
+                                        disabled={count == stock}>
+                                        +
+                                    </button>
+                                </div>{
+                                    stock > 0
+                                    ? <h1 className="text-gray-500"> {stock} disponibles </h1>
+                                    : <p className="text-red-700 font-semibold"> Producto sin stock </p>}
+                            </div>
+                            <div className="w-80 flex justify-end items-center">
+                                {stock > 0
+                                ? <h1 className="text-xl font-bold text-gray-700">$ {calcPrice(count, price)}</h1>
+                                : <p className="text-red-700 font-semibold"> Producto no disponible </p>}
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <h1 className="text-gray-500"> {stock} disponibles </h1>
-              </div>
-              <div className="w-80 flex justify-end items-center">
-                <h1 className="text-xl font-bold text-gray-700">
-                  $ {calcPrice(count, price)}
-                </h1>
-              </div>
-            </div>
           </div>
-        </div>
-      </div>
     </div>
-  );
 };
 
 export default ProductCart;
