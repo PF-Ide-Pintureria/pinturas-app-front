@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 import { postFavorites } from "../../redux/actions/Favorites/postFavorites";
 import { deleteFavorites } from "../../redux/actions/Favorites/deleteFavorite";
 import { useCart } from "../../hooks/useCart";
-import { setCart } from "../../redux/actions/Cart/setCart"
+import { setCart } from "../../redux/actions/Cart/setCart";
+
 
 const ProductCart = ({ id, name, quantity, image, price, stock}) => {
     const dispatch = useDispatch()
@@ -14,14 +15,15 @@ const ProductCart = ({ id, name, quantity, image, price, stock}) => {
     const { cartState, addToCart, removeFromCart, clearCart } = useCart();
     const [isRemove, setIsRemove] = useState(false);
 
-    const calcPrice = (quant, pric) => {
-        let sum = Number(quant) * Number(pric)
-        return sum.toFixed(2);
-    }
-    const moreOrLessQuantity = (algo) => {
-        if (algo === "more") setCount(count + 1);
-        if (algo === "less") setCount(count - 1);
-    }
+  const calcPrice = (quant, pric) => {
+    let sum = Number(quant) * Number(pric);
+    return sum.toFixed(2);
+  };
+  const moreOrLessQuantity = (algo) => {
+    if (algo === "more") setCount(count + 1);
+    if (algo === "less") setCount(count - 1);
+  };
+
 
     const deleteProductCart = () => {
         setIsRemove(true)
@@ -45,16 +47,21 @@ const ProductCart = ({ id, name, quantity, image, price, stock}) => {
                 if (response === "existe"){
                     Swal.fire("Ya exite este producto en favoritos");
                 }else{
-                    Swal.fire("Producto agregado a favoritos");
+                    Swal.fire({
+                      icon: "success",
+                      title: "Producto agregado a favoritos",
+                      timer: 2000,
+                      showConfirmButton: false,
 
-                }
+                        })
             }).catch((error) => {
                 console.log('error productCart', error)
-            });
-        } else {
-            Swal.fire("Debes estar logeado para agregar favoritos");
-        }
+        });
+    } else {
+      Swal.fire("Debes estar logeado para agregar favoritos");
     }
+  };
+
 
     return (
         <div className=" py-3 my-5 w-full border-t">
@@ -64,10 +71,10 @@ const ProductCart = ({ id, name, quantity, image, price, stock}) => {
                         <img src={image} alt="" className="w-20" />
                     </div>
                     <div className="flex px-5 flex-col w-11/12">
-                        <h1 className="text-base font-semibold">{name}</h1>
+                        <h1 className="text-base text-ms font-semibold">{name}</h1>
                         <div className="flex gap-5">
                             <button className="text-indigo-500 font-medium font-sans text-left flex items-center pb-3" onClick={deleteProductCart}>Eliminar</button>
-                            <button className="text-indigo-500 font-medium font-sans text-left flex items-center pb-3" onClick={addFavorite}>Guardar</button>
+                            <button className="mt-2 ml-auto text-xs font-medium text-right text-blue-500 cursor-pointer m-5 hover:scale-110" onClick={addFavorite}>Agregar a Favoritos 🤍</button>
                         </div>
                         <div className="flex justify-between ">
                             <div className="flex items-center justify-center flex-col">
@@ -97,9 +104,8 @@ const ProductCart = ({ id, name, quantity, image, price, stock}) => {
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    )
-}
+          </div>
+    </div>
+};
 
 export default ProductCart;

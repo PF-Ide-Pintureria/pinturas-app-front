@@ -79,13 +79,14 @@ const CreateForm = () => {
         if (Object.keys(errors).length === 0) {
             // const response = await axios.post(`${BASE_URL}products`,inputsForm)
             const response = await formatAndPost(inputsForm, dispatch);
+            navigate(`/products`);
             if (response) {
                 Swal.fire({
                     icon: 'success',
                     text: 'Producto creado con éxito'
                 });
                 setInputsForm(defaultValues);
-                navigate(`/products/${response}`);
+
             };
         } else {
             Swal.fire({
@@ -221,7 +222,7 @@ const CreateForm = () => {
                             />
                         </label>
                         <span className="bg-formBg rounded-r-lg w-72 h-8 flex items-center px-3">
-                            {inputsForm.imagen && `Imagen seleccionada: ${inputsForm.imagen}`}
+                            {inputsForm.image && `Imagen seleccionada: ${inputsForm.image}`}
                         </span>
                     </div>
                     <div className="flex m-8">

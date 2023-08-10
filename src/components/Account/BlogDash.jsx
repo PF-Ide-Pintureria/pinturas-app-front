@@ -12,11 +12,11 @@ import getUserById from "../../redux/actions/User/getUserById";
 
 const BlogDash = () => {
     const dispatch = useDispatch()
+    const posts = useSelector(state => state.posts);
 
     useEffect(() => {
         getPosts()(dispatch);
-    }, [dispatch]);
-    const posts = useSelector(state => state.posts);
+    }, [dispatch, posts]);
 
 
 

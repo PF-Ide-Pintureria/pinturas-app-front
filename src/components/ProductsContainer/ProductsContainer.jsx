@@ -310,6 +310,7 @@ const ProductsContainer = () => {
                         name={product.name}
                         price={product.price}
                         package={product.package}
+                        isFavorite={product.isFavorite}
                       />
                     ))
                   ) : (
