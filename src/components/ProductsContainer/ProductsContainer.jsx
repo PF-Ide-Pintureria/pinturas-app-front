@@ -100,7 +100,7 @@ const ProductsContainer = () => {
       <div>
         <SearchBar />
       </div>
-      <div className="flex w-full m-auto justify-center">
+      <div className="flex w-full justify-center gap-16">
         <div>
           <div className="flex justify-center ">
             {/*       SIDE BAR     */}
@@ -299,22 +299,25 @@ const ProductsContainer = () => {
                   className="w-11/12 flex justify-center items-center"
                 />
               ) : (
-                <div className="w-11/12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 place-items-center">
+                <div >
                   {" "}
-                  {filteredProducts.length > 0 ? (
-                    filteredProducts.map((product) => (
-                      <Products
-                        key={product.idProduct}
-                        idProduct={product.idProduct}
-                        image={product.image}
-                        name={product.name}
-                        price={product.price}
-                        package={product.package}
-                        isFavorite={product.isFavorite}
-                      />
-                    ))
+                  {filteredProducts.length > 0 
+                  ? (<div className="grid grid-cols-1 gap-1 place-items-center md:gap-3 md:grid-cols-2 lg:gap-4 lg:grid-cols-3 xl:gap-5 xl:grid-col-4 2xl:grid-col-5">
+                      {filteredProducts.map((product) => (
+                        <Products
+                          key={product.idProduct}
+                          idProduct={product.idProduct}
+                          image={product.image}
+                          name={product.name}
+                          price={product.price}
+                          package={product.package}
+                          isFavorite={product.isFavorite}
+                        />
+                      ))}
+                  </div>
+                    
                   ) : (
-                    <div>
+                    <div className=" flex justify-center flex-col items-center">
                       <h1 className="text-gray-300 text-lg mb-8 text-center">
                         Oops! Actualmente no tenemos el producto que estás
                         buscando.

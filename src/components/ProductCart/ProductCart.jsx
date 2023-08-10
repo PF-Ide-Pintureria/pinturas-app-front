@@ -20,6 +20,7 @@ const ProductCart = ({ id, name, quantity, image, price, stock, calcTotal}) => {
 
     const calcPrice = (quant, pric) => {
         let sum = Number(quant) * Number(pric);
+        calcTotal(sum);
         return sum.toFixed(2);
     };
     const moreOrLessQuantity = (algo) => {
