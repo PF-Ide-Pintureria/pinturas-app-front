@@ -27,17 +27,20 @@ const Blog = () => {
                     <div className="container mx-auto">
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-15">
                             {posts.map((post) => {
-                                return (
-                                    <BlogCard
-                                        key={post.idBlog}
-                                        id={post.idBlog}
-                                        image={post.image ? post.image : img}
-                                        title={post.title}
-                                        date={Date(post.createdAt).slice(0, 15)}
-                                        description={post.description}
-                                        author={post.userId}
-                                    />
-                                );
+                                if (post.active) {
+                                    return (
+
+                                        <BlogCard
+                                            key={post.idBlog}
+                                            id={post.idBlog}
+                                            image={post.image ? post.image : img}
+                                            title={post.title}
+                                            date={Date(post.createdAt).slice(0, 15)}
+                                            description={post.description}
+                                            author={post.userId}
+                                        />
+                                    );
+                                }
                             })}
                         </div>
                     </div>

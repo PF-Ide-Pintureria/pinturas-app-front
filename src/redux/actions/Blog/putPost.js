@@ -1,12 +1,15 @@
 import axios from "axios";
 import { BASE_URL, PUT_POST } from "../../action-type";
 
-const putPost = (formData, { id }) => {
+const putPost = (formData, id) => {
     return async (dispatch) => {
         try {
+            const token = localStorage.getItem('token');
+            const tokenLimpio = token.replace(/['"]+/g, '');
             const rawResponse = await axios.put(`${BASE_URL}blogs/${id}`, formData, {
                 headers: {
-                    'Content-Type': 'multipart/form-data'
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization': tokenLimpio
                 }
             })
             const middleResponse = rawResponse?.data;
@@ -16,7 +19,7 @@ const putPost = (formData, { id }) => {
                     type: PUT_POST,
                     payload: response
                 })
-                return response
+                return middleResponse
             }
 
         } catch (error) {

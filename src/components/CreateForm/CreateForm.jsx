@@ -79,13 +79,14 @@ const CreateForm = () => {
         if (Object.keys(errors).length === 0) {
             // const response = await axios.post(`${BASE_URL}products`,inputsForm)
             const response = await formatAndPost(inputsForm, dispatch);
+            navigate(`/products`);
             if (response) {
                 Swal.fire({
                     icon: 'success',
                     text: 'Producto creado con éxito'
                 });
                 setInputsForm(defaultValues);
-                navigate(`/products/${response}`);
+
             };
         } else {
             Swal.fire({

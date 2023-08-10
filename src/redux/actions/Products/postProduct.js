@@ -6,7 +6,7 @@ export const postProduct = (productCreate) => {
         try {
             const response = await axios.post(`${BASE_URL}products`, productCreate, {
                 headers: {
-                'Content-Type': 'multipart/form-data'
+                    'Content-Type': 'multipart/form-data'
                 }
             })
 
