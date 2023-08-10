@@ -25,6 +25,7 @@ const UpdateUserForm = () => {
         confirmPassword: "",
         passwordMatch: true,
     });
+    const [dataToSend, setDataToSend] = useState({});
 
     const user = useSelector((state) => state.user);
     const dispatch = useDispatch();
@@ -37,7 +38,6 @@ const UpdateUserForm = () => {
     // const handleCurrentPasswordChange = (e) => setCurrentPassword(e.target.value);
     // const handleNewPasswordChange = (e) => setNewPassword(e.target.value);
     // const handleConfirmPasswordChange = (e) => setConfirmPassword(e.target.value);
-
     useEffect(() => {
         if (user) {
             setInputs({
@@ -47,7 +47,7 @@ const UpdateUserForm = () => {
             })
         }
     }, [user])
-
+    console.log('user', user)
     const handleChange = (event) => {
         const property = event.target.name;
         const value = event.target.value;
@@ -83,6 +83,13 @@ const UpdateUserForm = () => {
             return;
         }
 
+        setDataToSend({
+            name: inputs.name,
+            lastName: inputs.lastName,
+            email: inputs.email
+        });
+
+
         // Validar que las contraseñas coincidan
         if (inputs.newPassword !== inputs.confirmPassword) {
             setInputs({
@@ -97,11 +104,14 @@ const UpdateUserForm = () => {
             });
         }
 
-        await putUser(user.id, {
-            name: inputs.name,
-            email: inputs.email,
-            password: inputs.newPassword,
-        })(dispatch).then((response) => {
+        if (inputs.newPassword) {
+            setDataToSend({
+                ...dataToSend,
+                password: inputs.newPassword
+            })
+        }
+        await putUser(user.id, dataToSend)(dispatch).then((response) => {
+            console.log('response', response)
             if (response.status === 200) {
                 Swal.fire("Usuario Modificado");
             } else {
