@@ -71,9 +71,9 @@ export const URL_INFO_USER_AUTH0 = "--";
 
 //URL
 // export const BASE_URL = "http://localhost:3000/";
-export const BASE_URL = "https://back-server-pinturas-app.onrender.com/";
+export const BASE_URL = "https://pinturas-app-back.onrender.com/";
 
 // REVIEWS
 
 export const SAVE_REVIEW = "SAVE_REVIEW";
-export const URL_SAVE_REVIEW = "https://back-server-pinturas-app.onrender.com";
+export const URL_SAVE_REVIEW = "https://pinturas-app-back.onrender.com/";
