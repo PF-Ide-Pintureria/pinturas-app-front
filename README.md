@@ -2,15 +2,15 @@
 
 ## Dev Team 👨‍💻 (Equipo de Desarrollo)
 
-- [Carolina Garzón](https://github.com/caaroliina)
-- [Juan Pablo de la Fuente](https://github.com/jpdelafuente)
+- [Jamer José](https://github.com/jamerrq)
+- [Edgar Juan](https://github.com/ejguercio)
 - [Carlos Barrera](https://github.com/CBarreraB)
-- [Nicole Camargo](https://github.com/cgnicole)
+- [Basilio Romero](https://github.com/bachiromero)
 
 ## Description (Descripción)
-This is a frontend ecommerce web application for FADEPA, a paint store established in Cordoba, Argentina. It was developed using React, Redux, Tailwind CSS among other technologies.
+This is a frontend ecommerce web application for IDE, a paint store established in Cordoba, Argentina. It was developed using React, Redux, Tailwind CSS among other technologies.
 
-[ES] Esta es una aplicación web ecommerce frontend para una tienda de pinturas (FADEPA), establecida en Cordoba, Argentina. Fue desarrollada usando React, Redux, Tailwind CSS entre otras tecnologías.
+[ES] Esta es una aplicación web ecommerce frontend para una tienda de pinturas (IDE), establecida en Cordoba, Argentina. Fue desarrollada usando React, Redux, Tailwind CSS entre otras tecnologías.
 
 
 ## Views (Vistas)
