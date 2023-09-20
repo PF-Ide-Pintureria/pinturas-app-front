@@ -17,6 +17,9 @@ const FeaturedContainer = () => {
         <div className="container mt-10 mx-auto justify-center">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 place-items-center">
             {bestSellers.map((bestSeller) => (
+              <div
+              className="bg-violet-300 p-4 rounded-md shadow-md" // Cambia bg-violet-300 al color deseado
+            >
               <Featured
                 key={bestSeller.idProduct}
                 id={bestSeller.idProduct}
@@ -25,6 +28,7 @@ const FeaturedContainer = () => {
                 price={bestSeller.price}
                 prodpackage={bestSeller.prodpackage}
               />
+              </div>
             ))}
           </div>
         </div>
