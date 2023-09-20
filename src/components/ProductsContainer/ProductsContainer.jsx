@@ -304,8 +304,11 @@ const ProductsContainer = () => {
                   {filteredProducts.length > 0 
                   ? (<div className="grid grid-cols-1 gap-1 place-items-center md:gap-3 md:grid-cols-2 lg:gap-4 lg:grid-cols-3 xl:gap-5 xl:grid-col-4 2xl:grid-col-5">
                       {filteredProducts.map((product) => (
+                        <div
+                        key={product.idProduct}
+                        className="bg-violet-300 p-4 rounded-md shadow-md" // Cambia bg-violet-300 al color deseado
+                      >
                         <Products
-                          key={product.idProduct}
                           idProduct={product.idProduct}
                           image={product.image}
                           name={product.name}
@@ -313,6 +316,7 @@ const ProductsContainer = () => {
                           package={product.package}
                           isFavorite={product.isFavorite}
                         />
+                      </div>
                       ))}
                   </div>
                     
