@@ -322,7 +322,7 @@ const ProductsContainer = () => {
                     
                   ) : (
                     <div className=" flex justify-center flex-col items-center">
-                      <h1 className="text-gray-300 text-lg mb-8 text-center">
+                      <h1 className="text-blue-400 text-2xl mb-8 text-center ">
                         Oops! Actualmente no tenemos el producto que estás
                         buscando.
                       </h1>
