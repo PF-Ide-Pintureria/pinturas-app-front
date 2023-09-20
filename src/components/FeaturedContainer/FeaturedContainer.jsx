@@ -18,7 +18,7 @@ const FeaturedContainer = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 place-items-center">
             {bestSellers.map((bestSeller) => (
               <div
-              className="bg-violet-300 p-4 rounded-md shadow-md" // Cambia bg-violet-300 al color deseado
+              className="bg-violet-300 p-4 m-4 rounded-md shadow-md" // Cambia bg-violet-300 al color deseado
             >
               <Featured
                 key={bestSeller.idProduct}
