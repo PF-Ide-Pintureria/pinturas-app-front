@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import React from "react";
+import { Link } from 'react-router-dom'
+import React from 'react'
 
 const AboutCard = () => {
   return (
@@ -25,7 +25,7 @@ const AboutCard = () => {
         </div>
       </Link>
     </div>
-  );
-};
+  )
+}
 
-export default AboutCard;
+export default AboutCard

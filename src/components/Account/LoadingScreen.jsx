@@ -1,17 +1,17 @@
-import React from "react";
+import React from 'react'
 
 const LoadingScreen = ({ isLoading }) => {
-    if (!isLoading) {
-        return null;
-    }
+  if (!isLoading) {
+    return null
+  }
 
-    return (
+  return (
         <div
             style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                height: "100vh",
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              height: '100vh'
             }}
         >
             <img
@@ -19,7 +19,7 @@ const LoadingScreen = ({ isLoading }) => {
                 alt="loading"
             />
         </div>
-    );
-};
+  )
+}
 
-export default LoadingScreen;
+export default LoadingScreen

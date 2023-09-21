@@ -11,5 +11,9 @@
     "editor.suggest.insertMode": "replace",
     "editor.tabSize": 2
   },
-  "javascript.format.semicolons": "remove"
+  "javascript.format.semicolons": "remove",
+  "eslint.format.enable": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
 }
