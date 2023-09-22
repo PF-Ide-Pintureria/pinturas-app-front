@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { BASE_URL, SAVE_REVIEW, URL_SAVE_REVIEW } from '../../action-type'
+import { BASE_URL, SAVE_REVIEW } from '../../action-type'
 
 export const saveReview = (userReview, orderId) => {
   return async (dispatch) => {

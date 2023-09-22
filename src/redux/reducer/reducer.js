@@ -43,7 +43,6 @@ import {
   GET_ALL_ORDERS,
   GET_ORDERS_USER,
   GET_ORDER_BY_ID,
-  POST_ORDER_CART,
   POST_ORDER_PAYMENT,
   PUT_ORDER,
 
@@ -153,11 +152,11 @@ const reducer = (state = initialState, { type, payload }) => {
     case GET_ALL_PRODUCTS_NO_FILTER:
       return { ...state, allProducts: payload }
 
-      // CATEGORIES
+    // CATEGORIES
     case GET_ALL_CATEGORIES:
       return { ...state, categories: payload }
 
-      // USER
+    // USER
     case POST_REGISTER_USER:
       return { ...state, user: payload }
     case POST_LOGIN_USER:
@@ -177,7 +176,7 @@ const reducer = (state = initialState, { type, payload }) => {
     case GET_USER_BY_ID:
       return { ...state, userId: payload }
 
-      // FILTERS
+    // FILTERS
     case GET_PRODUCT_FILTER:
       return { ...state, products: payload }
     case GET_BEST_SELL:
@@ -189,20 +188,20 @@ const reducer = (state = initialState, { type, payload }) => {
     case SET_LOW_PRICE:
       return { ...state, price: { ...state.price, low: payload } }
 
-      // PAGES
+    // PAGES
     case SET_TOTAL_PAGES:
       return { ...state, totalPages: payload }
     case SET_PAGE:
       return { ...state, thisPage: payload }
 
-      // CART
-    case SET_CART:
+    // CART
+    case SET_CART: {
       const productoExistente = state.cart.find(item => item.id === payload.id)
 
       if (productoExistente) {
         return {
           ...state,
-          cart: state?.cart?.map(item => item.id == payload.id ? { ...item, quantity: item.quantity + payload.quantity } : item
+          cart: state?.cart?.map(item => item.id === payload.id ? { ...item, quantity: item.quantity + payload.quantity } : item
           )
         }
       } else {
@@ -211,6 +210,7 @@ const reducer = (state = initialState, { type, payload }) => {
           cart: [...state.cart, payload]
         }
       }
+    }
     case POST_CART:
       return { ...state, sendCart: payload }
     case GET_CART_ID:
@@ -225,7 +225,7 @@ const reducer = (state = initialState, { type, payload }) => {
     case GET_ALL_ORDERS:
       return { ...state, allOrders: payload }
 
-      // NODE MAILER
+    // NODE MAILER
     case POST_CONTACT_EMAIL:
       return { ...state, mail: payload }
     case POST_ORDER_EMAIL:
@@ -233,7 +233,7 @@ const reducer = (state = initialState, { type, payload }) => {
     case POST_REGISTER_EMAIL:
       return { ...state, mail: payload }
 
-      // ORDERS
+    // ORDERS
     case POST_ORDER_PAYMENT:
       return { ...state, initPoint: payload }
     case GET_ORDERS_USER:
@@ -243,11 +243,11 @@ const reducer = (state = initialState, { type, payload }) => {
     case PUT_ORDER:
       return { ...state, orderDetail: payload }
 
-      // AUTH0-USERS-INFO
+    // AUTH0-USERS-INFO
     case SET_USER_DATA:
       return { ...state, userData: payload }
 
-      // BLOG
+    // BLOG
     case GET_POSTS:
       return { ...state, posts: payload }
     case GET_POST_BY_ID:
@@ -259,11 +259,11 @@ const reducer = (state = initialState, { type, payload }) => {
     case POST_POST:
       return { ...state, posts: payload }
 
-      // REVIEWS
+    // REVIEWS
     case SAVE_REVIEW:
       return { ...state, userReview: payload }
 
-      // FAVORITES
+    // FAVORITES
     case ADD_FAVORITE:
       return { ...state, favorites: payload }
     case GET_FAVORITES:

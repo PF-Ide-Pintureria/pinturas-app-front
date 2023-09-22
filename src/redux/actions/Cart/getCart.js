@@ -15,7 +15,7 @@ export const getCart = (idUser) => {
         parsed = null
       }
       const cart = parsed
-      console.log('cart action getCart', cart)
+      // console.log('cart action getCart', cart)
       dispatch({ type: GET_CART_ID, payload: id })
       dispatch({ type: GET_CART, payload: cart })
       return cart
