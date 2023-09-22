@@ -1,12 +1,12 @@
-import { NavLink } from "react-router-dom";
-import React from "react";
-import logo from "../../img/logoIde.png";
-import { useAuth0 } from "@auth0/auth0-react";
-import { useSelector } from "react-redux";
+import { NavLink } from 'react-router-dom'
+import React from 'react'
+import logo from '../../img/logoIde.png'
+import { useAuth0 } from '@auth0/auth0-react'
+import { useSelector } from 'react-redux'
 
 const Nav = () => {
-  const userBd = useSelector((state) => state.user);
-  const { isAuthenticated, user } = useAuth0();
+  const userBd = useSelector((state) => state.user)
+  const { isAuthenticated, user } = useAuth0()
 
   return (
     <div className="w-full h-32 flex justify-around items-center font-inter bg-gradient-to-b from-white to-white via-purple-300">
@@ -140,7 +140,7 @@ const Nav = () => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default Nav;
+export default Nav

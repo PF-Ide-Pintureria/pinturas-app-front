@@ -1,98 +1,98 @@
-import React, { useState, useRef, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { saveReview } from "../../redux/actions/Review/postSaveReview";
-import Rating from "../Reviews/Rating";
-import "./Rating.css";
-import Swal from "sweetalert2";
-import { useParams } from "react-router-dom";
-import { getOrderById } from "../../redux/actions/Orders/getOrderById";
+import React, { useState, useRef, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { saveReview } from '../../redux/actions/Review/postSaveReview'
+import Rating from '../Reviews/Rating'
+import './Rating.css'
+import Swal from 'sweetalert2'
+import { useParams } from 'react-router-dom'
+import { getOrderById } from '../../redux/actions/Orders/getOrderById'
 
 const ReviewForm = () => {
-    const { orderId } = useParams();
+  const { orderId } = useParams()
+  const dispatch = useDispatch()
 
-    const dispatch = useDispatch();
-    const [characterCount, setCharacterCount] = useState(0);
-    const [isReviewFocused, setIsReviewFocused] = useState(false);
-    const reviewTextRef = useRef(null);
-    const [ratingValue, setRatingValue] = useState(0);
-    const [ratingProduct, setRatingProduct] = useState([])
+  const [characterCount, setCharacterCount] = useState(0)
+  const [isReviewFocused, setIsReviewFocused] = useState(false)
+  const reviewTextRef = useRef(null)
+  const [ratingValue, setRatingValue] = useState(0)
+  const [ratingProduct, setRatingProduct] = useState([])
+  const [reviewText, setReviewText] = useState('')
 
-    const [reviewText, setReviewText] = useState("");
-    let productsArray = ratingProduct;
+  const productsArray = ratingProduct
 
+  useEffect(() => {
+    getOrderById(orderId)(dispatch)
+  }, [])
 
-    useEffect(() => {
-        getOrderById(orderId)(dispatch);
-    }, [])
+  const detail = useSelector(state => state.orderDetail)
+  const productsRaw = detail?.products
+  const products = productsRaw?.map((product) => JSON.parse(product))
 
-    const detail = useSelector(state => state.orderDetail);
-    const productsRaw = detail?.products;
-    const products = productsRaw?.map((product) => JSON.parse(product));
+  const handleReviewInput = () => {
+    const text = reviewTextRef.current.innerText
+    setCharacterCount(text.length)
+    setReviewText(text)
+  }
 
-    const handleReviewInput = () => {
-        const text = reviewTextRef.current.innerText;
-        setCharacterCount(text.length);
-        setReviewText(text);
-    };
+  const handleReviewFocus = () => {
+    setIsReviewFocused(true)
+  }
 
-    const handleReviewFocus = () => {
-        setIsReviewFocused(true);
-    };
+  const handleReviewBlur = () => {
+    setIsReviewFocused(false)
+  }
 
-    const handleReviewBlur = () => {
-        setIsReviewFocused(false);
-    };
+  const handleRatingSelected = (productId, rating) => {
+    const index = productsArray.indexOf(productId)
+    const productToSend = { id: productId, rating }
 
-    const handleRatingSelected = (productId, rating) => {
-        const index = productsArray.indexOf(productId);
-        const productToSend = { id: productId, rating };
-        if (index == -1) {
-            productsArray.push(productToSend);
-        } else {
-            productsArray.splice(index, 1, productToSend);
-        }
+    if (index === -1) {
+      productsArray.push(productToSend)
+    } else {
+      productsArray.splice(index, 1, productToSend)
+    }
 
-        setRatingProduct(productsArray);
-    };
+    setRatingProduct(productsArray)
+  }
 
-    console.log('Products fuera del submit', productsArray);
-    const handleSaveChanges = async (event) => {
-        event.preventDefault();
-        let filteredReviews = [];
-        ratingProduct.forEach((product) => {
-            const cb = (element) => element.id == product.id;
-            const index = filteredReviews.findIndex(cb);
-            if (index > -1) {
-                filteredReviews[index].rating = product.rating
-            } else {
-                filteredReviews.push({ ...product });
-            }
-        })
-        const filteredReviewsJson = filteredReviews.map(product => JSON.stringify(product));
-        if (ratingValue > 0) {
-            let userReviewData = {
-                rating: ratingValue,
-                description: reviewText,
-                productsReviews: filteredReviewsJson
-            };
-            try {
-                console.log("productsReview", userReviewData.productsReviews);
-                await dispatch(saveReview(userReviewData, orderId));
+  console.log('Products fuera del submit', productsArray)
+  const handleSaveChanges = async (event) => {
+    event.preventDefault()
+    const filteredReviews = []
 
+    ratingProduct.forEach((product) => {
+      const cb = (element) => element.id === product.id
+      const index = filteredReviews.findIndex(cb)
+      if (index > -1) {
+        filteredReviews[index].rating = product.rating
+      } else {
+        filteredReviews.push({ ...product })
+      }
+    })
+    const filteredReviewsJson = filteredReviews.map(product => JSON.stringify(product))
+    if (ratingValue > 0) {
+      const userReviewData = {
+        rating: ratingValue,
+        description: reviewText,
+        productsReviews: filteredReviewsJson
+      }
+      try {
+        console.log('productsReview', userReviewData.productsReviews)
+        await dispatch(saveReview(userReviewData, orderId))
 
-                await Swal.fire("Éxito", "¡Datos enviados con éxito!", "success");
+        await Swal.fire('Éxito', '¡Datos enviados con éxito!', 'success')
 
-                setRatingValue(0);
-                setReviewText("");
-            } catch (error) {
-                console.log(error);
-            }
-        } else {
-            alert("Por favor, selecciona una estrella antes de guardar los cambios.");
-        }
-    };
+        setRatingValue(0)
+        setReviewText('')
+      } catch (error) {
+        console.log(error)
+      }
+    } else {
+      alert('Por favor, selecciona una estrella antes de guardar los cambios.')
+    }
+  }
 
-    return (
+  return (
         <div>
             <div className="rating">
                 <div className="flex flex-col items-center pb-10">
@@ -115,18 +115,18 @@ const ReviewForm = () => {
 
                 <div className="grid grid-cols-3 items-center pb-10">
                     {products?.map((product) => {
-                        return (
+                      return (
                             <div className="flex flex-col align-center" key={product.id}>
                                 <img className="w-12" src={product.image} alt={product.name} />
                                 <h5>{product.name}</h5>
                                 <Rating
                                     onRatingSelected={(rating) => {
-                                        handleRatingSelected(product.id, rating);
+                                      handleRatingSelected(product.id, rating)
                                     }}
                                     currentRating={product.rating}
                                 />
                             </div>
-                        )
+                      )
                     })}
                 </div>
             </div>
@@ -138,12 +138,12 @@ const ReviewForm = () => {
                     <p className="mb dark:text-gray-400">Da tu opinión de la compra</p>
                     <div>
                         <div
-                            className={`review-container ${isReviewFocused ? "review-container-focused" : ""
+                            className={`review-container ${isReviewFocused ? 'review-container-focused' : ''
                                 }`}
                         >
                             <div
                                 ref={reviewTextRef}
-                                className={`review-text ${characterCount === 0 ? "placeholder-text" : ""
+                                className={`review-text ${characterCount === 0 ? 'placeholder-text' : ''
                                     }`}
                                 contentEditable="true"
                                 onFocus={handleReviewFocus}
@@ -170,7 +170,7 @@ const ReviewForm = () => {
                 </button>
             </div>
         </div>
-    );
-};
+  )
+}
 
-export default ReviewForm;
+export default ReviewForm

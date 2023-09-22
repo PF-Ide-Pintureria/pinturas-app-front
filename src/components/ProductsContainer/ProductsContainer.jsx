@@ -1,99 +1,95 @@
-import React, { useEffect, useState } from "react";
-import Products from "../Products/Products";
-import Paginated from "../Paginated/Paginated";
-import SearchBar from "../SearchBar/SearchBar";
-import { useSelector, useDispatch } from "react-redux";
-import { allProducts } from "../../redux/actions/Products/allProducts";
-import { getProductFilter } from "../../redux/actions/filters/getProductFilter";
-import { setPage } from "../../redux/actions/Page/setPage";
-import { setCategory } from "../../redux/actions/filters/setCategory";
-import { setLowPrice } from "../../redux/actions/filters/setLowPrice";
-import { setHighPrice } from "../../redux/actions/filters/setHighPrice";
-import Swal from "sweetalert2";
-import imgNO from "../../img/ProductoNo.png";
+import React, { useEffect, useState } from 'react'
+import Products from '../Products/Products'
+import Paginated from '../Paginated/Paginated'
+import SearchBar from '../SearchBar/SearchBar'
+import { useSelector, useDispatch } from 'react-redux'
+import { allProducts } from '../../redux/actions/Products/allProducts'
+import { getProductFilter } from '../../redux/actions/filters/getProductFilter'
+import { setPage } from '../../redux/actions/Page/setPage'
+import { setCategory } from '../../redux/actions/filters/setCategory'
+import { setLowPrice } from '../../redux/actions/filters/setLowPrice'
+import { setHighPrice } from '../../redux/actions/filters/setHighPrice'
+
+import imgNO from '../../img/ProductoNo.png'
 
 const ProductsContainer = () => {
-  const dispatch = useDispatch();
-  const products = useSelector((state) => state.products);
-  const categories = useSelector((state) => state.categories);
-  const totalPages = useSelector((state) => state.totalPages);
-  const thisPage = useSelector((state) => state.thisPage);
-  const filterCategory = useSelector((state) => state.filterCategory);
-  const { high, low } = useSelector((state) => state.price);
-  const [error, setError] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
-  const [filteredProducts, setFilteredProducts] = useState(products);
-  const [prices, setPrices] = useState({
-    min: "",
-    max: "",
-  });
+  const dispatch = useDispatch()
+  const products = useSelector((state) => state.products)
+  const categories = useSelector((state) => state.categories)
+  const totalPages = useSelector((state) => state.totalPages)
+  const thisPage = useSelector((state) => state.thisPage)
+  const filterCategory = useSelector((state) => state.filterCategory)
+  const { high, low } = useSelector((state) => state.price)
 
-  const handleChange = (event) => {
-    const property = event.target.name;
-    const value = event.target.value;
-    setPrices({ ...prices, [property]: value });
-  };
+  const [isLoading, setIsLoading] = useState(true)
+  const [filteredProducts, setFilteredProducts] = useState(products)
+  // const [prices, setPrices] = useState({
+  //   min: '',
+  //   max: ''
+  // })
+
+  // const handleChange = (event) => {
+  //   const property = event.target.name
+  //   const value = event.target.value
+  //   setPrices({ ...prices, [property]: value })
+  // }
 
   const handleCategory = (category) => {
-    dispatch(setPage(1));
-    dispatch(setCategory(category));
-  };
+    dispatch(setPage(1))
+    dispatch(setCategory(category))
+  }
 
   const handlePriceFilter = (priceFilter) => {
-    if (priceFilter === "Hasta $10000") {
-      dispatch(setPage(1));
-      dispatch(setLowPrice(0));
-      dispatch(setHighPrice(10000));
-
-    } else if (priceFilter === "$10000 a $20000") {
-      dispatch(setPage(1));
-      dispatch(setLowPrice(10000));
-      dispatch(setHighPrice(20000));
-
-    } else if (priceFilter === "Mas de $20000") {
-      dispatch(setPage(1));
-      dispatch(setLowPrice(20000));
-      dispatch(setHighPrice(0));
-
-    } else if (priceFilter === "no price") {
-      dispatch(setPage(1));
-      dispatch(setLowPrice(0));
-      dispatch(setHighPrice(0));
-
+    if (priceFilter === 'Hasta $10000') {
+      dispatch(setPage(1))
+      dispatch(setLowPrice(0))
+      dispatch(setHighPrice(10000))
+    } else if (priceFilter === '$10000 a $20000') {
+      dispatch(setPage(1))
+      dispatch(setLowPrice(10000))
+      dispatch(setHighPrice(20000))
+    } else if (priceFilter === 'Mas de $20000') {
+      dispatch(setPage(1))
+      dispatch(setLowPrice(20000))
+      dispatch(setHighPrice(0))
+    } else if (priceFilter === 'no price') {
+      dispatch(setPage(1))
+      dispatch(setLowPrice(0))
+      dispatch(setHighPrice(0))
     }
-  };
+  }
 
   const handlePageChange = (page) => {
-    dispatch(setPage(page));
+    dispatch(setPage(page))
     if (filterCategory || low || high) {
       dispatch(getProductFilter(page, filterCategory, low, high)).then(() => {
-        setIsLoading(false);
-      });
+        setIsLoading(false)
+      })
     } else {
       dispatch(allProducts(page)).then(() => {
-        setIsLoading(false);
-      });
+        setIsLoading(false)
+      })
     }
-  };
+  }
 
   useEffect(() => {
-    setFilteredProducts(products);
-  }, [products]);
+    setFilteredProducts(products)
+  }, [products])
 
   useEffect(() => {
-    setIsLoading(true);
+    setIsLoading(true)
     if (filterCategory || low || high) {
       dispatch(getProductFilter(thisPage, filterCategory, low, high)).then(
         () => {
-          setIsLoading(false);
+          setIsLoading(false)
         }
-      );
+      )
     } else {
       dispatch(allProducts(thisPage)).then(() => {
-        setIsLoading(false);
-      });
+        setIsLoading(false)
+      })
     }
-  }, [dispatch, filterCategory, low, high, thisPage]);
+  }, [dispatch, filterCategory, low, high, thisPage])
 
   return (
     <div>
@@ -126,45 +122,45 @@ const ProductsContainer = () => {
                 </div> */}
                 <div className="gap-3">
                   <div className="h-10 flex gap-1 mb-3">
-                    {" "}
+                    {' '}
                     {/*          CLEAR FILTERS        */}
                     {filterCategory && (
                       <div className="flex items-center text-xs w-fit h-fit text-gray-400 rounded-lg border bg-white px-1 py-1 md:px-1">
-                        {" "}
-                        {filterCategory}{" "}
-                        <button onClick={() => handleCategory("")}>X</button>
+                        {' '}
+                        {filterCategory}{' '}
+                        <button onClick={() => handleCategory('')}>X</button>
                       </div>
                     )}
                     {high === 0 && low !== 0 && low && (
                       <p className="flex items-center text-xs w-fit h-fit text-gray-400 rounded-lg border bg-white px-1 py-1 md:px-1">
-                        {" "}
-                        Desde ${low}{" "}
-                        <button onClick={() => handlePriceFilter("no price")}>
+                        {' '}
+                        Desde ${low}{' '}
+                        <button onClick={() => handlePriceFilter('no price')}>
                           X
                         </button>
                       </p>
                     )}
                     {low === 0 && high !== 0 && high && (
                       <p className="flex items-center text-xs w-fit h-fit text-gray-400 rounded-lg border bg-white px-1 py-1 md:px-1">
-                        {" "}
-                        Hasta ${high}{" "}
-                        <button onClick={() => handlePriceFilter("no price")}>
+                        {' '}
+                        Hasta ${high}{' '}
+                        <button onClick={() => handlePriceFilter('no price')}>
                           X
                         </button>
                       </p>
                     )}
                     {low !== 0 && high !== 0 && high && low && (
                       <p className="flex items-center text-xs w-fit h-fit text-gray-400 rounded-lg border bg-white px-1 py-1 md:px-1">
-                        {" "}
-                        ${low} hasta ${high}{" "}
-                        <button onClick={() => handlePriceFilter("no price")}>
+                        {' '}
+                        ${low} hasta ${high}{' '}
+                        <button onClick={() => handlePriceFilter('no price')}>
                           X
                         </button>
                       </p>
                     )}
                   </div>
                   <div className="mb-5">
-                    {" "}
+                    {' '}
                     {/*       FILTER CATEGORY      */}
                     <h2 className="text-base font-semibold tracking-wide uppercase text-blue-600">
                       Categorias
@@ -177,8 +173,8 @@ const ProductsContainer = () => {
                           onClick={() => handleCategory(category)}
                           className={`mt-1 no-underline text-sm ${
                             filterCategory === category
-                              ? "text-indigo-900"
-                              : "text-gray-400 hover:text-indigo-900 cursor-pointer transition-transform duration-300 ease-in-out hover:scale-110"
+                              ? 'text-indigo-900'
+                              : 'text-gray-400 hover:text-indigo-900 cursor-pointer transition-transform duration-300 ease-in-out hover:scale-110'
                           } m-0`}
                         >
                           {category}
@@ -187,7 +183,7 @@ const ProductsContainer = () => {
                     </div>
                   </div>
                   <div className="mb-5">
-                    {" "}
+                    {' '}
                     {/*       FILTER PRICE         */}
                     <h2 className="text-base font-semibold tracking-wide uppercase text-blue-600">
                       Precio
@@ -196,10 +192,10 @@ const ProductsContainer = () => {
                       <h3
                         className={`mt-1 no-underline text-sm ${
                           !low && high === 10000
-                            ? "text-indigo-900"
-                            : "text-gray-400  hover:text-indigo-900 cursor-pointer transition-transform duration-300 ease-in-out hover:scale-110"
+                            ? 'text-indigo-900'
+                            : 'text-gray-400  hover:text-indigo-900 cursor-pointer transition-transform duration-300 ease-in-out hover:scale-110'
                         } m-0`}
-                        onClick={() => handlePriceFilter("Hasta $10000")}
+                        onClick={() => handlePriceFilter('Hasta $10000')}
                       >
                         Hasta $10.000
                       </h3>
@@ -208,10 +204,10 @@ const ProductsContainer = () => {
                       <h3
                         className={`mt-1 no-underline text-sm ${
                           low === 10000 && high === 20000
-                            ? "text-indigo-900"
-                            : "text-gray-400 hover:text-indigo-900 cursor-pointer transition-transform duration-300 ease-in-out hover:scale-110"
+                            ? 'text-indigo-900'
+                            : 'text-gray-400 hover:text-indigo-900 cursor-pointer transition-transform duration-300 ease-in-out hover:scale-110'
                         } m-0`}
-                        onClick={() => handlePriceFilter("$10000 a $20000")}
+                        onClick={() => handlePriceFilter('$10000 a $20000')}
                       >
                         $10.000 a $20.000
                       </h3>
@@ -219,11 +215,11 @@ const ProductsContainer = () => {
                     <div className="text-lg flex flex-col">
                       <h3
                         className={`mt-1 no-underline text-sm ${
-                          low === 20000 && high === ""
-                            ? "text-indigo-900"
-                            : "text-gray-400 hover:text-indigo-900 cursor-pointer transition-transform duration-300 ease-in-out hover:scale-110"
+                          low === 20000 && high === ''
+                            ? 'text-indigo-900'
+                            : 'text-gray-400 hover:text-indigo-900 cursor-pointer transition-transform duration-300 ease-in-out hover:scale-110'
                         } m-0`}
-                        onClick={() => handlePriceFilter("Mas de $20000")}
+                        onClick={() => handlePriceFilter('Mas de $20000')}
                       >
                         Más de $20.000
                       </h3>
@@ -292,17 +288,19 @@ const ProductsContainer = () => {
           {/*       CARDS & PAGINATED     */}
           <div className="w-full flex m-auto flex-col justify-center">
             <div className="flex justify-center">
-              {isLoading ? (
+              {isLoading
+                ? (
                 <img
                   src="https://i.pinimg.com/originals/6b/e0/89/6be0890f52e31d35d840d4fe2e10385b.gif"
                   alt="loading"
                   className="w-11/12 flex justify-center items-center"
                 />
-              ) : (
+                  )
+                : (
                 <div >
-                  {" "}
-                  {filteredProducts.length > 0 
-                  ? (<div className="grid grid-cols-1 gap-1 place-items-center md:gap-3 md:grid-cols-2 lg:gap-4 lg:grid-cols-3 xl:gap-5 xl:grid-col-4 2xl:grid-col-5">
+                  {' '}
+                  {filteredProducts.length > 0
+                    ? (<div className="grid grid-cols-1 gap-1 place-items-center md:gap-3 md:grid-cols-2 lg:gap-4 lg:grid-cols-3 xl:gap-5 xl:grid-col-4 2xl:grid-col-5">
                       {filteredProducts.map((product) => (
                         <div
                         key={product.idProduct}
@@ -319,8 +317,9 @@ const ProductsContainer = () => {
                       </div>
                       ))}
                   </div>
-                    
-                  ) : (
+
+                      )
+                    : (
                     <div className=" flex justify-center flex-col items-center">
                       <h1 className="text-blue-400 text-2xl mb-8 text-center ">
                         Oops! Actualmente no tenemos el producto que estás
@@ -328,9 +327,9 @@ const ProductsContainer = () => {
                       </h1>
                       <img src={imgNO} alt="NO Encontrado" className="w-120" />
                     </div>
-                  )}
+                      )}
                 </div>
-              )}
+                  )}
             </div>
             <div className="w-full flex justify-center items-center my-7">
               {/*     PAGINATED     */}
@@ -346,7 +345,7 @@ const ProductsContainer = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ProductsContainer;
+export default ProductsContainer

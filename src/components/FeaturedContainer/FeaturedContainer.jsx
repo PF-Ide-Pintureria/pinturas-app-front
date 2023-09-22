@@ -1,10 +1,10 @@
-import Featured from "../Featured/Featured";
-import featuredBanner from "../../img/featured-banner.png";
-import React from "react";
-import { useSelector } from "react-redux";
+import Featured from '../Featured/Featured'
+import featuredBanner from '../../img/featured-banner.png'
+import React from 'react'
+import { useSelector } from 'react-redux'
 
 const FeaturedContainer = () => {
-  const bestSellers = useSelector((state) => state.bestSell);
+  const bestSellers = useSelector((state) => state.bestSell)
 
   return (
     <div className="flex  justify-center w-full m-auto">
@@ -34,7 +34,7 @@ const FeaturedContainer = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default FeaturedContainer;
+export default FeaturedContainer

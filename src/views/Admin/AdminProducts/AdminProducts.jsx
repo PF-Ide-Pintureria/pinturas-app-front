@@ -1,7 +1,6 @@
-import React from "react";
-import CreateForm from "../../../components/CreateForm/CreateForm";
-import UpdateForm from "../../../components/UpdateForm/UpdateForm";
-import NavbarAdmin from "../../../components/NavbarAdmin/NavbarAdmin";
+import React from 'react'
+import CreateForm from '../../../components/CreateForm/CreateForm'
+import NavbarAdmin from '../../../components/NavbarAdmin/NavbarAdmin'
 
 const AdminProducts = () => {
   return (
@@ -10,16 +9,12 @@ const AdminProducts = () => {
         <NavbarAdmin />
         <div className="flex self-center justify-around">
           <div className="form">
-            {/* <CreateForm /> */}
-            <CreateButton />
+            <CreateForm />
           </div>
-          {/* <div className="form">
-            <UpdateForm />
-          </div> */}
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default AdminProducts;
+export default AdminProducts

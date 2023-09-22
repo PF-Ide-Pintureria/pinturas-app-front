@@ -1,25 +1,25 @@
-import React, { useState } from "react";
-import {useDispatch} from 'react-redux';
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { productByName } from '../../redux/actions/Products/productByName'
-import { allProducts } from '../../redux/actions/Products/allProducts';
-import { setPage } from "../../redux/actions/Page/setPage";
-import { useSelector } from "react-redux";
+import { allProducts } from '../../redux/actions/Products/allProducts'
+import { setPage } from '../../redux/actions/Page/setPage'
 
 const SearchBar = () => {
-  const [search, setSearch] = useState("");
-  const dispatch = useDispatch();
-  const thisPage = useSelector((state) => state.thisPage);
-  const filterCategory = useSelector((state) => state.filterCategory);
-  const { high, low } = useSelector((state) => state.price);
+  const dispatch = useDispatch()
+  const [search, setSearch] = useState('')
+  const thisPage = useSelector((state) => state.thisPage)
+  const filterCategory = useSelector((state) => state.filterCategory)
+  const { high, low } = useSelector((state) => state.price)
 
   const handleChange = (event) => {
-    dispatch(setPage(1));
-    setSearch(event.target.value);
-      event.target.value.length
+    dispatch(setPage(1))
+    setSearch(event.target.value)
+
+    event.target.value.length
       ? dispatch(productByName(event.target.value, thisPage, filterCategory, low, high))
       : dispatch(allProducts())
-  };
-  
+  }
+
   return (
     <div className="h-32 bg-white flex flex-col justify-center items-center mb-10">
       <div className="relative p-12 w-full sm:max-w-2xl sm:mx-auto">
@@ -33,12 +33,12 @@ const SearchBar = () => {
               className=" cursor-text rounded-full flex-1 px-6 py-4 text-white-700 focus:outline-none"
               value={search}
               onChange={handleChange}
-              style={{ border: "none" }}
+              style={{ border: 'none' }}
             />
             <button
               className="bg-purple-600 text-white rounded-full font-semibold px-8 py-4 hover:bg-purple-900 focus:bg-purple-600 focus:outline-none"
               type="submit"
-              style={{ border: "none" }}
+              style={{ border: 'none' }}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -67,7 +67,7 @@ const SearchBar = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default SearchBar;
+export default SearchBar

@@ -1,21 +1,21 @@
-import React, { useState } from "react";
-import { postRegisterEmail } from '../../redux/actions/Mail/postRegisterEmail';
-import { postRegisterUser } from '../../redux/actions/User/postRegisterUser';
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import Swal from 'sweetalert2';
-
+import React, { useState } from 'react'
+import { postRegisterEmail } from '../../redux/actions/Mail/postRegisterEmail'
+import { postRegisterUser } from '../../redux/actions/User/postRegisterUser'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 const RegisterForm = () => {
-    const [name, setName] = useState("");
-    const [lastName, setLastname] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
-    const [errors, setErrors] = useState({});
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const welcomeMessage = (`<html lang="en">
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const [name, setName] = useState('')
+  const [lastName, setLastname] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [errors, setErrors] = useState({})
+  const welcomeMessage = (`<html lang="en">
 
         <head>
             <meta charset="UTF-8">
@@ -50,52 +50,50 @@ const RegisterForm = () => {
 
     </html>`)
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const errors = {};
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    const errors = {}
 
-        if (!name.trim()) {
-            errors.name = "El nombre es obligatorio";
+    if (!name.trim()) {
+      errors.name = 'El nombre es obligatorio'
+    }
+    if (!lastName.trim()) {
+      errors.lastName = 'El apellido es obligatorio'
+    }
+
+    if (!email.trim()) {
+      errors.email = 'El correo electrónico es obligatorio'
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      errors.email = 'El correo electrónico no es válido'
+    }
+
+    if (!password) {
+      errors.password = 'La contraseña es obligatoria'
+    } else if (password.length < 8) {
+      errors.password = 'La contraseña debe tener al menos 8 caracteres'
+    }
+
+    if (password !== confirmPassword) {
+      errors.confirmPassword = 'Las contraseñas no coinciden'
+    }
+
+    if (Object.keys(errors).length === 0) {
+      await postRegisterUser({ name, lastName, email, password })(dispatch).then((response) => {
+        if (response.status === 200) {
+          postRegisterEmail({ id: response.data.user.id, message: welcomeMessage })(dispatch)
+          Swal.fire({
+            icon: 'success',
+            text: 'Usuario registrado correctamente'
+          })
+          navigate('/login')
         }
-        if (!lastName.trim()) {
-            errors.lastName = "El apellido es obligatorio";
-        }
+      })
+    } else {
+      setErrors(errors)
+    }
+  }
 
-        if (!email.trim()) {
-            errors.email = "El correo electrónico es obligatorio";
-        } else if (!/\S+@\S+\.\S+/.test(email)) {
-            errors.email = "El correo electrónico no es válido";
-        }
-
-        if (!password) {
-            errors.password = "La contraseña es obligatoria";
-        } else if (password.length < 8) {
-            errors.password = "La contraseña debe tener al menos 8 caracteres";
-        }
-
-        if (password !== confirmPassword) {
-            errors.confirmPassword = "Las contraseñas no coinciden";
-        }
-
-        if (Object.keys(errors).length === 0) {
-            await postRegisterUser({ name, lastName, email, password })(dispatch).then((response) => {
-
-                if (response.status === 200) {
-                    postRegisterEmail({ id: response.data.user.id, message: welcomeMessage })(dispatch);
-                    Swal.fire({
-                        icon: 'success',
-                        text: 'Usuario registrado correctamente'
-                    });
-                    navigate('/login');
-                }
-
-            })
-        } else {
-            setErrors(errors);
-        }
-    };
-
-    return (
+  return (
         <div className="font-sans">
             <div className="relative min-h-screen flex flex-col sm:justify-center items-center ">
                 <div className="relative  sm:max-w-sm w-full">
@@ -115,7 +113,7 @@ const RegisterForm = () => {
                                     placeholder="Nombres"
                                     value={name}
                                     onChange={(e) => setName(e.target.value)}
-                                    className={`mt-1 pl-4 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${errors.name ? "border-red-500" : "border-gray-300"
+                                    className={`mt-1 pl-4 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${errors.name ? 'border-red-500' : 'border-gray-300'
                                         }`}
                                 />
                                 {errors.name && (
@@ -129,7 +127,7 @@ const RegisterForm = () => {
                                     placeholder="Apellido"
                                     value={lastName}
                                     onChange={(e) => setLastname(e.target.value)}
-                                    className={`mt-1 pl-4 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${errors.name ? "border-red-500" : "border-gray-300"
+                                    className={`mt-1 pl-4 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${errors.name ? 'border-red-500' : 'border-gray-300'
                                         }`}
                                 />
                                 {errors.lastName && (
@@ -143,7 +141,7 @@ const RegisterForm = () => {
                                     placeholder="Correo electrónico"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
-                                    className={`mt-1 pl-4 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${errors.email ? "border-red-500" : "border-gray-300"
+                                    className={`mt-1 pl-4 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${errors.email ? 'border-red-500' : 'border-gray-300'
                                         }`}
                                 />
                                 {errors.email && (
@@ -157,7 +155,7 @@ const RegisterForm = () => {
                                     placeholder="Contraseña"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
-                                    className={`mt-1 pl-4 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${errors.password ? "border-red-500" : "border-gray-300"
+                                    className={`mt-1 pl-4 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${errors.password ? 'border-red-500' : 'border-gray-300'
                                         }`}
                                 />
                                 {errors.password && (
@@ -172,8 +170,8 @@ const RegisterForm = () => {
                                     value={confirmPassword}
                                     onChange={(e) => setConfirmPassword(e.target.value)}
                                     className={`mt-1 pl-4 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${errors.confirmPassword
-                                        ? "border-red-500"
-                                        : "border-gray-300"
+                                        ? 'border-red-500'
+                                        : 'border-gray-300'
                                         }`}
                                 />
                                 {errors.confirmPassword && (
@@ -196,7 +194,7 @@ const RegisterForm = () => {
                 </div>
             </div>
         </div>
-    );
-};
+  )
+}
 
-export default RegisterForm;
+export default RegisterForm

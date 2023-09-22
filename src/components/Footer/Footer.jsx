@@ -1,7 +1,7 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import logo from "../../img/logoIde.png";
-import mercadopago from "../../img/mercadopago.png";
+import React from 'react'
+import { NavLink } from 'react-router-dom'
+import logo from '../../img/logoIde.png'
+import mercadopago from '../../img/mercadopago.png'
 
 const Footer = () => {
   return (
@@ -100,32 +100,32 @@ const Footer = () => {
               to="/products"
               className="font-sans mx-2 text-white cursor-pointer transition-transform duration-300 ease-in-out hover:scale-125"
             >
-              {" "}
-              PRODUCTOS{" "}
-            </NavLink>{" "}
+              {' '}
+              PRODUCTOS{' '}
+            </NavLink>{' '}
             <p className="text-white"> | </p>
             <NavLink
               to="/about"
               className="font-sans mx-2 text-white cursor-pointer transition-transform duration-300 ease-in-out hover:scale-125"
             >
-              {" "}
-              EMPRESA{" "}
+              {' '}
+              EMPRESA{' '}
             </NavLink>
             <p className="text-white"> | </p>
             <NavLink
               to="/location"
               className="font-sans mx-2 text-white cursor-pointer transition-transform duration-300 ease-in-out hover:scale-125"
             >
-              {" "}
-              UBICACION{" "}
+              {' '}
+              UBICACION{' '}
             </NavLink>
             <p className="text-white"> | </p>
             <NavLink
               to="/contact"
               className="font-sans mx-2 text-white cursor-pointer transition-transform duration-300 ease-in-out hover:scale-125"
             >
-              {" "}
-              CONTACTO{" "}
+              {' '}
+              CONTACTO{' '}
             </NavLink>
           </div>
         </div>
@@ -135,19 +135,19 @@ const Footer = () => {
       </div>
       <div className="w-full flex items-center justify-center ms:justify-start space-x-1 mb-6">
         <p className="font-sans mx-2 text-white">
-          {" "}
-          © Copyright 2023. Todos los derechos reservados a{" "}
+          {' '}
+          © Copyright 2023. Todos los derechos reservados a{' '}
         </p>
         <NavLink
           to="/developers"
           className="font-sans mx-2 font-bold text-white cursor-pointer transition-transform duration-300 ease-in-out hover:scale-110"
         >
-          {" "}
-          Work Team Developers{" "}
+          {' '}
+          Work Team Developers{' '}
         </NavLink>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

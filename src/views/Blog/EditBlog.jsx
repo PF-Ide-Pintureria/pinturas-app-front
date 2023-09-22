@@ -1,97 +1,89 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import Swal from 'sweetalert2';
-import getPostById from "../../redux/actions/Blog/getPostById";
-import { useNavigate, useParams } from "react-router-dom";
-import putPost from "../../redux/actions/Blog/putPost";
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import Swal from 'sweetalert2'
+import getPostById from '../../redux/actions/Blog/getPostById'
+import { useNavigate, useParams } from 'react-router-dom'
+import putPost from '../../redux/actions/Blog/putPost'
 
 const EditBlog = () => {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const { id } = useParams();
-    const user = useSelector(state => state.user);
-    const post = useSelector(state => state.post);
-    // const [inputs, setinputs] = useState({
-    //     title: '',
-    //     image: '',
-    //     description: ''
-    // });
-    const [title, setTitle] = useState("");
-    const [image, setImage] = useState('');
-    const [description, setDescription] = useState("");
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const { id } = useParams()
+  const user = useSelector(state => state.user)
+  const post = useSelector(state => state.post)
+  const [title, setTitle] = useState('')
+  const [image, setImage] = useState('')
+  const [description, setDescription] = useState('')
 
-    useEffect(() => {
-        if (user.rol != "") {
-            if (user.rol !== 'admin') {
-                Swal.fire({
-                    icon: 'error',
-                    text: 'Usuario no autorizado'
-                })
-                navigate('/blog')
-            }
-        }
-        getPostById(id)(dispatch);
+  useEffect(() => {
+    if (user.rol !== '') {
+      if (user.rol !== 'admin') {
+        Swal.fire({
+          icon: 'error',
+          text: 'Usuario no autorizado'
+        })
+        navigate('/blog')
+      }
+    }
+    getPostById(id)(dispatch)
+  }, [dispatch])
 
-    }, [dispatch]);
+  useEffect(() => {
+    if (post.title !== '') {
+      if (post) {
+        setTitle(post.title)
+        setImage(post.image)
+        setDescription(post.description)
+      }
+    }
+  }, [post])
 
-    useEffect(() => {
-        if (post.title !== "") {
-            if (post) {
-                setTitle(post.title);
-                setImage(post.image);
-                setDescription(post.description);
-            }
-        }
-    }, [post])
+  const handleChange = (event) => {
+    // const property = event.target.name;
+    // const value = event.target.value;
 
-    const handleChange = (event) => {
-        // const property = event.target.name;
-        // const value = event.target.value;
+    if (event.target.type === 'file') {
+      setImage(event.target.files[0])
+    } else if (event.target.name === 'title') {
+      setTitle(event.target.value)
+    } else if (event.target.name === 'description') {
+      setDescription(event.target.value)
+    }
+  }
 
-        if (event.target.type === 'file') {
-            setImage(event.target.files[0]);
-        }
-        else if (event.target.name === 'title') {
-            setTitle(event.target.value)
-        }
-        else if (event.target.name === 'description') {
-            setDescription(event.target.value);
-        }
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    const blog = new FormData()
+    blog.append('title', title)
+    blog.append('description', description)
+    if (image !== undefined) {
+      blog.append('image', image)
     }
 
-    const handleSubmit = async (event) => {
-        event.preventDefault()
-        const blog = new FormData();
-        blog.append("title", title);
-        blog.append("description", description);
-        if (image !== undefined) {
-            blog.append("image", image)
-        }
+    await putPost(blog, id)(dispatch).then(response => {
+      if (response.status === 'success') {
+        Swal.fire({
+          icon: 'success',
+          text: 'Blog actualizado'
+        })
+      } else {
+        Swal.fire({
+          icon: 'error',
+          text: 'Hubo un error al actualizar el post'
+        })
+      }
+    })
+  }
+  // if (user.rol !== 'admin') {
+  //     Swal.fire({
+  //         icon: 'error',
+  //         text: 'Usuario no autorizado'
+  //     })
+  //     navigate('/blog')
+  // }
+  // else {
 
-        await putPost(blog, id)(dispatch).then(response => {
-            if (response.status === 'success') {
-                Swal.fire({
-                    icon: 'success',
-                    text: 'Blog actualizado'
-                });
-            } else {
-                Swal.fire({
-                    icon: 'error',
-                    text: 'Hubo un error al actualizar el post'
-                })
-            }
-        });
-    }
-    // if (user.rol !== 'admin') {
-    //     Swal.fire({
-    //         icon: 'error',
-    //         text: 'Usuario no autorizado'
-    //     })
-    //     navigate('/blog')
-    // }
-    // else {
-
-    return (
+  return (
         <div>
             <div className="flex flex-col justify-start">
                 <div className="flex justify-around">
@@ -136,7 +128,7 @@ const EditBlog = () => {
                         >
                             <h2
                                 className="text-primary uppercase font-bold flex items-center justify-center"
-                                style={{ color: "white", fontWeight: "bold" }}
+                                style={{ color: 'white', fontWeight: 'bold' }}
                             >
                                 MODIFICAR POST
                             </h2>
@@ -145,8 +137,8 @@ const EditBlog = () => {
                 </div>
             </div>
         </div >
-    )
-    // }
+  )
+  // }
 }
 
-export default EditBlog;
+export default EditBlog

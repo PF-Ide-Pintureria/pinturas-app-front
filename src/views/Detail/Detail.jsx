@@ -1,94 +1,93 @@
-import React, { useEffect, useState } from "react";
-import DeleteButton from "../../components/DeleteButton/DeleteButton";
-import UpdateButton from "../../components/UpdateButton/UpdateButton";
-import { useSelector, useDispatch } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
-import { productById } from "../../redux/actions/Products/productById";
-import FeaturedContainer from "../../components/FeaturedContainer/FeaturedContainer";
-import { bestSellers } from "../../redux/actions/Products/bestSellers";
-import "./Detail.Module.css";
-import { useCart } from "../../hooks/useCart";
-import { setCart } from "../../redux/actions/Cart/setCart";
-import Swal from "sweetalert2";
-import { postFavorites } from "../../redux/actions/Favorites/postFavorites";
+import React, { useEffect, useState } from 'react'
+import DeleteButton from '../../components/DeleteButton/DeleteButton'
+import UpdateButton from '../../components/UpdateButton/UpdateButton'
+import { useSelector, useDispatch } from 'react-redux'
+import { useNavigate, useParams } from 'react-router-dom'
+import { productById } from '../../redux/actions/Products/productById'
+import FeaturedContainer from '../../components/FeaturedContainer/FeaturedContainer'
+import { bestSellers } from '../../redux/actions/Products/bestSellers'
+import './Detail.Module.css'
+import { useCart } from '../../hooks/useCart'
+import { setCart } from '../../redux/actions/Cart/setCart'
+import Swal from 'sweetalert2'
+import { postFavorites } from '../../redux/actions/Favorites/postFavorites'
 
 const Detail = () => {
+  const loggedUser = useSelector((state) => state.user)
+  // const cart = useSelector((state) => state.cart)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const { idProduct } = useParams()
+  const product = useSelector((state) => state.detail)
+  const { addToCart } = useCart()
 
-    const loggedUser = useSelector((state) => state.user);
-    const cart = useSelector((state) => state.cart);
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const { idProduct } = useParams();
-    const product = useSelector((state) => state.detail);
-    const { cartState, addToCart, removeFromCart, clearCart } = useCart();
+  const [isValidQuantity, setIsValidQuantity] = useState(true)
+  const [error, setError] = useState('')
+  const [added, setAdded] = useState(false)
+  const [addedBuy, setAddedBuy] = useState(false)
+  const [addProduct, setAddProduct] = useState({
+    id: idProduct,
+    quantity: 1,
+    name: product.name,
+    image: product.image,
+    price: product.price,
+    stock: product.stock
+  })
 
-    const [isValidQuantity, setIsValidQuantity] = useState(true);
-    const [error, setError] = useState("");
-    const [added, setAdded] = useState(false);
-    const [addedBuy, setAddedBuy] = useState(false);
-    const [addProduct, setAddProduct] = useState({
-        id: idProduct,
-        quantity: 1,
-        name: product.name,
-        image: product.image,
-        price: product.price,
-        stock: product.stock
-    });
+  const handleInputChange = (event) => {
+    const { value } = event.target
+    const parsedValue = Number(value)
 
-    const handleInputChange = (event) => {
-        const { value } = event.target;
-        const parsedValue = Number(value);
-
-        if (value === "" || isNaN(parsedValue) || parsedValue < 1) {
-            setAddProduct((prevProduct) => ({
-                ...prevProduct,
-                quantity: "",
-            }));
-            setError("Ingrese una cantidad válida");
-            setIsValidQuantity(false);
-        } else if (parsedValue > product.stock) {
-            setError("Stock no disponible");
-            setIsValidQuantity(false);
-        } else {
-            setAddProduct((prevProduct) => ({
-                ...prevProduct,
-                quantity: parsedValue,
-            }));
-            setError("");
-            setIsValidQuantity(true);
-        }
-    };
+    if (value === '' || isNaN(parsedValue) || parsedValue < 1) {
+      setAddProduct((prevProduct) => ({
+        ...prevProduct,
+        quantity: ''
+      }))
+      setError('Ingrese una cantidad válida')
+      setIsValidQuantity(false)
+    } else if (parsedValue > product.stock) {
+      setError('Stock no disponible')
+      setIsValidQuantity(false)
+    } else {
+      setAddProduct((prevProduct) => ({
+        ...prevProduct,
+        quantity: parsedValue
+      }))
+      setError('')
+      setIsValidQuantity(true)
+    }
+  }
 
   const addFavorite = () => {
     if (loggedUser) {
-      let data = {
+      const data = {
         loggedUser: loggedUser.id,
-        idProduct: idProduct,
-      };
+        idProduct
+      }
       dispatch(postFavorites(data))
         .then((response) => {
-          if (response === "existe") {
-            Swal.fire("Ya exite este producto en favoritos");
+          if (response === 'existe') {
+            Swal.fire('Ya exite este producto en favoritos')
           } else {
             Swal.fire({
-              icon: "success",
-              title: "Producto agregado a favoritos",
+              icon: 'success',
+              title: 'Producto agregado a favoritos',
               timer: 2000,
-              showConfirmButton: false,
-            });
+              showConfirmButton: false
+            })
           }
         })
         .catch((error) => {
-          console.log("error productCart", error);
-        });
+          console.log('error productCart', error)
+        })
     } else {
-      Swal.fire("Debes estar logeado para agregar favoritos");
+      Swal.fire('Debes estar logeado para agregar favoritos')
     }
-  };
+  }
 
   const renderStars = (rating) => {
-    const MAX_STARS = 5;
-    const stars = [];
+    // const MAX_STARS = 5
+    const stars = []
 
     // Generar estrellas llenas
     for (let i = 1; i <= rating; i++) {
@@ -103,84 +102,82 @@ const Detail = () => {
         >
           <path d="M12 2l2.899 8.919h9.273l-7.491 5.45 2.899 8.92-7.395-5.439-7.394 5.438 2.899-8.919-7.492-5.45h9.274z" />
         </svg>
-      );
+      )
     }
-    return <div className="stars-container">{stars}</div>;
-  };
+    return <div className="stars-container">{stars}</div>
+  }
 
-    const shopCart = () => {
-        if (isValidQuantity) {
-            addToCart({
-                product: {
-                    id: addProduct.id,
-                    name: product.name,
-                    image: product.image,
-                    price: product.price,
-                    stock: product.stock
-                },
-                quantity: addProduct.quantity,
-            });
-            setAddProduct({
-                id: idProduct,
-                quantity: 1,
-                name: product.name,
-                image: product.image,
-                price: product.price,
-                stock: product.stock
-            });
-            setAddedBuy(true);
-        }
-    };
+  const shopCart = () => {
+    if (isValidQuantity) {
+      addToCart({
+        product: {
+          id: addProduct.id,
+          name: product.name,
+          image: product.image,
+          price: product.price,
+          stock: product.stock
+        },
+        quantity: addProduct.quantity
+      })
+      setAddProduct({
+        id: idProduct,
+        quantity: 1,
+        name: product.name,
+        image: product.image,
+        price: product.price,
+        stock: product.stock
+      })
+      setAddedBuy(true)
+    }
+  }
 
-    const handleAddToCart = () => {
-        if (isValidQuantity) {
-            addToCart({
-                product: {
-                    id: addProduct.id,
-                    name: product.name,
-                    image: product.image,
-                    price: product.price,
-                    stock: product.stock
-                },
-                quantity: addProduct.quantity,
-            });
-            setAddProduct({
-                id: idProduct,
-                quantity: 1,
-                name: product.name,
-                image: product.image,
-                price: product.price,
-                stock: product.stock
-            });
-            
-            setAdded(true)
-        } else {
-            Swal.fire("Ingrese una cantidad válida");
-        }
-    };
+  const handleAddToCart = () => {
+    if (isValidQuantity) {
+      addToCart({
+        product: {
+          id: addProduct.id,
+          name: product.name,
+          image: product.image,
+          price: product.price,
+          stock: product.stock
+        },
+        quantity: addProduct.quantity
+      })
+      setAddProduct({
+        id: idProduct,
+        quantity: 1,
+        name: product.name,
+        image: product.image,
+        price: product.price,
+        stock: product.stock
+      })
 
-    useEffect(() => {
-        if(added){
+      setAdded(true)
+    } else {
+      Swal.fire('Ingrese una cantidad válida')
+    }
+  }
 
-                dispatch(setCart(addProduct));
-                Swal.fire("Producto agregado al carrito");
-                console.log('addProduct', addProduct)
-                setAdded(false);
+  useEffect(() => {
+    if (added) {
+      dispatch(setCart(addProduct))
+      Swal.fire('Producto agregado al carrito')
+      console.log('addProduct', addProduct)
+      setAdded(false)
+    }
+    if (addedBuy) {
+      dispatch(setCart(addProduct))
+      setAddedBuy(false)
+      navigate('/cart')
+    }
+  }, [added, addedBuy])
 
-        }
-        if(addedBuy){
-            dispatch(setCart(addProduct));
-            setAddedBuy(false);
-            navigate("/cart");
-        }
-    },[added, addedBuy])
+  useEffect(() => {
+    dispatch(productById(idProduct))
+    dispatch(bestSellers())
+  }, [dispatch, idProduct])
 
-    useEffect(() => {
-        dispatch(productById(idProduct));
-        dispatch(bestSellers());
-    }, [dispatch, idProduct]);
-
-  if (loggedUser.rol === "admin") {
+  if (loggedUser.rol === 'admin') {
     return (
       <section className="py-4 sm:py-4">
         <div className="container mx-auto px-4">
@@ -192,8 +189,8 @@ const Detail = () => {
                     href="/"
                     className="rounded-md p-1 text-sm font-medium text-gray-600 focus:text-gray-900 focus:shadow hover:text-gray-800"
                   >
-                    {" "}
-                    Inicio{" "}
+                    {' '}
+                    Inicio{' '}
                   </a>
                 </div>
               </li>
@@ -205,8 +202,8 @@ const Detail = () => {
                       href="/products"
                       className="rounded-md p-1 text-sm font-medium text-gray-600 focus:text-gray-900 focus:shadow hover:text-gray-800"
                     >
-                      {" "}
-                      Productos{" "}
+                      {' '}
+                      Productos{' '}
                     </a>
                   </div>
                 </div>
@@ -249,14 +246,14 @@ const Detail = () => {
                 className=" mt-2 ml-auto text-sm font-medium text-right text-blue-500 cursor-pointer m-5 hover:scale-110"
                 onClick={addFavorite}
               >
-                {" "}
+                {' '}
                 Agregar a Favoritos 🤍
               </p>
               <h1 className="sm: text-2xl font-bold text-gray-900 sm:text-3xl">
                 {product?.name}
               </h1>
               <p className=" mt-2 ml-2 text-sm font-medium text-gray-500">
-                Marca: {"  "}
+                Marca: {'  '}
                 {product?.patent}
               </p>
               <div className="mt-5 flex items-center">
@@ -273,15 +270,15 @@ const Detail = () => {
                 3 Reviews
               </p> */}
               <p className=" mt-2 ml-2 text-sm font-medium text-gray-500">
-                Presentación: {"  "}
+                Presentación: {'  '}
                 {product?.package}
               </p>
               <p className=" mt-2 ml-2 text-sm font-medium text-gray-500">
-                Color: {"  "}
+                Color: {'  '}
                 {product?.color}
               </p>
               <p className=" mt-2 ml-2 text-sm font-medium text-gray-500">
-                Stock disponible: {"  "}
+                Stock disponible: {'  '}
                 {product?.stock}
               </p>
               <div className=" flex items-end justify-start gap-2 sm:flex-row sm:space-y-0">
@@ -304,8 +301,8 @@ const Detail = () => {
                 <div className="w-20 h-14 flex items-center justify-center">
                   {error && (
                     <p className="text-sm font-semibold text-red-800">
-                      {" "}
-                      {error}{" "}
+                      {' '}
+                      {error}{' '}
                     </p>
                   )}
                 </div>
@@ -317,15 +314,15 @@ const Detail = () => {
                 <div className="grid grid-cols-2 gap-4">
 
                   {product.stock > 0
-                    ?(<div className="grid grid-cols-2 gap-4">
+                    ? (<div className="grid grid-cols-2 gap-4">
                       {console.log('product.stock', product.stock)}
                       <button
                         type="button"
                         disabled={!isValidQuantity}
                         className={`flex items-center justify-center rounded-md border-2 border-transparent bg-purple-100 bg-none text-center text-base font-bold text-purple-800 transition-all duration-200 ease-in-out focus:shadow ${
                           isValidQuantity
-                            ? "hover:bg-purple-200"
-                            : "cursor-not-allowed"
+                            ? 'hover:bg-purple-200'
+                            : 'cursor-not-allowed'
                         }`}
                         onClick={handleAddToCart}
                         >
@@ -335,8 +332,8 @@ const Detail = () => {
                         type="button"
                         className={`inline-flex items-center justify-center rounded-md border-2 border-transparent bg-purple-800 bg-none px-12 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow ${
                           isValidQuantity
-                            ? "hover:bg-gray-800"
-                            : "cursor-not-allowed"
+                            ? 'hover:bg-gray-800'
+                            : 'cursor-not-allowed'
                         }`}
                         onClick={shopCart}
                         disabled={!isValidQuantity}
@@ -358,9 +355,9 @@ const Detail = () => {
                         Comprar
                       </button>
                     </div>
-                  )
-                  :( <p> Producto sin Stock </p>)}
-                  
+                      )
+                    : (<p> Producto sin Stock </p>)}
+
                 </div>
               </div>
             </div>
@@ -387,7 +384,7 @@ const Detail = () => {
           <FeaturedContainer />
         </div>
       </section>
-    );
+    )
   } else {
     return (
       <section className="py-4 sm:py-4">
@@ -455,14 +452,14 @@ const Detail = () => {
                 className=" mt-2 ml-auto text-sm font-medium text-right text-blue-500 cursor-pointer m-5 hover:scale-110"
                 onClick={addFavorite}
               >
-                {" "}
+                {' '}
                 Agregar a Favoritos 🤍
               </p>
               <h1 className="sm: text-2xl font-bold text-gray-900 sm:text-3xl">
                 {product?.name}
               </h1>
               <p className=" mt-2 ml-2 text-sm font-medium text-gray-500">
-                Marca: {"  "}
+                Marca: {'  '}
                 {product?.patent}
               </p>
               <div className="mt-5 flex items-center">
@@ -479,15 +476,15 @@ const Detail = () => {
                                 3 Reviews
                             </p> */}
               <p className=" mt-7 ml-2 text-sm font-medium text-gray-500">
-                Presentación: {"  "}
+                Presentación: {'  '}
                 {product?.package}
               </p>
               <p className=" mt-2 ml-2 text-sm font-medium text-gray-500">
-                Color: {"  "}
+                Color: {'  '}
                 {product?.color}
               </p>
               <p className=" mt-2 ml-2 text-sm font-medium text-gray-500">
-                Stock disponible: {"  "}
+                Stock disponible: {'  '}
                 {product?.stock || 0}
               </p>
               <div className=" flex items-end justify-start gap-2 sm:flex-row sm:space-y-0">
@@ -510,8 +507,8 @@ const Detail = () => {
                 <div className="w-20 h-14 flex items-center justify-center">
                   {error && (
                     <p className="text-sm font-semibold text-red-800">
-                      {" "}
-                      {error}{" "}
+                      {' '}
+                      {error}{' '}
                     </p>
                   )}
                 </div>
@@ -521,15 +518,15 @@ const Detail = () => {
                   <h1 className="text-3xl font-bold">$ {product?.price}</h1>
                 </div>
                 {product.stock > 0
-                ? (<div className="grid grid-cols-2 gap-4">
+                  ? (<div className="grid grid-cols-2 gap-4">
                   <button
                     type="button"
                     disabled={!isValidQuantity}
                     className={`flex items-center justify-center rounded-md border-2 border-transparent bg-purple-100 bg-none hover:scale-110 text-center text-base font-bold text-purple-800 transition-all duration-200 ease-in-out focus:shadow
                     ${
                       isValidQuantity
-                        ? "hover:bg-purple-200 "
-                        : "cursor-not-allowed"
+                        ? 'hover:bg-purple-200 '
+                        : 'cursor-not-allowed'
                     }`}
                     onClick={handleAddToCart}
                   >
@@ -540,8 +537,8 @@ const Detail = () => {
                     className={`inline-flex items-center justify-center rounded-md border-2 border-transparent bg-purple-800 bg-none px-12 py-3 hover:scale-110 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow
                                                 ${
                                                   isValidQuantity
-                                                    ? "hover:bg-gray-800"
-                                                    : "cursor-not-allowed"
+                                                    ? 'hover:bg-gray-800'
+                                                    : 'cursor-not-allowed'
                                                 }`}
                     onClick={shopCart}
                     disabled={!isValidQuantity}
@@ -563,7 +560,7 @@ const Detail = () => {
                     Comprar
                   </button>
                 </div>)
-                : <p className="text-red-700 font-semibold">Stock no disponible</p>
+                  : <p className="text-red-700 font-semibold">Stock no disponible</p>
                 }
               </div>
             </div>
@@ -586,8 +583,8 @@ const Detail = () => {
           <FeaturedContainer />
         </div>
       </section>
-    );
+    )
   }
-};
+}
 
-export default Detail;
+export default Detail

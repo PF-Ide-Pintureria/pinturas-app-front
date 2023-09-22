@@ -1,6 +1,5 @@
-import React from "react";
-import Reviews from "../../components/Reviews/Reviews";
-import ReviewForm from "../../components/Reviews/ReviewForm";
+import React from 'react'
+import ReviewForm from '../../components/Reviews/ReviewForm'
 
 const ReviewsPage = () => {
   return (
@@ -8,7 +7,7 @@ const ReviewsPage = () => {
       {/* <Reviews /> */}
       <ReviewForm />
     </div>
-  );
-};
+  )
+}
 
-export default ReviewsPage;
+export default ReviewsPage

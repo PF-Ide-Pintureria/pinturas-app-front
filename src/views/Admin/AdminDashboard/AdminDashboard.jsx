@@ -1,7 +1,5 @@
-import React from "react";
-import CreateForm from "../../../components/CreateForm/CreateForm";
-import UpdateForm from "../../../components/UpdateForm/UpdateForm";
-import NavbarAdmin from "../../../components/NavbarAdmin/NavbarAdmin";
+import React from 'react'
+import NavbarAdmin from '../../../components/NavbarAdmin/NavbarAdmin'
 
 const AdmindDashboard = () => {
   return (
@@ -10,7 +8,7 @@ const AdmindDashboard = () => {
         <NavbarAdmin />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default AdmindDashboard;
+export default AdmindDashboard

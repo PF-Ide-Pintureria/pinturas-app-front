@@ -1,8 +1,7 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react'
+import { Link } from 'react-router-dom'
 
 const PendingPayment = () => {
-  
   return (
     <div className="flex items-center justify-center min-h-screen mt-5">
       <div className="bg-white shadow-lg rounded-lg p-6 w-96">
@@ -29,7 +28,7 @@ const PendingPayment = () => {
         </Link>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default PendingPayment;
+export default PendingPayment
