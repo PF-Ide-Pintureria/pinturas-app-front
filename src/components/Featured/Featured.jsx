@@ -1,17 +1,16 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { productById } from "../../redux/actions/Products/productById";
+import React from 'react'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { productById } from '../../redux/actions/Products/productById'
 
 const Featured = ({ id, name, image, price, prodpackage }) => {
-  const dispatch = useDispatch();
-
-  const navigate = useNavigate();
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const handleDetailClick = () => {
-    dispatch(productById(id));
-    navigate(`/products/${id}`);
-  };
+    dispatch(productById(id))
+    navigate(`/products/${id}`)
+  }
 
   return (
     <div className="w-64 h-96  flex flex-col items-center text-secondary justify-center bg-tertiary rounded-3xl transition-transform duration-300 ease-in-out hover:scale-105">
@@ -29,7 +28,7 @@ const Featured = ({ id, name, image, price, prodpackage }) => {
         </button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Featured;
+export default Featured

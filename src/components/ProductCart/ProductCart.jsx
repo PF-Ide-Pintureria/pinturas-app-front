@@ -1,99 +1,97 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import Swal from "sweetalert2";
-import { postFavorites } from "../../redux/actions/Favorites/postFavorites";
-import { deleteFavorites } from "../../redux/actions/Favorites/deleteFavorite";
-import { useCart } from "../../hooks/useCart";
-import { setCart } from "../../redux/actions/Cart/setCart";
-import { putCart } from "../../redux/actions/Cart/putCart";
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { postFavorites } from '../../redux/actions/Favorites/postFavorites'
 
+// import { useCart } from '../../hooks/useCart'
 
-const ProductCart = ({ id, name, quantity, image, price, stock, calcTotal}) => {
-    const dispatch = useDispatch()
-    const user = useSelector(state => state.user)
-    const cart = useSelector(state => state.cart)
-    const cartID = useSelector(state => state.cartID)
-    const [count, setCount] = useState(quantity)
-    const [removeCart, setRemoveCart] = useState(false)
-    const { cartState, addToCart, removeFromCart, clearCart } = useCart();
-    const [isRemove, setIsRemove] = useState(false);
+import { putCart } from '../../redux/actions/Cart/putCart'
+import Swal from 'sweetalert2'
 
-    const calcPrice = (quant, pric) => {
-        let sum = Number(quant) * Number(pric);
-        calcTotal(sum);
-        return sum.toFixed(2);
-    };
-    const moreOrLessQuantity = (algo) => {
-        if (algo === "more") setCount(count + 1);
-        if (algo === "less") setCount(count - 1);
-    };
+const ProductCart = ({ id, name, quantity, image, price, stock, calcTotal }) => {
+  const dispatch = useDispatch()
+  const user = useSelector(state => state.user)
+  const cart = useSelector(state => state.cart)
+  const cartID = useSelector(state => state.cartID)
+  const [count, setCount] = useState(quantity)
+  // const [removeCart, setRemoveCart] = useState(false)
+  // const { cartState, addToCart, removeFromCart, clearCart } = useCart()
+  const [isRemove, setIsRemove] = useState(false)
 
-    const deleteProductCart = () => {
-        setIsRemove(true);
-    }
+  const calcPrice = (quant, pric) => {
+    const sum = Number(quant) * Number(pric)
+    calcTotal(sum)
+    return sum.toFixed(2)
+  }
+  const moreOrLessQuantity = (algo) => {
+    if (algo === 'more') setCount(count + 1)
+    if (algo === 'less') setCount(count - 1)
+  }
 
-    useEffect(() => {
-        if (isRemove) {
-            
-            if (user){
-                if (cart.length ==  1){
-                    dispatch(putCart({
+  const deleteProductCart = () => {
+    setIsRemove(true)
+  }
 
-                        idUser: user.id,
-                        idCart: cartID,
-                        products: []})).then((response) => {
-                            if (response) window.location.reload();
-                        });
+  useEffect(() => {
+    if (isRemove) {
+      if (user) {
+        if (cart.length === 1) {
+          dispatch(putCart({
 
-                        removeFromCart(id)
+            idUser: user.id,
+            idCart: cartID,
+            products: []
+          })).then((response) => {
+            if (response) window.location.reload()
+          })
 
-                    } else {
-                        let copyCart = cart.filter((elem)=> elem.id != id)
-
-                        removeFromCart(id)
-
-                        dispatch(putCart({
-                        idUser: user.id,
-                        idCart: cartID,
-                        products: copyCart})).then((response) => {
-                            if (response) window.location.reload();
-                        });
-                    }
-            } else {
-                removeFromCart(id)
-                window.location.reload();
-            }
-                setIsRemove(false)
-            }
-    },[isRemove])
-
-    const addFavorite = () => {
-        if (user){
-            let data = {
-                "idUser": user.id,
-                "idProduct": id
-            }
-            dispatch(postFavorites(data)).then((response) => {
-                if (response === "existe"){
-                    Swal.fire("Ya exite este producto en favoritos");
-                } else {
-                    Swal.fire({
-                        icon: "success",
-                        title: "Producto agregado a favoritos",
-                        timer: 2000,
-                        showConfirmButton: false,
-                        })
-                }
-            }).catch((error) => {
-                console.log('error productCart', error)
-        });
+          // removeFromCart(id)
         } else {
-            Swal.fire("Debes estar logeado para agregar favoritos");
+          const copyCart = cart.filter((elem) => elem.id !== id)
+
+          // removeFromCart(id)
+
+          dispatch(putCart({
+            idUser: user.id,
+            idCart: cartID,
+            products: copyCart
+          })).then((response) => {
+            if (response) window.location.reload()
+          })
         }
-    };
+      } else {
+        // removeFromCart(id)
+        window.location.reload()
+      }
+      setIsRemove(false)
+    }
+  }, [isRemove])
 
+  const addFavorite = () => {
+    if (user) {
+      const data = {
+        idUser: user.id,
+        idProduct: id
+      }
+      dispatch(postFavorites(data)).then((response) => {
+        if (response === 'existe') {
+          Swal.fire('Ya exite este producto en favoritos')
+        } else {
+          Swal.fire({
+            icon: 'success',
+            title: 'Producto agregado a favoritos',
+            timer: 2000,
+            showConfirmButton: false
+          })
+        }
+      }).catch((error) => {
+        console.log('error productCart', error)
+      })
+    } else {
+      Swal.fire('Debes estar logeado para agregar favoritos')
+    }
+  }
 
-    return (
+  return (
         <div className=" py-3 my-5 w-full border-t">
             <div className="">
                 <div className="flex flex-row">
@@ -109,34 +107,34 @@ const ProductCart = ({ id, name, quantity, image, price, stock, calcTotal}) => {
                         <div className="flex justify-between ">
                             <div className="flex items-center justify-center flex-col">
                                 <div className="grid grid-cols-3 w-28 h-8 border border-gray-500 rounded">
-                                    <button className={`text-2xl ${count == 1 ? "cursor-not-allowed" : "hover:bg-gray-100"} `}
-                                        onClick={() => moreOrLessQuantity("less")}
-                                        disabled={count == 1}>
+                                    <button className={`text-2xl ${count === 1 ? 'cursor-not-allowed' : 'hover:bg-gray-100'} `}
+                                        onClick={() => moreOrLessQuantity('less')}
+                                        disabled={count === 1}>
                                         -
                                     </button>
                                     <h1 className="flex justify-center items-center">{count}</h1>
                                     <button
-                                        className={`text-2xl ${count == stock ? "cursor-not-allowed" : "hover:bg-gray-100"} `}
-                                        onClick={() => moreOrLessQuantity("more")}
-                                        disabled={count == stock}>
+                                        className={`text-2xl ${count === stock ? 'cursor-not-allowed' : 'hover:bg-gray-100'} `}
+                                        onClick={() => moreOrLessQuantity('more')}
+                                        disabled={count === stock}>
                                         +
                                     </button>
                                 </div>{
                                     stock > 0
-                                    ? <h1 className="text-gray-500"> {stock} disponibles </h1>
-                                    : <p className="text-red-700 font-semibold"> Producto sin stock </p>}
+                                      ? <h1 className="text-gray-500"> {stock} disponibles </h1>
+                                      : <p className="text-red-700 font-semibold"> Producto sin stock </p>}
                             </div>
                             <div className="w-80 flex justify-end items-center">
                                 {stock > 0
-                                ? <h1 className="text-xl font-bold text-gray-700">$ {calcPrice(count, price)}</h1>
-                                : <p className="text-red-700 font-semibold"> Producto no disponible </p>}
+                                  ? <h1 className="text-xl font-bold text-gray-700">$ {calcPrice(count, price)}</h1>
+                                  : <p className="text-red-700 font-semibold"> Producto no disponible </p>}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    )
-};
+  )
+}
 
-export default ProductCart;
+export default ProductCart

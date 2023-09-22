@@ -1,9 +1,9 @@
-import { postContactEmail } from "../../redux/actions/Mail/postContactEmail";
+import { postContactEmail } from '../../redux/actions/Mail/postContactEmail'
 import Swal from 'sweetalert2'
 
 export const formatAndSend = async ({ name, email, message }, dispatch) => {
-    try {
-        const formatedEmail = `
+  try {
+    const formatedEmail = `
         <html lang="en" >
             <head>
                 <meta charset="UTF-8">
@@ -35,31 +35,28 @@ export const formatAndSend = async ({ name, email, message }, dispatch) => {
             </body>
         </html>`
 
-        const emailToBeSend = {
-            name: name,
-            message: formatedEmail,
-            replyTo: email
-        };
-
-        await postContactEmail(emailToBeSend)(dispatch).then((res) => {
-            if (res.status === 200) {
-                Swal.fire({
-                    icon: 'success',
-                    text: "Correo enviado correctamente"
-                });
-            } else {
-                Swal.fire({
-                    icon: 'error',
-                    text: 'El mensaje no ha sido enviado'
-                })
-            }
-        }).then(() => {
-            true;
-        }).catch((err) => {
-            console.error(err);
-        });
-    } catch (error) {
-        console.error(error);
+    const emailToBeSend = {
+      name,
+      message: formatedEmail,
+      replyTo: email
     }
 
+    await postContactEmail(emailToBeSend)(dispatch).then((res) => {
+      if (res.status === 200) {
+        Swal.fire({
+          icon: 'success',
+          text: 'Correo enviado correctamente'
+        })
+      } else {
+        Swal.fire({
+          icon: 'error',
+          text: 'El mensaje no ha sido enviado'
+        })
+      }
+    }).catch((err) => {
+      console.error(err)
+    })
+  } catch (error) {
+    console.error(error)
+  }
 }

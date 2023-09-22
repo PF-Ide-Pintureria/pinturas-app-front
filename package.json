@@ -1,27 +1,4 @@
 {
-  "name": "client2",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "deploy": "gh-pages -d dist",
-    "pre-deploy": "npm run build"
-  },
-  "devDependencies": {
-    "autoprefixer": "^10.4.14",
-    "daisyui": "^3.5.0",
-    "dotenv": "^16.3.1",
-    "postcss": "^8.4.26",
-    "tailwindcss": "^3.3.3",
-    "vite": "^3.2.3"
-  },
-  "peerDependencies": {
-    "react": "^17.0.0 || ^18.2.0",
-    "react-dom": "^17.0.0 || ^18.2.0"
-  },
   "dependencies": {
     "@auth0/auth0-react": "^2.2.0",
     "@emotion/react": "^11.11.1",
@@ -52,5 +29,36 @@
     "sweetalert2": "^11.6.13",
     "tailwindscss": "^0.3.0"
   },
-  "homepage": "https://PF-Ide-Pintureria.github.io/pinturas-app-front/"
+  "devDependencies": {
+    "autoprefixer": "^10.4.14",
+    "daisyui": "^3.5.0",
+    "dotenv": "^16.3.1",
+    "eslint": "^8.49.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0 || ^16.0.0 ",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-react": "^7.33.2",
+    "postcss": "^8.4.26",
+    "tailwindcss": "^3.3.3",
+    "vite": "^3.2.3",
+    "vite-plugin-eslint": "^1.8.1"
+  },
+  "homepage": "https://PF-Ide-Pintureria.github.io/pinturas-app-front/",
+  "name": "client2",
+  "peerDependencies": {
+    "react": "^17.0.0 || ^18.2.0",
+    "react-dom": "^17.0.0 || ^18.2.0"
+  },
+  "private": true,
+  "scripts": {
+    "build": "vite build",
+    "deploy": "gh-pages -d dist",
+    "dev": "vite",
+    "lint": "eslint src --ext .js,.jsx",
+    "pre-deploy": "npm run build",
+    "preview": "vite preview"
+  },
+  "type": "module",
+  "version": "0.0.0"
 }

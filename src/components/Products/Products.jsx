@@ -1,39 +1,39 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { postFavorites } from "../../redux/actions/Favorites/postFavorites";
-import Swal from "sweetalert2";
+import React from 'react'
+import { NavLink } from 'react-router-dom'
+// import { useDispatch, useSelector } from 'react-redux'
+// import { postFavorites } from '../../redux/actions/Favorites/postFavorites'
+// import Swal from 'sweetalert2'
 
 const Products = ({ idProduct, name, image, price, prodpackage }) => {
-  const user = useSelector((state) => state.user);
-  const dispatch = useDispatch();
+  // const user = useSelector((state) => state.user)
+  // const dispatch = useDispatch()
 
-  const addFavorite = () => {
-    if (user) {
-      let data = {
-        idUser: user.id,
-        idProduct: idProduct,
-      };
-      dispatch(postFavorites(data))
-        .then((response) => {
-          if (response === "existe") {
-            Swal.fire("Ya exite este producto en favoritos");
-          } else {
-            Swal.fire({
-              icon: "success",
-              title: "Producto agregado a favoritos",
-              timer: 2000,
-              showConfirmButton: false,
-            });
-          }
-        })
-        .catch((error) => {
-          console.log("error productCart", error);
-        });
-    } else {
-      Swal.fire("Debes estar logeado para agregar favoritos");
-    }
-  };
+  // const addFavorite = () => {
+  //   if (user) {
+  //     const data = {
+  //       idUser: user.id,
+  //       idProduct
+  //     }
+  //     dispatch(postFavorites(data))
+  //       .then((response) => {
+  //         if (response === 'existe') {
+  //           Swal.fire('Ya exite este producto en favoritos')
+  //         } else {
+  //           Swal.fire({
+  //             icon: 'success',
+  //             title: 'Producto agregado a favoritos',
+  //             timer: 2000,
+  //             showConfirmButton: false
+  //           })
+  //         }
+  //       })
+  //       .catch((error) => {
+  //         console.log('error productCart', error)
+  //       })
+  //   } else {
+  //     Swal.fire('Debes estar logeado para agregar favoritos')
+  //   }
+  // }
 
   return (
     <div className="w-64 h-96 flex flex-col items-center text-secondary justify-center bg-tertiary rounded-2xl transition-transform duration-300 ease-in-out hover:scale-105 shadow-lg">
@@ -57,7 +57,7 @@ const Products = ({ idProduct, name, image, price, prodpackage }) => {
         </NavLink>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Products;
+export default Products

@@ -1,21 +1,21 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
 
 const Slider = () => {
-  const [activeImage, setActiveImage] = useState(0);
+  const [activeImage, setActiveImage] = useState(0)
 
   const images = [
-    "https://cdn-bfbao.nitrocdn.com/dAEtJyZgCpnBZXXPWAIzViPQPThPYBpq/assets/images/optimized/rev-c5b2e3a/netbasequid.com/wp-content/uploads/Hello-Kitty.png",
-    "https://news.harvard.edu/wp-content/uploads/2014/10/hello-kitty-wallpaper-37_605.jpg",
+    'https://cdn-bfbao.nitrocdn.com/dAEtJyZgCpnBZXXPWAIzViPQPThPYBpq/assets/images/optimized/rev-c5b2e3a/netbasequid.com/wp-content/uploads/Hello-Kitty.png',
+    'https://news.harvard.edu/wp-content/uploads/2014/10/hello-kitty-wallpaper-37_605.jpg'
     // Add more image URLs here...
-  ];
+  ]
 
   const handlePrev = () => {
-    setActiveImage((prev) => (prev === 0 ? images.length - 1 : prev - 1));
-  };
+    setActiveImage((prev) => (prev === 0 ? images.length - 1 : prev - 1))
+  }
 
   const handleNext = () => {
-    setActiveImage((prev) => (prev === images.length - 1 ? 0 : prev + 1));
-  };
+    setActiveImage((prev) => (prev === images.length - 1 ? 0 : prev + 1))
+  }
 
   return (
     <div
@@ -28,7 +28,7 @@ const Slider = () => {
           <div
             key={index}
             className={`duration-700 ease-in-out ${
-              activeImage === index ? "block" : "hidden"
+              activeImage === index ? 'block' : 'hidden'
             }`}
             data-carousel-item={activeImage === index}
           >
@@ -47,7 +47,7 @@ const Slider = () => {
             key={index}
             type="button"
             className={`w-3 h-3 rounded-full ${
-              activeImage === index ? "bg-white" : "bg-gray-500"
+              activeImage === index ? 'bg-white' : 'bg-gray-500'
             }`}
             aria-current={activeImage === index}
             aria-label={`Slide ${index + 1}`}
@@ -99,10 +99,10 @@ const Slider = () => {
             strokeWidth="2"
             d="m1 9 4-4-4-4"
           />
-        </svg>{" "}
+        </svg>{' '}
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default Slider;
+export default Slider

@@ -98,41 +98,37 @@
 
 // export default TestTable;
 
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import React from "react";
+import { Formik, Form, Field, ErrorMessage } from 'formik'
+import React from 'react'
 import Swal from 'sweetalert2'
 
-
 const BlogDash = () => {
-
-
-    const respuesta = [
-        "{\"id\":\"1\",\"name\":\"Base Latex Pastel(P) - x  1 lts.\",\"image\":\"http://www.pinturasfadepa.com.ar/latex/imgnotas/base_latex_opt.jpg\",\"price\":1420.91,\"stock\":10,\"quantity\":2}",
-        "{\"id\":\"5\",\"name\":\"Base Latex Tinte(T) - x  4 lts.\",\"image\":\"http://www.pinturasfadepa.com.ar/latex/imgnotas/base_latex_opt.jpg\",\"price\":4456.73,\"stock\":1,\"quantity\":1}",
-        "{\"id\":\"9\",\"name\":\"Base Latex Deep(D) - x 20 lts.\",\"image\":\"http://www.pinturasfadepa.com.ar/latex/imgnotas/base_latex_opt.jpg\",\"price\":19245.94,\"stock\":5,\"quantity\":4}",
-        "{\"id\":\"4\",\"name\":\"Base Latex Tinte(T) - x  1 lts.\",\"image\":\"http://www.pinturasfadepa.com.ar/latex/imgnotas/base_latex_opt.jpg\",\"price\":1265.16,\"stock\":2,\"quantity\":1}",
-        "{\"id\":\"8\",\"name\":\"Base Latex Deep(D) - x  4 lts.\",\"image\":\"http://www.pinturasfadepa.com.ar/latex/imgnotas/base_latex_opt.jpg\",\"price\":4083.65,\"stock\":10,\"quantity\":1}",
-        "{\"id\":\"11\",\"name\":\"Base Latex Clear(C) - x  4 lts.\",\"image\":\"http://www.pinturasfadepa.com.ar/latex/imgnotas/base_latex_opt.jpg\",\"price\":2844.79,\"stock\":7,\"quantity\":1}"
-    ];
-    console.log(respuesta.map(product => JSON.parse(product)))
-    return (
+  const respuesta = [
+    '{"id":"1","name":"Base Latex Pastel(P) - x  1 lts.","image":"http://www.pinturasfadepa.com.ar/latex/imgnotas/base_latex_opt.jpg","price":1420.91,"stock":10,"quantity":2}',
+    '{"id":"5","name":"Base Latex Tinte(T) - x  4 lts.","image":"http://www.pinturasfadepa.com.ar/latex/imgnotas/base_latex_opt.jpg","price":4456.73,"stock":1,"quantity":1}',
+    '{"id":"9","name":"Base Latex Deep(D) - x 20 lts.","image":"http://www.pinturasfadepa.com.ar/latex/imgnotas/base_latex_opt.jpg","price":19245.94,"stock":5,"quantity":4}',
+    '{"id":"4","name":"Base Latex Tinte(T) - x  1 lts.","image":"http://www.pinturasfadepa.com.ar/latex/imgnotas/base_latex_opt.jpg","price":1265.16,"stock":2,"quantity":1}',
+    '{"id":"8","name":"Base Latex Deep(D) - x  4 lts.","image":"http://www.pinturasfadepa.com.ar/latex/imgnotas/base_latex_opt.jpg","price":4083.65,"stock":10,"quantity":1}',
+    '{"id":"11","name":"Base Latex Clear(C) - x  4 lts.","image":"http://www.pinturasfadepa.com.ar/latex/imgnotas/base_latex_opt.jpg","price":2844.79,"stock":7,"quantity":1}'
+  ]
+  console.log(respuesta.map(product => JSON.parse(product)))
+  return (
         <div>
             <div>
                 <h1>Crea una entrada de Blog!</h1>
                 <Formik
                     initialValues={{ title: '', image: '', body: '' }}
                     validate={values => {
-                        const errors = {};
-                        if (!values.title) {
-                            errors.title = 'Por favor ingresa un titulo';
-                        }
-                        else if (values.body === '') {
-                            errors.body = 'Por favor escribe algo en el cuerpo del blog'
-                        };
-                        return errors;
+                      const errors = {}
+                      if (!values.title) {
+                        errors.title = 'Por favor ingresa un titulo'
+                      } else if (values.body === '') {
+                        errors.body = 'Por favor escribe algo en el cuerpo del blog'
+                      };
+                      return errors
                     }}
                     onSubmit={(values, { setSubmitting }) => {
-                        Swal.fire('Blog creado');
+                      Swal.fire('Blog creado')
                     }}
                 >
                     {({ isSubmitting }) => (
@@ -149,7 +145,7 @@ const BlogDash = () => {
                 </Formik>
             </div>
         </div >
-    )
-};
+  )
+}
 
-export default BlogDash;
+export default BlogDash

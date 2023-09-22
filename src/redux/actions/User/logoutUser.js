@@ -1,8 +1,8 @@
-import { LOGOUT_USER } from '../../action-type';
+import { LOGOUT_USER } from '../../action-type'
 
 export const logoutUser = (dispatch) => {
-    dispatch({
-        type: LOGOUT_USER,
-        payload: {}
-    })
-};
+  dispatch({
+    type: LOGOUT_USER,
+    payload: {}
+  })
+}

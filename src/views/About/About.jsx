@@ -1,7 +1,7 @@
-import "../About/About.css";
-import imgAbout2 from "../../img/about2.png";
-import imgAbout from "../../img/about.png";
-import React from "react";
+import '../About/About.css'
+import imgAbout2 from '../../img/about2.png'
+import imgAbout from '../../img/about.png'
+import React from 'react'
 
 const About = () => {
   return (
@@ -205,7 +205,7 @@ const About = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default About;
+export default About

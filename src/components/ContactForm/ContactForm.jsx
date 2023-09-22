@@ -1,70 +1,68 @@
-import React, { useState } from "react";
-import { formValidation } from "./formValidation";
-import { formatAndSend } from "./formatAndSend";
-import { useDispatch } from "react-redux";
+import React, { useState } from 'react'
+import { formValidation } from './formValidation'
+import { formatAndSend } from './formatAndSend'
+import { useDispatch } from 'react-redux'
 import Swal from 'sweetalert2'
 
-
 const Contact = () => {
+  const dispatch = useDispatch()
 
-    const dispatch = useDispatch();
+  const [inputs, setInputs] = useState({
+    name: '',
+    email: '',
+    message: ''
+  })
 
-    const [inputs, setInputs] = useState({
-        name: "",
-        email: "",
-        message: "",
-    });
+  const [errors, setErrors] = useState({
+    name: '',
+    email: '',
+    message: '',
+    form: ''
+  })
 
-    const [errors, setErrors] = useState({
-        name: "",
-        email: "",
-        message: "",
-        form: ""
-    });
+  const handleChange = (event) => {
+    const property = event.target.name
+    const value = event.target.value
 
-    const handleChange = (event) => {
-        const property = event.target.name;
-        const value = event.target.value;
+    setInputs({ ...inputs, [property]: value })
+    setErrors(formValidation(inputs))
+  }
 
-        setInputs({ ...inputs, [property]: value });
-        setErrors(formValidation(inputs));
-    };
+  const handleSubmit = async (event) => {
+    event.preventDefault()
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
+    if (!inputs.name || !inputs.email || !inputs.message) {
+      Swal.fire({
+        icon: 'error',
+        text: 'Por favor, complete todos los campos obligatorios.'
+      })
+      return
+    }
 
-        if (!inputs.name || !inputs.email || !inputs.message) {
-            Swal.fire({
-                icon: 'error',
-                text: "Por favor, complete todos los campos obligatorios."
-            });
-            return;
-        }
+    const emailRegex =
+            /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+    if (!emailRegex.test(inputs.email)) {
+      Swal.fire({
+        icon: 'error',
+        text: 'Por favor, ingrese un correo electrónico válido.'
+      })
+      return
+    }
 
-        const emailRegex =
-            /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-        if (!emailRegex.test(inputs.email)) {
-            Swal.fire({
-                icon: 'error',
-                text: "Por favor, ingrese un correo electrónico válido."
-            });
-            return;
-        }
+    const errores = formValidation(inputs)
+    setErrors(errores)
+    if (Object.keys(errors).length === 0) {
+      formatAndSend(inputs, dispatch)
+    }
 
-        const errores = formValidation(inputs);
-        setErrors(errores);
-        if (Object.keys(errors).length === 0) {
-            formatAndSend(inputs, dispatch);
-        }
+    setInputs({
+      name: '',
+      email: '',
+      message: ''
+    })
+  }
 
-        setInputs({
-            name: "",
-            email: "",
-            message: "",
-        });
-    };
-
-    return (
+  return (
         <div className="flex- justify-center items-center">
             <div className="bg-contain m-10 rounded p-2">
                 <div
@@ -94,14 +92,14 @@ const Contact = () => {
                             </div>
                             <div className="flex my-0 pt-0 pl-8 justify-around">
                                 <p
-                                    className={`text-warning text-xs font-extrabold py-0 m-0 ${errors.name ? "block" : "hidden"
+                                    className={`text-warning text-xs font-extrabold py-0 m-0 ${errors.name ? 'block' : 'hidden'
                                         }`}
                                 >
                                     {errors.name}
                                 </p>
                             </div>
 
-                            <div className={`flex ${errors.name ? "m-4" : "m-8"}`}>
+                            <div className={`flex ${errors.name ? 'm-4' : 'm-8'}`}>
                                 <label
                                     htmlFor="name"
                                     className="bg-quaternary rounded-l-xl w-40 h-8 flex items-center justify-center"
@@ -120,7 +118,7 @@ const Contact = () => {
                             </div>
                             <div className="flex my-0 pt-0 pl-8 justify-around">
                                 <p
-                                    className={`text-warning text-xs font-extrabold py-0 m-0 ${errors.email ? "block" : "hidden"
+                                    className={`text-warning text-xs font-extrabold py-0 m-0 ${errors.email ? 'block' : 'hidden'
                                         }`}
                                 >
                                     {errors.email}
@@ -148,7 +146,7 @@ const Contact = () => {
                             </div>
                             <div className="flex my-0 pt-0 pl-8 justify-around">
                                 <p
-                                    className={`text-warning text-xs font-extrabold py-0 m-0 ${errors.message ? "block" : "hidden"
+                                    className={`text-warning text-xs font-extrabold py-0 m-0 ${errors.message ? 'block' : 'hidden'
                                         }`}
                                 >
                                     {errors.message}
@@ -160,7 +158,7 @@ const Contact = () => {
                             >
                                 <h2
                                     className="text-primary uppercase font-bold flex items-center justify-center"
-                                    style={{ color: "white", fontWeight: "bold" }}
+                                    style={{ color: 'white', fontWeight: 'bold' }}
                                 >
                                     Enviar
                                 </h2>
@@ -278,7 +276,7 @@ const Contact = () => {
                 </div>
             </div>
         </div>
-    );
-};
+  )
+}
 
-export default Contact;
+export default Contact

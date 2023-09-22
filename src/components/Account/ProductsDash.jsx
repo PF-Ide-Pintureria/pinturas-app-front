@@ -1,75 +1,71 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import CreateButton from '../CreateButton/CreateButton.jsx';
-import UpdateButton from "../UpdateButton/UpdateButton.jsx";
-import DeleteButton from '../DeleteButton/DeleteButton.jsx';
-import { useDispatch, useSelector } from "react-redux";
-// import { allProducts } from '../../redux/actions/Products/allProducts.js';
-import { getAllProductsNoFilter } from "../../redux/actions/Products/getAllProductsNoFilter.js";
-import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import { Avatar } from "@mui/material";
-
+import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import CreateButton from '../CreateButton/CreateButton.jsx'
+import UpdateButton from '../UpdateButton/UpdateButton.jsx'
+import DeleteButton from '../DeleteButton/DeleteButton.jsx'
+import { useDispatch, useSelector } from 'react-redux'
+import { getAllProductsNoFilter } from '../../redux/actions/Products/getAllProductsNoFilter.js'
+import { DataGrid, GridToolbar } from '@mui/x-data-grid'
 
 const ProductsDash = () => {
-    const dispatch = useDispatch();
-    const products = useSelector((state) => state.allProducts);
+  const dispatch = useDispatch()
+  const products = useSelector((state) => state.allProducts)
 
-    useEffect(() => {
-        getAllProductsNoFilter()(dispatch)
-    }, [dispatch])
+  useEffect(() => {
+    getAllProductsNoFilter()(dispatch)
+  }, [dispatch])
 
+  const columns = [
+    {
+      field: 'id',
+      headerName: 'ID',
+      flex: 0.2,
+      minWidth: 40
+    },
+    {
+      field: 'name',
+      headerName: 'Nombre',
+      flex: 2,
+      minWidth: 120
+    },
+    {
+      field: 'category',
+      headerName: 'Categoría',
+      flex: 3,
+      minWidth: 180
+    },
+    {
+      field: 'package',
+      headerName: 'Formato',
+      flex: 0.8,
+      minWidth: 80
+    },
+    {
+      field: 'stock',
+      headerName: 'Stock',
+      flex: 0.9,
+      minWidth: 60
+    },
+    {
+      field: 'edit',
+      headerName: 'Editar',
+      renderCell: (params) => (<UpdateButton idProduct={params.row.id} />),
+      flex: 4,
+      minWidth: 200
+    },
+    {
+      field: 'delete',
+      headerName: 'Eliminar',
+      renderCell: (params) => (<DeleteButton idProduct={params.row.id} />),
+      flex: 4,
+      minWidth: 200
+    }
 
-    const columns = [
-        {
-            field: 'id',
-            headerName: "ID",
-            flex: 0.2,
-            minWidth: 40,
-        },
-        {
-            field: 'name',
-            headerName: "Nombre",
-            flex: 2,
-            minWidth: 120,
-        },
-        {
-            field: 'category',
-            headerName: "Categoría",
-            flex: 3,
-            minWidth: 180,
-        },
-        {
-            field: 'package',
-            headerName: "Formato",
-            flex: 0.8,
-            minWidth: 80,
-        },
-        {
-            field: 'stock',
-            headerName: "Stock",
-            flex: 0.9,
-            minWidth: 60,
-        },
-        {
-            field: 'edit',
-            headerName: "Editar",
-            renderCell: (params) => (<UpdateButton idProduct={params.row.id} />),
-            flex: 4,
-            minWidth: 200,
-        },
-        {
-            field: 'delete',
-            headerName: "Eliminar",
-            renderCell: (params) => (<DeleteButton idProduct={params.row.id} />),
-            flex: 4,
-            minWidth: 200,
-        },
+  ]
 
-    ]
-
-    return (
+  return (
         <div className="container mx-auto px-4">
-            {" "}
+            {' '}
             <li>
                 <p className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
                     <span className=" text-gray-600">
@@ -100,33 +96,33 @@ const ProductsDash = () => {
             <div className="flex">
                 <DataGrid
                     rows={products.map(product => ({
-                        id: product.idProduct,
-                        name: product.name,
-                        category: product.category,
-                        package: product.package,
-                        stock: product.stock
+                      id: product.idProduct,
+                      name: product.name,
+                      category: product.category,
+                      package: product.package,
+                      stock: product.stock
                     }))}
                     columns={columns}
                     initialState={{
-                        pagination: {
-                            paginationModel: {
-                                page: 0,
-                                pageSize: 15
-                            }
-                        },
-                        sorting: true,
-                        filter: {
-                            filterModel: {
-                                items: [],
-                            }
+                      pagination: {
+                        paginationModel: {
+                          page: 0,
+                          pageSize: 15
                         }
+                      },
+                      sorting: true,
+                      filter: {
+                        filterModel: {
+                          items: []
+                        }
+                      }
 
                     }}
                     slots={{ toolbar: GridToolbar }}
                     slotProps={{
-                        toolbar: {
-                            showQuickFilter: true
-                        }
+                      toolbar: {
+                        showQuickFilter: true
+                      }
                     }}
                     disableColumnFilter
                     pageSizeOptions={[5, 10, 15, 20, 50, 100]}
@@ -144,9 +140,7 @@ const ProductsDash = () => {
                 </Link>
             </div>
         </div>
-    )
-
+  )
 }
 
-
-export default ProductsDash;
+export default ProductsDash

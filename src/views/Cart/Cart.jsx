@@ -1,92 +1,76 @@
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import ProductCart from "../../components/ProductCart/ProductCart";
-import { postCart } from "../../redux/actions/Cart/postCart";
-import { setCart } from "../../redux/actions/Cart/setCart";
-import { postOrderByCart } from "../../redux/actions/Orders/postOrderByCart";
-import { postOrderPayment } from "../../redux/actions/Orders/postOrderPayment";
-// import { getCart } from "../../redux/actions/Cart/getCart";
-import Swal from "sweetalert2";
-import { putCart } from "../../redux/actions/Cart/putCart";
-import { useState } from "react";
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import ProductCart from '../../components/ProductCart/ProductCart'
+import { postCart } from '../../redux/actions/Cart/postCart'
+import { setCart } from '../../redux/actions/Cart/setCart'
+import { postOrderByCart } from '../../redux/actions/Orders/postOrderByCart'
+import { postOrderPayment } from '../../redux/actions/Orders/postOrderPayment'
+import Swal from 'sweetalert2'
 
 const Cart = () => {
-  const user = useSelector((state) => state.user);
-  const cart = useSelector((state) => state.cart);
-  const cartID = useSelector((state) => state.cartID);
+  const user = useSelector((state) => state.user)
+  const cart = useSelector((state) => state.cart)
+  // const cartID = useSelector((state) => state.cartID)
   // const [price, setPrice] = useState(0);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  let sumPrices = [];
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const sumPrices = []
 
   const addPrice = (quantity, price) => {
-    sumPrices.push(quantity * price);
-  };
+    sumPrices.push(quantity * price)
+  }
 
   const handleSendProduct = async () => {
     if (!user.id) {
       Swal.fire({
-        icon: "info",
-        title: "Iniciar Sesión",
-        text: "Necesitas estar loggeado para comprar",
-      });
+        icon: 'info',
+        title: 'Iniciar Sesión',
+        text: 'Necesitas estar loggeado para comprar'
+      })
     } else if (user.id) {
-      let buyCart = {
+      const buyCart = {
         idUser: user.id,
-        products: cart,
-      };
+        products: cart
+      }
 
       await postCart(buyCart)(dispatch)
         .then(async (response) => {
           if (response) {
-            let order = {
-              idCart: response.data.idCart,
-            };
+            const order = {
+              idCart: response.data.idCart
+            }
 
             await postOrderByCart(order)(dispatch)
               .then(async (response) => {
                 if (response) {
-                  let idOrder = response.id;
+                  const idOrder = response.id
 
                   await postOrderPayment(idOrder)(dispatch)
                     .then((response) => {
-                      if (response) navigate("/cart/detail");
+                      if (response) navigate('/cart/detail')
                       console.log(
-                        "response postOrderPayment N46",
+                        'response postOrderPayment N46',
                         response.response.initPoint
-                      );
-                      dispatch(setCart([]));
-                      localStorage.removeItem("cart");
+                      )
+                      dispatch(setCart([]))
+                      localStorage.removeItem('cart')
                     })
                     .catch((err) => {
-                      console.log("err postOrderPayment", err);
-                    });
+                      console.log('err postOrderPayment', err)
+                    })
                 }
               })
               .catch((err) => {
-                console.log("err postOrderByCart", err);
-              });
+                console.log('err postOrderByCart', err)
+              })
           }
         })
         .catch((err) => {
-          alert(err);
-        });
+          alert(err)
+        })
     }
-  };
-  let sum = 0;
-  const totalPrice = () => {
-    for (let i = 0; i < sumPrices.length; i++) {
-      sum = sum + sumPrices[i];
-    }
-    return sum.toFixed(2);
-  };
-  
-  const calcTotal = (price) => {
-    
-  };
-
-  console.log('sum', sum)
+  }
 
   return (
     <div className="my-10 w-full">
@@ -122,22 +106,22 @@ const Cart = () => {
                 </div>
                 <div>
                   {cart?.map((product) =>
-                    product && product?.id 
-                    ? (
-                      <div>
-                        {addPrice(product.quantity, product.price)}
-                        <ProductCart
-                          calcTotal={calcTotal}
-                          // key={product.id}
-                          id={product.id}
-                          name={product.name}
-                          stock={product.stock}
-                          quantity={product.quantity}
-                          price={product.price}
-                          // color={product.color}
-                          image={product.image}
-                        />
-                      </div>) 
+                    product && product?.id
+                      ? (
+                        <div key={product.id}>
+                          {addPrice(product.quantity, product.price)}
+                          <ProductCart
+                            // calcTotal={calcTotal}
+                            // key={product.id}
+                            id={product.id}
+                            name={product.name}
+                            stock={product.stock}
+                            quantity={product.quantity}
+                            price={product.price}
+                            // color={product.color}
+                            image={product.image}
+                          />
+                        </div>)
                       : null
                   )}
                 </div>
@@ -153,7 +137,7 @@ const Cart = () => {
                 </div> */}
               </div>
             )}
-            {cart.length == 0 && (
+            {cart !== null && cart.length === 0 && (
               <p className="text-gray-400 flex items-center justify-center">
                 El carrito está vacío.
               </p>
@@ -173,7 +157,7 @@ const Cart = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Cart;
+export default Cart

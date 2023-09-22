@@ -1,43 +1,43 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import banner1 from "../../img/banner1.png";
-import banner2 from "../../img/banner2.png";
-import banner3 from "../../img/banner3.png";
+import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import banner1 from '../../img/banner1.png'
+import banner2 from '../../img/banner2.png'
+import banner3 from '../../img/banner3.png'
 
 const BannerCarousel = () => {
-  const [currentImage, setCurrentImage] = useState(0);
+  const [currentImage, setCurrentImage] = useState(0)
   const images = [
     {
       src: banner1,
-      link: "/products",
+      link: '/products'
     },
     {
       src: banner2,
-      link: "/products",
+      link: '/products'
     },
     {
       src: banner3,
-      link: "/products",
-    },
-  ];
+      link: '/products'
+    }
+  ]
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentImage((prevImage) => (prevImage + 1) % images.length);
-    }, 5000);
+      setCurrentImage((prevImage) => (prevImage + 1) % images.length)
+    }, 5000)
 
-    return () => clearInterval(interval);
-  }, []);
+    return () => clearInterval(interval)
+  }, [])
 
   const goToPrevImage = () => {
     setCurrentImage(
       (prevImage) => (prevImage - 1 + images.length) % images.length
-    );
-  };
+    )
+  }
 
   const goToNextImage = () => {
-    setCurrentImage((prevImage) => (prevImage + 1) % images.length);
-  };
+    setCurrentImage((prevImage) => (prevImage + 1) % images.length)
+  }
 
   return (
     <div className="hidden sm:block">
@@ -47,7 +47,7 @@ const BannerCarousel = () => {
             key={index}
             to={image.link}
             className={`absolute top-0 left-0 w-full h-full transition-opacity duration-500 ease-in-out ${
-              index === currentImage ? "opacity-100" : "opacity-0"
+              index === currentImage ? 'opacity-100' : 'opacity-0'
             }`}
           >
             <img
@@ -75,7 +75,7 @@ const BannerCarousel = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default BannerCarousel;
+export default BannerCarousel

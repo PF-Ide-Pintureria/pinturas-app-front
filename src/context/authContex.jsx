@@ -1,6 +1,7 @@
-import React from "react";
+import React from 'react'
 
 const authContext = () => {
-  return <></>;
-};
-export default authContext;
+  return <></>
+}
+
+export default authContext

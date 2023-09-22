@@ -1,18 +1,18 @@
-import React from "react";
-import { useSelector } from "react-redux/es/hooks/useSelector";
-import { useNavigate } from "react-router-dom";
-// import Desk from "./Desk";
+import React from 'react'
+import { useSelector } from 'react-redux/es/hooks/useSelector'
+import { useNavigate } from 'react-router-dom'
 
 const SideBarUser = ({
-    activeButton,
-    handleButtonClick,
-    user,
-    logout,
+  activeButton,
+  handleButtonClick,
+  user,
+  logout
 }) => {
-    const navigate = useNavigate();
-    const loggedUser = useSelector((state) => state.user);
-    if (loggedUser.rol === "admin") {
-        return (
+  const navigate = useNavigate()
+  const loggedUser = useSelector((state) => state.user)
+
+  if (loggedUser.rol === 'admin') {
+    return (
             <div className="w-1/5 bg-white rounded p-3 shadow-lg">
 
                 <div className="flex items-center space-x-4 p-2 mb-5">
@@ -43,11 +43,11 @@ const SideBarUser = ({
                     <li>
                         <a
                             href="#"
-                            className={`flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium ${activeButton === "dashboard"
-                                ? "bg-gray-200 focus:shadow-outline"
-                                : "hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline"
+                            className={`flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium ${activeButton === 'dashboard'
+                                ? 'bg-gray-200 focus:shadow-outline'
+                                : 'hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline'
                                 }`}
-                            onClick={() => handleButtonClick("account")}>
+                            onClick={() => handleButtonClick('account')}>
                             <span className="text-gray-600">
                                 <svg
                                     className="h-5"
@@ -69,7 +69,7 @@ const SideBarUser = ({
 
                     <li>
                         <p
-                            onClick={() => handleButtonClick("addresses")}
+                            onClick={() => handleButtonClick('addresses')}
                             className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
                             <span className=" text-gray-600">
                                 <svg
@@ -106,7 +106,7 @@ const SideBarUser = ({
                     </li>
                     <li>
                         <p
-                            onClick={() => handleButtonClick("orders")}
+                            onClick={() => handleButtonClick('orders')}
                             className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
                             <span className="text-gray-600">
                                 <svg
@@ -128,7 +128,7 @@ const SideBarUser = ({
                     </li>
                     <li>
                         <p
-                            onClick={() => handleButtonClick("favorities")}
+                            onClick={() => handleButtonClick('favorities')}
                             className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
                             <span className=" text-gray-600">
                                 <svg
@@ -177,33 +177,7 @@ const SideBarUser = ({
                             <span>Ir al Dashboard</span>
                         </p>
                     </li>
-                    {/* <li>
-                        <p
-                            onClick={() => handleButtonClick("users")}
-                            className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
-                            <span className=" text-gray-600">
-
-                                <svg
-                                    className="h-5"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth="2"
-                                        d="M0 0h24v24H0z"
-                                    />
-                                    <path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
-                                    <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
-                                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                                    <path d="M21 21v-2a4 4 0 0 0 -3 -3.85" />
-                                </svg>
-                            </span>
-                            <span>Usuarios</span>
-                        </p>
-                    </li>
+                    {/*
                     <li>
                         <p
                             onClick={() => handleButtonClick("sales")}
@@ -233,9 +207,9 @@ const SideBarUser = ({
                     <li>
                         <a
                             href="#"
-                            className={`flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium ${activeButton === "logout"
-                                ? "bg-gray-200 focus:shadow-outline"
-                                : "hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline"
+                            className={`flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium ${activeButton === 'logout'
+                                ? 'bg-gray-200 focus:shadow-outline'
+                                : 'hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline'
                                 }`}
                             onClick={() => logout()}>
                             <span className="text-red-600">
@@ -258,9 +232,9 @@ const SideBarUser = ({
                     </li>
                 </ul>
             </div>
-        );
-    } else {
-        return (
+    )
+  } else {
+    return (
             <div className="w-3/12 bg-white rounded p-3 shadow-lg">
 
                 <div className="flex items-center space-x-4 p-2 mb-5">
@@ -291,11 +265,11 @@ const SideBarUser = ({
                     <li>
                         <a
                             href="#"
-                            className={`flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium ${activeButton === "dashboard"
-                                ? "bg-gray-200 focus:shadow-outline"
-                                : "hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline"
+                            className={`flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium ${activeButton === 'dashboard'
+                                ? 'bg-gray-200 focus:shadow-outline'
+                                : 'hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline'
                                 }`}
-                            onClick={() => handleButtonClick("account")}>
+                            onClick={() => handleButtonClick('account')}>
                             <span className="text-gray-600">
                                 <svg
                                     className="h-5"
@@ -317,7 +291,7 @@ const SideBarUser = ({
 
                     <li>
                         <p
-                            onClick={() => handleButtonClick("addresses")}
+                            onClick={() => handleButtonClick('addresses')}
                             className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
                             <span className=" text-gray-600">
                                 <svg
@@ -354,7 +328,7 @@ const SideBarUser = ({
                     </li>
                     <li>
                         <p
-                            onClick={() => handleButtonClick("orders")}
+                            onClick={() => handleButtonClick('orders')}
                             className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
                             <span className="text-gray-600">
                                 <svg
@@ -376,7 +350,7 @@ const SideBarUser = ({
                     </li>
                     <li>
                         <p
-                            onClick={() => handleButtonClick("favorities")}
+                            onClick={() => handleButtonClick('favorities')}
                             className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
                             <span className=" text-gray-600">
                                 <svg
@@ -400,9 +374,9 @@ const SideBarUser = ({
                     <li>
                         <a
                             href="#"
-                            className={`flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium ${activeButton === "logout"
-                                ? "bg-gray-200 focus:shadow-outline"
-                                : "hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline"
+                            className={`flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium ${activeButton === 'logout'
+                                ? 'bg-gray-200 focus:shadow-outline'
+                                : 'hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline'
                                 }`}
                             onClick={() => logout()}>
                             <span className="text-red-600">
@@ -425,8 +399,8 @@ const SideBarUser = ({
                     </li>
                 </ul>
             </div>
-        );
-    }
-};
+    )
+  }
+}
 
-export default SideBarUser;
+export default SideBarUser

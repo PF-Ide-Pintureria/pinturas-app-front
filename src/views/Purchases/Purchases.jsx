@@ -1,10 +1,10 @@
-import React from "react";
-import PurchaseForm from "../../components/PurchaseForm/PurchaseForm";
+import React from 'react'
+import PurchaseForm from '../../components/PurchaseForm/PurchaseForm'
 
 const Purchases = () => {
   return (<div>
     <PurchaseForm />
-  </div>);
-};
+  </div>)
+}
 
-export default Purchases;
+export default Purchases

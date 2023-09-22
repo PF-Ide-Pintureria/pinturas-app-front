@@ -1,0 +1,19 @@
+{
+  "[javascript]": {
+    "editor.detectIndentation": false,
+    "editor.formatOnSave": true,
+    "editor.suggest.insertMode": "replace",
+    "editor.tabSize": 2
+  },
+  "[javascriptreact]": {
+    "editor.detectIndentation": false,
+    "editor.formatOnSave": true,
+    "editor.suggest.insertMode": "replace",
+    "editor.tabSize": 2
+  },
+  "javascript.format.semicolons": "remove",
+  "eslint.format.enable": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
+}

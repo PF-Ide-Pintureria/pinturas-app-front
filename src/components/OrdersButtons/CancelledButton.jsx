@@ -1,30 +1,31 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import putOrder from "../../redux/actions/Orders/putOrder";
-import Swal from "sweetalert2";
+import React from 'react'
+import { useDispatch } from 'react-redux'
+import putOrder from '../../redux/actions/Orders/putOrder'
+import Swal from 'sweetalert2'
 
 const CancelledButton = ({ idOrder }) => {
-    const dispatch = useDispatch();
-    const handleClick = () => {
-        const edition = { 'state': 'cancelled' }
-        try {
-            putOrder(idOrder, edition)(dispatch);
-            Swal.fire({
-                icon: 'success',
-                text: 'Estado modificado con éxito'
-            })
-        } catch (error) {
-            Swal.fire({
-                icon: 'error',
-                text: error.message
-            })
-        }
+  const dispatch = useDispatch()
+
+  const handleClick = () => {
+    const edition = { state: 'cancelled' }
+    try {
+      putOrder(idOrder, edition)(dispatch)
+      Swal.fire({
+        icon: 'success',
+        text: 'Estado modificado con éxito'
+      })
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        text: error.message
+      })
     }
-    return (
+  }
+  return (
         <div className="flex justify-end">
             <button onClick={handleClick} className="bg-warning rounded-xl w-20 h-12 m-8 text-yellow-300 border-2 border-solid border-gray-300 shadow-md font-bold" > Cancelado</button >
         </div>
-    )
+  )
 }
 
-export default CancelledButton;
+export default CancelledButton

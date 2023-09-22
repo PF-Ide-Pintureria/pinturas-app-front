@@ -1,6 +1,6 @@
-import { SET_HIGH_PRICE } from '../../action-type';
+import { SET_HIGH_PRICE } from '../../action-type'
 
 export const setHighPrice = (highPrice) => ({
-    type: SET_HIGH_PRICE,
-    payload: highPrice,
-});
+  type: SET_HIGH_PRICE,
+  payload: highPrice
+})
