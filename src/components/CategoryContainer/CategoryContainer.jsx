@@ -1,58 +1,39 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useLocation } from "react-router-dom";
-import { setPage } from "../../redux/actions/Page/setPage";
-import { setCategory } from "../../redux/actions/filters/setCategory";
+import React from 'react'
+import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { setPage } from '../../redux/actions/Page/setPage'
+import { setCategory } from '../../redux/actions/filters/setCategory'
 // Banners
-import category1 from "../../img/category1.png";
-import category2 from "../../img/especiales.png";
-import category3 from "../../img/esmalte.png";
-import category4 from "../../img/cal.png";
-import category5 from "../../img/fondos.png";
-import category6 from "../../img/tintas.png";
-import category7 from "../../img/ecologico.png";
-import category8 from "../../img/industriales.png";
-//import category9 from "../../img/latex.png";
-import category10 from "../../img/impermeabilizante.png";
-import category11 from "../../img/fijadores.png";
-import category12 from "../../img/bases.png";
-import category13 from "../../img/auxiliares.png";
-import category14 from "../../img/madera.png";
+import category1 from '../../img/category1.png'
+import category2 from '../../img/especiales.png'
+import category3 from '../../img/esmalte.png'
+import category4 from '../../img/cal.png'
+import category5 from '../../img/fondos.png'
+import category6 from '../../img/tintas.png'
+import category7 from '../../img/ecologico.png'
+import category8 from '../../img/industriales.png'
+// import category9 from "../../img/latex.png";
+import category10 from '../../img/impermeabilizante.png'
+import category11 from '../../img/fijadores.png'
+import category12 from '../../img/bases.png'
+import category13 from '../../img/auxiliares.png'
+import category14 from '../../img/madera.png'
 
 const CategoryContainer = () => {
-  const dispatch = useDispatch();
-  const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
-  const filterCategory = useSelector((state) => state.filterCategory);
-
-  const categories = [
-    "Linea Latex",
-    "Linea Maderas",
-    "Linea Esmaltes",
-    "Linea Pinturas a la Cal",
-    "Linea Fondos",
-    "Linea Entonadores y Tintas",
-    "Linea Ecologica",
-    "Linea Esmaltes Industriales",
-    "Linea Productos Especiales",
-    "Linea Impermeabilizantes",
-    "Linea Fijadores - Aditivos -",
-    "Linea Bases Tintometricas",
-    "Linea Productos Auxiliares",
-  ];
+  const dispatch = useDispatch()
 
   const handleCategory = (category) => {
-    dispatch(setPage(1));
-    dispatch(setCategory(category));
-  };
+    dispatch(setPage(1))
+    dispatch(setCategory(category))
+  }
 
   return (
     <div>
       <div className="flex flex-col w-full my-10">
         <div className="w-full">
           <Link
-            to={`/products?category=${encodeURIComponent("Linea Latex")}`}
-            onClick={() => handleCategory("Linea Latex")}
+            to={`/products?category=${encodeURIComponent('Linea Latex')}`}
+            onClick={() => handleCategory('Linea Latex')}
           >
             <img
               src={category1}
@@ -64,8 +45,8 @@ const CategoryContainer = () => {
         <div className="flex flex-col sm:flex-row w-fulll">
           <div className="w-full sm:w-1/2">
             <Link
-              to={`/products?category=${encodeURIComponent("Linea Maderas")}`}
-              onClick={() => handleCategory("Linea Maderas")}
+              to={`/products?category=${encodeURIComponent('Linea Maderas')}`}
+              onClick={() => handleCategory('Linea Maderas')}
             >
               <img
                 src={category14}
@@ -76,8 +57,8 @@ const CategoryContainer = () => {
           </div>
           <div className="w-full sm:w-1/2">
             <Link
-              to={`/products?category=${encodeURIComponent("Linea Esmaltes")}`}
-              onClick={() => handleCategory("Linea Esmaltes")}
+              to={`/products?category=${encodeURIComponent('Linea Esmaltes')}`}
+              onClick={() => handleCategory('Linea Esmaltes')}
             >
               <img
                 src={category3}
@@ -91,9 +72,9 @@ const CategoryContainer = () => {
           <div className="w-full sm:w-1/2">
             <Link
               to={`/products?category=${encodeURIComponent(
-                "Linea Pinturas a la Cal"
+                'Linea Pinturas a la Cal'
               )}`}
-              onClick={() => handleCategory("Linea Pinturas a la Cal")}
+              onClick={() => handleCategory('Linea Pinturas a la Cal')}
             >
               <img
                 src={category4}
@@ -104,8 +85,8 @@ const CategoryContainer = () => {
           </div>
           <div className="w-full sm:w-1/2">
             <Link
-              to={`/products?category=${encodeURIComponent("Linea Fondos")}`}
-              onClick={() => handleCategory("Linea Fondos")}
+              to={`/products?category=${encodeURIComponent('Linea Fondos')}`}
+              onClick={() => handleCategory('Linea Fondos')}
             >
               <img
                 src={category5}
@@ -119,9 +100,9 @@ const CategoryContainer = () => {
           <div className="w-full sm:w-1/2">
             <Link
               to={`/products?category=${encodeURIComponent(
-                "Linea Entonadores y Tintas"
+                'Linea Entonadores y Tintas'
               )}`}
-              onClick={() => handleCategory("Linea Entonadores y Tintas")}
+              onClick={() => handleCategory('Linea Entonadores y Tintas')}
             >
               <img
                 src={category6}
@@ -132,8 +113,8 @@ const CategoryContainer = () => {
           </div>
           <div className="w-full sm:w-1/2">
             <Link
-              to={`/products?category=${encodeURIComponent("Linea Ecologica")}`}
-              onClick={() => handleCategory("Linea Ecologica")}
+              to={`/products?category=${encodeURIComponent('Linea Ecologica')}`}
+              onClick={() => handleCategory('Linea Ecologica')}
             >
               <img
                 src={category7}
@@ -147,9 +128,9 @@ const CategoryContainer = () => {
           <div className="w-full sm:w-1/2">
             <Link
               to={`/products?category=${encodeURIComponent(
-                "Linea Esmaltes Industriales"
+                'Linea Esmaltes Industriales'
               )}`}
-              onClick={() => handleCategory("Linea Esmaltes Industriales")}
+              onClick={() => handleCategory('Linea Esmaltes Industriales')}
             >
               <img
                 src={category8}
@@ -161,9 +142,9 @@ const CategoryContainer = () => {
           <div className="w-full sm:w-1/2">
             <Link
               to={`/products?category=${encodeURIComponent(
-                "Linea Productos Especiales"
+                'Linea Productos Especiales'
               )}`}
-              onClick={() => handleCategory("Linea Productos Especiales")}
+              onClick={() => handleCategory('Linea Productos Especiales')}
             >
               <img
                 src={category2}
@@ -177,9 +158,9 @@ const CategoryContainer = () => {
           <div className="w-full sm:w-1/2">
             <Link
               to={`/products?category=${encodeURIComponent(
-                "Linea Impermeabilizantes"
+                'Linea Impermeabilizantes'
               )}`}
-              onClick={() => handleCategory("Linea Impermeabilizantes")}
+              onClick={() => handleCategory('Linea Impermeabilizantes')}
             >
               <img
                 src={category10}
@@ -191,9 +172,9 @@ const CategoryContainer = () => {
           <div className="w-full sm:w-1/2">
             <Link
               to={`/products?category=${encodeURIComponent(
-                "Linea Fijadores - Aditivos -"
+                'Linea Fijadores - Aditivos -'
               )}`}
-              onClick={() => handleCategory("Linea Fijadores - Aditivos -")}
+              onClick={() => handleCategory('Linea Fijadores - Aditivos -')}
             >
               <img
                 src={category11}
@@ -207,9 +188,8 @@ const CategoryContainer = () => {
           <div className="w-full sm:w-1/2">
             <Link
               to={`/products?category=${encodeURIComponent(
-                "Linea Bases Tintometricas"
+                'Linea Bases Tintometricas'
               )}`}
-              onClick={() => handleCategory("Linea Bases Tintometricas")}
             >
               <img
                 src={category12}
@@ -221,9 +201,9 @@ const CategoryContainer = () => {
           <div className="w-full sm:w-1/2">
             <Link
               to={`/products?category=${encodeURIComponent(
-                "Linea Productos Auxiliares"
+                'Linea Productos Auxiliares'
               )}`}
-              onClick={() => handleCategory("Linea Productos Auxiliares")}
+              onClick={() => handleCategory('Linea Productos Auxiliares')}
             >
               <img
                 src={category13}
@@ -233,22 +213,9 @@ const CategoryContainer = () => {
             </Link>
           </div>
         </div>
-        {/* <div className="w-1/2 mx-auto">
-        <Link
-            to={`/products?category=${encodeURIComponent(
-              "Line"
-            )}`}
-            onClick={() => handleCategory("Line")}>
-          <img
-            src={category14}
-            alt="category14"
-            className="w-full h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95 "
-          />
-        </Link>
-      </div> */}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CategoryContainer;
+export default CategoryContainer
