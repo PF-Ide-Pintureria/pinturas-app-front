@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import banner4 from "../../img/banner4.png";
+import React from 'react'
+import { Link } from 'react-router-dom'
+import banner4 from '../../img/banner4.png'
 
 const BannerCarousel = () => {
   return (
@@ -15,7 +15,7 @@ const BannerCarousel = () => {
         </Link>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default BannerCarousel;
+export default BannerCarousel
