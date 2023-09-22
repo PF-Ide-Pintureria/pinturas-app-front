@@ -1,12 +1,9 @@
-import React from "react";
-import LoginForm from "../LoginForm/LoginForm";
+import React from 'react'
+import LoginForm from '../LoginForm/LoginForm'
 const PurchaseForm = () => {
-
-  
-
   return (
     <div className="my-7 flex items-center justify-center">
-      {/* <form>  
+      {/* <form>
         <div className="pb-10 bg-gray-50 lg:mt-0 mr:auto h-full">
           <div className="pl-24 pt-8 pb-12 flex flex-col justify-center">
             <p className="text-xl font-medium">Compra como invitado</p>
@@ -17,7 +14,7 @@ const PurchaseForm = () => {
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
-                  strokeWidth="2">  
+                  strokeWidth="2">
                 </svg>
             </div>
             <label
@@ -121,7 +118,7 @@ const PurchaseForm = () => {
           </div>
         </div>
     </div>
-    )
+  )
 }
 
-export default PurchaseForm;
+export default PurchaseForm
