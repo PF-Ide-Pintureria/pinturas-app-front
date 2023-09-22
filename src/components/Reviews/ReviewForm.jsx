@@ -9,15 +9,15 @@ import { getOrderById } from '../../redux/actions/Orders/getOrderById'
 
 const ReviewForm = () => {
   const { orderId } = useParams()
-
   const dispatch = useDispatch()
+
   const [characterCount, setCharacterCount] = useState(0)
   const [isReviewFocused, setIsReviewFocused] = useState(false)
   const reviewTextRef = useRef(null)
   const [ratingValue, setRatingValue] = useState(0)
   const [ratingProduct, setRatingProduct] = useState([])
-
   const [reviewText, setReviewText] = useState('')
+
   const productsArray = ratingProduct
 
   useEffect(() => {
@@ -45,6 +45,7 @@ const ReviewForm = () => {
   const handleRatingSelected = (productId, rating) => {
     const index = productsArray.indexOf(productId)
     const productToSend = { id: productId, rating }
+
     if (index === -1) {
       productsArray.push(productToSend)
     } else {
@@ -58,6 +59,7 @@ const ReviewForm = () => {
   const handleSaveChanges = async (event) => {
     event.preventDefault()
     const filteredReviews = []
+
     ratingProduct.forEach((product) => {
       const cb = (element) => element.id === product.id
       const index = filteredReviews.findIndex(cb)

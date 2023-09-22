@@ -5,6 +5,7 @@ import Swal from 'sweetalert2'
 
 const CompletedButton = ({ idOrder }) => {
   const dispatch = useDispatch()
+
   const handleClick = () => {
     const edition = { state: 'completed' }
     try {

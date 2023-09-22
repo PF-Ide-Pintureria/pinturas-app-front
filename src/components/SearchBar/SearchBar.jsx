@@ -5,8 +5,8 @@ import { allProducts } from '../../redux/actions/Products/allProducts'
 import { setPage } from '../../redux/actions/Page/setPage'
 
 const SearchBar = () => {
-  const [search, setSearch] = useState('')
   const dispatch = useDispatch()
+  const [search, setSearch] = useState('')
   const thisPage = useSelector((state) => state.thisPage)
   const filterCategory = useSelector((state) => state.filterCategory)
   const { high, low } = useSelector((state) => state.price)
@@ -14,6 +14,7 @@ const SearchBar = () => {
   const handleChange = (event) => {
     dispatch(setPage(1))
     setSearch(event.target.value)
+
     event.target.value.length
       ? dispatch(productByName(event.target.value, thisPage, filterCategory, low, high))
       : dispatch(allProducts())

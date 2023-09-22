@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import Swal from 'sweetalert2'
 import { postFavorites } from '../../redux/actions/Favorites/postFavorites'
-
 import { useCart } from '../../hooks/useCart'
-
 import { putCart } from '../../redux/actions/Cart/putCart'
+import Swal from 'sweetalert2'
 
 const ProductCart = ({ id, name, quantity, image, price, stock, calcTotal }) => {
   const dispatch = useDispatch()

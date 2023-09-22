@@ -5,6 +5,7 @@ import Swal from 'sweetalert2'
 
 const PaidButton = ({ idOrder }) => {
   const dispatch = useDispatch()
+
   const handleClick = () => {
     const edition = { state: 'paid' }
     try {

@@ -10,6 +10,8 @@ import Swal from 'sweetalert2'
 const UpdateForm = () => {
   const { idProduct } = useParams()
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+
   useEffect(() => {
     dispatch(allCategories())
   }, [dispatch])
@@ -17,8 +19,6 @@ const UpdateForm = () => {
   useEffect(() => {
     dispatch(productById(idProduct))
   }, [dispatch])
-
-  const navigate = useNavigate()
 
   const detail = useSelector((state) => state.detail)
   const categories = useSelector((state) => state.categories)

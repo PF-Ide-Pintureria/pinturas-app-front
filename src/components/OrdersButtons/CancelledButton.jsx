@@ -5,6 +5,7 @@ import Swal from 'sweetalert2'
 
 const CancelledButton = ({ idOrder }) => {
   const dispatch = useDispatch()
+
   const handleClick = () => {
     const edition = { state: 'cancelled' }
     try {

@@ -21,6 +21,7 @@ const Paginated = ({ thisPage, totalPages, pageChange }) => {
 
   const renderPageNumbers = () => {
     const pageNumbers = []
+
     for (let i = startPage; i <= endPage; i++) {
       pageNumbers.push(
         <li key={i}>

@@ -6,14 +6,15 @@ import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 
 const RegisterForm = () => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
   const [name, setName] = useState('')
   const [lastName, setLastname] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [errors, setErrors] = useState({})
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
   const welcomeMessage = (`<html lang="en">
 
         <head>
