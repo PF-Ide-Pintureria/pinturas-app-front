@@ -1,21 +1,12 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
-import getUserById from "../../redux/actions/User/getUserById";
+import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 const BlogCard = ({ id, image, title, date, description }) => {
-    // const dispatch = useDispatch();
-    //   const user = useSelector((state) => state.userId);
-    //   useEffect(() => {
-    //     getUserById(author)(dispatch);
-    //   }, [dispatch]);
-    //   const creator = user.name + " " + user.lastName;
-
-    return (
+  return (
         <NavLink to={`/blog/${id}`}>
             <div
                 className="w-80 h-96 m-4 flex flex-col items-center
-       text-white bg-gray-500 rounded-3xl overflow-hidden 
+       text-white bg-gray-500 rounded-3xl overflow-hidden
        transition-transform transform hover:scale-105"
             >
                 <div className="w-full h-48">
@@ -35,13 +26,10 @@ const BlogCard = ({ id, image, title, date, description }) => {
                             {description}
                         </p>
                     </div>
-                    {/* <h6 className="mt-2 mb-1 text-xs  text-gray-200">
-            Creado por: {creator}
-          </h6> */}
                 </div>
             </div>
         </NavLink>
-    );
-};
+  )
+}
 
-export default BlogCard;
+export default BlogCard
