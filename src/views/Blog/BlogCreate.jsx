@@ -1,81 +1,79 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
 // import { Formik, Field, Form, ErrorMessage } from "formik";
-import { useDispatch, useSelector } from "react-redux";
-import postPost from "../../redux/actions/Blog/postPost";
-import Swal from 'sweetalert2';
-import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux'
+import postPost from '../../redux/actions/Blog/postPost'
+import Swal from 'sweetalert2'
+import { useNavigate } from 'react-router-dom'
 import img from '../../img/blog.jpg'
 
 const BlogCreate = () => {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const user = useSelector(state => state.user);
-    const idUser = user?.id
-    const [inputs, setinputs] = useState({
-        title: '',
-        image: '',
-        description: '',
-        idUser: idUser
-    })
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const user = useSelector(state => state.user)
+  const idUser = user?.id
+  const [inputs, setinputs] = useState({
+    title: '',
+    image: '',
+    description: '',
+    idUser
+  })
 
-    const handleChange = (event) => {
-        const property = event.target.name;
-        const value = event.target.value;
+  const handleChange = (event) => {
+    const property = event.target.name
+    const value = event.target.value
 
-        if (event.target.type === 'file') {
-            setinputs({
-                ...inputs,
-                image: event.target.files[0]
-            })
-        }
-        else {
-            setinputs({
-                ...inputs,
-                [property]: value
-            })
-        }
-    }
-    // console.log('user', user);
-
-    const handleSubmit = async (event) => {
-        event.preventDefault()
-        const blog = new FormData();
-        blog.append("title", inputs.title);
-        blog.append("description", inputs.description);
-        blog.append("image", inputs.image ? inputs.image : img)
-
-        // const blog = {
-        //     title: inputs.title,
-        //     description: inputs.description,
-        //     image: inputs.image
-        // }
-
-        // const blogToSend = JSON.stringify(blog)
-
-        // const data = {
-        //     blog,
-        //     idUser
-        // }
-
-        await postPost(blog)(dispatch).then(response => {
-            if (response.status === 'success') {
-                Swal.fire({
-                    icon: 'success',
-                    text: 'Blog creado'
-                });
-            } else {
-                Swal.fire({
-                    icon: 'error',
-                    text: 'Hubo un error al crear el post'
-                })
-            }
-        });
-    }
-    if (user.rol !== 'admin') {
-        navigate('/blog')
+    if (event.target.type === 'file') {
+      setinputs({
+        ...inputs,
+        image: event.target.files[0]
+      })
     } else {
+      setinputs({
+        ...inputs,
+        [property]: value
+      })
+    }
+  }
+  // console.log('user', user);
 
-        return (
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    const blog = new FormData()
+    blog.append('title', inputs.title)
+    blog.append('description', inputs.description)
+    blog.append('image', inputs.image ? inputs.image : img)
+
+    // const blog = {
+    //     title: inputs.title,
+    //     description: inputs.description,
+    //     image: inputs.image
+    // }
+
+    // const blogToSend = JSON.stringify(blog)
+
+    // const data = {
+    //     blog,
+    //     idUser
+    // }
+
+    await postPost(blog)(dispatch).then(response => {
+      if (response.status === 'success') {
+        Swal.fire({
+          icon: 'success',
+          text: 'Blog creado'
+        })
+      } else {
+        Swal.fire({
+          icon: 'error',
+          text: 'Hubo un error al crear el post'
+        })
+      }
+    })
+  }
+  if (user.rol !== 'admin') {
+    navigate('/blog')
+  } else {
+    return (
             <div>
                 <div className="flex flex-col justify-start">
                     <div className="flex justify-around">
@@ -115,7 +113,7 @@ const BlogCreate = () => {
                             >
                                 <h2
                                     className="text-primary uppercase font-bold flex items-center justify-center"
-                                    style={{ color: "white", fontWeight: "bold" }}
+                                    style={{ color: 'white', fontWeight: 'bold' }}
                                 >
                                     CREAR POST
                                 </h2>
@@ -124,8 +122,8 @@ const BlogCreate = () => {
                     </div>
                 </div>
             </div >
-        )
-    }
+    )
+  }
 }
 
-export default BlogCreate;
+export default BlogCreate

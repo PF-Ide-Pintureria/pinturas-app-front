@@ -1,6 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import img404 from "../../img/404.png";
+import React from 'react'
+import { Link } from 'react-router-dom'
+import img404 from '../../img/404.png'
 
 const NotFound = () => {
   return (
@@ -15,7 +15,7 @@ const NotFound = () => {
         </button>
       </Link>
     </div>
-  );
-};
+  )
+}
 
-export default NotFound;
+export default NotFound

@@ -1,12 +1,11 @@
-import React from 'react';
-import style from Checkout.module.css;
+import React from 'react'
 
 const Checkout = () => {
-    return ( 
+  return (
         <div>
 
         </div>
-    )
+  )
 }
 
-export default Checkout;
+export default Checkout

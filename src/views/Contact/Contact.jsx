@@ -1,13 +1,12 @@
-import ContactForm from "../../components/ContactForm/ContactForm";
-import style from './Contact.module.css';
-import React from 'react';
+import ContactForm from '../../components/ContactForm/ContactForm'
+import React from 'react'
 
 const Contact = () => {
-    return (
-        <div className={style.container}>
+  return (
+        <div className="flex align-middle">
             <ContactForm />
         </div>
-    );
+  )
 }
 
-export default Contact;
+export default Contact

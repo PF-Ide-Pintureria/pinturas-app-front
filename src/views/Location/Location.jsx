@@ -1,8 +1,7 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import Banner5 from "../../img/pet.png";
-import Local from "../../img/location.png";
-import Map from "../../img/map.png";
+import React from 'react'
+import Banner5 from '../../img/pet.png'
+import Local from '../../img/location.png'
+import Map from '../../img/map.png'
 
 const Location = () => {
   return (
@@ -43,7 +42,7 @@ const Location = () => {
         <img src={Banner5} alt="Banner5" className="rounded-lg mb-9" />
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Location;
+export default Location

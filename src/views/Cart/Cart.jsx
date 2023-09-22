@@ -108,10 +108,10 @@ const Cart = () => {
                   {cart?.map((product) =>
                     product && product?.id
                       ? (
-                        <div>
+                        <div key={product.id}>
                           {addPrice(product.quantity, product.price)}
                           <ProductCart
-                            calcTotal={calcTotal}
+                            // calcTotal={calcTotal}
                             // key={product.id}
                             id={product.id}
                             name={product.name}
@@ -137,7 +137,7 @@ const Cart = () => {
                 </div> */}
               </div>
             )}
-            {cart !== null && cart.length == 0 && (
+            {cart !== null && cart.length === 0 && (
               <p className="text-gray-400 flex items-center justify-center">
                 El carrito está vacío.
               </p>

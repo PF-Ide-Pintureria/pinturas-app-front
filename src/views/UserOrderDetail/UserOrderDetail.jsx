@@ -1,30 +1,17 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
-import Swal from "sweetalert2";
-import { getOrderById } from "../../redux/actions/Orders/getOrderById";
-import { saveReview } from "../../redux/actions/Review/postSaveReview";
-import { Link } from "react-router-dom";
+import React from 'react'
+import { useSelector } from 'react-redux'
+import { useNavigate, Link } from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 const UserOrderDetail = () => {
-    const navigate = useNavigate()
-    const detail = useSelector((state) => state.orderDetail);
-    const user = useSelector((state) => state.user);
-    const productsRaw = detail.products;
-    const products = productsRaw.map((product) => JSON.parse(product));
+  const navigate = useNavigate()
+  const detail = useSelector((state) => state.orderDetail)
+  const user = useSelector((state) => state.user)
+  const productsRaw = detail.products
+  const products = productsRaw.map((product) => JSON.parse(product))
 
-    const dispatch = useDispatch();
-
-    //     const sendReview = () => {
-    //         saveReview(user.id)(dispatch).then(() => {
-    //             if (response) {
-    //                 console.log("response", response);
-    //             }
-    //         });
-    // };
-
-    if (user.id === detail.userId) {
-        return (
+  if (user.id === detail.userId) {
+    return (
             <div className="flex flex-col p-16">
                 <div className="flex items-center justify-around h-16 bg-indigo-300 rounded-t-xl">
                     <h1 className="text-xl font-semibold">Orden {detail.id}</h1>
@@ -39,8 +26,8 @@ const UserOrderDetail = () => {
 
                     <div className="grid grid-cols-2 ">
                         {products.map((product) => {
-                            return (
-                                <div className="mb-9 flex">
+                          return (
+                                <div className="mb-9 flex" key={product.id}>
                                     <div className="flex p-5  w-full rounded hover:bg-gray-200 ">
                                         <img
                                             src={product.image}
@@ -53,7 +40,7 @@ const UserOrderDetail = () => {
                                                     {product.name}
                                                 </p>
                                                 <h1 className="text-base font-semibold ">
-                                                    {" "}
+                                                    {' '}
                                                     cantidad: {product.quantity}
                                                 </h1>
                                                 <h1 className="flex items-end text-base">
@@ -63,12 +50,12 @@ const UserOrderDetail = () => {
                                         </div>
                                     </div>
                                 </div>
-                            );
+                          )
                         })}
                     </div>
                 </div>
                 <div className="flex items-center justify-evenly">
-                    {detail.state === "paid" && (
+                    {detail.state === 'paid' && (
                         <div>
                             <Link to={`/reviews/${detail.id}`} className="underline">
                                 <button
@@ -85,11 +72,11 @@ const UserOrderDetail = () => {
                     </h1>
                 </div>
             </div>
-        );
-    } else {
-        Swal.fire({ icon: "error", title: "Oops!", text: "No autorizado!" });
-        navigate("/");
-    }
-};
+    )
+  } else {
+    Swal.fire({ icon: 'error', title: 'Oops!', text: 'No autorizado!' })
+    navigate('/')
+  }
+}
 
-export default UserOrderDetail;
+export default UserOrderDetail
