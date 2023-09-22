@@ -1,7 +1,7 @@
-import React from "react";
-import Banner from "../../img/workTeam.png";
-import { FaGithub, FaEnvelope, FaLinkedin } from "react-icons/fa";
-import { teamMembers } from "./profiles";
+import React from 'react'
+import Banner from '../../img/workTeam.png'
+import { FaGithub, FaEnvelope, FaLinkedin } from 'react-icons/fa'
+import { teamMembers } from './profiles'
 
 const Developers = () => {
   return (
@@ -34,21 +34,21 @@ const Developers = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-primary hover:text-black transition-colors duration-300 mx-4 hover:scale-150">
-                    <FaGithub style={{ fontSize: "1.5rem" }} />
+                    <FaGithub style={{ fontSize: '1.5rem' }} />
                   </a>
                   <a
                     href={member.gmail}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-primary hover:text-black transition-colors duration-300 mx-4 hover:scale-150">
-                    <FaEnvelope style={{ fontSize: "1.5rem" }} />
+                    <FaEnvelope style={{ fontSize: '1.5rem' }} />
                   </a>
                   <a
                     href={member.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-primary hover:text-black transition-colors duration-300 mx-4 hover:scale-150">
-                    <FaLinkedin style={{ fontSize: "1.5rem" }} />
+                    <FaLinkedin style={{ fontSize: '1.5rem' }} />
                   </a>
                 </div>
               </div>
@@ -62,7 +62,7 @@ const Developers = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Developers;
+export default Developers

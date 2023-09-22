@@ -1,5 +1,5 @@
-import React from "react";
-import NavbarAdmin from "../../../components/NavbarAdmin/NavbarAdmin";
+import React from 'react'
+import NavbarAdmin from '../../../components/NavbarAdmin/NavbarAdmin'
 
 const AdminUsers = () => {
   return (
@@ -8,7 +8,7 @@ const AdminUsers = () => {
         <NavbarAdmin />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default AdminUsers;
+export default AdminUsers

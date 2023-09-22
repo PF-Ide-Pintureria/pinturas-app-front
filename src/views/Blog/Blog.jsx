@@ -1,20 +1,20 @@
-import React, { useEffect } from "react";
-import BlogBackground from "../../img/gradientBackground.png";
-import img from "../../img/blog.jpg";
-import BlogCard from "../../components/BlogCard/BlogCard";
-import { useDispatch, useSelector } from "react-redux";
-import getPosts from "../../redux/actions/Blog/getPosts";
+import React, { useEffect } from 'react'
+import BlogBackground from '../../img/gradientBackground.png'
+import img from '../../img/blog.jpg'
+import BlogCard from '../../components/BlogCard/BlogCard'
+import { useDispatch, useSelector } from 'react-redux'
+import getPosts from '../../redux/actions/Blog/getPosts'
 
 const Blog = () => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
-    useEffect(() => {
-        getPosts()(dispatch);
-    }, [dispatch]);
+  useEffect(() => {
+    getPosts()(dispatch)
+  }, [dispatch])
 
-    const posts = useSelector((state) => state.posts);
+  const posts = useSelector((state) => state.posts)
 
-    return (
+  return (
         <div
             className="bg-cover bg-center min-h-screen flex justify-center items-center"
             style={{ backgroundImage: `url(${BlogBackground})` }}
@@ -27,8 +27,8 @@ const Blog = () => {
                     <div className="container mx-auto">
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-15">
                             {posts.map((post) => {
-                                if (post.active) {
-                                    return (
+                              if (post.active) {
+                                return (
 
                                         <BlogCard
                                             key={post.idBlog}
@@ -39,15 +39,16 @@ const Blog = () => {
                                             description={post.description}
                                             author={post.userId}
                                         />
-                                    );
-                                }
+                                )
+                              }
+                              return null
                             })}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    );
-};
+  )
+}
 
-export default Blog;
+export default Blog

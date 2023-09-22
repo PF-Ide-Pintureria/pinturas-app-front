@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react'
+import { Link } from 'react-router-dom'
 
 const FailurePayment = () => {
   return (
@@ -27,7 +27,7 @@ const FailurePayment = () => {
         </Link>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default FailurePayment;
+export default FailurePayment

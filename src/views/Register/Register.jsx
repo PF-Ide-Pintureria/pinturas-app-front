@@ -1,13 +1,12 @@
-import React from "react";
-import RegisterForm from "../../components/RegisterForm/RegisterForm";
-import LoginForm from "../../components/LoginForm/LoginForm";
+import React from 'react'
+import RegisterForm from '../../components/RegisterForm/RegisterForm'
 
 const Register = () => {
-    return (
+  return (
         <div
             className="flex items-center justify-center mt-8 mb-20"
             style={{
-                height: "100vh",
+              height: '100vh'
             }}
         >
             <div
@@ -31,7 +30,7 @@ const Register = () => {
         <LoginForm />
       </div> */}
         </div>
-    );
-};
+  )
+}
 
-export default Register;
+export default Register

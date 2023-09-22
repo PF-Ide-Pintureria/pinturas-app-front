@@ -1,26 +1,24 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import getPostById from "../../redux/actions/Blog/getPostById";
-import { useParams } from "react-router-dom";
-import BlogBackground from "../../img/gradientBackground.png";
-import getUserById from "../../redux/actions/User/getUserById";
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import getPostById from '../../redux/actions/Blog/getPostById'
+import { useParams } from 'react-router-dom'
+import BlogBackground from '../../img/gradientBackground.png'
 
 const BlogDetail = () => {
-    const dispatch = useDispatch();
-    const post = useSelector((state) => state.post);
-    const user = useSelector((state) => state.userId);
+  const dispatch = useDispatch()
+  const post = useSelector((state) => state.post)
 
-    const { idBlog } = useParams();
+  const { idBlog } = useParams()
 
-    useEffect(() => {
-        getPostById(idBlog)(dispatch);
+  useEffect(() => {
+    getPostById(idBlog)(dispatch)
 
-        // getUserById(author)(dispatch);
-    }, [dispatch, idBlog]);
+    // getUserById(author)(dispatch);
+  }, [dispatch, idBlog])
 
-    // const creator = `${user.name} ${user.lastName}`;
+  // const creator = `${user.name} ${user.lastName}`;
 
-    return (
+  return (
         <div
             className="bg-cover bg-center min-h-screen flex justify-center items-center"
             style={{ backgroundImage: `url(${BlogBackground})` }}
@@ -50,7 +48,7 @@ const BlogDetail = () => {
                 </div>
             </div>
         </div>
-    );
-};
+  )
+}
 
-export default BlogDetail;
+export default BlogDetail
