@@ -8,11 +8,12 @@ import Swal from 'sweetalert2'
 
 const LoginForm = () => {
   const { isAuthenticated, loginWithPopup, user } = useAuth0()
-  const [userInfo, setUserInfo] = useState()
 
+  const [userInfo, setUserInfo] = useState()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [errors, setErrors] = useState({})
+
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
