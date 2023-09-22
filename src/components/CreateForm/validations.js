@@ -1,6 +1,7 @@
 const reName = /^(?!.*\s{2})[a-zA-Z\s]{2,18}$/ // nombre entre 2 y 18 caracteres de solo letras y no mas de 1 espacio consecutivo
 const reNums = /^\d{1,2000}$/ // solo permite el ingreso de numeros
 const reCant = /^[1-9][0-9]*$/ // Evalúa que la cantidad ingresada sea mayor a 0
+
 const validations = ({ name, price, color, stock }) => {
   const errors = {}
 

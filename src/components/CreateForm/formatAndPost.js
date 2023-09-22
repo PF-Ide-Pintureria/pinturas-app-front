@@ -1,5 +1,4 @@
 import { postProduct } from '../../redux/actions/Products/postProduct'
-import React from 'react'
 import Swal from 'sweetalert2'
 
 export const formatAndPost = async (inputsForm, dispatch) => {
