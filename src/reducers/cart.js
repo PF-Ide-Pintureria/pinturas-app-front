@@ -13,11 +13,10 @@ export const updateLocalStorage = state => {
 
 export const cartReducer = (state = cartInitialState, action) => {
   switch (action.type) {
-    case CART_ACTION_TYPES.ADD_TO_CART:
-
+    case CART_ACTION_TYPES.ADD_TO_CART: {
       const { product, quantity } = action.payload
 
-      const productInCart = state.find(item => item.id == product.id)
+      const productInCart = state.find(item => item.id === product.id)
 
       if (productInCart) {
         productInCart.quantity += quantity
@@ -29,31 +28,31 @@ export const cartReducer = (state = cartInitialState, action) => {
         updateLocalStorage([...state, { ...product, quantity }])
         return [...state, { ...product, quantity }]
       }
-
-    case CART_ACTION_TYPES.ADD_ALL_TO_CART:
-
+    }
+    case CART_ACTION_TYPES.ADD_ALL_TO_CART: {
       const products = action.payload
       const stateCopy = [...state]
 
-      products.map(product => {
-        const prod = stateCopy.find(item => item.id == product.id)
+      products.forEach(product => {
+        const prod = stateCopy.find(item => item.id === product.id)
         if (prod) prod.quantity += product.quantity
         else stateCopy.push(product)
       })
 
       updateLocalStorage(stateCopy)
       return [...stateCopy]
+    }
 
-    case CART_ACTION_TYPES.REMOVE_FROM_CART:
-
+    case CART_ACTION_TYPES.REMOVE_FROM_CART: {
       const id = action.payload
 
       console.log('id N56', id)
-      const stateCopiado = [...state].filter(item => item.id != id)
+      const stateCopiado = [...state].filter(item => item.id !== id)
 
       updateLocalStorage(stateCopiado)
       console.log('state', state)
       return stateCopiado
+    }
 
     case CART_ACTION_TYPES.CLEAR_CART:
 
