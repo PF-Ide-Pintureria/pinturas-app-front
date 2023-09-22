@@ -1,18 +1,17 @@
-import React from "react";
-// import Desk from "./Desk";
+import React from 'react'
 
 const SideBarAuth = ({
-    isAuthenticated,
-    user,
-    activeButton,
-    handleButtonClick,
-    logout,
+  isAuthenticated,
+  user,
+  activeButton,
+  handleButtonClick,
+  logout
 }) => {
-    if (!isAuthenticated) {
-        return null;
-    }
+  if (!isAuthenticated) {
+    return null
+  }
 
-    return (
+  return (
         <div className="w-1/5 bg-white rounded p-3 shadow-lg">
 
             <div className="flex items-center space-x-4 p-2 mb-5">
@@ -43,11 +42,11 @@ const SideBarAuth = ({
                 <li>
                     <a
                         href="#"
-                        className={`flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium ${activeButton === "dashboard"
-                            ? "bg-gray-200 focus:shadow-outline"
-                            : "hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline"
+                        className={`flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium ${activeButton === 'dashboard'
+                            ? 'bg-gray-200 focus:shadow-outline'
+                            : 'hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline'
                             }`}
-                        onClick={() => handleButtonClick("account")}>
+                        onClick={() => handleButtonClick('account')}>
                         <span className="text-gray-600">
                             <svg
                                 className="h-5"
@@ -69,7 +68,7 @@ const SideBarAuth = ({
 
                 <li>
                     <p
-                        onClick={() => handleButtonClick("addresses")}
+                        onClick={() => handleButtonClick('addresses')}
                         className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
                         <span className=" text-gray-600">
                             <svg
@@ -106,7 +105,7 @@ const SideBarAuth = ({
                 </li>
                 <li>
                     <p
-                        onClick={() => handleButtonClick("orders")}
+                        onClick={() => handleButtonClick('orders')}
                         className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
                         <span className="text-gray-600">
                             <svg
@@ -128,7 +127,7 @@ const SideBarAuth = ({
                 </li>
                 <li>
                     <p
-                        onClick={() => handleButtonClick("favorities")}
+                        onClick={() => handleButtonClick('favorities')}
                         className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
                         <span className=" text-gray-600">
                             <svg
@@ -152,9 +151,9 @@ const SideBarAuth = ({
                 <li>
                     <a
                         href="#"
-                        className={`flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium ${activeButton === "logout"
-                            ? "bg-gray-200 focus:shadow-outline"
-                            : "hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline"
+                        className={`flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium ${activeButton === 'logout'
+                            ? 'bg-gray-200 focus:shadow-outline'
+                            : 'hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline'
                             }`}
                         onClick={() => logout()}>
                         <span className="text-red-600">
@@ -177,7 +176,7 @@ const SideBarAuth = ({
                 </li>
             </ul>
         </div>
-    );
-};
+  )
+}
 
-export default SideBarAuth;
+export default SideBarAuth
