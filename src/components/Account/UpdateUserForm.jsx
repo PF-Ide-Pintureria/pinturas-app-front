@@ -1,150 +1,151 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { putUser } from "../../redux/actions/User/putUser";
-import { useAuth0 } from "@auth0/auth0-react";
-import { deleteUser } from "../../redux/actions/User/deleteUser";
-import { logoutUser } from "../../redux/actions/User/logoutUser";
-import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { putUser } from '../../redux/actions/User/putUser'
+import { useAuth0 } from '@auth0/auth0-react'
+import { deleteUser } from '../../redux/actions/User/deleteUser'
+import { logoutUser } from '../../redux/actions/User/logoutUser'
+import { useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 const UpdateUserForm = () => {
-    // const [name, setName] = useState("");
-    // const [email, setEmail] = useState("");
-    // const [lastName, setLastName] = useState("");
-    // const [currentPassword, setCurrentPassword] = useState("");
-    // const [newPassword, setNewPassword] = useState("");
-    // const [confirmPassword, setConfirmPassword] = useState("");
-    // const [passwordsMatch, setPasswordsMatch] = useState(true);
+  // const [name, setName] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [lastName, setLastName] = useState("");
+  // const [currentPassword, setCurrentPassword] = useState("");
+  // const [newPassword, setNewPassword] = useState("");
+  // const [confirmPassword, setConfirmPassword] = useState("");
+  // const [passwordsMatch, setPasswordsMatch] = useState(true);
 
-    const [inputs, setInputs] = useState({
-        name: "",
-        lastName: "",
-        email: "",
-        currentPassword: "",
-        newPassword: "",
-        confirmPassword: "",
-        passwordMatch: true,
-    });
-    const [dataToSend, setDataToSend] = useState({});
+  const [inputs, setInputs] = useState({
+    name: '',
+    lastName: '',
+    email: '',
+    currentPassword: '',
+    newPassword: '',
+    confirmPassword: '',
+    passwordMatch: true
+  })
+  const [dataToSend, setDataToSend] = useState({})
 
-    const user = useSelector((state) => state.user);
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const { isAuthenticated } = useAuth0();
+  const user = useSelector((state) => state.user)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const { isAuthenticated } = useAuth0()
 
-    // Funciones para manejar los cambios en los campos
-    // const handleNameChange = (e) => setName(e.target.value);
-    // const handleEmailChange = (e) => setEmail(e.target.value);
-    // const handleCurrentPasswordChange = (e) => setCurrentPassword(e.target.value);
-    // const handleNewPasswordChange = (e) => setNewPassword(e.target.value);
-    // const handleConfirmPasswordChange = (e) => setConfirmPassword(e.target.value);
-    useEffect(() => {
-        if (user) {
-            setInputs({
-                name: user?.name,
-                lastName: user?.lastName,
-                email: user?.email
-            })
-        }
-    }, [user])
-    useEffect(() => {
-        setDataToSend({
-            name: inputs.name,
-            lastName: inputs.lastName,
-            email: inputs.email
-        });
-        console.log('data en el effect', dataToSend);
-    }, [inputs])
-    console.log('user', user)
-    const handleChange = (event) => {
-        const property = event.target.name;
-        const value = event.target.value;
+  // Funciones para manejar los cambios en los campos
+  // const handleNameChange = (e) => setName(e.target.value);
+  // const handleEmailChange = (e) => setEmail(e.target.value);
+  // const handleCurrentPasswordChange = (e) => setCurrentPassword(e.target.value);
+  // const handleNewPasswordChange = (e) => setNewPassword(e.target.value);
+  // const handleConfirmPasswordChange = (e) => setConfirmPassword(e.target.value);
+  useEffect(() => {
+    if (user) {
+      setInputs({
+        name: user?.name,
+        lastName: user?.lastName,
+        email: user?.email
+      })
+    }
+  }, [user])
 
-        // Special case for password fields to check if they match
-        if (property === "newPassword" || property === "confirmPassword") {
-            const passwordMatch =
-                property === "newPassword"
-                    ? inputs.confirmPassword === value
-                    : inputs.newPassword === value;
-            setInputs({
-                ...inputs,
-                [property]: value,
-                passwordMatch: passwordMatch,
-            });
-        } else {
-            setInputs({
-                ...inputs,
-                [property]: value,
-            });
-        }
+  useEffect(() => {
+    setDataToSend({
+      name: inputs.name,
+      lastName: inputs.lastName,
+      email: inputs.email
+    })
+    console.log('data en el effect', dataToSend)
+  }, [inputs])
 
-        console.log('data en el change', dataToSend)
-    };
+  console.log('user', user)
 
-    // Función para manejar el envío del formulario
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        // Validar que los campos no estén vacíos
-        if (!inputs.name || !inputs.email) {
-            Swal.fire({
-                icon: 'error',
-                text: "Por favor, completa todos los campos."
-            });
-            return;
-        }
+  const handleChange = (event) => {
+    const property = event.target.name
+    const value = event.target.value
 
-        setDataToSend({
-            name: inputs.name,
-            lastName: inputs.lastName,
-            email: inputs.email
-        });
-        console.log('dataToSend', dataToSend)
+    // Special case for password fields to check if they match
+    if (property === 'newPassword' || property === 'confirmPassword') {
+      const passwordMatch =
+                property === 'newPassword'
+                  ? inputs.confirmPassword === value
+                  : inputs.newPassword === value
+      setInputs({
+        ...inputs,
+        [property]: value,
+        passwordMatch
+      })
+    } else {
+      setInputs({
+        ...inputs,
+        [property]: value
+      })
+    }
+    console.log('data en el change', dataToSend)
+  }
 
+  // Función para manejar el envío del formulario
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    // Validar que los campos no estén vacíos
+    if (!inputs.name || !inputs.email) {
+      Swal.fire({
+        icon: 'error',
+        text: 'Por favor, completa todos los campos.'
+      })
+      return
+    }
 
-        // Validar que las contraseñas coincidan
-        if (inputs.newPassword !== inputs.confirmPassword) {
-            setInputs({
-                ...inputs,
-                passwordMatch: false,
-            });
-            return;
-        } else {
-            setInputs({
-                ...inputs,
-                passwordMatch: true,
-            });
-        }
+    setDataToSend({
+      name: inputs.name,
+      lastName: inputs.lastName,
+      email: inputs.email
+    })
+    console.log('dataToSend', dataToSend)
 
-        if (inputs.newPassword) {
-            setDataToSend({
-                ...dataToSend,
-                password: inputs.newPassword
-            })
-        } else {
-            setDataToSend({
-                ...dataToSend,
-                name: inputs.name,
-                lastName: inputs.lastName,
-                email: inputs.email
-            })
-        }
-        await putUser(user.id, dataToSend)(dispatch).then((response) => {
-            console.log('response', response)
-            if (response.status === 200) {
-                Swal.fire("Usuario Modificado");
-            } else {
-                Swal.fire("HUBO UN ERROR PTTMMMMMMM");
-            }
-        });
-    };
-    const handleDelete = () => {
-        deleteUser(user.id)(dispatch);
-        Swal.fire("Usuario eliminado");
-        logoutUser(dispatch);
-        navigate("/");
-    };
-    if (isAuthenticated) {
-        return (
+    // Validar que las contraseñas coincidan
+    if (inputs.newPassword !== inputs.confirmPassword) {
+      setInputs({
+        ...inputs,
+        passwordMatch: false
+      })
+      return
+    } else {
+      setInputs({
+        ...inputs,
+        passwordMatch: true
+      })
+    }
+
+    if (inputs.newPassword) {
+      setDataToSend({
+        ...dataToSend,
+        password: inputs.newPassword
+      })
+    } else {
+      setDataToSend({
+        ...dataToSend,
+        name: inputs.name,
+        lastName: inputs.lastName,
+        email: inputs.email
+      })
+    }
+    await putUser(user.id, dataToSend)(dispatch).then((response) => {
+      console.log('response', response)
+      if (response.status === 200) {
+        Swal.fire('Usuario Modificado')
+      } else {
+        Swal.fire('HUBO UN ERROR PTTMMMMMMM')
+      }
+    })
+  }
+  const handleDelete = () => {
+    deleteUser(user.id)(dispatch)
+    Swal.fire('Usuario eliminado')
+    logoutUser(dispatch)
+    navigate('/')
+  }
+  if (isAuthenticated) {
+    return (
             <div className="container mx-auto px-4">
                 <form className="w-full max-w-md" onSubmit={handleSubmit}>
                     <div className="mb-6">
@@ -167,7 +168,6 @@ const UpdateUserForm = () => {
                             Así será como se mostrará tu nombre en la sección de tu cuenta.
                         </p>
                     </div>
-
 
                     <div className="mb-6">
                         <label
@@ -252,7 +252,7 @@ const UpdateUserForm = () => {
                             Confirmar nueva contraseña (déjalo en blanco para no cambiarla)
                         </label>
                         <input
-                            className={`appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white ${!inputs.passwordMatch ? "border-red-500" : "border-gray-200"
+                            className={`appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white ${!inputs.passwordMatch ? 'border-red-500' : 'border-gray-200'
                                 }`}
                             id="grid-confirm-password"
                             type="password"
@@ -283,11 +283,11 @@ const UpdateUserForm = () => {
                         </button>
                     </div>
                 </form>
-                <footer style={{ textAlign: "center", padding: "14.5px" }}></footer>
+                <footer style={{ textAlign: 'center', padding: '14.5px' }}></footer>
             </div>
-        );
-    } else {
-        return (
+    )
+  } else {
+    return (
             <div className="container mx-auto px-4">
                 <form className="w-full max-w-md" onSubmit={handleSubmit}>
                     <div className="mb-6">
@@ -393,7 +393,7 @@ const UpdateUserForm = () => {
                             Confirmar nueva contraseña (déjalo en blanco para no cambiarla)
                         </label>
                         <input
-                            className={`appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white ${!inputs.passwordMatch ? "border-red-500" : "border-gray-200"
+                            className={`appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white ${!inputs.passwordMatch ? 'border-red-500' : 'border-gray-200'
                                 }`}
                             id="grid-confirm-password"
                             type="password"
@@ -426,10 +426,10 @@ const UpdateUserForm = () => {
                         </button>
                     </div>
                 </form>
-                <footer style={{ textAlign: "center", padding: "14.5px" }}></footer>
+                <footer style={{ textAlign: 'center', padding: '14.5px' }}></footer>
             </div>
-        );
-    }
-};
+    )
+  }
+}
 
-export default UpdateUserForm;
+export default UpdateUserForm
