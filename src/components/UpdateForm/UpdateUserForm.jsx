@@ -1,79 +1,73 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllUsers } from "../../redux/actions/User/getAllUsers";
-import { putUser } from "../../redux/actions/User/putUser.js";
-import { useParams } from "react-router-dom";
-import getUserById from "../../redux/actions/User/getUserById";
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { putUser } from '../../redux/actions/User/putUser.js'
+import { useParams } from 'react-router-dom'
+import getUserById from '../../redux/actions/User/getUserById'
 import Swal from 'sweetalert2'
 
-
-
 const UpdateUserForm = () => {
-    const { idUser } = useParams();
-    const dispatch = useDispatch();
-    useEffect(() => {
-        getUserById(idUser)(dispatch)
-    }, [dispatch])
+  const { idUser } = useParams()
+  const dispatch = useDispatch()
+  useEffect(() => {
+    getUserById(idUser)(dispatch)
+  }, [dispatch])
 
-    const findUser = useSelector((state) => state.userId);
+  const findUser = useSelector((state) => state.userId)
 
+  const [inputs, setInputs] = useState({
+    name: '',
+    lastName: '',
+    email: '',
+    active: true,
+    rol: 'client',
+    isBanned: false,
+    address: '',
+    locality: '',
+    province: '',
+    phone: ''
+  })
+  const [formData, setFormData] = useState({})
 
-    const [inputs, setInputs] = useState({
-        name: "",
-        lastName: "",
-        email: "",
-        active: true,
-        rol: "client",
-        isBanned: false,
-        address: "",
-        locality: "",
-        province: "",
-        phone: "",
-    });
-    const [formData, setFormData] = useState({});
-
-
-    useEffect(() => {
-        if (findUser) {
-
-            setInputs({
-                name: findUser?.name,
-                lastName: findUser?.lastName,
-                email: findUser?.email,
-                active: findUser?.active,
-                rol: findUser?.rol,
-                isBanned: findUser?.isBanned,
-                address: findUser?.address || "",
-                locality: findUser?.locality || "",
-                province: findUser?.province || "",
-                phone: findUser?.phone || "",
-            });
-        }
-    }, [findUser]);
-
-    const handleChange = (event) => {
-        const property = event.target.name;
-        const value = event.target.type === "checkbox" ? event.target.checked : event.target.value;
-        setInputs({ ...inputs, [property]: value })
-        setFormData({
-            ...formData,
-            [property]: value
-        })
-    };
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-
-        await putUser(findUser.id, formData)(dispatch).then(response => {
-            if (!response) { Swal.fire("error") }
-        })
-        Swal.fire({
-            icon: 'success',
-            text: 'Usuario modificado correctamente'
-        });
+  useEffect(() => {
+    if (findUser) {
+      setInputs({
+        name: findUser?.name,
+        lastName: findUser?.lastName,
+        email: findUser?.email,
+        active: findUser?.active,
+        rol: findUser?.rol,
+        isBanned: findUser?.isBanned,
+        address: findUser?.address || '',
+        locality: findUser?.locality || '',
+        province: findUser?.province || '',
+        phone: findUser?.phone || ''
+      })
     }
+  }, [findUser])
 
-    if (findUser.active) {
-        return (
+  const handleChange = (event) => {
+    const property = event.target.name
+    const value = event.target.type === 'checkbox' ? event.target.checked : event.target.value
+    setInputs({ ...inputs, [property]: value })
+    setFormData({
+      ...formData,
+      [property]: value
+    })
+  }
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+
+    await putUser(findUser.id, formData)(dispatch).then(response => {
+      if (!response) { Swal.fire('error') }
+    })
+    Swal.fire({
+      icon: 'success',
+      text: 'Usuario modificado correctamente'
+    })
+  }
+
+  if (findUser.active) {
+    return (
             <div>
                 <form onSubmit={handleSubmit}>
                     <div className=" flex m-8 mb-0">
@@ -113,7 +107,7 @@ const UpdateUserForm = () => {
                             name="active"
                             onChange={handleChange}
                             checked={inputs.active}
-                            value={inputs.active ? "true" : "false"}
+                            value={inputs.active ? 'true' : 'false'}
                             className="bg-formBg rounded-r-lg w-72 h-8 p-0 m-0"
                         />
                         {inputs.active ? <span className="m-0 p-0">Activo</span> : <span className="m-0 p-0">Inactivo</span>}
@@ -138,7 +132,7 @@ const UpdateUserForm = () => {
                             name="isBanned"
                             onChange={handleChange}
                             checked={inputs.isBanned}
-                            value={inputs.isBanned ? "true" : "false"}
+                            value={inputs.isBanned ? 'true' : 'false'}
                             className="bg-formBg rounded-r-lg w-72 h-8"
                         />
                         {inputs.isBanned ? <span className="m-0 p-0">Bloqueado</span> : <span className="m-0 p-0">No bloqueado</span>}
@@ -188,16 +182,16 @@ const UpdateUserForm = () => {
                         className="rounded-xl w-4/5 h-12 hover:translate-y-1.5 bg-primary text-tertiary border border-solid border-black m-5 font-bold flex items-center justify-center"
                     ><h2
                         className="text-primary uppercase font-bold flex items-center justify-center"
-                        style={{ color: "white", fontWeight: "bold" }}
+                        style={{ color: 'white', fontWeight: 'bold' }}
                     >
                             Actualizar usuario
                         </h2>
                     </button>
                 </form>
             </div>
-        )
-    } else {
-        return (
+    )
+  } else {
+    return (
             <div>
                 <form onSubmit={handleSubmit}>
                     <div className=" flex m-8 mb-0">
@@ -240,7 +234,7 @@ const UpdateUserForm = () => {
                             name="active"
                             onChange={handleChange}
                             checked={inputs.active}
-                            value={inputs.active ? "true" : "false"}
+                            value={inputs.active ? 'true' : 'false'}
                             className="bg-formBg rounded-r-lg w-72 h-8 p-0 m-0"
                             disabled="true"
                         />
@@ -267,7 +261,7 @@ const UpdateUserForm = () => {
                             name="isBanned"
                             onChange={handleChange}
                             checked={inputs.isBanned}
-                            value={inputs.isBanned ? "true" : "false"}
+                            value={inputs.isBanned ? 'true' : 'false'}
                             className="bg-formBg rounded-r-lg w-72 h-8"
                             disabled="true"
                         />
@@ -323,15 +317,15 @@ const UpdateUserForm = () => {
                         disabled="true"
                     ><h2
                         className="text-primary uppercase font-bold flex items-center justify-center"
-                        style={{ color: "white", fontWeight: "bold" }}
+                        style={{ color: 'white', fontWeight: 'bold' }}
                     >
                             Actualizar usuario
                         </h2>
                     </button>
                 </form>
             </div>
-        )
-    }
+    )
+  }
 }
 
 export default UpdateUserForm
