@@ -28,8 +28,8 @@ jobs:
           version: 8
           run_install: false
 
-      - name: Install eslint
-        run: pnpm install --global eslint eslint-config-standard eslint-plugin-import eslint-plugin-node eslint-plugin-promise eslint-plugin-standard
+      - name: Install dependencies
+        run: pnpm install
 
       - name: Lint with ESLint
         run: pnpm lint
