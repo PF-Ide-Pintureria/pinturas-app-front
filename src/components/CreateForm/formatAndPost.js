@@ -22,8 +22,6 @@ export const formatAndPost = async (inputsForm, dispatch) => {
         Swal.fire({ icon: 'success', text: `Producto creado correctamente con el id: ${res.data.product[0].idProduct}` })
         return (res.data.product[0].idProduct)
       }
-    }).then(() => {
-      true
     }).catch((err) => {
       console.error(err)
     })

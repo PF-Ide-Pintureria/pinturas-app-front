@@ -17,8 +17,6 @@ export const formatAndEdit = async (inputsForm, idProduct, dispatch) => {
       if (res.status === 201) {
         Swal.fire(`Producto ${res.data.product.idProduct} modificado correctamente`)
       }
-    }).then(() => {
-      true
     }).catch((err) => {
       console.error(err)
     })

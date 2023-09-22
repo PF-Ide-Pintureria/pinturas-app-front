@@ -53,8 +53,6 @@ export const formatAndSend = async ({ name, email, message }, dispatch) => {
           text: 'El mensaje no ha sido enviado'
         })
       }
-    }).then(() => {
-      true
     }).catch((err) => {
       console.error(err)
     })

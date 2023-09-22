@@ -23,16 +23,16 @@ const ProductsContainer = () => {
 
   const [isLoading, setIsLoading] = useState(true)
   const [filteredProducts, setFilteredProducts] = useState(products)
-  const [prices, setPrices] = useState({
-    min: '',
-    max: ''
-  })
+  // const [prices, setPrices] = useState({
+  //   min: '',
+  //   max: ''
+  // })
 
-  const handleChange = (event) => {
-    const property = event.target.name
-    const value = event.target.value
-    setPrices({ ...prices, [property]: value })
-  }
+  // const handleChange = (event) => {
+  //   const property = event.target.name
+  //   const value = event.target.value
+  //   setPrices({ ...prices, [property]: value })
+  // }
 
   const handleCategory = (category) => {
     dispatch(setPage(1))

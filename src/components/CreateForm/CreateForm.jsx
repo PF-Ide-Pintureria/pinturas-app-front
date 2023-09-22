@@ -3,23 +3,10 @@ import { useSelector, useDispatch } from 'react-redux'
 import { allCategories } from '../../redux/actions/Categories/allCategories'
 import validations from './validations'
 import { formatAndPost } from './formatAndPost'
-import { BASE_URL } from '../../redux/action-type'
-import axios from 'axios'
+// import { BASE_URL } from '../../redux/action-type'
+// import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
-
-// const defaultValues = {
-//     name: "[TEST-2-LOCAL] [24-Jul] [Juan Pablo]",
-//     price: 100,
-//     code: "123",
-//     category: "Linea Fondos",
-//     patent: "FADEPA",
-//     image: "",
-//     color: "Blanco",
-//     package: "2 Lts.",
-//     stock: 12,
-//     file: null,
-// };
 
 const CreateForm = () => {
   const navigate = useNavigate()
@@ -31,7 +18,6 @@ const CreateForm = () => {
   }, [dispatch])
 
   const [inputsForm, setInputsForm] = useState({
-    // ...defaultValues,
     name: '',
     price: '',
     code: '',
@@ -83,7 +69,6 @@ const CreateForm = () => {
           icon: 'success',
           text: 'Producto creado con éxito'
         })
-        setInputsForm(defaultValues)
       };
     } else {
       Swal.fire({

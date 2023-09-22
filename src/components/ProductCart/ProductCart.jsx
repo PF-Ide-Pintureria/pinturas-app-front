@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Swal from 'sweetalert2'
 import { postFavorites } from '../../redux/actions/Favorites/postFavorites'
 
-import { useCart } from '../../hooks/useCart'
+// import { useCart } from '../../hooks/useCart'
 
 import { putCart } from '../../redux/actions/Cart/putCart'
 
@@ -13,8 +13,8 @@ const ProductCart = ({ id, name, quantity, image, price, stock, calcTotal }) => 
   const cart = useSelector(state => state.cart)
   const cartID = useSelector(state => state.cartID)
   const [count, setCount] = useState(quantity)
-  const [removeCart, setRemoveCart] = useState(false)
-  const { cartState, addToCart, removeFromCart, clearCart } = useCart()
+  // const [removeCart, setRemoveCart] = useState(false)
+  // const { cartState, addToCart, removeFromCart, clearCart } = useCart()
   const [isRemove, setIsRemove] = useState(false)
 
   const calcPrice = (quant, pric) => {
@@ -44,11 +44,11 @@ const ProductCart = ({ id, name, quantity, image, price, stock, calcTotal }) => 
             if (response) window.location.reload()
           })
 
-          removeFromCart(id)
+          // removeFromCart(id)
         } else {
           const copyCart = cart.filter((elem) => elem.id !== id)
 
-          removeFromCart(id)
+          // removeFromCart(id)
 
           dispatch(putCart({
             idUser: user.id,
@@ -59,7 +59,7 @@ const ProductCart = ({ id, name, quantity, image, price, stock, calcTotal }) => 
           })
         }
       } else {
-        removeFromCart(id)
+        // removeFromCart(id)
         window.location.reload()
       }
       setIsRemove(false)

@@ -55,7 +55,7 @@
     "build": "vite build",
     "deploy": "gh-pages -d dist",
     "dev": "vite",
-    "lint": "eslint . --ext .js,.jsx",
+    "lint": "eslint src --ext .js,.jsx",
     "pre-deploy": "npm run build",
     "preview": "vite preview"
   },
