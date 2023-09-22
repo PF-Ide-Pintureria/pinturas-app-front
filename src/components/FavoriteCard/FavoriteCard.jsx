@@ -4,11 +4,12 @@ import { deleteFavorites } from '../../redux/actions/Favorites/deleteFavorite'
 import Swal from 'sweetalert2'
 
 const FavoriteCard = ({ id, image, name, stock, active, price }) => {
-  const user = useSelector((state) => state.user)
   const dispatch = useDispatch()
 
+  const user = useSelector((state) => state.user)
   const idUser = user.id
   const idProduct = id
+
   const deleteProductCart = () => {
     deleteFavorites(idUser, idProduct)(dispatch).then((response) => {
       if (response) {

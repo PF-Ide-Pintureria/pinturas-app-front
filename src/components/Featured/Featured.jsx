@@ -5,7 +5,6 @@ import { productById } from '../../redux/actions/Products/productById'
 
 const Featured = ({ id, name, image, price, prodpackage }) => {
   const dispatch = useDispatch()
-
   const navigate = useNavigate()
 
   const handleDetailClick = () => {

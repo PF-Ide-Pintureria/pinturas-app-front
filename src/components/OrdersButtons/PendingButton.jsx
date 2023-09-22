@@ -5,6 +5,7 @@ import Swal from 'sweetalert2'
 
 const PendingButton = ({ idOrder }) => {
   const dispatch = useDispatch()
+
   const handleClick = () => {
     const edition = { state: 'pending' }
     try {
