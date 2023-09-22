@@ -1,6 +1,6 @@
 // import React, { useState, useEffect } from "react";
 // import { useSelector, useDispatch } from "react-redux";
-// import PropTypes from "prop-types"; 
+// import PropTypes from "prop-types";
 // const SideBar = ({ onFiltersChange }) => {
 //   const dispatch = useDispatch();
 
@@ -11,7 +11,6 @@
 //   useEffect(() => {
 //     applyFilters();
 //   }, [filters, onFiltersChange]);
-
 
 //   // const [esMarcaAbierto, setEsMarcaAbierto] = useState(false);
 //   // const [esPresentacionAbierto, setEsPresentacionAbierto] = useState(false);
@@ -188,7 +187,7 @@
 //             {/* </div> */}
 //           {/* </div> */}
 //         </div>
-//         <div className=""> 
+//         <div className="">
 //           <h2 className="text-base font-semibold tracking-wide uppercase text-blue-600">
 //             Categorias
 //           </h2>
@@ -227,7 +226,7 @@
 //                 filters.lowPrice === "$1500 a $2000" ? "text-indigo-900" : "text-gray-400 hover:text-indigo-900"
 //               } m-0`}
 //               onClick={() => handlePriceFilter("$1500 a $2000")}
-//             > 
+//             >
 //                 $1500 a $2000
 //             </h3>
 //           </div>
