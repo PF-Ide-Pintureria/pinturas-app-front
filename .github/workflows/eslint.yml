@@ -28,5 +28,8 @@ jobs:
           version: 8
           run_install: false
 
+      - name: Install eslint
+        run: pnpm install --global eslint
+
       - name: Lint with ESLint
         run: pnpm lint
