@@ -12,6 +12,9 @@ export default {
         formBg: '#D9D9D9',
         warning: '#ff0f0f'
       }
+    },
+    fontFamily: {
+      abc: ['Urbanist', 'sans-serif']
     }
   },
   plugins: []

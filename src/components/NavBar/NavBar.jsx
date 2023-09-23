@@ -18,13 +18,13 @@ const Nav = () => {
       </NavLink>
       <NavLink
         to="/contact"
-        className="font-inter cursor-pointer transition-transform duration-300 ease-in-out hover:scale-125"
+        className="bg-yellow-400 bg-opacity-75 rounded-lg px-3 font-inter cursor-pointer transition-transform duration-200 ease-in-out hover:scale-125"
       >
         Contacto
       </NavLink>
       <NavLink
         to="/about"
-        className="bg-quaternary rounded-lg px-3 font-inter cursor-pointer transition-transform duration-300 ease-in-out hover:scale-125"
+        className="bg-yellow-400 bg-opacity-75 rounded-lg px-3 font-inter cursor-pointer transition-transform duration-200 ease-in-out hover:scale-125"
       >
         Nosotros
       </NavLink>
