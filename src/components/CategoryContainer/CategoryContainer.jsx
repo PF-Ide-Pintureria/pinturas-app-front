@@ -27,7 +27,7 @@ const CategoryContainer = () => {
 
   return (
     <div>
-      <div className="flex flex-col w-full my-10 items-center justify-center">
+      <div className="flex flex-col w-full my-4 items-center justify-center">
         <div className="flex flex-col sm:flex-row w-4/5">
           <div className="w-full sm:w-1/2">
             <Link
@@ -37,7 +37,7 @@ const CategoryContainer = () => {
               <img
                 src={category14}
                 alt="category14"
-                className="p-4 h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
+                className="p-2 h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
               />
             </Link>
           </div>
@@ -49,7 +49,7 @@ const CategoryContainer = () => {
               <img
                 src={category3}
                 alt="category3"
-                className="p-4 h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
+                className="p-2 h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
               />
             </Link>
           </div>
@@ -65,7 +65,7 @@ const CategoryContainer = () => {
               <img
                 src={category4}
                 alt="category4"
-                className="p-4 h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
+                className="p-2 h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
               />
             </Link>
           </div>
@@ -77,7 +77,7 @@ const CategoryContainer = () => {
               <img
                 src={category5}
                 alt="category5"
-                className="p-4 h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
+                className="p-2 h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
               />
             </Link>
           </div>
@@ -93,7 +93,7 @@ const CategoryContainer = () => {
               <img
                 src={category6}
                 alt="category6"
-                className="p-4 h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
+                className="p-2 h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
               />
             </Link>
           </div>
@@ -105,7 +105,7 @@ const CategoryContainer = () => {
               <img
                 src={category7}
                 alt="category7"
-                className="p-4 h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
+                className="p-2 h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
               />
             </Link>
           </div>
@@ -121,7 +121,7 @@ const CategoryContainer = () => {
               <img
                 src={category8}
                 alt="category8"
-                className="p-4 h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
+                className="p-2 h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
               />
             </Link>
           </div>
@@ -135,7 +135,7 @@ const CategoryContainer = () => {
               <img
                 src={category2}
                 alt="category2"
-                className="p-4 h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
+                className="p-2 h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
               />
             </Link>
           </div>
@@ -151,7 +151,7 @@ const CategoryContainer = () => {
               <img
                 src={category10}
                 alt="category10"
-                className="p-4 h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
+                className="p-2 h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
               />
             </Link>
           </div>
@@ -165,7 +165,7 @@ const CategoryContainer = () => {
               <img
                 src={category11}
                 alt="category11"
-                className="p-4 h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
+                className="p-2 h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
               />
             </Link>
           </div>
@@ -181,7 +181,7 @@ const CategoryContainer = () => {
               <img
                 src={category9}
                 alt="category12"
-                className="p-4 h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
+                className="p-2 h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
               />
             </Link>
           </div>
@@ -195,7 +195,7 @@ const CategoryContainer = () => {
               <img
                 src={category13}
                 alt="category13"
-                className="p-4 h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
+                className="p-2 h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
               />
             </Link>
           </div>

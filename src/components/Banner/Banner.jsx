@@ -41,7 +41,7 @@ const BannerCarousel = () => {
 
   return (
     <div className="hidden sm:block">
-      <div className="relative w-full h-80 sm:h-96 md:h-120">
+            <div className="relative w-full h-80 sm:h-96 md:h-120 flex justify-center items-center">
         {images.map((image, index) => (
           <Link
             key={index}
@@ -53,11 +53,11 @@ const BannerCarousel = () => {
             <img
               src={image.src}
               alt={`Image ${index + 1}`}
-              className="absolute w-full h-full object-cover"
+              className="absolute w-full h-full object-scale-down mt-2"
             />
           </Link>
         ))}
-        <div className="absolute bottom-4 left-4 flex items-center space-x-2">
+        <div className="absolute left-8">
           <button
             className="w-8 h-8 p-1 bg-gray-800 bg-opacity-20 text-white rounded-full focus:outline-none"
             onClick={goToPrevImage}
@@ -65,7 +65,7 @@ const BannerCarousel = () => {
             &lt;
           </button>
         </div>
-        <div className="absolute bottom-4 right-4 flex items-center space-x-2">
+        <div className="absolute right-8">
           <button
             className="w-8 h-8 p-1 bg-gray-800 bg-opacity-20 text-white rounded-full focus:outline-none"
             onClick={goToNextImage}

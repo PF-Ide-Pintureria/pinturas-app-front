@@ -10,7 +10,7 @@ const BannerCarousel = () => {
           <img
             src={banner4}
             alt="banner4"
-            className="w-full h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-105"
+            className="w-full h-auto object-cover cursor-pointer hover:opacity-70 transition-opacity duration-300 ease-in-out"
           />
         </Link>
       </div>

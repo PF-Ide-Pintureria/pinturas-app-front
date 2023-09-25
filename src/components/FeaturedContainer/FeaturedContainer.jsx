@@ -12,7 +12,7 @@ const FeaturedContainer = () => {
         <img
           src={featuredBanner}
           alt="banner"
-          className="w-full h-[120px] min-h-[100px] md:w-full object-cover mt-20"
+          className="w-full h-[120px] min-h-[100px] md:w-full object-cover mt-2"
         />
         <div className="container mt-10 mx-auto justify-center">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 place-items-center">
