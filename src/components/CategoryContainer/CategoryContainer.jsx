@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import { setPage } from '../../redux/actions/Page/setPage'
 import { setCategory } from '../../redux/actions/filters/setCategory'
 // Banners
-import category1 from '../../img/category1.png'
 import category2 from '../../img/especiales.png'
 import category3 from '../../img/esmalte.png'
 import category4 from '../../img/cal.png'
@@ -12,10 +11,9 @@ import category5 from '../../img/fondos.png'
 import category6 from '../../img/tintas.png'
 import category7 from '../../img/ecologico.png'
 import category8 from '../../img/industriales.png'
-// import category9 from "../../img/latex.png";
+import category9 from '../../img/latex.png'
 import category10 from '../../img/impermeabilizante.png'
 import category11 from '../../img/fijadores.png'
-import category12 from '../../img/bases.png'
 import category13 from '../../img/auxiliares.png'
 import category14 from '../../img/madera.png'
 
@@ -29,20 +27,8 @@ const CategoryContainer = () => {
 
   return (
     <div>
-      <div className="flex flex-col w-full my-10">
-        <div className="w-full">
-          <Link
-            to={`/products?category=${encodeURIComponent('Linea Latex')}`}
-            onClick={() => handleCategory('Linea Latex')}
-          >
-            <img
-              src={category1}
-              alt="category1"
-              className="w-full h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
-            />
-          </Link>
-        </div>
-        <div className="flex flex-col sm:flex-row w-fulll">
+      <div className="flex flex-col w-full my-4 items-center justify-center">
+        <div className="flex flex-col sm:flex-row w-4/5">
           <div className="w-full sm:w-1/2">
             <Link
               to={`/products?category=${encodeURIComponent('Linea Maderas')}`}
@@ -51,7 +37,7 @@ const CategoryContainer = () => {
               <img
                 src={category14}
                 alt="category14"
-                className="w-full h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
+                className="p-2 h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
               />
             </Link>
           </div>
@@ -63,12 +49,12 @@ const CategoryContainer = () => {
               <img
                 src={category3}
                 alt="category3"
-                className="w-full h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
+                className="p-2 h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
               />
             </Link>
           </div>
         </div>
-        <div className="flex flex-col sm:flex-row w-fulll">
+        <div className="flex flex-col sm:flex-row w-4/5">
           <div className="w-full sm:w-1/2">
             <Link
               to={`/products?category=${encodeURIComponent(
@@ -79,7 +65,7 @@ const CategoryContainer = () => {
               <img
                 src={category4}
                 alt="category4"
-                className="w-full h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
+                className="p-2 h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
               />
             </Link>
           </div>
@@ -91,12 +77,12 @@ const CategoryContainer = () => {
               <img
                 src={category5}
                 alt="category5"
-                className="w-full h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
+                className="p-2 h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
               />
             </Link>
           </div>
         </div>
-        <div className="flex flex-col sm:flex-row w-fulll">
+        <div className="flex flex-col sm:flex-row w-4/5">
           <div className="w-full sm:w-1/2">
             <Link
               to={`/products?category=${encodeURIComponent(
@@ -107,7 +93,7 @@ const CategoryContainer = () => {
               <img
                 src={category6}
                 alt="category6"
-                className="w-full h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
+                className="p-2 h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
               />
             </Link>
           </div>
@@ -119,12 +105,12 @@ const CategoryContainer = () => {
               <img
                 src={category7}
                 alt="category7"
-                className="w-full h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
+                className="p-2 h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
               />
             </Link>
           </div>
         </div>
-        <div className="flex flex-col sm:flex-row w-fulll">
+        <div className="flex flex-col sm:flex-row w-4/5">
           <div className="w-full sm:w-1/2">
             <Link
               to={`/products?category=${encodeURIComponent(
@@ -135,7 +121,7 @@ const CategoryContainer = () => {
               <img
                 src={category8}
                 alt="category8"
-                className="w-full h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
+                className="p-2 h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
               />
             </Link>
           </div>
@@ -149,12 +135,12 @@ const CategoryContainer = () => {
               <img
                 src={category2}
                 alt="category2"
-                className="w-full h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
+                className="p-2 h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
               />
             </Link>
           </div>
         </div>
-        <div className="flex flex-col sm:flex-row w-fulll">
+        <div className="flex flex-col sm:flex-row w-4/5">
           <div className="w-full sm:w-1/2">
             <Link
               to={`/products?category=${encodeURIComponent(
@@ -165,7 +151,7 @@ const CategoryContainer = () => {
               <img
                 src={category10}
                 alt="category10"
-                className="w-full h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
+                className="p-2 h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
               />
             </Link>
           </div>
@@ -179,22 +165,23 @@ const CategoryContainer = () => {
               <img
                 src={category11}
                 alt="category11"
-                className="w-full h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
+                className="p-2 h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
               />
             </Link>
           </div>
         </div>
-        <div className="flex flex-col sm:flex-row w-fulll">
+        <div className="flex flex-col sm:flex-row w-4/5">
           <div className="w-full sm:w-1/2">
             <Link
               to={`/products?category=${encodeURIComponent(
                 'Linea Bases Tintometricas'
               )}`}
+              onClick={() => handleCategory('Linea Latex')}
             >
               <img
-                src={category12}
+                src={category9}
                 alt="category12"
-                className="w-full h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
+                className="p-2 h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
               />
             </Link>
           </div>
@@ -208,7 +195,7 @@ const CategoryContainer = () => {
               <img
                 src={category13}
                 alt="category13"
-                className="w-full h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
+                className="p-2 h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
               />
             </Link>
           </div>

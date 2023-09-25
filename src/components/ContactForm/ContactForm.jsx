@@ -81,7 +81,7 @@ const Contact = () => {
                                     Nombre:
                                 </label>
                                 <input
-                                    className=" rounded-r-lg w-72 h-8  "
+                                    className=" rounded-r-lg w-72 h-8 placeholder: italic pl-9 "
                                     id="name"
                                     name="name"
                                     type="text"
@@ -107,7 +107,7 @@ const Contact = () => {
                                     Correo :
                                 </label>
                                 <input
-                                    className=" rounded-r-lg w-72 h-8"
+                                    className=" rounded-r-lg w-72 h-8 placeholder: italic pl-9 "
                                     id="email"
                                     name="email"
                                     type="email"
@@ -133,7 +133,7 @@ const Contact = () => {
                                     Tu Mensaje:
                                 </label>
                                 <textarea
-                                    className=" rounded-r-lg w-72 h-32"
+                                    className=" rounded-r-lg w-72 h-32 placeholder: italic pl-2 pt-2"
                                     id="message"
                                     name="message"
                                     rows="4"
@@ -141,7 +141,7 @@ const Contact = () => {
                                     wrap="soft"
                                     value={inputs.message}
                                     onChange={handleChange}
-                                    placeholder="Tu mensaje"
+                                    placeholder="escribe tu mensaje aquí..."
                                 />
                             </div>
                             <div className="flex my-0 pt-0 pl-8 justify-around">
