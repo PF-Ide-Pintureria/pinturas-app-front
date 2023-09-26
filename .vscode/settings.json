@@ -1,11 +1,11 @@
 {
-  "[javascript]": {
+  "[javascriptreact]": {
     "editor.detectIndentation": false,
     "editor.formatOnSave": true,
     "editor.suggest.insertMode": "replace",
     "editor.tabSize": 2
   },
-  "[javascriptreact]": {
+  "[javascript]": {
     "editor.detectIndentation": false,
     "editor.formatOnSave": true,
     "editor.suggest.insertMode": "replace",
