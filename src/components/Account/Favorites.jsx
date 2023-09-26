@@ -35,7 +35,7 @@ const Favorities = () => {
           favorites.length > 0
             ? (
                 favorites.map((favorite) => (
-                <div key={favorite.id}>
+                <div key={favorite.idProduct}>
                   <FavoriteCard
                     id={favorite.idProduct}
                     image={favorite.image}

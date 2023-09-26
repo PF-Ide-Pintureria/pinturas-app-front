@@ -61,9 +61,10 @@ const Detail = () => {
   const addFavorite = () => {
     if (loggedUser) {
       const data = {
-        loggedUser: loggedUser.id,
+        idUser: loggedUser.id,
         idProduct
       }
+
       dispatch(postFavorites(data))
         .then((response) => {
           if (response === 'existe') {
