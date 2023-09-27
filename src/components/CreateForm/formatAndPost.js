@@ -3,9 +3,6 @@ import Swal from 'sweetalert2'
 
 export const formatAndPost = async (inputsForm, dispatch) => {
   try {
-    // const newProduct = {
-    //     ...inputsForm,
-    // };
     const formData = new FormData()
     formData.append('name', inputsForm.name)
     formData.append('price', inputsForm.price)
@@ -18,14 +15,15 @@ export const formatAndPost = async (inputsForm, dispatch) => {
     formData.append('image', inputsForm.image)
     formData.append('description', inputsForm.description)
 
-    await postProduct(formData)(dispatch).then((res) => {
-      if (res.status === 201) {
-        Swal.fire({ icon: 'success', text: 'Producto creado correctamente' })
-      }
-    }).catch((err) => {
-      console.error(err)
-    })
+    await postProduct(formData)(dispatch)
+
+    Swal.fire({ icon: 'success', text: 'Producto creado correctamente' })
   } catch (error) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: `${error.response.data}`
+    })
     console.error(error)
-  };
+  }
 }
