@@ -28,7 +28,8 @@ const CreateForm = () => {
     color: '',
     package: '',
     stock: '',
-    image: ''
+    image: '',
+    description: ''
   })
 
   const [errors, setErrors] = useState({
@@ -40,7 +41,8 @@ const CreateForm = () => {
     image: '',
     color: '',
     package: '',
-    stock: ''
+    stock: '',
+    description: ''
   })
 
   const handleInputChange = (event) => {
@@ -123,7 +125,7 @@ const CreateForm = () => {
                             htmlFor="price"
                             className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
                         >
-                            Precio:
+                            Precio de lista:
                         </label>
                         <input
                             className="bg-formBg rounded-r-lg w-72 h-8"
@@ -268,7 +270,26 @@ const CreateForm = () => {
                     <div className="flex mt-0 pt-0 pl-8 justify-around">
                         {errors.color && <p className="text-warning text-xs font-extrabold py-0 m-0">{errors.color}</p>}
                     </div>
-                    <div className={`m-10 flex justify-center ${errors.color ? 'mt-4' : 'mt-8'}`}>
+                    <div className="flex mt-8 ml-8">
+                      <label
+                        htmlFor="description"
+                        className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
+                      >
+                        Descripción:
+                      </label>
+                      <textarea
+                        className="bg-formBg rounded-r-lg w-72 h-40 resize-none"
+                        name="description"
+                        value={inputsForm.description}
+                        onChange={handleInputChange}
+                      />
+                    </div>
+                    <div className="flex my-0 pt-0 pl-8 justify-around">
+                      {errors.description && (
+                        <p className="text-warning text-xs font-extrabold py-0 m-0">{errors.description}</p>
+                      )}
+                    </div>
+                    <div className={`flex justify-center ${errors.description ? 'mt-4' : 'mt-8'}`}>
                         <button
                             className="rounded-xl w-4/5 h-12 hover:translate-y-1.5 bg-primary text-tertiary border border-solid border-black m-5 font-bold flex items-center justify-center"
                             type="submit"

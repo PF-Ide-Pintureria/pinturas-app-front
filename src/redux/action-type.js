@@ -70,7 +70,7 @@ export const SET_USER_DATA = 'SET_USER_DATA'
 export const URL_INFO_USER_AUTH0 = '--'
 
 // URL
-// export const BASE_URL = "http://localhost:3000/";
+// export const BASE_URL = 'http://localhost:3000/'
 export const BASE_URL = 'https://pinturas-app-back.onrender.com/'
 
 // REVIEWS
