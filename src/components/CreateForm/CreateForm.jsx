@@ -3,8 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { allCategories } from '../../redux/actions/Categories/allCategories'
 import validations from './validations'
 import { formatAndPost } from './formatAndPost'
-// import { BASE_URL } from '../../redux/action-type'
-// import axios from 'axios'
+import { getProviders } from '../../redux/actions/Providers/getProviders'
 import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 
@@ -13,8 +12,11 @@ const CreateForm = () => {
   const dispatch = useDispatch()
 
   const user = useSelector(state => state.user)
+  const providers = useSelector(state => state.providers)
+
   useEffect(() => {
     dispatch(allCategories())
+    dispatch(getProviders())
   }, [dispatch])
 
   const [inputsForm, setInputsForm] = useState({
@@ -140,7 +142,7 @@ const CreateForm = () => {
                             htmlFor="code"
                             className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
                         >
-                            SKU:
+                            Código:
                         </label>
                         <input
                             className="bg-formBg rounded-r-lg w-72 h-8"
@@ -175,18 +177,26 @@ const CreateForm = () => {
                     </div>
                     <div className="flex m-8">
                         <label
-                            htmlFor="patent"
+                            htmlFor="category"
                             className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
                         >
-                            Marca:
+                            Proveedor:
                         </label>
-                        <input
+                        <select
                             className="bg-formBg rounded-r-lg w-72 h-8"
-                            type="text"
-                            name="patent"
                             value={inputsForm.patent}
                             onChange={handleInputChange}
-                        />
+                            name="patent"
+                        >
+                            <option style={{ textAlign: 'center' }} value="">
+                                Selecciona una marca
+                            </option>
+                            {providers.map((provider, index) => (
+                                <option key={index} name='patent' value={provider.name}>
+                                    {provider.name}
+                                </option>
+                            ))}
+                        </select>
                     </div>
                     <div className="flex m-8">
                         <label

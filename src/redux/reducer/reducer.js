@@ -69,7 +69,10 @@ import {
   DELETE_FAVORITES,
 
   // REVIEWS
-  SAVE_REVIEW
+  SAVE_REVIEW,
+
+  // PROVIDERS
+  GET_PROVIDERS
 
 } from '../action-type'
 
@@ -131,7 +134,10 @@ const initialState = {
 
   // FAVORITES
   favorites: [],
-  allFavorites: []
+  allFavorites: [],
+
+  // PROVIDERS
+  providers: []
 }
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -270,6 +276,10 @@ const reducer = (state = initialState, { type, payload }) => {
       return { ...state, allFavorites: payload }
     case DELETE_FAVORITES:
       return { ...state, allFavorites: payload }
+
+    // PROVIDERS
+    case GET_PROVIDERS:
+      return { ...state, providers: payload }
 
     default:
       return { ...state }
