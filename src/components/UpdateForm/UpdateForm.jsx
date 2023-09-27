@@ -13,19 +13,24 @@ const UpdateForm = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  useEffect(() => {
-    dispatch(allCategories())
-    dispatch(getProviders())
-  }, [dispatch])
-
-  useEffect(() => {
-    dispatch(productById(idProduct))
-  }, [dispatch])
-
   const detail = useSelector((state) => state.detail)
   const categories = useSelector((state) => state.categories)
   const providers = useSelector(state => state.providers)
   const user = useSelector((state) => state.user)
+
+  useEffect(() => {
+    dispatch(allCategories())
+    dispatch(getProviders())
+    dispatch(productById(idProduct))
+  }, [dispatch])
+
+  useEffect(() => {
+    if (detail) {
+      setInputsForm({
+        ...detail
+      })
+    }
+  }, [detail])
 
   const [inputsForm, setInputsForm] = useState({
     name: '',
@@ -40,14 +45,6 @@ const UpdateForm = () => {
     description: ''
   })
 
-  useEffect(() => {
-    if (detail) {
-      setInputsForm({
-        ...detail
-      })
-    }
-  }, [detail])
-
   const [errors, setErrors] = useState({
     name: '',
     price: '',
@@ -60,7 +57,7 @@ const UpdateForm = () => {
     stock: '',
     description: ''
   })
-
+  // MANEJO ESTADOS DE INPUTS Y ERRORES
   const handleInputChange = (event) => {
     const property = event.target.name
     const value = event.target.value
@@ -72,30 +69,17 @@ const UpdateForm = () => {
       })
     } else {
       setInputsForm({ ...inputsForm, [property]: value })
-      setErrors(validations({ ...inputsForm, [property]: value }))
     }
+    setErrors(validations({ ...inputsForm, [property]: value }))
   }
 
+  // ENVIAR FORMULARIO
   const handleSubmit = async (event) => {
     event.preventDefault()
-    const errors = validations(inputsForm)
 
-    setErrors(errors)
     if (Object.keys(errors).length === 0) {
-      const response = await formatAndEdit(inputsForm, idProduct, dispatch)
-
-      if (response) {
-        Swal.fire({
-          icon: 'success',
-          text: 'Producto modificado con éxito'
-        })
-      }
+      await formatAndEdit(inputsForm, idProduct, dispatch)
       navigate(`/products/${idProduct}`)
-    } else {
-      Swal.fire({
-        icon: 'error',
-        text: 'Hubo un error al modificar el producto'
-      })
     }
   }
 

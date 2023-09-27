@@ -1,7 +1,7 @@
 import { postProduct } from '../../redux/actions/Products/postProduct'
 import Swal from 'sweetalert2'
 
-export const formatAndPost = async (inputsForm, dispatch) => {
+export const formatAndPost = async (inputsForm, dispatch, navigate) => {
   try {
     const formData = new FormData()
     formData.append('name', inputsForm.name)
@@ -18,6 +18,7 @@ export const formatAndPost = async (inputsForm, dispatch) => {
     await postProduct(formData)(dispatch)
 
     Swal.fire({ icon: 'success', text: 'Producto creado correctamente' })
+    navigate('/products')
   } catch (error) {
     Swal.fire({
       icon: 'error',
