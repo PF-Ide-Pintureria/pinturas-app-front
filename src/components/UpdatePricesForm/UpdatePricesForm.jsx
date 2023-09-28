@@ -48,7 +48,7 @@ const UpdatePricesForm = () => {
           </label>
           <select
                   className="bg-formBg rounded-r-lg w-72 h-8"
-                  value={inputsForm.patent}
+                  value={inputsForm.provider}
                   onChange={handleInputChange}
                   name="provider"
               >
