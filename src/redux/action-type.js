@@ -70,10 +70,16 @@ export const SET_USER_DATA = 'SET_USER_DATA'
 export const URL_INFO_USER_AUTH0 = '--'
 
 // URL
-// export const BASE_URL = "http://localhost:3000/";
+// export const BASE_URL = 'http://localhost:3000/'
 export const BASE_URL = 'https://pinturas-app-back.onrender.com/'
 
 // REVIEWS
-
 export const SAVE_REVIEW = 'SAVE_REVIEW'
 export const URL_SAVE_REVIEW = 'https://pinturas-app-back.onrender.com/'
+
+// PROVIDERS
+export const GET_PROVIDERS = 'GET_PROVIDERS'
+export const GET_PROVIDER_BY_ID = 'GET_PROVIDER_BY_ID'
+export const DELETE_PROVIDER = 'DELETE_PROVIDER'
+export const PUT_PROVIDER = 'PUT_PROVIDER'
+export const POST_PROVIDER = 'POST_PROVIDER'

@@ -1,11 +1,8 @@
 import { postProduct } from '../../redux/actions/Products/postProduct'
 import Swal from 'sweetalert2'
 
-export const formatAndPost = async (inputsForm, dispatch) => {
+export const formatAndPost = async (inputsForm, dispatch, navigate) => {
   try {
-    // const newProduct = {
-    //     ...inputsForm,
-    // };
     const formData = new FormData()
     formData.append('name', inputsForm.name)
     formData.append('price', inputsForm.price)
@@ -16,16 +13,18 @@ export const formatAndPost = async (inputsForm, dispatch) => {
     formData.append('package', inputsForm.package)
     formData.append('stock', inputsForm.stock)
     formData.append('image', inputsForm.image)
+    formData.append('description', inputsForm.description)
 
-    await postProduct(formData)(dispatch).then((res) => {
-      if (res.status === 201) {
-        Swal.fire({ icon: 'success', text: `Producto creado correctamente con el id: ${res.data.product[0].idProduct}` })
-        return (res.data.product[0].idProduct)
-      }
-    }).catch((err) => {
-      console.error(err)
-    })
+    await postProduct(formData)(dispatch)
+
+    Swal.fire({ icon: 'success', text: 'Producto creado correctamente' })
+    navigate('/products')
   } catch (error) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: `${error.response.data}`
+    })
     console.error(error)
-  };
+  }
 }

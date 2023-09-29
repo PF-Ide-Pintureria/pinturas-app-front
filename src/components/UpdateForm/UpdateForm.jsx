@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { allCategories } from '../../redux/actions/Categories/allCategories'
 import { productById } from '../../redux/actions/Products/productById'
+import { getProviders } from '../../redux/actions/Providers/getProviders'
 import validations from './validations'
 import { useNavigate, useParams } from 'react-router-dom'
 import { formatAndEdit } from './formatAndEdit'
@@ -12,28 +13,16 @@ const UpdateForm = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  useEffect(() => {
-    dispatch(allCategories())
-  }, [dispatch])
-
-  useEffect(() => {
-    dispatch(productById(idProduct))
-  }, [dispatch])
-
   const detail = useSelector((state) => state.detail)
   const categories = useSelector((state) => state.categories)
+  const providers = useSelector(state => state.providers)
   const user = useSelector((state) => state.user)
 
-  const [inputsForm, setInputsForm] = useState({
-    name: '',
-    price: '',
-    category: '',
-    patent: '',
-    color: '',
-    // package: "",
-    stock: '',
-    image: ''
-  })
+  useEffect(() => {
+    dispatch(allCategories())
+    dispatch(getProviders())
+    dispatch(productById(idProduct))
+  }, [dispatch])
 
   useEffect(() => {
     if (detail) {
@@ -43,13 +32,32 @@ const UpdateForm = () => {
     }
   }, [detail])
 
+  const [inputsForm, setInputsForm] = useState({
+    name: '',
+    price: '',
+    code: '',
+    category: '',
+    patent: '',
+    color: '',
+    package: '',
+    stock: '',
+    image: '',
+    description: ''
+  })
+
   const [errors, setErrors] = useState({
     name: '',
     price: '',
+    code: '',
+    category: '',
+    patent: '',
+    image: '',
     color: '',
-    stock: ''
+    package: '',
+    stock: '',
+    description: ''
   })
-
+  // MANEJO ESTADOS DE INPUTS Y ERRORES
   const handleInputChange = (event) => {
     const property = event.target.name
     const value = event.target.value
@@ -61,402 +69,242 @@ const UpdateForm = () => {
       })
     } else {
       setInputsForm({ ...inputsForm, [property]: value })
-      setErrors(validations({ ...inputsForm, [property]: value }))
+    }
+    setErrors(validations({ ...inputsForm, [property]: value }))
+  }
+
+  // ENVIAR FORMULARIO
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+
+    if (Object.keys(errors).length === 0) {
+      await formatAndEdit(inputsForm, idProduct, dispatch)
+      navigate(`/products/${idProduct}`)
     }
   }
 
-  const handleSubmit = async (event) => {
-    event.preventDefault()
-    const errors = validations(inputsForm)
-    setErrors(errors)
-    if (Object.keys(errors).length === 0) {
-      const response = await formatAndEdit(inputsForm, idProduct, dispatch)
-      if (response) {
-        Swal.fire({
-          icon: 'success',
-          text: 'Producto modificado con éxito'
-        })
-      }
-    } else {
-      Swal.fire({
-        icon: 'error',
-        text: 'Hubo un error al modificar el producto'
-      })
-    }
-  }
   if (user.rol !== 'admin') {
     Swal.fire({
       icon: 'error',
       text: 'No autorizado'
     })
-    navigate(`/products/${idProduct}`)
+    navigate('/')
   } else {
-    if (!detail.active) {
-      return (
-        <div>
-          <h2 className="text-primary uppercase font-bold  flex items-center justify-center">
-            Actualizar producto
-          </h2>
-          <form
-            className="justify-start"
-            onSubmit={handleSubmit}
-            encType="multipart/form-data"
-          >
-            <div className=" flex m-8 mb-0">
+    return (
+      <div className="justify-start">
+      <h2 className="text-primary uppercase font-bold  flex items-center justify-center">
+          Actualizar Producto
+      </h2>
+      <form onSubmit={handleSubmit} encType="multipart/form-data">
+          <div className=" flex m-8 mb-0">
               <label
-                htmlFor="name"
-                className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
+                  htmlFor="name"
+                  className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
               >
-                Nombre:
+                  Nombre:
               </label>
               <input
-                className="bg-formBg rounded-r-lg w-72 h-8"
-                type="text"
-                name="name"
-                value={inputsForm.name}
-                onChange={handleInputChange}
-                disabled="true"
+                  className="bg-formBg rounded-r-lg w-72 h-8"
+                  type="text"
+                  name="name"
+                  value={inputsForm.name}
+                  onChange={handleInputChange}
               />
-            </div>
-            <div className="flex my-0 pt-0 pl-8 justify-around">
+          </div>
+          <div className="flex my-0 pt-0 pl-8 justify-around">
               <p
-                className={`text-warning text-xs font-extrabold py-0 m-0 ${
-                  errors.name ? 'block' : 'hidden'
-                }`}
+                  className={`text-warning text-xs font-extrabold py-0 m-0 ${errors.name ? 'block' : 'hidden'
+                      }`}
               >
-                {errors.name}
+                  {errors.name}
               </p>
-            </div>
-            <div className={`flex m-8 mb-0 ${errors.name ? 'mt-4' : 'mt-8'}`}>
+          </div>
+          <div className={`flex m-8 mb-0 ${errors.name ? 'mt-4' : 'mt-8'}`}>
               <label
-                htmlFor="price"
-                className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
+                  htmlFor="price"
+                  className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
               >
-                Precio:
+                  Precio de lista:
               </label>
               <input
-                className="bg-formBg rounded-r-lg w-72 h-8"
-                type="number"
-                name="price"
-                value={inputsForm.price}
-                onChange={handleInputChange}
-                disabled="true"
+                  className="bg-formBg rounded-r-lg w-72 h-8"
+                  type="number"
+                  name="price"
+                  value={inputsForm.price}
+                  onChange={handleInputChange}
               />
-            </div>
-            <div className="flex my-0 pt-0 pl-8 justify-around">
-              {errors.price && (
-                <p className="text-warning text-xs font-extrabold py-0 m-0">
-                  {errors.price}
-                </p>
-              )}
-            </div>
+          </div>
+          <div className="flex my-0 pt-0 pl-8 justify-around">
+              {errors.price && <p className="text-warning text-xs font-extrabold py-0 m-0">{errors.price}</p>}
+          </div>
 
-            <div className={`flex m-8 mb-0 ${errors.price ? 'mt-4' : 'mt-8'}`}>
+          <div className={`flex m-8 mb-0 ${errors.price ? 'mt-4' : 'mt-8'}`}>
               <label
-                htmlFor="category"
-                className="bg-quaternary rounded-l-xl w-40 h-8 flex items-center justify-center"
+                  htmlFor="code"
+                  className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
               >
-                Categoría:
+                  Código:
+              </label>
+              <input
+                  className="bg-formBg rounded-r-lg w-72 h-8"
+                  type="text"
+                  name="code"
+                  value={inputsForm.code}
+                  onChange={handleInputChange}
+              />
+          </div>
+          <div className="flex m-8">
+              <label
+                  htmlFor="category"
+                  className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
+              >
+                  Categoría:
               </label>
               <select
-                className="bg-formBg rounded-r-lg w-72 h-8"
-                value={inputsForm.category}
-                onChange={handleInputChange}
-                name="category"
-                disabled="true"
-              >
-                <option value="">Seleccione una categoría</option>
-                {categories.map((category, index) => (
-                  <option key={index} value={category}>
-                    {category}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="flex m-8">
-              <label
-                htmlFor="patent"
-                className="bg-quaternary rounded-l-xl w-40 h-8 flex items-center justify-center"
-              >
-                Marca:
-              </label>
-              <input
-                className="bg-formBg rounded-r-lg w-72 h-8"
-                type="text"
-                name="patent"
-                value={inputsForm.patent}
-                onChange={handleInputChange}
-                disabled="true"
-              />
-            </div>
-
-            <div className="flex m-8">
-              <label
-                htmlFor="image"
-                className="bg-quaternary rounded-l-xl w-40 h-8 flex items-center justify-center cursor-pointer"
-              >
-                Selecciona tu img:
-                <input
-                  className="opacity-0 absolute"
-                  type="file"
-                  name="image"
-                  accept="image/*"
-                  // value={inputsForm?.image?.name}
+                  className="bg-formBg rounded-r-lg w-72 h-8"
+                  value={inputsForm.category}
                   onChange={handleInputChange}
-                  disabled="true"
-                />
-              </label>
-              <span className="bg-formBg rounded-r-lg w-72 h-8 flex items-center px-3">
-                {inputsForm.image && `Imagen seleccionada: ${inputsForm.image}`}
-              </span>
-            </div>
-
-            <div className="flex m-8 mb-0">
+                  name="category"
+              >
+                  <option style={{ textAlign: 'center' }} value="">
+                      Selecciona una categoria
+                  </option>
+                  {categories.map((category, index) => (
+                      <option key={index} name='category' value={category}>
+                          {category}
+                      </option>
+                  ))}
+              </select>
+          </div>
+          <div className="flex m-8">
               <label
-                htmlFor="stock"
-                className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
+                  htmlFor="category"
+                  className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
               >
-                Stock:
-              </label>
-              <input
-                className="bg-formBg rounded-r-lg w-72 h-8"
-                type="text"
-                name="stock"
-                value={inputsForm.stock}
-                onChange={handleInputChange}
-                disabled="true"
-              />
-            </div>
-            <div className="flex mt-0 pt-0 pl-8 justify-around">
-              {errors.stock && (
-                <p className="text-warning text-xs font-extrabold py-0 m-0">
-                  {errors.stock}
-                </p>
-              )}
-            </div>
-            <div className={`flex m-8 mb-0 ${errors.stock ? 'mt-4' : 'mt-8'}`}>
-              <label
-                htmlFor="color"
-                className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
-              >
-                Color:
-              </label>
-              <input
-                className="bg-formBg rounded-r-lg w-72 h-8"
-                type="text"
-                name="color"
-                value={inputsForm.color}
-                disabled="true"
-              />
-            </div>
-            <div className="flex mt-0 pt-0 pl-8 justify-around">
-              {errors.color && (
-                <p className="text-warning text-xs font-extrabold py-0 m-0">
-                  {errors.color}
-                </p>
-              )}
-            </div>
-            <div
-              className={`m-10 flex justify-center ${
-                errors.color ? 'mt-4' : 'mt-8'
-              }`}
-            >
-              <button
-                className="rounded-xl w-4/5 h-12 hover:translate-y-1.5 bg-primary text-tertiary border border-solid border-black m-5 font-bold flex items-center justify-center"
-                type="submit"
-                disabled="true"
-              >
-                <h2
-                  className="text-primary uppercase font-bold flex items-center justify-center"
-                  style={{ color: 'white', fontWeight: 'bold' }}
-                >
-                  Actualizar producto
-                </h2>
-              </button>
-            </div>
-          </form>
-        </div>
-      )
-    } else {
-      return (
-        <div>
-          <h2 className="text-primary uppercase font-bold  flex items-center justify-center">
-            Actualizar producto
-          </h2>
-          <form
-            className="justify-start"
-            onSubmit={handleSubmit}
-            encType="multipart/form-data"
-          >
-            <div className=" flex m-8 mb-0">
-              <label
-                htmlFor="name"
-                className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
-              >
-                Nombre:
-              </label>
-              <input
-                className="bg-formBg rounded-r-lg w-72 h-8"
-                type="text"
-                name="name"
-                value={inputsForm.name}
-                onChange={handleInputChange}
-              />
-            </div>
-            <div className="flex my-0 pt-0 pl-8 justify-around">
-              <p
-                className={`text-warning text-xs font-extrabold py-0 m-0 ${
-                  errors.name ? 'block' : 'hidden'
-                }`}
-              >
-                {errors.name}
-              </p>
-            </div>
-            <div className={`flex m-8 mb-0 ${errors.name ? 'mt-4' : 'mt-8'}`}>
-              <label
-                htmlFor="price"
-                className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
-              >
-                Precio:
-              </label>
-              <input
-                className="bg-formBg rounded-r-lg w-72 h-8"
-                type="number"
-                name="price"
-                value={inputsForm.price}
-                onChange={handleInputChange}
-              />
-            </div>
-            <div className="flex my-0 pt-0 pl-8 justify-around">
-              {errors.price && (
-                <p className="text-warning text-xs font-extrabold py-0 m-0">
-                  {errors.price}
-                </p>
-              )}
-            </div>
-
-            <div className={`flex m-8 mb-0 ${errors.price ? 'mt-4' : 'mt-8'}`}>
-              <label
-                htmlFor="category"
-                className="bg-quaternary rounded-l-xl w-40 h-8 flex items-center justify-center"
-              >
-                Categoría:
+                  Proveedor:
               </label>
               <select
-                className="bg-formBg rounded-r-lg w-72 h-8"
-                value={inputsForm.category}
-                onChange={handleInputChange}
-                name="category"
-              >
-                <option value="">Seleccione una categoría</option>
-                {categories.map((category, index) => (
-                  <option key={index} value={category}>
-                    {category}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="flex m-8">
-              <label
-                htmlFor="patent"
-                className="bg-quaternary rounded-l-xl w-40 h-8 flex items-center justify-center"
-              >
-                Marca:
-              </label>
-              <input
-                className="bg-formBg rounded-r-lg w-72 h-8"
-                type="text"
-                name="patent"
-                value={inputsForm.patent}
-                onChange={handleInputChange}
-              />
-            </div>
-
-            <div className="flex m-8">
-              <label
-                htmlFor="image"
-                className="bg-quaternary rounded-l-xl w-40 h-8 flex items-center justify-center cursor-pointer"
-              >
-                Selecciona tu img:
-                <input
-                  className="opacity-0 absolute"
-                  type="file"
-                  name="image"
-                  accept="image/*"
-                  // value={inputsForm?.image?.name}
+                  className="bg-formBg rounded-r-lg w-72 h-8"
+                  value={inputsForm.patent}
                   onChange={handleInputChange}
-                />
+                  name="patent"
+              >
+                  <option style={{ textAlign: 'center' }} value="">
+                      Selecciona una marca
+                  </option>
+                  {providers.map((provider, index) => (
+                      <option key={index} name='patent' value={provider.name}>
+                          {provider.name}
+                      </option>
+                  ))}
+              </select>
+          </div>
+          <div className="flex m-8">
+              <label
+                  htmlFor="file"
+                  className="bg-quaternary rounded-l-xl w-40 h-8 flex items-center justify-center cursor-pointer"
+              >
+                  Selecciona tu img:
+                  <input
+                      className="opacity-0 absolute"
+                      type="file"
+                      name="image"
+                      accept="image/*"
+                      // value={inputsForm.image}
+                      onChange={handleInputChange}
+                  />
               </label>
               <span className="bg-formBg rounded-r-lg w-72 h-8 flex items-center px-3">
-                {inputsForm.image && `Imagen seleccionada: ${inputsForm.image}`}
+                  {inputsForm.image && `Imagen seleccionada: ${inputsForm.image}`}
               </span>
-            </div>
-
-            <div className="flex m-8 mb-0">
+          </div>
+          <div className="flex m-8">
               <label
-                htmlFor="stock"
-                className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
+                  htmlFor="package"
+                  className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
               >
-                Stock:
+                  Package:
               </label>
               <input
-                className="bg-formBg rounded-r-lg w-72 h-8"
-                type="text"
-                name="stock"
-                value={inputsForm.stock}
-                onChange={handleInputChange}
+                  className="bg-formBg rounded-r-lg w-72 h-8"
+                  type="text"
+                  name="package"
+                  value={inputsForm.package}
+                  onChange={handleInputChange}
               />
-            </div>
-            <div className="flex mt-0 pt-0 pl-8 justify-around">
-              {errors.stock && (
-                <p className="text-warning text-xs font-extrabold py-0 m-0">
-                  {errors.stock}
-                </p>
-              )}
-            </div>
-            <div className={`flex m-8 mb-0 ${errors.stock ? 'mt-4' : 'mt-8'}`}>
+          </div>
+          <div className="flex m-8 mb-0">
               <label
-                htmlFor="color"
-                className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
+                  htmlFor="stock"
+                  className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
               >
-                Color:
+                  Stock:
               </label>
               <input
-                className="bg-formBg rounded-r-lg w-72 h-8"
-                type="text"
-                name="color"
-                value={inputsForm.color}
-                onChange={handleInputChange}
+                  className="bg-formBg rounded-r-lg w-72 h-8"
+                  type="text"
+                  name="stock"
+                  value={inputsForm.stock}
+                  onChange={handleInputChange}
               />
-            </div>
-            <div className="flex mt-0 pt-0 pl-8 justify-around">
-              {errors.color && (
-                <p className="text-warning text-xs font-extrabold py-0 m-0">
-                  {errors.color}
-                </p>
-              )}
-            </div>
-            <div
-              className={`m-10 flex justify-center ${
-                errors.color ? 'mt-4' : 'mt-8'
-              }`}
+          </div>
+          <div className="flex mt-0 pt-0 pl-8 justify-around">
+              {errors.stock && <p className="text-warning text-xs font-extrabold py-0 m-0">{errors.stock}</p>}
+          </div>
+          <div className={`flex m-8 mb-0 ${errors.stock ? 'mt-4' : 'mt-8'}`}>
+              <label
+                  htmlFor="color"
+                  className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
+              >
+                  Color:
+              </label>
+              <input
+                  className="bg-formBg rounded-r-lg w-72 h-8"
+                  type="text"
+                  name="color"
+                  value={inputsForm.color}
+                  onChange={handleInputChange}
+              />
+          </div>
+          <div className="flex mt-0 pt-0 pl-8 justify-around">
+              {errors.color && <p className="text-warning text-xs font-extrabold py-0 m-0">{errors.color}</p>}
+          </div>
+          <div className="flex mt-8 ml-8">
+            <label
+              htmlFor="description"
+              className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
             >
+              Descripción:
+            </label>
+            <textarea
+              className="bg-formBg rounded-r-lg w-72 h-40 resize-none"
+              name="description"
+              value={inputsForm.description}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className="flex my-0 pt-0 pl-8 justify-around">
+            {errors.description && (
+              <p className="text-warning text-xs font-extrabold py-0 m-0">{errors.description}</p>
+            )}
+          </div>
+          <div className={`flex justify-center ${errors.description ? 'mt-4' : 'mt-8'}`}>
               <button
-                className="rounded-xl w-4/5 h-12 hover:translate-y-1.5 bg-primary text-tertiary border border-solid border-black m-5 font-bold flex items-center justify-center"
-                type="submit"
+                  className="rounded-xl w-4/5 h-12 hover:translate-y-1.5 bg-primary text-tertiary border border-solid border-black m-5 font-bold flex items-center justify-center"
+                  type="submit"
               >
-                <h2
-                  className="text-primary uppercase font-bold flex items-center justify-center"
-                  style={{ color: 'white', fontWeight: 'bold' }}
-                >
-                  Actualizar producto
-                </h2>
+                  <h2
+                      className="text-primary uppercase font-bold flex items-center justify-center"
+                      style={{ color: 'white', fontWeight: 'bold' }}
+                  >
+                      ACTUALIZAR PRODUCTO
+                  </h2>
               </button>
-            </div>
-          </form>
-        </div>
-      )
-    }
+
+          </div>
+      </form>
+  </div>
+    )
   }
 }
 export default UpdateForm
