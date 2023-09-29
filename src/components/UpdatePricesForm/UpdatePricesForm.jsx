@@ -2,9 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getProviders } from '../../redux/actions/Providers/getProviders'
 import { formatAndPut } from './formatAndPut'
-// import validations from './validations'
 // import { useNavigate } from 'react-router-dom'
-// import Swal from 'sweetalert2'
 
 const UpdatePricesForm = () => {
   const dispatch = useDispatch()
@@ -19,7 +17,7 @@ const UpdatePricesForm = () => {
     dispatch(getProviders())
   }, [dispatch])
 
-  // Manejar estado local
+  // MANEJAR ESTADO LOCAL
   const handleInputChange = (event) => {
     const property = event.target.name
     const value = event.target.value
@@ -33,18 +31,26 @@ const UpdatePricesForm = () => {
       setInputsForm({ ...inputsForm, [property]: value })
     }
   }
-
+  // ENVIAR FORMULARIO
   const handleSubmit = async (event) => {
     event.preventDefault()
-    await formatAndPut(inputsForm)
+    if (inputsForm.provider !== '' && inputsForm.excelFile !== '') {
+      await formatAndPut(inputsForm)
+    }
+    // LIPIAR DATOS LUEGO DEL SUBMIT PARA ENVITAR ERRORES
+    setInputsForm({
+      provider: '',
+      excelFile: ''
+    })
+    document.getElementById('excelFile').value = ''
   }
   return (
-    <div className="p-4 ">
-      <h2 className="text-2xl font-semibold mb-4">Actualizar Precios</h2>
+    <div className=" flex-column ">
+      <h1 className="text-3xl text-primary mt-10 uppercase font-bold flex items-center justify-center">Actualizar Precios</h1>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
-        <div className="mb-4">
-          <label htmlFor="provider" className="block text-gray-700 text-sm font-bold mb-2">
-            Selecciona un Proveedor
+        <div className="flex items-center justify-center m-8">
+          <label htmlFor="provider" className="bg-quaternary rounded-l-xl w-40 h-8 w-36 flex items-center justify-center">
+            Proveedor
           </label>
           <select
                   className="bg-formBg rounded-r-lg w-72 h-8"
@@ -53,7 +59,7 @@ const UpdatePricesForm = () => {
                   name="provider"
               >
                   <option style={{ textAlign: 'center' }} value="">
-                      Selecciona una marca
+                      Selecciona un proveedor
                   </option>
                   {providers.map((provider, index) => (
                       <option key={index} name='patent' value={provider.name}>
@@ -62,26 +68,36 @@ const UpdatePricesForm = () => {
                   ))}
               </select>
         </div>
-        <div className="mb-4">
-          <label htmlFor="excelFile" className="block text-gray-700 text-sm font-bold mb-2">
+        <div className="max-w-[450px] flex items-center justify-center m-8">
+          <span className="inline-block text-red-500 text-lg mt-2 justify-center">
+            * Para actualizar masivamente los productos debes cargar un excel donde una columna `codigo` tenga los códigos y otra `precio` tenga los precios respectivamente
+          </span>
+        </div>
+        <div className="flex items-center justify-center p-2 m-8">
+          {/* <label htmlFor="excelFile" className="bg-quaternary rounded-l-xl w-40 h-auto flex items-center justify-center cursor-pointer text-center">
             Cargar Lista de Precios (Excel)
-          </label>
+          </label> */}
           <input
             type="file"
             accept=".xlsx, .xls"
-            className="w-full"
+            className="ml-8"
             id="excelFile"
             name="excelFile"
             onChange={handleInputChange}
           />
         </div>
-        <div className="text-center">
-          <button
-            type="submit"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          >
-            Enviar
-          </button>
+        <div className="flex items-center justify-center text-center">
+        <button
+                  className="rounded-xl w-auto p-4 h-12 hover:translate-y-1.5 bg-primary text-tertiary border border-solid border-black m-5 font-bold flex items-center justify-center"
+                  type="submit"
+              >
+                  <h2
+                      className="text-primary uppercase font-bold flex items-center justify-center"
+                      style={{ color: 'white', fontWeight: 'bold' }}
+                  >
+                      ACTUALIZAR
+                  </h2>
+              </button>
         </div>
       </form>
     </div>

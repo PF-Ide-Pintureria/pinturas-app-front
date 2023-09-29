@@ -47,7 +47,7 @@ import { theme } from '../src/assets/theme'
 import { SiChatbot } from 'react-icons/si'
 import person from '../src/img/user.jpg'
 import { addCart } from './redux/actions/Cart/addCart'
-import UpdatePricesForm from './components/UpdatePricesForm/UpdatePricesForm'
+import UpdatePrices from './views/UpdatePrices/UpdatePrices'
 
 function App () {
   const dispatch = useDispatch()
@@ -115,7 +115,7 @@ function App () {
               <Route path="/admin/blog" element={<AdminBlog />} />
               <Route path="/admin/create" element={<CreateProduct />} />
               <Route path="/admin/edit/:idUser" element={<UpdateUserForm />} />
-              <Route path="/admin/products/update/prices" element={<UpdatePricesForm/>}/>
+              <Route path="/admin/products/update/prices" element={<UpdatePrices/>}/>
 
               <Route path="/cart" element={<Cart />} />
               <Route path="/cart/buying" element={<Purchases />} />

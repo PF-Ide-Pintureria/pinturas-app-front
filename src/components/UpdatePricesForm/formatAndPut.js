@@ -22,7 +22,7 @@ export const formatAndPut = async (inputsForm) => {
     Swal.fire({
       icon: 'error',
       title: 'Oops...',
-      text: `${error.response.data}`
+      text: `${error.response.data.error ? error.response.data.error : error.response.data}`
     })
     console.error(error)
   };
