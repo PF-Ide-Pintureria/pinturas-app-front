@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getProviders } from '../../redux/actions/Providers/getProviders'
 import { formatAndPut } from './formatAndPut'
-// import { useNavigate } from 'react-router-dom'
 
 const UpdatePricesForm = () => {
   const dispatch = useDispatch()
   const providers = useSelector(state => state.providers)
 
+  const [isLoading, setIsLoading] = useState(false)
   const [inputsForm, setInputsForm] = useState({
     provider: '',
     excelFile: ''
@@ -31,12 +31,16 @@ const UpdatePricesForm = () => {
       setInputsForm({ ...inputsForm, [property]: value })
     }
   }
+
   // ENVIAR FORMULARIO
   const handleSubmit = async (event) => {
     event.preventDefault()
+    setIsLoading(true)
+
     if (inputsForm.provider !== '' && inputsForm.excelFile !== '') {
       await formatAndPut(inputsForm)
     }
+    setIsLoading(false)
     // LIPIAR DATOS LUEGO DEL SUBMIT PARA ENVITAR ERRORES
     setInputsForm({
       provider: '',
@@ -44,6 +48,7 @@ const UpdatePricesForm = () => {
     })
     document.getElementById('excelFile').value = ''
   }
+
   return (
     <div className=" flex-column ">
       <h1 className="text-3xl text-primary mt-10 uppercase font-bold flex items-center justify-center">Actualizar Precios</h1>
@@ -69,14 +74,20 @@ const UpdatePricesForm = () => {
               </select>
         </div>
         <div className="max-w-[450px] flex items-center justify-center m-8">
-          <span className="inline-block text-red-500 text-lg mt-2 justify-center">
-            * Para actualizar masivamente los productos debes cargar un excel donde una columna `codigo` tenga los códigos y otra `precio` tenga los precios respectivamente
-          </span>
+        {isLoading
+          ? (
+                <img
+                  src="https://i.pinimg.com/originals/6b/e0/89/6be0890f52e31d35d840d4fe2e10385b.gif"
+                  alt="loading"
+                  className="w-44 h-44"
+                />
+            )
+          : (<span className="inline-block text-red-500 text-lg m-8 justify-center">
+                * Para actualizar masivamente los productos debes cargar un excel donde una columna `codigo` tenga los códigos y otra `precio` tenga los precios respectivamente
+              </span>)}
+
         </div>
-        <div className="flex items-center justify-center p-2 m-8">
-          {/* <label htmlFor="excelFile" className="bg-quaternary rounded-l-xl w-40 h-auto flex items-center justify-center cursor-pointer text-center">
-            Cargar Lista de Precios (Excel)
-          </label> */}
+        <div className="flex items-center justify-center p-2 m-2">
           <input
             type="file"
             accept=".xlsx, .xls"
