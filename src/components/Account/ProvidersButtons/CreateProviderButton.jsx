@@ -1,10 +1,10 @@
 import React from 'react'
-// import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const CreateProviderButton = () => {
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
   const handleClick = () => {
-    // navigate('/provider/create')
+    navigate('/admin/providers/create')
   }
   return (
         <div className="flex justify-end pr-4 mb-4">

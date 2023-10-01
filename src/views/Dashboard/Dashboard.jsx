@@ -15,10 +15,10 @@ const Dashboard = () => {
   const [, setDashboard] = useState(false)
   const [, setOrders] = useState(false)
   const [products, setProducts] = useState(false)
-  const [users, setUsers] = useState(true)
+  const [users, setUsers] = useState(false)
   const [sales, setSales] = useState(false)
   const [blog, setBlog] = useState(false)
-  const [providers, setProviders] = useState(false)
+  const [providers, setProviders] = useState(true)
 
   const backToAccountAction = () => {
     navigate('/account')
