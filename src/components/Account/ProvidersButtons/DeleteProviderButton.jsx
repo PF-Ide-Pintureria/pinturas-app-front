@@ -1,13 +1,13 @@
 import React from 'react'
-import deletePost from '../../../redux/actions/Blog/deletePost'
+import { deleteProvider } from '../../../redux/actions/Providers/deleteProvider'
 import { useDispatch } from 'react-redux'
 
-const DeleteBlogButton = ({ idBlog }) => {
+const DeleteProviderButton = ({ providerId }) => {
   const dispatch = useDispatch()
 
   const handleClick = (event) => {
     event.preventDefault()
-    deletePost(idBlog)(dispatch)
+    deleteProvider(providerId)(dispatch)
   }
   return (
         <div className="justify-end">
@@ -16,4 +16,4 @@ const DeleteBlogButton = ({ idBlog }) => {
   )
 }
 
-export default DeleteBlogButton
+export default DeleteProviderButton

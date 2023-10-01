@@ -52,8 +52,9 @@ const ProvidersDash = () => {
       field: 'delete',
       headerName: 'Eliminar',
       width: 150,
+      // SOLO MUESTRO EL BOTON ELIMINAR SI EL PROVEEDOR ESTA ACTIVO
       renderCell: (params) => (
-        <DeleteProviderButton providerId={params.row.id} />
+        params.row.status === 'Activo' ? <DeleteProviderButton providerId={params.row.id} /> : <></>
       )
     }
 
