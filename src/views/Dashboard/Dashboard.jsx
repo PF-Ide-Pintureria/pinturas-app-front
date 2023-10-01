@@ -6,6 +6,7 @@ import UsersDash from '../../components/Account/UserDash'
 import SalesDash from '../../components/Account/SalesDash'
 import ProductsDash from '../../components/Account/ProductsDash'
 import BlogDash from '../../components/Account/BlogDash'
+import ProvidersDash from '../../components/Account/ProvidersDash'
 
 const Dashboard = () => {
   const user = useSelector(state => state.user)
@@ -14,9 +15,10 @@ const Dashboard = () => {
   const [, setDashboard] = useState(false)
   const [, setOrders] = useState(false)
   const [products, setProducts] = useState(false)
-  const [users, setUsers] = useState(true)
+  const [users, setUsers] = useState(false)
   const [sales, setSales] = useState(false)
   const [blog, setBlog] = useState(false)
+  const [providers, setProviders] = useState(true)
 
   const backToAccountAction = () => {
     navigate('/account')
@@ -68,6 +70,16 @@ const Dashboard = () => {
       setBlog(true)
       setActiveButton(buttonName)
     }
+    if (buttonName === 'providers') {
+      setDashboard(false)
+      setOrders(false)
+      setProducts(false)
+      setUsers(false)
+      setSales(false)
+      setBlog(false)
+      setProviders(true)
+      setActiveButton(buttonName)
+    }
   }
 
   if (user.rol !== 'admin') {
@@ -90,12 +102,12 @@ const Dashboard = () => {
                                 {users && <UsersDash />}
                                 {sales && <SalesDash />}
                                 {blog && <BlogDash />}
+                                {providers && <ProvidersDash />}
 
                                 {/* <Dashboard isAuthenticated={isAuthenticated} /> */}
                                 <footer style={{ textAlign: 'center', padding: '10px' }}></footer>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
