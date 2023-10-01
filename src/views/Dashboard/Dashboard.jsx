@@ -15,70 +15,47 @@ const Dashboard = () => {
   const [, setDashboard] = useState(false)
   const [, setOrders] = useState(false)
   const [products, setProducts] = useState(false)
-  const [users, setUsers] = useState(false)
+  const [users, setUsers] = useState(true)
   const [sales, setSales] = useState(false)
   const [blog, setBlog] = useState(false)
-  const [providers, setProviders] = useState(true)
+  const [providers, setProviders] = useState(false)
 
   const backToAccountAction = () => {
     navigate('/account')
   }
 
   const handleButtonClick = (buttonName) => {
-    if (buttonName === 'products') {
-      setDashboard(false)
-      setOrders(false)
-      setProducts(true)
-      setUsers(false)
-      setSales(false)
-      setBlog(false)
-      setActiveButton(buttonName)
-    }
-    if (buttonName === 'orders') {
-      setDashboard(false)
-      setOrders(true)
-      setProducts(false)
-      setUsers(false)
-      setSales(false)
-      setBlog(false)
-      setActiveButton(buttonName)
-    }
-    if (buttonName === 'users') {
-      setDashboard(false)
-      setOrders(false)
-      setProducts(false)
-      setUsers(true)
-      setSales(false)
-      setBlog(false)
-      setActiveButton(buttonName)
-    }
-    if (buttonName === 'sales') {
-      setDashboard(false)
-      setOrders(false)
-      setProducts(false)
-      setUsers(false)
-      setSales(true)
-      setBlog(false)
-      setActiveButton(buttonName)
-    }
-    if (buttonName === 'blog') {
-      setDashboard(false)
-      setOrders(false)
-      setProducts(false)
-      setUsers(false)
-      setSales(false)
-      setBlog(true)
-      setActiveButton(buttonName)
-    }
-    if (buttonName === 'providers') {
-      setDashboard(false)
-      setOrders(false)
-      setProducts(false)
-      setUsers(false)
-      setSales(false)
-      setBlog(false)
-      setProviders(true)
-      setActiveButton(buttonName)
+    setDashboard(false)
+    setOrders(false)
+    setProducts(false)
+    setUsers(false)
+    setSales(false)
+    setBlog(false)
+    setProviders(false)
+    setActiveButton(buttonName)
+
+    switch (buttonName) {
+      case 'products':
+        setProducts(true)
+        break
+      case 'orders':
+        setOrders(true)
+        break
+      case 'users':
+        setUsers(true)
+        break
+      case 'sales':
+        setSales(true)
+        break
+      case 'blog':
+        setBlog(true)
+        break
+      case 'providers':
+        setProviders(true)
+        break
+      default:
+        // Cualquier otro caso que quieras manejar
+        break
     }
   }
 
