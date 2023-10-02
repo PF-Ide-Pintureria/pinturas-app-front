@@ -1,13 +1,11 @@
 import React from 'react'
-import { deleteProvider } from '../../../redux/actions/Providers/deleteProvider'
-import { useDispatch } from 'react-redux'
+import { BASE_URL } from '../../../redux/action-type'
+import axios from 'axios'
 
 const DeleteProviderButton = ({ providerId }) => {
-  const dispatch = useDispatch()
-
-  const handleClick = (event) => {
+  const handleClick = async (event) => {
     event.preventDefault()
-    deleteProvider(providerId)(dispatch)
+    await axios.delete(`${BASE_URL}providers/${providerId}`)
   }
   return (
         <div className="justify-start">

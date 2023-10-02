@@ -79,6 +79,6 @@ export const URL_SAVE_REVIEW = 'https://pinturas-app-back.onrender.com/'
 
 // PROVIDERS
 export const GET_PROVIDERS = 'GET_PROVIDERS'
+export const GET_PROVIDERS_ACTIVE = 'GET_PROVIDERS_ACTIVE'
 export const GET_PROVIDER_BY_ID = 'GET_PROVIDER_BY_ID'
-export const DELETE_PROVIDER = 'DELETE_PROVIDER'
 export const CLEAN_PROVIDER = 'CLEAN_PROVIDER'

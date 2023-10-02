@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { getProviders } from '../../redux/actions/Providers/getProviders'
+import { getProvidersActive } from '../../redux/actions/Providers/getProvidersActive'
 import { formatAndPut } from './formatAndPut'
 
 const UpdatePricesForm = () => {
@@ -14,7 +14,7 @@ const UpdatePricesForm = () => {
   })
 
   useEffect(() => {
-    dispatch(getProviders())
+    dispatch(getProvidersActive())
   }, [dispatch])
 
   // MANEJAR ESTADO LOCAL

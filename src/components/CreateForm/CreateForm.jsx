@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { allCategories } from '../../redux/actions/Categories/allCategories'
 import validations from './validations'
 import { formatAndPost } from './formatAndPost'
-import { getProviders } from '../../redux/actions/Providers/getProviders'
+import { getProvidersActive } from '../../redux/actions/Providers/getProvidersActive'
 import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 
@@ -17,7 +17,7 @@ const CreateForm = () => {
 
   useEffect(() => {
     dispatch(allCategories())
-    dispatch(getProviders())
+    dispatch(getProvidersActive())
   }, [dispatch])
 
   const [inputsForm, setInputsForm] = useState({
