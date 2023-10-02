@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { formatAndPut } from './formatAndPut'
 import { validation } from './validation'
 import { getProviderById } from '../../redux/actions/Providers/getProviderById'
+import { cleanProvider } from '../../redux/actions/Providers/cleanProvider'
 
 const ProviderEditForm = () => {
   const dispatch = useDispatch()
@@ -50,8 +51,9 @@ const ProviderEditForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    if (Object.keys(errors).length === 0) {
+    if ((Object.keys(errors).length === 0) || (errors.empty === '')) {
       await formatAndPut(inputsForm, id)
+      dispatch(cleanProvider())
       navigate('/admin')
     }
   }
@@ -68,7 +70,7 @@ const ProviderEditForm = () => {
                   <div className=" flex m-8 pl-2 mb-0">
                       <label className="bg-quaternary rounded-l-xl w-32 h-8 pl-2  flex items-center justify-center">Nombre</label>
                       <input
-                          className="bg-formBg rounded-r-lg w-64 h-8 pl-2"
+                          className="bg-formBg rounded-r-lg w-64 h-8 pl-2 text-center"
                           maxLength="25"
                           type='text'
                           name='name'
@@ -115,9 +117,9 @@ const ProviderEditForm = () => {
                       Estado
                     </label>
                     <select
-                      className="bg-formBg rounded-r-lg w-44 h-8 pl-2"
-                      // value={isActive ? "true" : "false"}
-                      // onChange={(e) => setIsActive(e.target.value === "true")}
+                      className="bg-formBg rounded-r-lg w-44 h-8 pl-2 text-center"
+                      value={inputsForm.active.toString()}
+                      onChange={(event) => setInputsForm({ ...inputsForm, active: event.target.value === 'true' })}
                     >
                       <option value="true">Activo</option>
                       <option value="false">No Activo</option>

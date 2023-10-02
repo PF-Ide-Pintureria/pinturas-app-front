@@ -74,7 +74,8 @@ import {
   // PROVIDERS
   GET_PROVIDERS,
   DELETE_PROVIDER,
-  GET_PROVIDER_BY_ID
+  GET_PROVIDER_BY_ID,
+  CLEAN_PROVIDER
 
 } from '../action-type'
 
@@ -286,6 +287,8 @@ const reducer = (state = initialState, { type, payload }) => {
     case DELETE_PROVIDER:
       return { ...state, provider: payload }
     case GET_PROVIDER_BY_ID:
+      return { ...state, provider: payload }
+    case CLEAN_PROVIDER:
       return { ...state, provider: payload }
 
     default:

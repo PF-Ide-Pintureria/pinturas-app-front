@@ -45,7 +45,7 @@ const CreateProviderForm = () => {
             <div className="flex justify-center">
                 <form className="blog-dash flex flex-col border  rounded-xl mt-2 mb-2" onSubmit={handleSubmit}
                     encType="multipart/form-data">
-                    <h1 className="flex justify-center font-extrabold text-3xl text-primary py-8 pl-2">Crear un nuevo Proveedor</h1>
+                    <h1 className="flex justify-center font-extrabold text-3xl text-primary py-8 pl-2">Crear nuevo Proveedor</h1>
                     <div className=" flex m-8 pl-2 mb-0">
                         <label className="bg-quaternary rounded-l-xl w-32 h-8 pl-2  flex items-center justify-center">Nombre</label>
                         <input

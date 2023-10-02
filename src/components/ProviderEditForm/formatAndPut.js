@@ -21,6 +21,6 @@ export const formatAndPut = async (inputsForm, id) => {
       text: 'Algo falló!',
       confirmButtonText: 'Ok'
     })
-    console.log(error.data)
+    console.log(error)
   }
 }
