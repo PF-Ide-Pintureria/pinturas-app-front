@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { allCategories } from '../../redux/actions/Categories/allCategories'
 import { productById } from '../../redux/actions/Products/productById'
-import { getProviders } from '../../redux/actions/Providers/getProviders'
+import { getProvidersActive } from '../../redux/actions/Providers/getProvidersActive'
 import validations from './validations'
 import { useNavigate, useParams } from 'react-router-dom'
 import { formatAndEdit } from './formatAndEdit'
@@ -20,7 +20,7 @@ const UpdateForm = () => {
 
   useEffect(() => {
     dispatch(allCategories())
-    dispatch(getProviders())
+    dispatch(getProvidersActive())
     dispatch(productById(idProduct))
   }, [dispatch])
 

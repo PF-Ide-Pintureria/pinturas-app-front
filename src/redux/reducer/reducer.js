@@ -72,7 +72,10 @@ import {
   SAVE_REVIEW,
 
   // PROVIDERS
-  GET_PROVIDERS
+  GET_PROVIDERS,
+  GET_PROVIDERS_ACTIVE,
+  GET_PROVIDER_BY_ID,
+  CLEAN_PROVIDER
 
 } from '../action-type'
 
@@ -137,7 +140,9 @@ const initialState = {
   allFavorites: [],
 
   // PROVIDERS
-  providers: []
+  providers: [],
+  providersActive: [],
+  provider: {}
 }
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -280,6 +285,12 @@ const reducer = (state = initialState, { type, payload }) => {
     // PROVIDERS
     case GET_PROVIDERS:
       return { ...state, providers: payload }
+    case GET_PROVIDERS_ACTIVE:
+      return { ...state, providers: payload }
+    case GET_PROVIDER_BY_ID:
+      return { ...state, provider: payload }
+    case CLEAN_PROVIDER:
+      return { ...state, provider: payload }
 
     default:
       return { ...state }
