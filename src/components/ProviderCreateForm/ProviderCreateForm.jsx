@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { formatAndPost } from './formatAndPost'
+import { validation } from './validation'
 
 const CreateProvider = () => {
   const navigate = useNavigate()
@@ -13,17 +14,26 @@ const CreateProvider = () => {
     markup: ''
   })
 
+  const [errors, setErrors] = useState({
+    name: '',
+    discount: '',
+    markup: ''
+  })
+
   const handleChange = (event) => {
     const property = event.target.name
     const value = event.target.value
 
     setInputsForm({ ...inputsForm, [property]: value })
+    setErrors(validation({ ...inputsForm, [property]: value }))
   }
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    await formatAndPost(inputsForm)
-    navigate('/admin')
+    if (Object.keys(errors).length === 0) {
+      await formatAndPost(inputsForm)
+      navigate('/admin')
+    }
   }
 
   if (user.rol !== 'admin') {
@@ -39,6 +49,7 @@ const CreateProvider = () => {
                         <label className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center">Nombre</label>
                         <input
                             className="bg-formBg rounded-r-lg w-72 h-8"
+                            maxLength="30"
                             type='text'
                             name='name'
                             value={inputsForm.name}
@@ -48,6 +59,7 @@ const CreateProvider = () => {
                         <label className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center">Descuento</label>
                         <input
                             className="bg-formBg rounded-r-lg w-72 h-8"
+                            maxLength="5"
                             type='text'
                             name='discount'
                             value={inputsForm.discount}
@@ -57,6 +69,7 @@ const CreateProvider = () => {
                         <label className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center">Ganancia</label>
                         <input
                             className="bg-formBg rounded-r-lg w-72 h-8"
+                            maxLength="5"
                             type='text'
                             name='markup'
                             value={inputsForm.markup}
@@ -65,6 +78,7 @@ const CreateProvider = () => {
                     <button
                         className="rounded-xl w-4/5 h-12 hover:translate-y-1.5 bg-primary text-tertiary border border-solid border-black m-5 font-bold flex items-center justify-center"
                         type="submit"
+                        disabled={inputsForm.name === '' || inputsForm.discount === '' || inputsForm.markup === ''}
                     >
                         <h2
                             className="text-primary uppercase font-bold flex items-center justify-center"
