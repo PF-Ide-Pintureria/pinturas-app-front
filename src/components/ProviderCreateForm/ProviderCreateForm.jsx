@@ -64,7 +64,7 @@ const CreateProvider = () => {
                     <div className=" flex m-8 pl-2 mb-0">
                         <label className="bg-quaternary rounded-l-xl w-32 h-8 pl-2  flex items-center justify-center">Descuento</label>
                         <input
-                            className="bg-formBg rounded-r-lg w-44 h-8 pl-2"
+                            className="bg-formBg rounded-r-lg w-44 h-8 pl-2 text-center"
                             maxLength="5"
                             type='text'
                             name='discount'
@@ -79,7 +79,7 @@ const CreateProvider = () => {
                     <div className=" flex m-8 pl-2 mb-0">
                         <label className="bg-quaternary rounded-l-xl w-32 h-8 pl-2  flex items-center justify-center">Ganancia</label>
                         <input
-                            className="bg-formBg rounded-r-lg w-44 h-8 pl-2"
+                            className="bg-formBg rounded-r-lg w-44 h-8 pl-2 text-center"
                             maxLength="5"
                             type='text'
                             name='markup'
