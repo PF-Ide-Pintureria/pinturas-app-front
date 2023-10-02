@@ -5,7 +5,7 @@ const EditProviderButton = ({ providerId }) => {
   const navigate = useNavigate()
 
   const handleClick = () => {
-    navigate(`/blog/edit/${providerId}`)
+    navigate(`/admin/providers/edit/${providerId}`)
   }
 
   return (

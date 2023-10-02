@@ -49,6 +49,7 @@ import person from '../src/img/user.jpg'
 import { addCart } from './redux/actions/Cart/addCart'
 import UpdatePrices from './views/UpdatePrices/UpdatePrices'
 import CreateProvider from './views/Providers/CreateProvider'
+import EditProvider from './views/Providers/EditProvider'
 // import AdminProviders from './views/Admin/AdminProviders/AdminProviders'
 
 function App () {
@@ -121,6 +122,7 @@ function App () {
               <Route path="/admin/edit/:idUser" element={<UpdateUserForm />} />
               <Route path="/admin/products/update/prices" element={<UpdatePrices/>}/>
               <Route path="/admin/providers/create" element={<CreateProvider />} />
+              <Route path="/admin/providers/edit/:id" element={<EditProvider />} />
 
               <Route path="/cart" element={<Cart />} />
               <Route path="/cart/buying" element={<Purchases />} />

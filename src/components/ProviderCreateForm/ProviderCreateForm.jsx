@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { formatAndPost } from './formatAndPost'
 import { validation } from './validation'
 
-const CreateProvider = () => {
+const CreateProviderForm = () => {
   const navigate = useNavigate()
   const user = useSelector(state => state.user)
 
@@ -117,4 +117,4 @@ const CreateProvider = () => {
   }
 }
 
-export default CreateProvider
+export default CreateProviderForm
