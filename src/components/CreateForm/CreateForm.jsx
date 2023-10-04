@@ -90,9 +90,10 @@ const CreateForm = () => {
                   Nombre:
               </label>
               <input
-                  className="bg-formBg rounded-r-lg w-72 h-8"
+                  className="bg-formBg rounded-r-lg w-72 h-8 text-center"
                   type="text"
                   name="name"
+                  maxLength="50"
                   value={inputsForm.name}
                   onChange={handleInputChange}
               />
@@ -113,7 +114,8 @@ const CreateForm = () => {
                   Precio de lista:
               </label>
               <input
-                  className="bg-formBg rounded-r-lg w-72 h-8"
+                  className="bg-formBg rounded-r-lg w-72 h-8 text-center"
+                  maxLength="20"
                   type="number"
                   name="price"
                   value={inputsForm.price}
@@ -132,14 +134,18 @@ const CreateForm = () => {
                   Código:
               </label>
               <input
-                  className="bg-formBg rounded-r-lg w-72 h-8"
+                  className="bg-formBg rounded-r-lg w-72 h-8 text-center"
+                  maxLength="25"
                   type="text"
                   name="code"
                   value={inputsForm.code}
                   onChange={handleInputChange}
               />
           </div>
-          <div className="flex m-8">
+          <div className="flex my-0 pt-0 pl-8 justify-around">
+              {errors.code && <p className="text-warning text-xs font-extrabold py-0 m-0">{errors.code}</p>}
+          </div>
+          <div className={`flex m-8 mb-0 ${errors.code ? 'mt-4' : 'mt-8'}`}>
               <label
                   htmlFor="category"
                   className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
@@ -212,7 +218,8 @@ const CreateForm = () => {
                   Package:
               </label>
               <input
-                  className="bg-formBg rounded-r-lg w-72 h-8"
+                  className="bg-formBg rounded-r-lg w-72 h-8 text-center"
+                  maxLength="25"
                   type="text"
                   name="package"
                   value={inputsForm.package}
@@ -227,7 +234,8 @@ const CreateForm = () => {
                   Stock:
               </label>
               <input
-                  className="bg-formBg rounded-r-lg w-72 h-8"
+                  className="bg-formBg rounded-r-lg w-72 h-8 text-center"
+                  maxLength="10"
                   type="text"
                   name="stock"
                   value={inputsForm.stock}
@@ -245,7 +253,8 @@ const CreateForm = () => {
                   Color:
               </label>
               <input
-                  className="bg-formBg rounded-r-lg w-72 h-8"
+                  className="bg-formBg rounded-r-lg w-72 h-8 text-center"
+                  maxLength="25"
                   type="text"
                   name="color"
                   value={inputsForm.color}
@@ -263,7 +272,8 @@ const CreateForm = () => {
               Descripción:
             </label>
             <textarea
-              className="bg-formBg rounded-r-lg w-72 h-40 resize-none"
+              className="bg-formBg rounded-r-lg w-72 h-40 resize-none p-1"
+              maxLength="1000"
               name="description"
               value={inputsForm.description}
               onChange={handleInputChange}

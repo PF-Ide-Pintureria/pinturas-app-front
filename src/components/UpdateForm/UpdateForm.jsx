@@ -92,7 +92,7 @@ const UpdateForm = () => {
   } else {
     return (
       <div className="justify-start">
-      <h2 className="text-primary uppercase font-bold  flex items-center justify-center">
+      <h2 className="text-primary uppercase font-bold flex items-center justify-center">
           Actualizar Producto
       </h2>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
@@ -104,7 +104,8 @@ const UpdateForm = () => {
                   Nombre:
               </label>
               <input
-                  className="bg-formBg rounded-r-lg w-72 h-8"
+                  className="bg-formBg rounded-r-lg w-72 h-8 text-center"
+                  maxLength="50"
                   type="text"
                   name="name"
                   value={inputsForm.name}
@@ -127,7 +128,8 @@ const UpdateForm = () => {
                   Precio de lista:
               </label>
               <input
-                  className="bg-formBg rounded-r-lg w-72 h-8"
+                  className="bg-formBg rounded-r-lg w-72 h-8 text-center"
+                  maxLength="20"
                   type="number"
                   name="price"
                   value={inputsForm.price}
@@ -146,14 +148,23 @@ const UpdateForm = () => {
                   Código:
               </label>
               <input
-                  className="bg-formBg rounded-r-lg w-72 h-8"
+                  className="bg-formBg rounded-r-lg w-72 h-8 text-center"
+                  maxLength="25"
                   type="text"
                   name="code"
                   value={inputsForm.code}
                   onChange={handleInputChange}
               />
           </div>
-          <div className="flex m-8">
+          <div className="flex my-0 pt-0 pl-8 justify-around">
+              <p
+                  className={`text-warning text-xs font-extrabold py-0 m-0 ${errors.code ? 'block' : 'hidden'
+                      }`}
+              >
+                  {errors.code}
+              </p>
+          </div>
+          <div className={`flex m-8 mb-0 ${errors.code ? 'mt-4' : 'mt-8'}`}>
               <label
                   htmlFor="category"
                   className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
@@ -161,7 +172,7 @@ const UpdateForm = () => {
                   Categoría:
               </label>
               <select
-                  className="bg-formBg rounded-r-lg w-72 h-8"
+                  className="bg-formBg rounded-r-lg w-72 h-8 text-center"
                   value={inputsForm.category}
                   onChange={handleInputChange}
                   name="category"
@@ -184,7 +195,7 @@ const UpdateForm = () => {
                   Proveedor:
               </label>
               <select
-                  className="bg-formBg rounded-r-lg w-72 h-8"
+                  className="bg-formBg rounded-r-lg w-72 h-8 text-center"
                   value={inputsForm.patent}
                   onChange={handleInputChange}
                   name="patent"
@@ -215,7 +226,7 @@ const UpdateForm = () => {
                   />
               </label>
               <span className="bg-formBg rounded-r-lg w-72 h-8 flex items-center px-3">
-                  {inputsForm.image && `Imagen seleccionada: ${inputsForm.image}`}
+                  {inputsForm.image && 'Imagen ya seleccionada'}
               </span>
           </div>
           <div className="flex m-8">
@@ -226,7 +237,8 @@ const UpdateForm = () => {
                   Package:
               </label>
               <input
-                  className="bg-formBg rounded-r-lg w-72 h-8"
+                  className="bg-formBg rounded-r-lg w-72 h-8 text-center"
+                  maxLength="25"
                   type="text"
                   name="package"
                   value={inputsForm.package}
@@ -241,7 +253,8 @@ const UpdateForm = () => {
                   Stock:
               </label>
               <input
-                  className="bg-formBg rounded-r-lg w-72 h-8"
+                  className="bg-formBg rounded-r-lg w-72 h-8 text-center"
+                  maxLength="10"
                   type="text"
                   name="stock"
                   value={inputsForm.stock}
@@ -259,7 +272,8 @@ const UpdateForm = () => {
                   Color:
               </label>
               <input
-                  className="bg-formBg rounded-r-lg w-72 h-8"
+                  className="bg-formBg rounded-r-lg w-72 h-8 text-center"
+                  maxLength="25"
                   type="text"
                   name="color"
                   value={inputsForm.color}
@@ -277,7 +291,8 @@ const UpdateForm = () => {
               Descripción:
             </label>
             <textarea
-              className="bg-formBg rounded-r-lg w-72 h-40 resize-none"
+              className="bg-formBg rounded-r-lg w-72 h-40 resize-none p-2"
+              maxLength="1000"
               name="description"
               value={inputsForm.description}
               onChange={handleInputChange}
