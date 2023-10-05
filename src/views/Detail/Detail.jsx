@@ -11,6 +11,7 @@ import { useCart } from '../../hooks/useCart'
 import { setCart } from '../../redux/actions/Cart/setCart'
 import Swal from 'sweetalert2'
 import { postFavorites } from '../../redux/actions/Favorites/postFavorites'
+import { cleanProductDetail } from '../../redux/actions/Products/cleanProductDetail'
 
 const Detail = () => {
   const loggedUser = useSelector((state) => state.user)
@@ -179,6 +180,7 @@ const Detail = () => {
   useEffect(() => {
     dispatch(productById(idProduct))
     dispatch(bestSellers())
+    dispatch(cleanProductDetail())
   }, [dispatch, idProduct])
 
   return (
@@ -232,18 +234,23 @@ const Detail = () => {
               <div className="lg:flex lg:items-start">
                 <div className="lg:order-2 lg:ml-5">
                   <div className="max-w-xl overflow-hidden rounded-lg">
-                    <img
-                      className="w-full h-80 max-w-full object-cover"
-                      src={product?.image}
-                      alt={product?.name}
-                    />
+                    {Object.keys(product).length === 0
+                      ? <img
+                        src="https://i.pinimg.com/originals/6b/e0/89/6be0890f52e31d35d840d4fe2e10385b.gif"
+                        alt="loading"
+                        className="w-full h-80 max-w-full"
+                        />
+                      : <img
+                        className="w-full h-80 max-w-full object-cover"
+                        src={product?.image}
+                        alt={product?.name}
+                      />
+                    }
                   </div>
                 </div>
-
                 <div className="mt-2 w-full lg:order-1 lg:w-32 lg:flex-shrink-0"></div>
               </div>
             </div>
-
             <div className="lg:col-span-2 lg:row-span-2 lg:row-end-2 ">
               <p
                 className=" mt-2 ml-auto text-sm font-medium text-right text-blue-500 cursor-pointer m-5 hover:text-red-500"
