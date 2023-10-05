@@ -9,7 +9,6 @@ import { setPage } from '../../redux/actions/Page/setPage'
 import { setCategory } from '../../redux/actions/filters/setCategory'
 import { setLowPrice } from '../../redux/actions/filters/setLowPrice'
 import { setHighPrice } from '../../redux/actions/filters/setHighPrice'
-
 import imgNO from '../../img/ProductoNo.png'
 
 const ProductsContainer = () => {
@@ -20,19 +19,8 @@ const ProductsContainer = () => {
   const thisPage = useSelector((state) => state.thisPage)
   const filterCategory = useSelector((state) => state.filterCategory)
   const { high, low } = useSelector((state) => state.price)
-
   const [isLoading, setIsLoading] = useState(true)
   const [filteredProducts, setFilteredProducts] = useState(products)
-  // const [prices, setPrices] = useState({
-  //   min: '',
-  //   max: ''
-  // })
-
-  // const handleChange = (event) => {
-  //   const property = event.target.name
-  //   const value = event.target.value
-  //   setPrices({ ...prices, [property]: value })
-  // }
 
   const handleCategory = (category) => {
     dispatch(setPage(1))
@@ -102,24 +90,6 @@ const ProductsContainer = () => {
             {/*       SIDE BAR     */}
             <aside className="inline-block p-6 sm:w-70 bg-tertiary text-gray rounded-2xl">
               <div className="text-base flex flex-col">
-                {/* <div className="my-3.5 flex flex-col">
-                    <select
-                    className="my-2 h-11 rounded border-indigo-800 border-solid border-2"
-                    name="orderBy"
-                    value={filters.orderBy}
-                    onChange={handleChangeFilter}
-                    >
-                    <option value="" disabled className="text-gray-400">
-                        Ordenar por nombre
-                    </option>
-                    <option value="asc" className="h-11 bg-tertiary">
-                        Ascendente
-                    </option>
-                    <option value="desc" className="h-11 w-11 bg-tertiary">
-                        Descendente
-                    </option>
-                    </select>
-                </div> */}
                 <div className="gap-3">
                   <div className="h-10 flex gap-1 mb-3">
                     {' '}
@@ -224,61 +194,7 @@ const ProductsContainer = () => {
                         Más de $20.000
                       </h3>
                     </div>
-                    <div className="w-fit h-fit flex items-center justify-center ">
-                      {/* <input
-                        type="number"
-                        placeholder="Mínimo"
-                        name="min"
-                        value={prices.min}
-                        onChange={handleChange}
-                        className="px-2 w-24 h-7 rounded border-indigo-300 border-solid border-2"
-                      />
-                      <p className="text-base p-3 mx-1 text-gray-500 flex justify-center">
-                        -
-                      </p>
-                      <input
-                        type="number"
-                        placeholder="Máximo"
-                        name="max"
-                        value={prices.max}
-                        onChange={handleChange}
-                        className="px-2 w-24 h-7 rounded border-indigo-300 border-solid border-2"
-                      />
-                      <button
-                        className="bg-gray-300 rounded-full flex justify-center items-center mx-3 hover:bg-primary transform hover:scale-105 transition-all"
-                        onClick={() => {
-                          Swal.fire({
-                            icon: "info",
-                            title: "No funcional",
-                            text:
-                              "Por favor ingresar los valores de precio minimo y maximo.",
-                          });
-                        }}
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="icon icon-tabler icon-tabler-chevron-right "
-                          width="30"
-                          height="30"
-                          viewBox="0 0 24 24"
-                          strokeWidth="1.5"
-                          stroke="#9e9e9e"
-                          fill="none"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                          <path d="M9 6l6 6l-6 6" />
-                        </svg>
-                      </button> */}
-                    </div>
                   </div>
-                  {/*       FILTER COLOR         */} {/* PROXIMAMENTE */}
-                  {/* <div className="mb-5">
-                                        <h2 className="text-base font-semibold tracking-wide uppercase text-blue-600">
-                                        Color
-                                        </h2>
-                                    </div> */}
                 </div>
               </div>
             </aside>
@@ -304,7 +220,7 @@ const ProductsContainer = () => {
                       {filteredProducts.map((product) => (
                         <div
                         key={product.idProduct}
-                        className="bg-violet-300 p-4 rounded-md shadow-md" // Cambia bg-violet-300 al color deseado
+                        className="bg-violet-300 p-4 rounded-md shadow-md"
                       >
                         <Products
                           idProduct={product.idProduct}
@@ -317,7 +233,6 @@ const ProductsContainer = () => {
                       </div>
                       ))}
                   </div>
-
                       )
                     : (
                     <div className=" flex justify-center flex-col items-center">
