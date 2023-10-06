@@ -83,7 +83,7 @@ function App () {
   }, [])
 
   useEffect(() => {
-    if (userDb) {
+    if (Object.keys(userDb).length !== 0) {
       dispatch(getCart(JSON.parse(user)?.id)).then((response) => {
         if (response) {
           addAllToCart(response)
