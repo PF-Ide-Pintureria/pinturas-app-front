@@ -7,6 +7,7 @@ import {
   GET_PRODUCT_BY_ID,
   GET_PRODUCT_BY_NAME,
   GET_ALL_PRODUCTS_NO_FILTER,
+  CLEAN_PRODUCT_DETAIL,
 
   // CATEGORIES
   GET_ALL_CATEGORIES,
@@ -162,6 +163,8 @@ const reducer = (state = initialState, { type, payload }) => {
       return { ...state, products: payload }
     case GET_ALL_PRODUCTS_NO_FILTER:
       return { ...state, allProducts: payload }
+    case CLEAN_PRODUCT_DETAIL:
+      return { ...state, detail: {} }
 
     // CATEGORIES
     case GET_ALL_CATEGORIES:

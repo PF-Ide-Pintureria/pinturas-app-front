@@ -50,6 +50,7 @@ import { addCart } from './redux/actions/Cart/addCart'
 import UpdatePrices from './views/UpdatePrices/UpdatePrices'
 import CreateProvider from './views/Providers/CreateProvider'
 import EditProvider from './views/Providers/EditProvider'
+import ScrollToTop from './hooks/ScrollToTop'
 // import AdminProviders from './views/Admin/AdminProviders/AdminProviders'
 
 function App () {
@@ -94,6 +95,7 @@ function App () {
   return (
     <div>
       <BrowserRouter>
+      <ScrollToTop/>
         <div className="h-full w-full">
           <div className="">
             <header>
