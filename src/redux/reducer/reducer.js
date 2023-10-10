@@ -180,7 +180,7 @@ const reducer = (state = initialState, { type, payload }) => {
     case DELETE_USER:
       return { ...state, allUsers: payload }
     case PUT_USER:
-      return { ...state, allUsers: payload }
+      return { ...state }
     case LOGOUT_USER:
       return { ...state, user: payload }
     case ACCESS_TOKEN:

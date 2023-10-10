@@ -8,14 +8,12 @@ import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 
 const UpdateUserForm = () => {
-  // const [name, setName] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [lastName, setLastName] = useState("");
-  // const [currentPassword, setCurrentPassword] = useState("");
-  // const [newPassword, setNewPassword] = useState("");
-  // const [confirmPassword, setConfirmPassword] = useState("");
-  // const [passwordsMatch, setPasswordsMatch] = useState(true);
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
+  const user = useSelector((state) => state.user)
+  const { isAuthenticated } = useAuth0()
+  const [dataToSend, setDataToSend] = useState({})
   const [inputs, setInputs] = useState({
     name: '',
     lastName: '',
@@ -25,19 +23,7 @@ const UpdateUserForm = () => {
     confirmPassword: '',
     passwordMatch: true
   })
-  const [dataToSend, setDataToSend] = useState({})
 
-  const user = useSelector((state) => state.user)
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
-  const { isAuthenticated } = useAuth0()
-
-  // Funciones para manejar los cambios en los campos
-  // const handleNameChange = (e) => setName(e.target.value);
-  // const handleEmailChange = (e) => setEmail(e.target.value);
-  // const handleCurrentPasswordChange = (e) => setCurrentPassword(e.target.value);
-  // const handleNewPasswordChange = (e) => setNewPassword(e.target.value);
-  // const handleConfirmPasswordChange = (e) => setConfirmPassword(e.target.value);
   useEffect(() => {
     if (user) {
       setInputs({
