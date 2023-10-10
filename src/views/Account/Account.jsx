@@ -24,7 +24,7 @@ const Account = () => {
   const { isAuthenticated, user, logout, isLoading } = useAuth0()
   const [activeButton, setActiveButton] = useState('dashboard')
   const [, setDashboard] = useState(false)
-  const [updateUserForm, setUpdateUserForm] = useState(false)
+  const [updateUserForm, setUpdateUserForm] = useState(true)
   const [addresses, setAddresses] = useState(false)
   const [favorities, setFavorities] = useState(false)
   const [orders, setOrders] = useState(false)
