@@ -65,6 +65,7 @@ const LoginForm = () => {
           icon: 'success',
           text: 'Usuario Logueado correctamente'
         })
+        navigate('/account')
       }
       // });
     } else {

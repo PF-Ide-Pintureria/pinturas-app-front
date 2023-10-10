@@ -3,6 +3,7 @@ import { postRegisterEmail } from '../../redux/actions/Mail/postRegisterEmail'
 import { postRegisterUser } from '../../redux/actions/User/postRegisterUser'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { welcomeMessage } from './welcomeMessage'
 import Swal from 'sweetalert2'
 
 const RegisterForm = () => {
@@ -15,40 +16,6 @@ const RegisterForm = () => {
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [errors, setErrors] = useState({})
-  const welcomeMessage = (`<html lang="en">
-
-        <head>
-            <meta charset="UTF-8">
-                <title>Bienvenido a Ide Pinturerias</title>
-        </head>
-
-        <body>
-            <div style="font-family: Helvetica,Arial,sans-serif;min-width:1000px;overflow:auto;line-height:2">
-                <div style="margin:50px auto;width:70%;padding:20px 0">
-                    <div style="border-bottom:1px solid #eee">
-                        <a href="http://localhost:5173"
-                            style="font-size:1.4em;color: #00466a;text-decoration:none;font-weight:600">Ide Pintureria</a>
-                    </div>
-                    <h3>Hola ${name}!</h3>
-                    <p>Bienvenido a la familia de Ide Pintureria.</p>
-                    <p>Puedes ir a modificar tus datos en la seccion de <a href="https://pinturas-app-front-git-pre-develop-pf-pinturas.vercel.app/account">Mi Cuenta</a></p>
-                    <p>En esta sección tambien encontrarás tu pedidos, tus favoritos y podrás cerrar sesión. <br />
-
-                    Ante cualquier cosa, no dudes en contactarnos a través de nuestro formulario de <a href="https://pinturas-app-front-git-pre-develop-pf-pinturas.vercel.app/contact">contacto</a>.
-                        
-                    <p style="font-size:0.9em;">Saludos,<br />Ide Pintureria</p>
-                    <hr style="border:none;border-top:1px solid #eee" />
-                    <div style="float:right;padding:8px 0;color:#aaa;font-size:0.8em;line-height:1;font-weight:300">
-                        <p>Ide Pintureria</p>
-                        <p>Ruta 5 - Esquina La Isla
-                            Anisacate, Córdoba</p>
-                        <p>Argentina</p>
-                    </div>
-                </div>
-            </div>
-        </body>
-
-    </html>`)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -80,7 +47,7 @@ const RegisterForm = () => {
     if (Object.keys(errors).length === 0) {
       await postRegisterUser({ name, lastName, email, password })(dispatch).then((response) => {
         if (response.status === 200) {
-          postRegisterEmail({ id: response.data.user.id, message: welcomeMessage })(dispatch)
+          postRegisterEmail({ id: response.data.user.id, message: welcomeMessage(name) })(dispatch)
           Swal.fire({
             icon: 'success',
             text: 'Usuario registrado correctamente'
@@ -95,7 +62,7 @@ const RegisterForm = () => {
 
   return (
         <div className="font-sans">
-            <div className="relative min-h-screen flex flex-col sm:justify-center items-center ">
+            <div className="relative mt-8 min-h-screen flex flex-col sm:items-center ">
                 <div className="relative  sm:max-w-sm w-full">
                     <div className="card bg-blue-400 shadow-lg  w-full h-full rounded-3xl absolute  transform -rotate-6"></div>
                     <div className="card bg-purple-700 shadow-lg  w-full h-full rounded-3xl absolute  transform rotate-6"></div>
