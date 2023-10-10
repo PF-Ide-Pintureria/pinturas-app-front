@@ -29,8 +29,8 @@ const RegisterForm = () => {
     setErrors(validation({ ...inputsForm, [name]: value }))
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
+  const handleSubmit = async (event) => {
+    event.preventDefault()
     try {
       if (Object.keys(errors).length === 0) {
         const { status, user } = (await postRegisterUser(inputsForm)(dispatch)).data
