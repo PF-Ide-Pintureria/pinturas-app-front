@@ -25,7 +25,7 @@ const Account = () => {
   const [activeButton, setActiveButton] = useState('dashboard')
   const [, setDashboard] = useState(false)
   const [updateUserForm, setUpdateUserForm] = useState(false)
-  const [addresses, setAddresses] = useState(false)
+  const [addresses, setAddresses] = useState(true)
   const [favorities, setFavorities] = useState(false)
   const [orders, setOrders] = useState(false)
   const [products, setProducts] = useState(false)

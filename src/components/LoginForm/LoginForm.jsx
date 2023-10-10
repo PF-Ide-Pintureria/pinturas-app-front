@@ -23,8 +23,8 @@ const LoginForm = () => {
     }
   }, [isAuthenticated, userInfo, user])
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
+  const handleSubmit = async (event) => {
+    event.preventDefault()
     const errors = {}
 
     if (!email.trim()) {
@@ -40,38 +40,32 @@ const LoginForm = () => {
     }
 
     if (Object.keys(errors).length === 0) {
-      let primeraRes
+      const response = await postLoginUser({ email, password })(dispatch)
 
-      try {
-        primeraRes = await postLoginUser({ email, password })(dispatch)
-      } catch (err) {
-        console.error(err)
-      };
-
-      if (primeraRes.status === 'fail') {
+      if (response.status === 'fail') {
         Swal.fire({
           icon: 'error',
-          text: primeraRes.message
+          text: response.message
         })
-      } else if (primeraRes?.acceso?.user?.active === false) {
+      } else if (response?.acceso?.user?.active === false) {
         Swal.fire({
           icon: 'error',
           text: 'Usuario no encontrado'
         })
         logoutUser(dispatch)
         navigate('/login/register')
-      } else if (primeraRes.status === 'success') {
+      } else if (response.status === 'success') {
         Swal.fire({
           icon: 'success',
           text: 'Usuario Logueado correctamente'
         })
+        navigate('/account')
       }
-      // });
     } else {
       setErrors(errors)
     }
   }
-
+  // BOTON REGISTRATE
   const navigateToRegister = () => {
     navigate('/login/register')
   }

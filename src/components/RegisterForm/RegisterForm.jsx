@@ -3,106 +3,64 @@ import { postRegisterEmail } from '../../redux/actions/Mail/postRegisterEmail'
 import { postRegisterUser } from '../../redux/actions/User/postRegisterUser'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { welcomeMessage } from './welcomeMessage'
 import Swal from 'sweetalert2'
+import { validation } from './validation'
 
 const RegisterForm = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const [name, setName] = useState('')
-  const [lastName, setLastname] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
-  const [errors, setErrors] = useState({})
-  const welcomeMessage = (`<html lang="en">
+  const [inputsForm, setInputsForm] = useState({
+    name: '',
+    lastName: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
+  })
 
-        <head>
-            <meta charset="UTF-8">
-                <title>Bienvenido a Ide Pinturerias</title>
-        </head>
+  const [errors, setErrors] = useState({
+    empty: ''
+  })
 
-        <body>
-            <div style="font-family: Helvetica,Arial,sans-serif;min-width:1000px;overflow:auto;line-height:2">
-                <div style="margin:50px auto;width:70%;padding:20px 0">
-                    <div style="border-bottom:1px solid #eee">
-                        <a href="http://localhost:5173"
-                            style="font-size:1.4em;color: #00466a;text-decoration:none;font-weight:600">Ide Pintureria</a>
-                    </div>
-                    <h3>Hola ${name}!</h3>
-                    <p>Bienvenido a la familia de Ide Pintureria.</p>
-                    <p>Puedes ir a modificar tus datos en la seccion de <a href="https://pinturas-app-front-git-pre-develop-pf-pinturas.vercel.app/account">Mi Cuenta</a></p>
-                    <p>En esta sección tambien encontrarás tu pedidos, tus favoritos y podrás cerrar sesión. <br />
+  const handleInputChange = (event) => {
+    const { name, value } = event.target
+    setInputsForm({ ...inputsForm, [name]: value })
+    setErrors(validation({ ...inputsForm, [name]: value }))
+  }
 
-                    Ante cualquier cosa, no dudes en contactarnos a través de nuestro formulario de <a href="https://pinturas-app-front-git-pre-develop-pf-pinturas.vercel.app/contact">contacto</a>.
-                        
-                    <p style="font-size:0.9em;">Saludos,<br />Ide Pintureria</p>
-                    <hr style="border:none;border-top:1px solid #eee" />
-                    <div style="float:right;padding:8px 0;color:#aaa;font-size:0.8em;line-height:1;font-weight:300">
-                        <p>Ide Pintureria</p>
-                        <p>Ruta 5 - Esquina La Isla
-                            Anisacate, Córdoba</p>
-                        <p>Argentina</p>
-                    </div>
-                </div>
-            </div>
-        </body>
-
-    </html>`)
-
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    const errors = {}
-
-    if (!name.trim()) {
-      errors.name = 'El nombre es obligatorio'
-    }
-    if (!lastName.trim()) {
-      errors.lastName = 'El apellido es obligatorio'
-    }
-
-    if (!email.trim()) {
-      errors.email = 'El correo electrónico es obligatorio'
-    } else if (!/\S+@\S+\.\S+/.test(email)) {
-      errors.email = 'El correo electrónico no es válido'
-    }
-
-    if (!password) {
-      errors.password = 'La contraseña es obligatoria'
-    } else if (password.length < 8) {
-      errors.password = 'La contraseña debe tener al menos 8 caracteres'
-    }
-
-    if (password !== confirmPassword) {
-      errors.confirmPassword = 'Las contraseñas no coinciden'
-    }
-
-    if (Object.keys(errors).length === 0) {
-      await postRegisterUser({ name, lastName, email, password })(dispatch).then((response) => {
-        if (response.status === 200) {
-          postRegisterEmail({ id: response.data.user.id, message: welcomeMessage })(dispatch)
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    try {
+      if (Object.keys(errors).length === 0) {
+        const { status, user } = (await postRegisterUser(inputsForm)(dispatch)).data
+        if (status === 'success') {
+          await postRegisterEmail({ id: user.id, message: welcomeMessage(inputsForm.name) })(dispatch)
           Swal.fire({
             icon: 'success',
             text: 'Usuario registrado correctamente'
           })
           navigate('/login')
         }
+      }
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        text: 'Error al registrar usuario'
       })
-    } else {
-      setErrors(errors)
     }
   }
 
   return (
         <div className="font-sans">
-            <div className="relative min-h-screen flex flex-col sm:justify-center items-center ">
+            <div className="relative sm:max-w-sm w-full">
                 <div className="relative  sm:max-w-sm w-full">
                     <div className="card bg-blue-400 shadow-lg  w-full h-full rounded-3xl absolute  transform -rotate-6"></div>
                     <div className="card bg-purple-700 shadow-lg  w-full h-full rounded-3xl absolute  transform rotate-6"></div>
                     <div className="relative w-full rounded-3xl px-20 py-5 bg-gray-100 shadow-md">
                         <label
                             htmlFor=""
-                            className="block text-base pt-10 pb-5 text-gray-700 text-center font-semibold"
+                            className="block text-base pt-2 pb-5 text-gray-700 text-center font-semibold"
                         >
                             Registrate
                         </label>
@@ -111,83 +69,101 @@ const RegisterForm = () => {
                                 <input
                                     type="text"
                                     placeholder="Nombres"
-                                    value={name}
-                                    onChange={(e) => setName(e.target.value)}
+                                    name='name'
+                                    value={inputsForm.name}
+                                    onChange={handleInputChange}
                                     className={`mt-1 pl-4 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${errors.name ? 'border-red-500' : 'border-gray-300'
                                         }`}
                                 />
-                                {errors.name && (
-                                    <p className="text-red-500 text-sm mt-1">{errors.name}</p>
-                                )}
+                                <div className="flex my-0 pt-2 pl-8 pl-2 justify-around">
+                                  {errors.name
+                                    ? <span className="text-warning text-xs py-0 m-0">{errors.name}</span>
+                                    : <span className='h-4'></span>}
+                                </div>
                             </div>
 
                             <div className="mt-7">
                                 <input
                                     type="text"
                                     placeholder="Apellido"
-                                    value={lastName}
-                                    onChange={(e) => setLastname(e.target.value)}
+                                    name="lastName"
+                                    value={inputsForm.lastName}
+                                    onChange={handleInputChange}
                                     className={`mt-1 pl-4 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${errors.name ? 'border-red-500' : 'border-gray-300'
                                         }`}
                                 />
-                                {errors.lastName && (
-                                    <p className="text-red-500 text-sm mt-1">{errors.lastName}</p>
-                                )}
+                                <div className="flex my-0 pt-2 pl-8 pl-2 justify-around">
+                                  {errors.lastName
+                                    ? <span className="text-warning text-xs py-0 m-0">{errors.lastName}</span>
+                                    : <span className='h-4'></span>}
+                                </div>
                             </div>
 
                             <div className="mt-7">
                                 <input
                                     type="email"
                                     placeholder="Correo electrónico"
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
+                                    name="email"
+                                    value={inputsForm.email}
+                                    onChange={handleInputChange}
                                     className={`mt-1 pl-4 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${errors.email ? 'border-red-500' : 'border-gray-300'
                                         }`}
                                 />
-                                {errors.email && (
-                                    <p className="text-red-500 text-sm mt-1">{errors.email}</p>
-                                )}
+                                <div className="flex my-0 pt-2 pl-8 pl-2 justify-around">
+                                  {errors.email
+                                    ? <span className="text-warning text-xs py-0 m-0">{errors.email}</span>
+                                    : <span className='h-4'></span>}
+                                </div>
                             </div>
 
                             <div className="mt-7">
                                 <input
                                     type="password"
                                     placeholder="Contraseña"
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
+                                    name="password"
+                                    value={inputsForm.password}
+                                    onChange={handleInputChange}
                                     className={`mt-1 pl-4 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${errors.password ? 'border-red-500' : 'border-gray-300'
                                         }`}
                                 />
-                                {errors.password && (
-                                    <p className="text-red-500 text-sm mt-1">{errors.password}</p>
-                                )}
+                                <div className="flex my-0 pt-2 pl-8 pl-2 justify-around">
+                                  {errors.password
+                                    ? <span className="text-warning text-xs py-0 m-0">{errors.password}</span>
+                                    : <span className='h-4'></span>}
+                                </div>
                             </div>
 
                             <div className="mt-7">
                                 <input
                                     type="password"
                                     placeholder="Confirmar contraseña"
-                                    value={confirmPassword}
-                                    onChange={(e) => setConfirmPassword(e.target.value)}
+                                    name="confirmPassword"
+                                    value={inputsForm.confirmPassword}
+                                    onChange={handleInputChange}
                                     className={`mt-1 pl-4 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${errors.confirmPassword
                                         ? 'border-red-500'
                                         : 'border-gray-300'
                                         }`}
                                 />
-                                {errors.confirmPassword && (
-                                    <p className="text-red-500 text-sm mt-1">
-                                        {errors.confirmPassword}
-                                    </p>
-                                )}
+                                <div className="flex my-0 pt-2 pl-8 pl-2 justify-around">
+                                  {errors.confirmPassword
+                                    ? <span className="text-warning text-xs py-0 m-0">{errors.confirmPassword}</span>
+                                    : <span className='h-4'></span>}
+                                </div>
                             </div>
 
-                            <div className=" pt-8 pb-10 ">
+                            <div className=" pt-8">
                                 <button
                                     type="submit"
                                     className="bg-blue-500 w-full flex items-center justify-center py-3 rounded-xl text-white shadow-xl hover:bg-blue-600  hover:shadow-inner focus:outline-none transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105"
                                 >
                                     Registrarse
                                 </button>
+                            </div>
+                            <div className="w-64">
+                              <span className='mt-2 text-xs text-justify text-gray-400'>
+                                Contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número
+                              </span>
                             </div>
                         </form>
                     </div>
