@@ -12,7 +12,7 @@ const ProvidersDash = () => {
 
   useEffect(() => {
     dispatch(getProviders())
-  }, [dispatch, providers])
+  }, [dispatch])
 
   const columns = [
     {

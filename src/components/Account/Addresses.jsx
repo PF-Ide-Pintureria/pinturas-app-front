@@ -7,6 +7,8 @@ import Swal from 'sweetalert2'
 const Addresses = () => {
   const dispatch = useDispatch()
   const user = useSelector(state => state.user)
+  const userId = useSelector(state => state.userId)
+
   const [inputs, setInputs] = useState({
     address: '',
     locality: '',
@@ -17,14 +19,12 @@ const Addresses = () => {
   }, [dispatch])
 
   useEffect(() => {
-    if (user) {
-      setInputs({
-        address: user.address ? user.address : ' ',
-        locality: user.locality ? user.locality : ' ',
-        province: user.province ? user.province : ' '
-      })
-    }
-  }, [user])
+    setInputs({
+      address: userId.address ? userId.address : ' ',
+      locality: userId.locality ? userId.locality : ' ',
+      province: userId.province ? userId.province : ' '
+    })
+  }, [userId])
 
   const handleChange = (event) => {
     const property = event.target.name
@@ -36,39 +36,15 @@ const Addresses = () => {
     })
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
     try {
-      putUser(user.id, inputs)(dispatch).then(response => {
-        if (!response || response === undefined) {
-          throw new Error('No se ha podido modificar la informacion')
-        } else {
-          Swal.fire({
-            icon: 'success',
-            text: 'Información modificada correctamente'
-          })
-        }
+      await putUser(user.id, inputs)(dispatch)
+      Swal.fire({
+        icon: 'success',
+        text: 'Información modificada correctamente'
       })
-    } catch (error) {
-      console.error(error)
-    }
-  }
-
-  const handleDelete = (event) => {
-    event.preventDefault()
-    setInputs({
-      address: '',
-      locality: '',
-      province: ''
-    })
-    try {
-      putUser(user.id, inputs)(dispatch).then(response => {
-        if (!response || response === undefined) {
-          throw new Error('No se ha podido modificar la informacion')
-        } else {
-          alert('Información eliminada')
-        }
-      })
+      getUserById(user.id)(dispatch)
     } catch (error) {
       console.error(error)
     }
@@ -146,13 +122,6 @@ const Addresses = () => {
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           >
             Guardar cambios
-          </button>
-          <button
-            type="button"
-            className="bg-red-500 hover:bg-red-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            onClick={handleDelete}
-          >
-            Eliminar Dirección
           </button>
         </div>
       </form>
