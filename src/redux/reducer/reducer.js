@@ -178,7 +178,7 @@ const reducer = (state = initialState, { type, payload }) => {
     case GET_ALL_USERS:
       return { ...state, allUsers: payload }
     case DELETE_USER:
-      return { ...state, allUsers: payload }
+      return { ...state }
     case PUT_USER:
       return { ...state }
     case LOGOUT_USER:
