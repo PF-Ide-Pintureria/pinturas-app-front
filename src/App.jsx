@@ -32,7 +32,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setUser } from './redux/actions/User/setUser'
 import { allProducts } from './redux/actions/Products/allProducts'
 import TestTable from './TestTable'
-import UpdateUserForm from './components/UpdateForm/UpdateUserForm'
+import UpdateUserFormByAdmin from '../src/components/UpdateUserFormByAdmin/UpdateUserFormByAdmin'
 import { getCart } from './redux/actions/Cart/getCart'
 import OrderDetail from './views/OrderDetail/OrderDetail'
 import Dashboard from './views/Dashboard/Dashboard'
@@ -121,7 +121,7 @@ function App () {
               {/* <Route path="/admin/providers" element={<AdminProviders />} /> */}
 
               <Route path="/admin/create" element={<CreateProduct />} />
-              <Route path="/admin/edit/:idUser" element={<UpdateUserForm />} />
+              <Route path="/admin/edit/:idUser" element={<UpdateUserFormByAdmin />} />
               <Route path="/admin/products/update/prices" element={<UpdatePrices/>}/>
               <Route path="/admin/providers/create" element={<CreateProvider />} />
               <Route path="/admin/providers/edit/:id" element={<EditProvider />} />
