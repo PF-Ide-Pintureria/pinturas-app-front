@@ -1,30 +1,25 @@
 import React, { useState, useEffect } from 'react'
 import { putUser } from '../../redux/actions/User/putUser'
 import { useDispatch, useSelector } from 'react-redux'
-import getUserById from '../../redux/actions/User/getUserById'
 import Swal from 'sweetalert2'
 
 const Addresses = () => {
   const dispatch = useDispatch()
   const user = useSelector(state => state.user)
-  const userId = useSelector(state => state.userId)
 
   const [inputs, setInputs] = useState({
     address: '',
     locality: '',
     province: ''
   })
-  useEffect(() => {
-    getUserById(user.id)(dispatch)
-  }, [dispatch])
 
   useEffect(() => {
     setInputs({
-      address: userId.address ? userId.address : ' ',
-      locality: userId.locality ? userId.locality : ' ',
-      province: userId.province ? userId.province : ' '
+      address: user.address ? user.address : ' ',
+      locality: user.locality ? user.locality : ' ',
+      province: user.province ? user.province : ' '
     })
-  }, [userId])
+  }, [user])
 
   const handleChange = (event) => {
     const property = event.target.name
@@ -44,7 +39,6 @@ const Addresses = () => {
         icon: 'success',
         text: 'Información modificada correctamente'
       })
-      getUserById(user.id)(dispatch)
     } catch (error) {
       console.error(error)
     }
@@ -85,7 +79,7 @@ const Addresses = () => {
               />
             </svg>
           </span>
-          <span>Direcciones</span>
+          <span>Mi Dirección</span>
         </p>
       </li>
       <form onSubmit={handleSubmit} className="w-full max-w-md">
@@ -97,6 +91,7 @@ const Addresses = () => {
             onChange={handleChange}
             name="address"
             value={inputs.address}
+            maxLength={45}
           />
           <p className="text-gray-600 text-xs mt-1">Localidad </p>
           <input
@@ -105,6 +100,7 @@ const Addresses = () => {
             onChange={handleChange}
             name="locality"
             value={inputs.locality}
+            maxLength={30}
           />
           <p className="text-gray-600 text-xs mt-1">Provincia </p>
           <input
@@ -113,6 +109,7 @@ const Addresses = () => {
             onChange={handleChange}
             name="province"
             value={inputs.province}
+            maxLength={30}
           />
         </div>
 

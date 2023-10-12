@@ -6,15 +6,13 @@ import { deleteUser } from '../../redux/actions/User/deleteUser'
 import { logoutUser } from '../../redux/actions/User/logoutUser'
 import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
-import getUserById from '../../redux/actions/User/getUserById'
 import { updateUserValidation } from './updateUserValidation'
 
 const UpdateUserForm = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const { id } = useSelector((state) => state.user)
-  const userById = useSelector((state) => state.userId)
+  const user = useSelector((state) => state.user)
   const { isAuthenticated } = useAuth0()
 
   const [inputsForm, setInputsForm] = useState({
@@ -30,11 +28,10 @@ const UpdateUserForm = () => {
   })
 
   useEffect(() => {
-    getUserById(id)(dispatch)
     setInputsForm({
-      name: userById.name,
-      lastName: userById.lastName,
-      email: userById.email
+      name: user.name,
+      lastName: user.lastName,
+      email: user.email
     })
   }, [dispatch])
 
@@ -53,17 +50,17 @@ const UpdateUserForm = () => {
       if (Object.keys(errors).length === 0) {
         const { newPassword, confirmPassword, ...data } = inputsForm
         data.password = newPassword
-        await putUser(id, data)(dispatch)
+        await putUser(user.id, data)(dispatch)
       }
       Swal.fire({
         icon: 'success',
-        text: 'Usuario actualizado'
+        text: 'Cuenta actualizada'
       })
     } catch (error) {
       Swal.fire({
         icon: 'error',
         title: 'Ooops!',
-        text: 'Error al actualizar usuario'
+        text: 'Error al actualizar su cuenta'
       })
       console.error(error)
     }
@@ -83,7 +80,7 @@ const UpdateUserForm = () => {
 
     if (result.isConfirmed) {
       // Si el usuario confirma, eliminar la cuenta
-      deleteUser(id)(dispatch)
+      deleteUser(user.id)(dispatch)
       Swal.fire('Usuario eliminado', '', 'success')
       logoutUser(dispatch)
       navigate('/')
@@ -224,6 +221,7 @@ const UpdateUserForm = () => {
                             className="appearance-none block w-full bg-gray-200 text-gray-700 roundedviolet3 px-4 leading-tight focus:outline-none focus:bg-white"
                             id="grid-first-name"
                             type="text"
+                            maxLength={30}
                             name="name"
                             placeholder="Nombre"
                             value={inputsForm.name}
@@ -247,6 +245,7 @@ const UpdateUserForm = () => {
                             className="appearance-none block w-full bg-gray-200 text-gray-700 roundedviolet3 px-4 leading-tight focus:outline-none focus:bg-white"
                             id="grid-last-name"
                             type="text"
+                            maxLength={30}
                             name="lastName"
                             placeholder="Apellido"
                             value={inputsForm.lastName}
@@ -270,6 +269,7 @@ const UpdateUserForm = () => {
                             className="appearance-none block w-full bg-gray-200 text-gray-700 border violeter-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                             id="grid-email"
                             type="email"
+                            maxLength={30}
                             name="email"
                             placeholder="Correo electrónico"
                             value={inputsForm.email}
@@ -297,6 +297,7 @@ const UpdateUserForm = () => {
                             className="appearance-none block w-full bg-gray-200 text-gray-700 roundedviolet3 px-4 leading-tight focus:outline-none focus:bg-white"
                             id="grid-new-password"
                             type="password"
+                            maxLength={30}
                             name="newPassword"
                             placeholder="Contraseña Nueva"
                             value={inputsForm.newPassword}
@@ -320,6 +321,7 @@ const UpdateUserForm = () => {
                             className="appearance-none block w-full bg-gray-200 text-gray-700 roundedviolet3 px-4 leading-tight focus:outline-none focus:bg-white"
                             id="grid-confirm-password"
                             type="password"
+                            maxLength={30}
                             name="confirmPassword"
                             placeholder="Confirma Contraseña"
                             value={inputsForm.confirmPassword}
