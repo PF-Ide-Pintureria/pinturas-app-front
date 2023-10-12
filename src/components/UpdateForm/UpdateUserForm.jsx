@@ -20,7 +20,6 @@ const UpdateUserForm = () => {
     email: '',
     active: true,
     rol: 'client',
-    isBanned: false,
     address: '',
     locality: '',
     province: '',
@@ -36,7 +35,6 @@ const UpdateUserForm = () => {
         email: findUser?.email,
         active: findUser?.active,
         rol: findUser?.rol,
-        isBanned: findUser?.isBanned,
         address: findUser?.address || '',
         locality: findUser?.locality || '',
         province: findUser?.province || '',
@@ -124,18 +122,6 @@ const UpdateUserForm = () => {
                             <option value="admin">Admin</option>
                             <option value="client">Cliente</option>
                         </select>
-                    </div>
-                    <div className=" flex m-8 mb-0">
-                        <label className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center">Baneo: </label>
-                        <input
-                            type="checkbox"
-                            name="isBanned"
-                            onChange={handleChange}
-                            checked={inputs.isBanned}
-                            value={inputs.isBanned ? 'true' : 'false'}
-                            className="bg-formBg rounded-r-lg w-72 h-8"
-                        />
-                        {inputs.isBanned ? <span className="m-0 p-0">Bloqueado</span> : <span className="m-0 p-0">No bloqueado</span>}
                     </div>
                     <div className=" flex m-8 mb-0">
                         <label className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center">Dirección: </label>
@@ -253,19 +239,6 @@ const UpdateUserForm = () => {
                             <option value="admin">Admin</option>
                             <option value="client">Cliente</option>
                         </select>
-                    </div>
-                    <div className=" flex m-8 mb-0">
-                        <label className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center">Baneo: </label>
-                        <input
-                            type="checkbox"
-                            name="isBanned"
-                            onChange={handleChange}
-                            checked={inputs.isBanned}
-                            value={inputs.isBanned ? 'true' : 'false'}
-                            className="bg-formBg rounded-r-lg w-72 h-8"
-                            disabled="true"
-                        />
-                        {inputs.isBanned ? <span className="m-0 p-0">Bloqueado</span> : <span className="m-0 p-0">No bloqueado</span>}
                     </div>
                     <div className=" flex m-8 mb-0">
                         <label className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center">Dirección: </label>
