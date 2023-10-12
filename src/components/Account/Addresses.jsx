@@ -91,6 +91,7 @@ const Addresses = () => {
             onChange={handleChange}
             name="address"
             value={inputs.address}
+            maxLength={45}
           />
           <p className="text-gray-600 text-xs mt-1">Localidad </p>
           <input
@@ -99,6 +100,7 @@ const Addresses = () => {
             onChange={handleChange}
             name="locality"
             value={inputs.locality}
+            maxLength={30}
           />
           <p className="text-gray-600 text-xs mt-1">Provincia </p>
           <input
@@ -107,6 +109,7 @@ const Addresses = () => {
             onChange={handleChange}
             name="province"
             value={inputs.province}
+            maxLength={30}
           />
         </div>
 

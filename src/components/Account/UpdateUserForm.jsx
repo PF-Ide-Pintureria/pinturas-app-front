@@ -221,6 +221,7 @@ const UpdateUserForm = () => {
                             className="appearance-none block w-full bg-gray-200 text-gray-700 roundedviolet3 px-4 leading-tight focus:outline-none focus:bg-white"
                             id="grid-first-name"
                             type="text"
+                            maxLength={30}
                             name="name"
                             placeholder="Nombre"
                             value={inputsForm.name}
@@ -244,6 +245,7 @@ const UpdateUserForm = () => {
                             className="appearance-none block w-full bg-gray-200 text-gray-700 roundedviolet3 px-4 leading-tight focus:outline-none focus:bg-white"
                             id="grid-last-name"
                             type="text"
+                            maxLength={30}
                             name="lastName"
                             placeholder="Apellido"
                             value={inputsForm.lastName}
@@ -267,6 +269,7 @@ const UpdateUserForm = () => {
                             className="appearance-none block w-full bg-gray-200 text-gray-700 border violeter-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                             id="grid-email"
                             type="email"
+                            maxLength={30}
                             name="email"
                             placeholder="Correo electrónico"
                             value={inputsForm.email}
@@ -294,6 +297,7 @@ const UpdateUserForm = () => {
                             className="appearance-none block w-full bg-gray-200 text-gray-700 roundedviolet3 px-4 leading-tight focus:outline-none focus:bg-white"
                             id="grid-new-password"
                             type="password"
+                            maxLength={30}
                             name="newPassword"
                             placeholder="Contraseña Nueva"
                             value={inputsForm.newPassword}
@@ -317,6 +321,7 @@ const UpdateUserForm = () => {
                             className="appearance-none block w-full bg-gray-200 text-gray-700 roundedviolet3 px-4 leading-tight focus:outline-none focus:bg-white"
                             id="grid-confirm-password"
                             type="password"
+                            maxLength={30}
                             name="confirmPassword"
                             placeholder="Confirma Contraseña"
                             value={inputsForm.confirmPassword}
