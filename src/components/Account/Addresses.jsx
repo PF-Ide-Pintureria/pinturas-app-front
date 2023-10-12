@@ -1,30 +1,25 @@
 import React, { useState, useEffect } from 'react'
 import { putUser } from '../../redux/actions/User/putUser'
 import { useDispatch, useSelector } from 'react-redux'
-import getUserById from '../../redux/actions/User/getUserById'
 import Swal from 'sweetalert2'
 
 const Addresses = () => {
   const dispatch = useDispatch()
   const user = useSelector(state => state.user)
-  const userId = useSelector(state => state.userId)
 
   const [inputs, setInputs] = useState({
     address: '',
     locality: '',
     province: ''
   })
-  useEffect(() => {
-    getUserById(user.id)(dispatch)
-  }, [dispatch])
 
   useEffect(() => {
     setInputs({
-      address: userId.address ? userId.address : ' ',
-      locality: userId.locality ? userId.locality : ' ',
-      province: userId.province ? userId.province : ' '
+      address: user.address ? user.address : ' ',
+      locality: user.locality ? user.locality : ' ',
+      province: user.province ? user.province : ' '
     })
-  }, [userId])
+  }, [user])
 
   const handleChange = (event) => {
     const property = event.target.name
@@ -44,7 +39,6 @@ const Addresses = () => {
         icon: 'success',
         text: 'Información modificada correctamente'
       })
-      getUserById(user.id)(dispatch)
     } catch (error) {
       console.error(error)
     }

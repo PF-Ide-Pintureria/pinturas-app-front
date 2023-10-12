@@ -6,15 +6,13 @@ import { deleteUser } from '../../redux/actions/User/deleteUser'
 import { logoutUser } from '../../redux/actions/User/logoutUser'
 import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
-import getUserById from '../../redux/actions/User/getUserById'
 import { updateUserValidation } from './updateUserValidation'
 
 const UpdateUserForm = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const { id } = useSelector((state) => state.user)
-  const userById = useSelector((state) => state.userId)
+  const user = useSelector((state) => state.user)
   const { isAuthenticated } = useAuth0()
 
   const [inputsForm, setInputsForm] = useState({
@@ -30,11 +28,10 @@ const UpdateUserForm = () => {
   })
 
   useEffect(() => {
-    getUserById(id)(dispatch)
     setInputsForm({
-      name: userById.name,
-      lastName: userById.lastName,
-      email: userById.email
+      name: user.name,
+      lastName: user.lastName,
+      email: user.email
     })
   }, [dispatch])
 
@@ -53,7 +50,7 @@ const UpdateUserForm = () => {
       if (Object.keys(errors).length === 0) {
         const { newPassword, confirmPassword, ...data } = inputsForm
         data.password = newPassword
-        await putUser(id, data)(dispatch)
+        await putUser(user.id, data)(dispatch)
       }
       Swal.fire({
         icon: 'success',
@@ -83,7 +80,7 @@ const UpdateUserForm = () => {
 
     if (result.isConfirmed) {
       // Si el usuario confirma, eliminar la cuenta
-      deleteUser(id)(dispatch)
+      deleteUser(user.id)(dispatch)
       Swal.fire('Usuario eliminado', '', 'success')
       logoutUser(dispatch)
       navigate('/')
