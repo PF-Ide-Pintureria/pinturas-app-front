@@ -54,13 +54,13 @@ const UpdateUserForm = () => {
       }
       Swal.fire({
         icon: 'success',
-        text: 'Usuario actualizado'
+        text: 'Cuenta actualizada'
       })
     } catch (error) {
       Swal.fire({
         icon: 'error',
         title: 'Ooops!',
-        text: 'Error al actualizar usuario'
+        text: 'Error al actualizar su cuenta'
       })
       console.error(error)
     }

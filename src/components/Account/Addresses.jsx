@@ -79,7 +79,7 @@ const Addresses = () => {
               />
             </svg>
           </span>
-          <span>Direcciones</span>
+          <span>Mi Dirección</span>
         </p>
       </li>
       <form onSubmit={handleSubmit} className="w-full max-w-md">

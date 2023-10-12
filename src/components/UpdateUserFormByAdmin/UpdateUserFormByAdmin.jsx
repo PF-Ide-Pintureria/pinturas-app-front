@@ -16,6 +16,7 @@ const UpdateUserFormByAdmin = () => {
 
   const userToUpdate = useSelector((state) => state.userId)
 
+  const [errors, setErrors] = useState({})
   const [inputs, setInputs] = useState({
     name: '',
     lastName: '',
@@ -28,7 +29,6 @@ const UpdateUserFormByAdmin = () => {
     phone: ''
   })
 
-  const [errors, setErrors] = useState({})
   useEffect(() => {
     if (userToUpdate) {
       setInputs({
@@ -122,7 +122,7 @@ const UpdateUserFormByAdmin = () => {
                 </p>
             </div>
               <div className={`flex m-8 mb-0 ${errors.email ? 'mt-4' : 'mt-8'}`}>
-                  <label className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center">Status: </label>
+                  <label className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center">Estado: </label>
                   <input
                       type="checkbox"
                       name="active"

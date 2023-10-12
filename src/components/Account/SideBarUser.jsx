@@ -101,7 +101,7 @@ const SideBarUser = ({
                                     />
                                 </svg>
                             </span>
-                            <span>Direcciones</span>
+                            <span>Dirección</span>
                         </p>
                     </li>
                     <li>
@@ -123,7 +123,7 @@ const SideBarUser = ({
                                     />
                                 </svg>
                             </span>
-                            <span>Mis Pedidos</span>
+                            <span>Pedidos</span>
                         </p>
                     </li>
                     <li>
@@ -174,7 +174,7 @@ const SideBarUser = ({
                                         d="M16.5 10.5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
                                 </svg>
                             </span>
-                            <span>Ir al Dashboard</span>
+                            <span>Panel de administrador</span>
                         </p>
                     </li>
                     {/*
