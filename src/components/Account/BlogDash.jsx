@@ -12,7 +12,7 @@ const BlogDash = () => {
 
   useEffect(() => {
     getPosts()(dispatch)
-  }, [dispatch, posts])
+  }, [dispatch])
 
   const columns = [
     {

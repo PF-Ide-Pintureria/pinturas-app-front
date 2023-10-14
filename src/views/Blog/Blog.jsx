@@ -29,7 +29,6 @@ const Blog = () => {
                             {posts.map((post) => {
                               if (post.active) {
                                 return (
-
                                         <BlogCard
                                             key={post.idBlog}
                                             id={post.idBlog}

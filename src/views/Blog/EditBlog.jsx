@@ -29,12 +29,10 @@ const EditBlog = () => {
   }, [dispatch])
 
   useEffect(() => {
-    if (post.title !== '') {
-      if (post) {
-        setTitle(post.title)
-        setImage(post.image)
-        setDescription(post.description)
-      }
+    if (post) {
+      setTitle(post.title)
+      setImage(post.image)
+      setDescription(post.description)
     }
   }, [post])
 
@@ -58,8 +56,6 @@ const EditBlog = () => {
     }
 
     const response = await putPost(blog, id)(dispatch)
-    console.log(response)
-
     if (response.status === 500) {
       Swal.fire({
         icon: 'error',
@@ -83,6 +79,7 @@ const EditBlog = () => {
                   <input
                       className="bg-formBg rounded-r-lg w-72 h-8 text-center"
                       type='text'
+                      maxLength={50}
                       name='title'
                       onChange={handleChange}
                       value={title}
