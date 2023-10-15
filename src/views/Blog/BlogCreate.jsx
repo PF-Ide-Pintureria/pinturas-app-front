@@ -1,16 +1,17 @@
 import React, { useState } from 'react'
-// import { Formik, Field, Form, ErrorMessage } from "formik";
 import { useDispatch, useSelector } from 'react-redux'
 import postPost from '../../redux/actions/Blog/postPost'
 import Swal from 'sweetalert2'
 import { useNavigate } from 'react-router-dom'
 import img from '../../img/blog.jpg'
+import { validationBlog } from './validationBlog'
 
 const BlogCreate = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const user = useSelector(state => state.user)
   const idUser = user?.id
+  const [errors, setErrors] = useState({})
   const [inputs, setinputs] = useState({
     title: '',
     image: '',
@@ -33,30 +34,18 @@ const BlogCreate = () => {
         [property]: value
       })
     }
+    setErrors(validationBlog({ ...inputs, [property]: value }))
   }
-  // console.log('user', user);
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    const blog = new FormData()
-    blog.append('title', inputs.title)
-    blog.append('description', inputs.description)
-    blog.append('image', inputs.image ? inputs.image : img)
+    if (Object.keys(errors).length === 0) {
+      const blog = new FormData()
+      blog.append('title', inputs.title)
+      blog.append('description', inputs.description)
+      blog.append('image', inputs.image ? inputs.image : img)
 
-    // const blog = {
-    //     title: inputs.title,
-    //     description: inputs.description,
-    //     image: inputs.image
-    // }
-
-    // const blogToSend = JSON.stringify(blog)
-
-    // const data = {
-    //     blog,
-    //     idUser
-    // }
-
-    await postPost(blog)(dispatch).then(response => {
+      const response = await postPost(blog)(dispatch)
       if (response.status === 'success') {
         Swal.fire({
           icon: 'success',
@@ -68,8 +57,9 @@ const BlogCreate = () => {
           text: 'Hubo un error al crear el post'
         })
       }
-    })
+    }
   }
+
   if (user.rol !== 'admin') {
     navigate('/blog')
   } else {
@@ -83,7 +73,8 @@ const BlogCreate = () => {
                             <div className=" flex m-8 mb-0">
                                 <label className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center">Título</label>
                                 <input
-                                    className="bg-formBg rounded-r-lg w-72 h-8"
+                                    className="bg-formBg rounded-r-lg w-72 h-8 text-center"
+                                    maxLength={55}
                                     type='text'
                                     name='title'
                                     onChange={handleChange} />
@@ -100,7 +91,8 @@ const BlogCreate = () => {
                             <div className=" flex m-8 mb-0 h-40">
                                 <label htmlFor="" className="bg-quaternary rounded-l-xl w-40 h-40  flex items-center justify-center">Cuerpo</label>
                                 <textarea
-                                    className="bg-formBg rounded-r-lg w-72 h-50"
+                                    className="bg-formBg rounded-r-lg w-72 h-50 p-2 resize-none"
+                                    maxLength={2000}
                                     name='description'
                                     cols="40"
                                     rows="15"

@@ -5,11 +5,10 @@ const putPost = (formData, id) => {
   return async (dispatch) => {
     try {
       const token = localStorage.getItem('token')
-      const tokenLimpio = token.replace(/['"]+/g, '')
       const response = await axios.put(`${BASE_URL}blogs/${id}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
-          Authorization: tokenLimpio
+          Authorization: JSON.parse(token)
         }
       })
       dispatch({ type: PUT_POST })

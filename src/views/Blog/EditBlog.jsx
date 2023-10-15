@@ -11,7 +11,7 @@ const EditBlog = () => {
   const { id } = useParams()
   const user = useSelector(state => state.user)
   const post = useSelector(state => state.post)
-  const [errors, setErrors] = useState([])
+  const [errors, setErrors] = useState({})
   const [inputs, setInputs] = useState({
     title: '',
     image: '',
@@ -94,7 +94,7 @@ const EditBlog = () => {
                   <input
                       className="bg-formBg rounded-r-lg w-72 h-8 text-center"
                       type='text'
-                      maxLength={50}
+                      maxLength={55}
                       name='title'
                       onChange={handleChange}
                       value={inputs.title}
@@ -114,6 +114,7 @@ const EditBlog = () => {
                   <label htmlFor="" className="bg-quaternary rounded-l-xl w-40 h-40  flex items-center justify-center">Cuerpo</label>
                   <textarea
                       className="bg-formBg rounded-r-lg w-72 h-50 resize-none p-2"
+                      maxLength={2000}
                       name='description'
                       cols="40"
                       rows="15"

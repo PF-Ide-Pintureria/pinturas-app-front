@@ -22,7 +22,7 @@ const BlogCard = ({ id, image, title, date, description }) => {
                             {title}
                         </h3>
                         <h4 className="mt-1 text-xs text-center">{date}</h4>
-                        <p className="mt-2 text-sm italic text-center overflow-ellipsis overflow-hidden h-16">
+                        <p className="mt-2 font-abc text-sm italic text-center overflow-ellipsis overflow-hidden h-16">
                             {description}
                         </p>
                     </div>

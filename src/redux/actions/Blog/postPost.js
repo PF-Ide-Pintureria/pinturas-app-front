@@ -5,26 +5,19 @@ const postPost = (formData) => {
   return async (dispatch) => {
     try {
       const token = localStorage.getItem('token')
-      const tokenLimpio = token.replace(/['"]+/g, '')
-      const rawResponse = await axios.post(`${BASE_URL}blogs`, formData, {
+      const response = (await axios.post(`${BASE_URL}blogs`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
-          Authorization: tokenLimpio
+          Authorization: JSON.parse(token)
         }
-      })
-      console.log('response', rawResponse)
-      const middleResponse = rawResponse?.data
-      const response = middleResponse?.blog
-
+      })).data
       if (response) {
-        dispatch({
-          type: POST_POST,
-          payload: response
-        })
-        return middleResponse
+        dispatch({ type: POST_POST })
+        return response
       }
     } catch (error) {
       console.error(error)
+      return error.response
     }
   }
 }

@@ -38,7 +38,7 @@ const BlogDash = () => {
     {
       field: 'status',
       headerName: 'Status',
-      width: 150
+      width: 100
     },
     {
       field: 'date',
@@ -48,7 +48,7 @@ const BlogDash = () => {
     {
       field: 'edit',
       headerName: 'Editar',
-      width: 150,
+      width: 100,
       renderCell: (params) => (
         <EditBlogButton idBlog={params.row.id} />
       )
@@ -56,7 +56,7 @@ const BlogDash = () => {
     {
       field: 'delete',
       headerName: 'Eliminar',
-      width: 150,
+      width: 100,
       renderCell: (params) => (
         <DeleteBlogButton idBlog={params.row.id} />
       )
