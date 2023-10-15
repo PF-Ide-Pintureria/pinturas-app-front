@@ -4,16 +4,37 @@ import Swal from 'sweetalert2'
 import getPostById from '../../redux/actions/Blog/getPostById'
 import { useNavigate, useParams } from 'react-router-dom'
 import putPost from '../../redux/actions/Blog/putPost'
-
+import { validationBlog } from './validationBlog'
 const EditBlog = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const { id } = useParams()
   const user = useSelector(state => state.user)
   const post = useSelector(state => state.post)
-  const [title, setTitle] = useState('')
-  const [image, setImage] = useState('')
-  const [description, setDescription] = useState('')
+  const [errors, setErrors] = useState([])
+  const [inputs, setInputs] = useState({
+    title: '',
+    image: '',
+    description: ''
+  })
+
+  const handleChange = (event) => {
+    const property = event.target.name
+    const value = event.target.value
+
+    if (event.target.type === 'file') {
+      setInputs({
+        ...inputs,
+        image: event.target.files[0]
+      })
+    } else {
+      setInputs({
+        ...inputs,
+        [property]: value
+      })
+    }
+    setErrors(validationBlog({ ...inputs, [property]: value }))
+  }
 
   useEffect(() => {
     if (user.rol !== '') {
@@ -30,42 +51,36 @@ const EditBlog = () => {
 
   useEffect(() => {
     if (post) {
-      setTitle(post.title)
-      setImage(post.image)
-      setDescription(post.description)
+      setInputs({
+        title: post.title,
+        image: post.image,
+        description: post.description
+      })
     }
   }, [post])
 
-  const handleChange = (event) => {
-    if (event.target.type === 'file') {
-      setImage(event.target.files[0])
-    } else if (event.target.name === 'title') {
-      setTitle(event.target.value)
-    } else if (event.target.name === 'description') {
-      setDescription(event.target.value)
-    }
-  }
-
   const handleSubmit = async (event) => {
     event.preventDefault()
-    const blog = new FormData()
-    blog.append('title', title)
-    blog.append('description', description)
-    if (image !== undefined) {
-      blog.append('image', image)
-    }
+    if (Object.keys(errors).length === 0) {
+      const blog = new FormData()
+      blog.append('title', inputs.title)
+      blog.append('description', inputs.description)
+      if (inputs.image !== undefined) {
+        blog.append('image', inputs.image)
+      }
 
-    const response = await putPost(blog, id)(dispatch)
-    if (response.status === 500) {
-      Swal.fire({
-        icon: 'error',
-        text: `Error al actualizar: ${response.data}`
-      })
-    } else {
-      Swal.fire({
-        icon: 'success',
-        text: 'Blog actualizado'
-      })
+      const response = await putPost(blog, id)(dispatch)
+      if (response.status === 500) {
+        Swal.fire({
+          icon: 'error',
+          text: `Error al actualizar: ${response.data}`
+        })
+      } else {
+        Swal.fire({
+          icon: 'success',
+          text: 'Blog actualizado'
+        })
+      }
     }
   }
 
@@ -82,7 +97,7 @@ const EditBlog = () => {
                       maxLength={50}
                       name='title'
                       onChange={handleChange}
-                      value={title}
+                      value={inputs.title}
                   />
               </div>
               <div className=" flex m-8 mb-0">
@@ -104,7 +119,7 @@ const EditBlog = () => {
                       rows="15"
                       wrap="hard"
                       onChange={handleChange}
-                      value={description}
+                      value={inputs.description}
                   />
               </div>
               <button
