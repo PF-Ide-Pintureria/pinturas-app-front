@@ -65,6 +65,11 @@ const ProductsContainer = () => {
   }, [products])
 
   useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth' // Agrega una transición suave al desplazamiento
+    })
     setIsLoading(true)
     if (filterCategory || low || high) {
       dispatch(getProductFilter(thisPage, filterCategory, low, high)).then(
