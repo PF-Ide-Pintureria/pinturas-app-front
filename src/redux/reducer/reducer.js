@@ -267,11 +267,11 @@ const reducer = (state = initialState, { type, payload }) => {
     case GET_POST_BY_ID:
       return { ...state, post: payload }
     case PUT_POST:
-      return { ...state, posts: payload }
+      return { ...state }
     case DELETE_POST:
-      return { ...state, posts: payload }
+      return { ...state }
     case POST_POST:
-      return { ...state, posts: payload }
+      return { ...state }
 
     // REVIEWS
     case SAVE_REVIEW:
