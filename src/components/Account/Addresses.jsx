@@ -33,14 +33,19 @@ const Addresses = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    try {
-      await putUser(user.id, inputs)(dispatch)
+
+    const response = await putUser(user.id, inputs)(dispatch)
+
+    if (response.status === 200) {
       Swal.fire({
         icon: 'success',
         text: 'Información modificada correctamente'
       })
-    } catch (error) {
-      console.error(error)
+    } else {
+      Swal.fire({
+        icon: 'error',
+        text: 'Error al modificar información'
+      })
     }
   }
 
