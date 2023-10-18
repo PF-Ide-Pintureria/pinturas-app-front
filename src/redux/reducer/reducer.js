@@ -1,7 +1,6 @@
 import {
   // PRODUCTS
   GET_ALL_PRODUCTS,
-  DELETE_PRODUCT,
   POST_PRODUCT,
   PUT_PRODUCT,
   GET_PRODUCT_BY_ID,
@@ -150,8 +149,6 @@ const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
     // PRODUCTS
     case GET_ALL_PRODUCTS:
-      return { ...state, products: payload }
-    case DELETE_PRODUCT:
       return { ...state, products: payload }
     case POST_PRODUCT:
       return { ...state, products: payload }

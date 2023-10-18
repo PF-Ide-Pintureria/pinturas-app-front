@@ -1,16 +1,33 @@
 import React from 'react'
-import { deleteProduct } from '../../redux/actions/Products/deleteProduct'
+import axios from 'axios'
 import { allProducts } from '../../redux/actions/Products/allProducts'
 import { useDispatch } from 'react-redux'
 import Swal from 'sweetalert2'
+import { BASE_URL } from '../../redux/action-type'
 
 const DeleteButton = ({ idProduct }) => {
   const dispatch = useDispatch()
+  const token = localStorage.getItem('token')
 
   const handleClick = async () => {
-    dispatch(deleteProduct(idProduct))
-    Swal.fire('Borrado de producto:' + idProduct)
-    dispatch(allProducts())
+    try {
+      await axios.delete(`${BASE_URL}products/${idProduct}`, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: JSON.parse(token)
+        }
+      })
+
+      Swal.fire('Borrado de producto:' + idProduct)
+      dispatch(allProducts())
+    } catch (error) {
+      console.error(error)
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: error.response.data.error
+      })
+    }
   }
 
   return (
