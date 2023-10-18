@@ -8,9 +8,11 @@ export const formatAndPut = async (inputsForm) => {
     formData.append('providerName', inputsForm.provider)
     formData.append('excelFile', inputsForm.excelFile)
 
+    const token = localStorage.getItem('token')
     const response = await axios.put(`${BASE_URL}products/update/prices`, formData, {
       headers: {
-        'Content-Type': 'multipart/form-data'
+        'Content-Type': 'multipart/form-data',
+        Authorization: JSON.parse(token)
       }
     })
 
