@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Home from './views/Home/Home'
 import About from './views/About/About'
@@ -40,12 +40,7 @@ import BlogCreate from './views/Blog/BlogCreate'
 import EditBlog from './views/Blog/EditBlog'
 import BlogDetail from './views/Blog/BlogDetail'
 import UserOrderDetail from './views/UserOrderDetail/UserOrderDetail'
-import { ThemeProvider } from 'styled-components'
-import ChatBot from 'react-simple-chatbot'
-import { steps } from '../src/assets/steps'
-import { theme } from '../src/assets/theme'
-import { SiChatbot } from 'react-icons/si'
-import person from '../src/img/user.jpg'
+import ChatBotApp from './components/ChatBot/ChatBot'
 import { addCart } from './redux/actions/Cart/addCart'
 import UpdatePrices from './views/UpdatePrices/UpdatePrices'
 import CreateProvider from './views/Providers/CreateProvider'
@@ -55,24 +50,11 @@ import ScrollToTop from './hooks/ScrollToTop'
 
 function App () {
   const dispatch = useDispatch()
-  const [showChatbot, setShowChatbot] = useState(false)
-  const [showButton, setShowButton] = useState(true)
+
   const userDb = useSelector((state) => state.user)
-  const {
-    addAllToCart
-  } = useCart()
+  const { addAllToCart } = useCart()
   const user = localStorage.getItem('user')
   const cartLocalS = localStorage.getItem('cart')
-
-  const toggleChatbot = () => {
-    setShowChatbot(!showChatbot)
-    setShowButton(false)
-  }
-
-  const hideChatbot = () => {
-    setShowChatbot(false)
-    setShowButton(true)
-  }
 
   useEffect(() => {
     if (cartLocalS) dispatch(addCart(JSON.parse(cartLocalS)))
@@ -95,7 +77,7 @@ function App () {
   return (
     <div>
       <BrowserRouter>
-      <ScrollToTop/>
+        <ScrollToTop />
         <div className="h-full w-full">
           <div className="">
             <header>
@@ -121,10 +103,22 @@ function App () {
               {/* <Route path="/admin/providers" element={<AdminProviders />} /> */}
 
               <Route path="/admin/create" element={<CreateProduct />} />
-              <Route path="/admin/edit/:idUser" element={<UpdateUserFormByAdmin />} />
-              <Route path="/admin/products/update/prices" element={<UpdatePrices/>}/>
-              <Route path="/admin/providers/create" element={<CreateProvider />} />
-              <Route path="/admin/providers/edit/:id" element={<EditProvider />} />
+              <Route
+                path="/admin/edit/:idUser"
+                element={<UpdateUserFormByAdmin />}
+              />
+              <Route
+                path="/admin/products/update/prices"
+                element={<UpdatePrices />}
+              />
+              <Route
+                path="/admin/providers/create"
+                element={<CreateProvider />}
+              />
+              <Route
+                path="/admin/providers/edit/:id"
+                element={<EditProvider />}
+              />
 
               <Route path="/cart" element={<Cart />} />
               <Route path="/cart/buying" element={<Purchases />} />
@@ -163,50 +157,7 @@ function App () {
           </footer>
         </div>
       </BrowserRouter>
-      <ThemeProvider theme={theme}>
-        <div
-          style={{
-            position: 'fixed',
-            bottom: '20px',
-            right: '20px',
-            zIndex: 9999
-          }}
-        >
-          {showButton && (
-            <button
-              className="bg-purple-100 text-primary text-3xl font-semibold mb-2 px-3 py-3 rounded-full mr-2 hover:scale-125"
-              onClick={toggleChatbot}
-            >
-              <SiChatbot />
-            </button>
-          )}
-          {showChatbot && (
-            <div style={{ position: 'relative' }}>
-              <ChatBot
-                steps={steps}
-                headerTitle="Chatbot"
-                userAvatar={person}
-              />
-              <button
-                className="text-white hover:text-white-900 text-m mr-5 mt-3"
-                onClick={hideChatbot}
-                style={{
-                  position: 'absolute',
-                  top: '5px',
-                  right: '5px',
-                  background: 'none',
-                  border: 'none',
-                  cursor: 'pointer',
-                  transition: 'right 1s ease-in-out',
-                  zIndex: 9999
-                }}
-              >
-                X
-              </button>
-            </div>
-          )}
-        </div>
-      </ThemeProvider>
+      <ChatBotApp />
     </div>
   )
 }
