@@ -46,23 +46,24 @@ const UpdateUserForm = () => {
   // ENVIAR FORMULARIO
   const handleSubmit = async (event) => {
     event.preventDefault()
-    try {
-      if (Object.keys(errors).length === 0) {
-        const { newPassword, confirmPassword, ...data } = inputsForm
-        data.password = newPassword
-        await putUser(user.id, data)(dispatch)
+
+    if (Object.keys(errors).length === 0) {
+      const { newPassword, confirmPassword, ...data } = inputsForm
+      data.password = newPassword
+      const response = await putUser(user.id, data)(dispatch)
+
+      if (response.status === 200) {
+        Swal.fire({
+          icon: 'success',
+          text: 'Cuenta actualizada'
+        })
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Ooops!',
+          text: 'Error al actualizar su cuenta'
+        })
       }
-      Swal.fire({
-        icon: 'success',
-        text: 'Cuenta actualizada'
-      })
-    } catch (error) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Ooops!',
-        text: 'Error al actualizar su cuenta'
-      })
-      console.error(error)
     }
   }
   // BOTON DELETE ELIMINAR CUENTA
