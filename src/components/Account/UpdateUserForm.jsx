@@ -81,10 +81,15 @@ const UpdateUserForm = () => {
 
     if (result.isConfirmed) {
       // Si el usuario confirma, eliminar la cuenta
-      deleteUser(user.id)(dispatch)
-      Swal.fire('Usuario eliminado', '', 'success')
-      logoutUser(dispatch)
-      navigate('/')
+      const response = await deleteUser(user.id)(dispatch)
+
+      if (response.status === 200) {
+        Swal.fire('Usuario eliminado')
+        logoutUser(dispatch)
+        navigate('/')
+      } else {
+        Swal.fire('Error al eliminar la cuenta')
+      }
     }
   }
 
