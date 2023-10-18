@@ -88,9 +88,7 @@ function App () {
 
               <Route path="/products" element={<Products />} />
               <Route path="/products/:idProduct" element={<Detail />} />
-              <Route
-                path="/products/edit/:idProduct"
-                element={<UpdateProduct />}
+              <Route path="/products/edit/:idProduct" element={<UpdateProduct />}
               />
 
               <Route path="/login" element={<Login />} />
@@ -103,31 +101,16 @@ function App () {
               {/* <Route path="/admin/providers" element={<AdminProviders />} /> */}
 
               <Route path="/admin/create" element={<CreateProduct />} />
-              <Route
-                path="/admin/edit/:idUser"
-                element={<UpdateUserFormByAdmin />}
-              />
-              <Route
-                path="/admin/products/update/prices"
-                element={<UpdatePrices />}
-              />
-              <Route
-                path="/admin/providers/create"
-                element={<CreateProvider />}
-              />
-              <Route
-                path="/admin/providers/edit/:id"
-                element={<EditProvider />}
-              />
+              <Route path="/admin/edit/:idUser" element={<UpdateUserFormByAdmin />} />
+              <Route path="/admin/products/update/prices" element={<UpdatePrices />} />
+              <Route path="/admin/providers/create" element={<CreateProvider />} />
+              <Route path="/admin/providers/edit/:id" element={<EditProvider />} />
 
               <Route path="/cart" element={<Cart />} />
               <Route path="/cart/buying" element={<Purchases />} />
               <Route path="/cart/detail" element={<OrderDetail />} />
 
-              <Route
-                path="/payment/successful"
-                element={<SuccessfulPayment />}
-              />
+              <Route path="/payment/successful" element={<SuccessfulPayment />} />
               <Route path="/payment/failure" element={<FailurePayment />} />
               <Route path="/payment/pending" element={<PendingPayment />} />
 
