@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { formatAndPost } from './formatAndPost'
 import { validation } from './validation'
+import Swal from 'sweetalert2'
 
 const CreateProviderForm = () => {
   const navigate = useNavigate()
@@ -37,8 +38,15 @@ const CreateProviderForm = () => {
     }
   }
 
-  if (user.rol !== 'admin') {
-    navigate('/account')
+  if (user?.rol !== 'admin') {
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'No tienes permisos para realizar esta acción.'
+    })
+    useEffect(() => {
+      navigate('/')
+    })
   } else {
     return (
             <div className="flex flex-col justify-start">

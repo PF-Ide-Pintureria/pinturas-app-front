@@ -5,6 +5,7 @@ import { formatAndPut } from './formatAndPut'
 import { validation } from './validation'
 import { getProviderById } from '../../redux/actions/Providers/getProviderById'
 import { cleanProvider } from '../../redux/actions/Providers/cleanProvider'
+import Swal from 'sweetalert2'
 
 const ProviderEditForm = () => {
   const dispatch = useDispatch()
@@ -58,8 +59,13 @@ const ProviderEditForm = () => {
     }
   }
 
-  if (user.rol !== 'admin') {
-    navigate('/account')
+  if (user?.rol !== 'admin') {
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'No tienes permisos para realizar esta acción.'
+    })
+    navigate('/')
   } else {
     return (
           <div className="flex flex-col justify-start">

@@ -7,6 +7,7 @@ import SalesDash from '../../components/Account/SalesDash'
 import ProductsDash from '../../components/Account/ProductsDash'
 import BlogDash from '../../components/Account/BlogDash'
 import ProvidersDash from '../../components/Account/ProvidersDash'
+import Account from '../Account/Account'
 
 const Dashboard = () => {
   const user = useSelector(state => state.user)
@@ -60,7 +61,7 @@ const Dashboard = () => {
   }
 
   if (user.rol !== 'admin') {
-    navigate('/account')
+    return <Account/>
   } else {
     return (
             <div>
