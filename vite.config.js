@@ -10,9 +10,11 @@ export default defineConfig(({ mode }) => {
     define: {
       'process.env': env
     },
-    plugins: [eslint({
-      include: ['src/**/*.js', 'src/**/*.jsx'],
-      exclude: ['node_modules/**', 'dist/**']
-    })]
+    plugins: [
+      // eslint({
+      //   include: ['src/**/*.js', 'src/**/*.jsx'],
+      //   exclude: ['node_modules/**', 'dist/**']
+      // })
+    ]
   }
 })

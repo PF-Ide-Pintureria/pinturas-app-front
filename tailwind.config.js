@@ -5,16 +5,23 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: '#6B17CD',
+        primary: '#662c7b',
+        turquoise: '#00A491',
+        orange: '#E96827',
         secondary: '#535353',
         tertiary: 'rgba(231, 231, 231, 0.40)',
         quaternary: '#F0CF5D',
         formBg: '#D9D9D9',
-        warning: '#ff0f0f'
+        warning: '#ff0f0f',
       }
     },
     fontFamily: {
-      abc: ['Urbanist', 'sans-serif']
+      abc: ['Urbanist', 'sans-serif'],
+      primary: 'Gill Sans'
+    },
+    padding: {
+      // Debe ser usado en cada component "main" para dar espacio al header principal.
+      whiteSpaceTop: '9rem 0 0 0'
     }
   },
   plugins: []

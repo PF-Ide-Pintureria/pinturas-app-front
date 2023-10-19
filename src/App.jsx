@@ -53,7 +53,7 @@ import EditProvider from './views/Providers/EditProvider'
 import ScrollToTop from './hooks/ScrollToTop'
 // import AdminProviders from './views/Admin/AdminProviders/AdminProviders'
 
-function App () {
+function App() {
   const dispatch = useDispatch()
   const [showChatbot, setShowChatbot] = useState(false)
   const [showButton, setShowButton] = useState(true)
@@ -95,12 +95,10 @@ function App () {
   return (
     <div>
       <BrowserRouter>
-      <ScrollToTop/>
+        <ScrollToTop />
         <div className="h-full w-full">
           <div className="">
-            <header>
-              <NavBar />
-            </header>
+            <NavBar />
             <Routes>
               <Route exact path="/" element={<Home />} />
 
@@ -122,7 +120,7 @@ function App () {
 
               <Route path="/admin/create" element={<CreateProduct />} />
               <Route path="/admin/edit/:idUser" element={<UpdateUserForm />} />
-              <Route path="/admin/products/update/prices" element={<UpdatePrices/>}/>
+              <Route path="/admin/products/update/prices" element={<UpdatePrices />} />
               <Route path="/admin/providers/create" element={<CreateProvider />} />
               <Route path="/admin/providers/edit/:id" element={<EditProvider />} />
 

@@ -15,15 +15,13 @@ const Home = () => {
   }, [dispatch])
 
   return (
-    <div className="w-full h-full">
-      <main className="w-full h-full">
-        <Banner />
-        <CategoryContainer />
-        <FeaturedContainer />
-        <AboutCard />
-        <BannerBlog />
-      </main>
-    </div>
+    <main className="w-full h-full p-whiteSpaceTop bg-gradient-to-bl from-[#E9682799] to-[#00A49199]">
+      <Banner />
+      <CategoryContainer />
+      <FeaturedContainer />
+      <AboutCard />
+      <BannerBlog />
+    </main>
   )
 }
 
