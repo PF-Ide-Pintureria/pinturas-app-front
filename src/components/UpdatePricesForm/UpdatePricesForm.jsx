@@ -2,10 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getProvidersActive } from '../../redux/actions/Providers/getProvidersActive'
 import { formatAndPut } from './formatAndPut'
+import Swal from 'sweetalert2'
+import { useNavigate } from 'react-router-dom'
 
 const UpdatePricesForm = () => {
   const dispatch = useDispatch()
   const providers = useSelector(state => state.providers)
+  const user = useSelector(state => state.user)
+  const navigate = useNavigate()
 
   const [isLoading, setIsLoading] = useState(false)
   const [inputsForm, setInputsForm] = useState({
@@ -49,7 +53,15 @@ const UpdatePricesForm = () => {
     document.getElementById('excelFile').value = ''
   }
 
-  return (
+  if (user?.rol !== 'admin') {
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'No tienes permisos para realizar esta acción.'
+    })
+    navigate('/')
+  } else {
+    return (
     <div className=" flex-column ">
       <h1 className="text-3xl text-primary mt-10 uppercase font-bold flex items-center justify-center">Actualizar Precios</h1>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
@@ -112,7 +124,8 @@ const UpdatePricesForm = () => {
         </div>
       </form>
     </div>
-  )
+    )
+  }
 }
 
 export default UpdatePricesForm
