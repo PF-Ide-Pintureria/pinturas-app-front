@@ -13,7 +13,7 @@ export const getAllUsers = () => {
 
             return dispatch({ type: GET_ALL_USERS, payload: users })
         } catch (error) {
-            console.error(error.users)
+            console.error(error.response)
         }
     }
 }
