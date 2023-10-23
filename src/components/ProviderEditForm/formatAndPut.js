@@ -6,7 +6,8 @@ export const formatAndPut = async (inputsForm, id) => {
   try {
     await axios.put(`${BASE_URL}providers/edit/${id}`, inputsForm, {
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: JSON.parse(localStorage.getItem('token'))
       }
     })
     Swal.fire({
@@ -21,6 +22,6 @@ export const formatAndPut = async (inputsForm, id) => {
       text: 'Algo falló!',
       confirmButtonText: 'Ok'
     })
-    console.log(error)
+    console.log(error.response.data)
   }
 }
