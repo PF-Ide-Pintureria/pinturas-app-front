@@ -17,7 +17,9 @@ import category11 from '../../img/fijadores.png'
 import category13 from '../../img/auxiliares.png'
 import category14 from '../../img/madera.png'
 
+
 const CategoryContainer = () => {
+
   const dispatch = useDispatch()
 
   const handleCategory = (category) => {
@@ -25,183 +27,52 @@ const CategoryContainer = () => {
     dispatch(setCategory(category))
   }
 
+  const CATEGORIES = [
+    { image: category14, searchQuery: "Linea Maderas" },
+    { image: category3, searchQuery: "Linea Esmaltes" },
+    { image: category4, searchQuery: "Linea Pinturas a la Cal" },
+    { image: category5, searchQuery: "Linea Fondos" },
+    { image: category6, searchQuery: "Linea Entonadores y Tintas" },
+    { image: category7, searchQuery: "Linea Ecologica" },
+    { image: category8, searchQuery: "Linea Esmaltes Industriales" },
+    { image: category2, searchQuery: "Linea Productos Especiales" },
+    { image: category10, searchQuery: "Linea Impermeabilizantes" },
+    { image: category11, searchQuery: "Linea Fijadores - Aditivos -" },
+    { image: category9, searchQuery: "Linea Latex" },
+    // { image: category12, searchQuery: "Linea" },
+    { image: category13, searchQuery: "Linea Productos Auxiliares" },
+  ]
+
   return (
-    <div>
-      <div className="flex flex-col w-full my-4 items-center justify-center">
-        <div className="flex flex-col sm:flex-row w-4/5">
-          <div className="w-full sm:w-1/2">
-            <Link
-              to={`/products?category=${encodeURIComponent('Linea Maderas')}`}
-              onClick={() => handleCategory('Linea Maderas')}
+    <section className="grid grid-cols-2 gap-6 m-[50px] w-[90%]">
+      {
+        CATEGORIES.map((category) => (
+          <Link
+            to={`/products?category=${encodeURIComponent(category.searchQuery)}`}
+            onClick={() => handleCategory(category.searchQuery)}
+          >
+            <img
+              src={category.image}
+              alt={category.searchQuery}
+              className="h-auto object-cover cursor-pointer rounded-3xl transition-all hover:outline hover:outline-4 hover:outline-orange"
             >
-              <img
-                src={category14}
-                alt="category14"
-                className="p-2 h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
-              />
-            </Link>
-          </div>
-          <div className="w-full sm:w-1/2">
-            <Link
-              to={`/products?category=${encodeURIComponent('Linea Esmaltes')}`}
-              onClick={() => handleCategory('Linea Esmaltes')}
-            >
-              <img
-                src={category3}
-                alt="category3"
-                className="p-2 h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
-              />
-            </Link>
-          </div>
-        </div>
-        <div className="flex flex-col sm:flex-row w-4/5">
-          <div className="w-full sm:w-1/2">
-            <Link
-              to={`/products?category=${encodeURIComponent(
-                'Linea Pinturas a la Cal'
-              )}`}
-              onClick={() => handleCategory('Linea Pinturas a la Cal')}
-            >
-              <img
-                src={category4}
-                alt="category4"
-                className="p-2 h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
-              />
-            </Link>
-          </div>
-          <div className="w-full sm:w-1/2">
-            <Link
-              to={`/products?category=${encodeURIComponent('Linea Fondos')}`}
-              onClick={() => handleCategory('Linea Fondos')}
-            >
-              <img
-                src={category5}
-                alt="category5"
-                className="p-2 h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
-              />
-            </Link>
-          </div>
-        </div>
-        <div className="flex flex-col sm:flex-row w-4/5">
-          <div className="w-full sm:w-1/2">
-            <Link
-              to={`/products?category=${encodeURIComponent(
-                'Linea Entonadores y Tintas'
-              )}`}
-              onClick={() => handleCategory('Linea Entonadores y Tintas')}
-            >
-              <img
-                src={category6}
-                alt="category6"
-                className="p-2 h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
-              />
-            </Link>
-          </div>
-          <div className="w-full sm:w-1/2">
-            <Link
-              to={`/products?category=${encodeURIComponent('Linea Ecologica')}`}
-              onClick={() => handleCategory('Linea Ecologica')}
-            >
-              <img
-                src={category7}
-                alt="category7"
-                className="p-2 h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
-              />
-            </Link>
-          </div>
-        </div>
-        <div className="flex flex-col sm:flex-row w-4/5">
-          <div className="w-full sm:w-1/2">
-            <Link
-              to={`/products?category=${encodeURIComponent(
-                'Linea Esmaltes Industriales'
-              )}`}
-              onClick={() => handleCategory('Linea Esmaltes Industriales')}
-            >
-              <img
-                src={category8}
-                alt="category8"
-                className="p-2 h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
-              />
-            </Link>
-          </div>
-          <div className="w-full sm:w-1/2">
-            <Link
-              to={`/products?category=${encodeURIComponent(
-                'Linea Productos Especiales'
-              )}`}
-              onClick={() => handleCategory('Linea Productos Especiales')}
-            >
-              <img
-                src={category2}
-                alt="category2"
-                className="p-2 h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
-              />
-            </Link>
-          </div>
-        </div>
-        <div className="flex flex-col sm:flex-row w-4/5">
-          <div className="w-full sm:w-1/2">
-            <Link
-              to={`/products?category=${encodeURIComponent(
-                'Linea Impermeabilizantes'
-              )}`}
-              onClick={() => handleCategory('Linea Impermeabilizantes')}
-            >
-              <img
-                src={category10}
-                alt="category10"
-                className="p-2 h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
-              />
-            </Link>
-          </div>
-          <div className="w-full sm:w-1/2">
-            <Link
-              to={`/products?category=${encodeURIComponent(
-                'Linea Fijadores - Aditivos -'
-              )}`}
-              onClick={() => handleCategory('Linea Fijadores - Aditivos -')}
-            >
-              <img
-                src={category11}
-                alt="category11"
-                className="p-2 h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
-              />
-            </Link>
-          </div>
-        </div>
-        <div className="flex flex-col sm:flex-row w-4/5">
-          <div className="w-full sm:w-1/2">
-            <Link
-              to={`/products?category=${encodeURIComponent(
-                'Linea Bases Tintometricas'
-              )}`}
-              onClick={() => handleCategory('Linea Latex')}
-            >
-              <img
-                src={category9}
-                alt="category12"
-                className="p-2 h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
-              />
-            </Link>
-          </div>
-          <div className="w-full sm:w-1/2">
-            <Link
-              to={`/products?category=${encodeURIComponent(
-                'Linea Productos Auxiliares'
-              )}`}
-              onClick={() => handleCategory('Linea Productos Auxiliares')}
-            >
-              <img
-                src={category13}
-                alt="category13"
-                className="p-2 h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
-              />
-            </Link>
-          </div>
-        </div>
-      </div>
-    </div>
+            </img>
+          </Link>
+        ))
+      }
+      {/* <Link
+        to={`/products?category=${encodeURIComponent(
+          'Linea Bases Tintometricas'
+        )}`}
+        onClick={() => handleCategory('Linea Latex')}
+      >
+        <img
+          src={category9}
+          alt="category12"
+          className="h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
+        />
+      </Link> */}
+    </section>
   )
 }
 
