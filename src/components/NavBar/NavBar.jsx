@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useAuth0 } from '@auth0/auth0-react'
+import SearchBar from '../SearchBar/SearchBar'
 
 import { Cart, UserIcon } from '../SVG'
 import logo from '../../img/logo.png'
@@ -61,6 +62,7 @@ const Nav = () => {
 
       {/* NAV LINKS */}
       <nav className="flex justify-around w-[calc((100%-5rem)/2)]">
+        <SearchBar />
         <div className="font-mono flex justify-center items-center cursor-pointer">
           <NavLink
             to="/cart"
