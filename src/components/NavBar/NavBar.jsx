@@ -34,7 +34,7 @@ const Nav = () => {
 
 
   return (
-    <header className="z-50 fixed flex justify-center items-center w-[90%] mx-[5%] my-4 h-20 rounded-[50px] bg-[#f1f1f190] border backdrop-blur-md">
+    <header className="z-50 fixed flex justify-center items-center w-[85%] mx-[7.5%] my-4 h-16 rounded-[50px] bg-[#f1f1f190] border backdrop-blur-md">
       {/* NAV LINKS */}
       <nav className="flex justify-evenly w-[calc((100%-5rem)/2)]">
         <NavLink to="/products" className={linkStl}>
@@ -56,7 +56,7 @@ const Nav = () => {
         <img
           src={logo}
           alt="logo Ide Pinturerias"
-          className="my-4 w-20 object-contain cursor-pointer"
+          className="my-4 w-16 object-contain cursor-pointer"
         />
       </NavLink>
 
@@ -66,7 +66,7 @@ const Nav = () => {
         <div className="font-mono flex justify-center items-center cursor-pointer">
           <NavLink
             to="/cart"
-            className="h-7 hidden sm:block"
+            className="h-6 hidden sm:block"
           >
             <Cart />
           </NavLink>
@@ -79,7 +79,7 @@ const Nav = () => {
             (!userBd.id && !isAuthenticated) ? (
               <NavLink
                 // to="/account"
-                className="h-7 hidden sm:block cursor-pointer"
+                className="h-6 hidden sm:block cursor-pointer"
               >
                 <UserIcon />
               </NavLink>
@@ -88,7 +88,7 @@ const Nav = () => {
             ) : userBd.id ? (
               <NavLink
                 to="/account"
-                className="h-7 hidden sm:block cursor-pointer"
+                className="h-6 hidden sm:block cursor-pointer"
               >
                 <UserIcon />
                 {userBd.name}
@@ -98,7 +98,7 @@ const Nav = () => {
             ) : isAuthenticated ? (
               <NavLink
                 to="/account"
-                className="h-7 hidden sm:block cursor-pointer"
+                className="h-6 hidden sm:block cursor-pointer"
               >
                 <UserIcon />
                 {user.name} {user.lastName}
