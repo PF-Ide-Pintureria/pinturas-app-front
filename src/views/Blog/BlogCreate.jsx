@@ -2,13 +2,13 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import postPost from '../../redux/actions/Blog/postPost'
 import Swal from 'sweetalert2'
-
 import img from '../../img/blog.jpg'
 import { validationBlog } from './validationBlog'
-import Blog from './Blog'
+import { useNavigate } from 'react-router-dom'
 
 const BlogCreate = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const user = useSelector(state => state.user)
   const idUser = user?.id
@@ -62,11 +62,7 @@ const BlogCreate = () => {
   }
 
   if (user.rol !== 'admin') {
-    Swal.fire({
-      icon: 'error',
-      text: 'Acceso denegado'
-    })
-    return <Blog/>
+    navigate('/blog')
   } else {
     return (
             <div>
