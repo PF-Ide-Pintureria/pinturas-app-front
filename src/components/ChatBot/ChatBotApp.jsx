@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import ChatBot from 'react-simple-chatbot'
 import { SiChatbot } from 'react-icons/si'
 import { ThemeProvider } from 'styled-components'
-import { theme } from '../../assets/theme'
-import { steps } from '../../assets/steps'
-import person from '../../img/user.jpg'
+import { theme } from '@assets/theme'
+import { steps } from '@assets/steps'
+import person from '@img/user.jpg'
 
 const ChatBotApp = () => {
   const [showChatbot, setShowChatbot] = useState(false)

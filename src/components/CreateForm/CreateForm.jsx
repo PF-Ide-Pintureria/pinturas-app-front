@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { allCategories } from '../../redux/actions/Categories/allCategories'
+import { allCategories } from '@redux/actions/Categories/allCategories'
 import validations from './validations'
 import { formatAndPost } from './formatAndPost'
-import { getProvidersActive } from '../../redux/actions/Providers/getProvidersActive'
+import { getProvidersActive } from '@redux/actions/Providers/getProvidersActive'
 import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 

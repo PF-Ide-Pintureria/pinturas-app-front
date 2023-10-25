@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { putUser } from '../../redux/actions/User/putUser'
+import { putUser } from '@redux/actions/User/putUser'
 import { useDispatch, useSelector } from 'react-redux'
 import Swal from 'sweetalert2'
 

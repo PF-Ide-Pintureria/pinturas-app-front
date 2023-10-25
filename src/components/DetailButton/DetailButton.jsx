@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { getOrderById } from '../../redux/actions/Orders/getOrderById'
+import { getOrderById } from '@redux/actions/Orders/getOrderById'
 
 const DetailButton = ({ idOrder }) => {
   const dispatch = useDispatch()

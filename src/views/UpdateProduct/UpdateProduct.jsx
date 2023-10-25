@@ -1,5 +1,5 @@
 import React from 'react'
-import UpdateForm from '../../components/UpdateForm/UpdateForm'
+import UpdateForm from '@components/UpdateForm/UpdateForm'
 
 const UpdateProduct = () => {
   return (

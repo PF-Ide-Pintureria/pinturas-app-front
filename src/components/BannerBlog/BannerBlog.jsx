@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import banner4 from '../../img/banner4.png'
+import banner4 from '@img/banner4.png'
 
 const BannerCarousel = () => {
   return (

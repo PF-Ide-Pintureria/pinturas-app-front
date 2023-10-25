@@ -1,7 +1,7 @@
 import React from 'react'
-import Banner5 from '../../img/pet.png'
-import Local from '../../img/location.png'
-import Map from '../../img/map.png'
+import Banner5 from '@img/pet.png'
+import Local from '@img/location.png'
+import Map from '@img/map.png'
 
 const Location = () => {
   return (

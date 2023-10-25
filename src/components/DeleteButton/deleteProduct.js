@@ -1,6 +1,6 @@
 import axios from 'axios'
 import Swal from 'sweetalert2'
-import { BASE_URL } from '../../redux/action-type'
+import { BASE_URL } from '@redux/action-type'
 
 export const deleteProduct = async (idProduct) => {
   const token = localStorage.getItem('token')

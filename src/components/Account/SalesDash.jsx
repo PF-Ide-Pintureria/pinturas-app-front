@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { DataGrid, GridToolbar } from '@mui/x-data-grid'
 import { useDispatch, useSelector } from 'react-redux'
-import getAllOrders from '../../redux/actions/Orders/getAllOrders'
+import getAllOrders from '@redux/actions/Orders/getAllOrders'
 import PendingButton from '../OrdersButtons/PendingButton'
 import PaidButton from '../OrdersButtons/PaidButton'
 import CompletedButton from '../OrdersButtons/CompletedButton'
