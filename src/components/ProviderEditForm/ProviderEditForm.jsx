@@ -5,7 +5,6 @@ import { formatAndPut } from './formatAndPut'
 import { validation } from './validation'
 import { getProviderById } from '@redux/actions/Providers/getProviderById'
 import { cleanProvider } from '@redux/actions/Providers/cleanProvider'
-import Swal from 'sweetalert2'
 
 const ProviderEditForm = () => {
   const dispatch = useDispatch()
