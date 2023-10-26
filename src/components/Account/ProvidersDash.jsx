@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getProviders } from '../../redux/actions/Providers/getProviders'
+import { getProviders } from '@redux/actions/Providers/getProviders'
 import { DataGrid, GridToolbar } from '@mui/x-data-grid'
 import CreateProviderButton from './ProvidersButtons/CreateProviderButton'
 import DeleteProviderButton from './ProvidersButtons/DeleteProviderButton'

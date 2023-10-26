@@ -1,9 +1,9 @@
 // import React from "react";
 // import { useAuth0 } from "@auth0/auth0-react";
-// // import login from "../../img/login-img.jpeg";
+// // import login from "@img/login-img.jpeg";
 // import { connect } from "react-redux";
 // import Cookies from "js-cookie";
-// import { postAuthzeroUsers } from "../../redux/actions/User/postAuthzeroUsers";
+// import { postAuthzeroUsers } from "@redux/actions/User/postAuthzeroUsers";
 
 // const Dashboard = ({ isAuthenticated, user, setUserData }) => {
 //   const {

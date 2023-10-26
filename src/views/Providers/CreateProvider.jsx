@@ -1,5 +1,5 @@
 import React from 'react'
-import CreateProviderForm from '../../components/ProviderCreateForm/ProviderCreateForm'
+import CreateProviderForm from '@components/ProviderCreateForm/ProviderCreateForm'
 
 const CreateProvider = () => {
   return (

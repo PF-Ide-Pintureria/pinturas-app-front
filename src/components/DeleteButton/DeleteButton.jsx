@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { allProducts } from '../../redux/actions/Products/allProducts'
+import { allProducts } from '@redux/actions/Products/allProducts'
 import { deleteProduct } from './deleteProduct'
 
 const DeleteButton = ({ idProduct }) => {

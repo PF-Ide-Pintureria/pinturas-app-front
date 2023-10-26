@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import { formatAndPut } from './formatAndPut'
 import { validation } from './validation'
-import { getProviderById } from '../../redux/actions/Providers/getProviderById'
-import { cleanProvider } from '../../redux/actions/Providers/cleanProvider'
+import { getProviderById } from '@redux/actions/Providers/getProviderById'
+import { cleanProvider } from '@redux/actions/Providers/cleanProvider'
 import Swal from 'sweetalert2'
 
 const ProviderEditForm = () => {

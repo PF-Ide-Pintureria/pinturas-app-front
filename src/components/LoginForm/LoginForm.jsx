@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useDispatch } from 'react-redux'
-import { postLoginUser } from '../../redux/actions/User/postLoginUser'
-import { logoutUser } from '../../redux/actions/User/logoutUser'
+import { postLoginUser } from '@redux/actions/User/postLoginUser'
+import { logoutUser } from '@redux/actions/User/logoutUser'
 import Swal from 'sweetalert2'
 
 const LoginForm = () => {

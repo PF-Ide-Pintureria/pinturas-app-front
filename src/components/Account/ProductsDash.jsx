@@ -5,7 +5,7 @@ import UpdateButton from '../UpdateButton/UpdateButton.jsx'
 import DeleteButton from '../DeleteButton/DeleteButton.jsx'
 import UpdatePricesButton from '../UpdatePricesButton/UpdatePricesButton.jsx'
 import { useDispatch, useSelector } from 'react-redux'
-import { getAllProductsNoFilter } from '../../redux/actions/Products/getAllProductsNoFilter.js'
+import { getAllProductsNoFilter } from '@redux/actions/Products/getAllProductsNoFilter.js'
 import { DataGrid, GridToolbar } from '@mui/x-data-grid'
 
 const ProductsDash = () => {

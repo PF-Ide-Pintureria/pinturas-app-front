@@ -1,5 +1,5 @@
 import React from 'react'
-import ProductOrderDetail from '../../components/ProductOrderDetail/ProductOrderDetail'
+import ProductOrderDetail from '@components/ProductOrderDetail/ProductOrderDetail'
 import { useSelector } from 'react-redux'
 
 const OrderDetail = () => {

@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import postPost from '../../redux/actions/Blog/postPost'
+import postPost from '@redux/actions/Blog/postPost'
 import Swal from 'sweetalert2'
 
-import img from '../../img/blog.jpg'
+import img from '@img/blog.jpg'
 import { validationBlog } from './validationBlog'
 import Blog from './Blog'
 

@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import React from 'react'
-import logo from '../../img/logoIde.png'
+import logo from '@img/logoIde.png'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useSelector } from 'react-redux'
 
