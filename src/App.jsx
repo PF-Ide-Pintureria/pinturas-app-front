@@ -26,7 +26,6 @@ import { useCart } from './hooks/useCart'
 import { useDispatch, useSelector } from 'react-redux'
 import { setUser } from './redux/actions/User/setUser'
 import { allProducts } from './redux/actions/Products/allProducts'
-import TestTable from './TestTable'
 import UpdateUserFormByAdmin from '@components/UpdateUserFormByAdmin/UpdateUserFormByAdmin'
 import { getCart } from './redux/actions/Cart/getCart'
 import OrderDetail from './views/OrderDetail/OrderDetail'
@@ -117,8 +116,6 @@ function App () {
               <Route path="/blog/edit/:id" element={<EditBlog />} />
 
               <Route path="/developers" element={<Developers />} />
-
-              <Route path="/testing" element={<TestTable />} />
 
               <Route path="*" element={<NotFound />} />
             </Routes>
