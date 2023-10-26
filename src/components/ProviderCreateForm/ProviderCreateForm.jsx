@@ -3,11 +3,12 @@ import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { formatAndPost } from './formatAndPost'
 import { validation } from './validation'
-import Swal from 'sweetalert2'
 
 const CreateProviderForm = () => {
   const navigate = useNavigate()
   const user = useSelector(state => state.user)
+
+  const [isLoading, setIsLoading] = useState(true)
 
   const [inputsForm, setInputsForm] = useState({
     name: '',
@@ -21,6 +22,17 @@ const CreateProviderForm = () => {
     markup: '',
     empty: ''
   })
+
+  useEffect(() => {
+    // Simular una carga asincrónica de los datos del usuario
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 100)
+  }, [])
+
+  if (isLoading) {
+    return <div>Cargando...</div>
+  }
 
   const handleChange = (event) => {
     const property = event.target.name
@@ -39,14 +51,7 @@ const CreateProviderForm = () => {
   }
 
   if (user?.rol !== 'admin') {
-    Swal.fire({
-      icon: 'error',
-      title: 'Oops...',
-      text: 'No tienes permisos para realizar esta acción.'
-    })
-    useEffect(() => {
-      navigate('/')
-    })
+    navigate('/')
   } else {
     return (
             <div className="flex flex-col justify-start">

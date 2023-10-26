@@ -5,7 +5,6 @@ import { formatAndPut } from './formatAndPut'
 import { validation } from './validation'
 import { getProviderById } from '../../redux/actions/Providers/getProviderById'
 import { cleanProvider } from '../../redux/actions/Providers/cleanProvider'
-import Swal from 'sweetalert2'
 
 const ProviderEditForm = () => {
   const dispatch = useDispatch()
@@ -13,6 +12,8 @@ const ProviderEditForm = () => {
   const { id } = useParams()
   const user = useSelector(state => state.user)
   const provider = useSelector(state => state.provider)
+
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     dispatch(getProviderById(id))
@@ -30,7 +31,6 @@ const ProviderEditForm = () => {
     markup: '',
     empty: ''
   })
-
   useEffect(() => {
     if (provider.name) {
       setInputsForm({
@@ -41,6 +41,16 @@ const ProviderEditForm = () => {
       })
     }
   }, [provider])
+  useEffect(() => {
+    // Simular una carga asincrónica de los datos del usuario
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 100)
+  }, [])
+
+  if (isLoading) {
+    return <div>Cargando...</div>
+  }
 
   const handleChange = (event) => {
     const property = event.target.name
@@ -60,11 +70,6 @@ const ProviderEditForm = () => {
   }
 
   if (user?.rol !== 'admin') {
-    Swal.fire({
-      icon: 'error',
-      title: 'Oops...',
-      text: 'No tienes permisos para realizar esta acción.'
-    })
     navigate('/')
   } else {
     return (

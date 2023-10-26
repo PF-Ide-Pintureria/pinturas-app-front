@@ -11,6 +11,7 @@ const UpdatePricesForm = () => {
   const user = useSelector(state => state.user)
   const navigate = useNavigate()
 
+  const [loading, setLoading] = useState(true)
   const [isLoading, setIsLoading] = useState(false)
   const [inputsForm, setInputsForm] = useState({
     provider: '',
@@ -53,8 +54,18 @@ const UpdatePricesForm = () => {
     document.getElementById('excelFile').value = ''
   }
 
+  useEffect(() => {
+    // Simular una carga asincrónica de los datos del usuario
+    setTimeout(() => {
+      setLoading(false)
+    }, 100)
+  }, [])
+
+  if (loading) {
+    return <div>Cargando...</div>
+  }
+
   if (user.rol !== 'admin') {
-    console.log(user.rol)
     navigate('/')
   } else {
     return (

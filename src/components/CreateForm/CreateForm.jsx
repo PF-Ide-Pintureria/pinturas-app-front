@@ -5,7 +5,6 @@ import validations from './validations'
 import { formatAndPost } from './formatAndPost'
 import { getProvidersActive } from '../../redux/actions/Providers/getProvidersActive'
 import { useNavigate } from 'react-router-dom'
-import Swal from 'sweetalert2'
 
 const CreateForm = () => {
   const navigate = useNavigate()
@@ -70,10 +69,6 @@ const CreateForm = () => {
   }
 
   if (user?.rol !== 'admin') {
-    Swal.fire({
-      icon: 'error',
-      title: 'No tienes permisos para realizar esta acción.'
-    })
     navigate('/')
   } else {
     return (

@@ -37,15 +37,6 @@ const EditBlog = () => {
   }
 
   useEffect(() => {
-    if (user.rol !== '') {
-      if (user.rol !== 'admin') {
-        Swal.fire({
-          icon: 'error',
-          text: 'Usuario no autorizado'
-        })
-        navigate('/blog')
-      }
-    }
     getPostById(id)(dispatch)
   }, [dispatch])
 
@@ -84,7 +75,10 @@ const EditBlog = () => {
     }
   }
 
-  return (
+  if (user.rol !== 'admin') {
+    navigate('/')
+  } else {
+    return (
           <div className="flex justify-around">
           <form className="blog-dash flex flex-col border border-solid border-primary rounded-xl mt-2 mb-2" onSubmit={handleSubmit}
               encType="multipart/form-data">
@@ -136,7 +130,7 @@ const EditBlog = () => {
               </button>
           </form>
       </div>
-  )
+    )
+  }
 }
-
 export default EditBlog
