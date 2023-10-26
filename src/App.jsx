@@ -98,6 +98,8 @@ function App () {
               <Route path="/cart/buying" element={<Purchases />} />
               <Route path="/cart/detail" element={<OrderDetail />} />
 
+              <Route path="/orders/:idOrder" element={<UserOrderDetail />} />
+
               <Route path="/payment/successful" element={<SuccessfulPayment />} />
               <Route path="/payment/failure" element={<FailurePayment />} />
               <Route path="/payment/pending" element={<PendingPayment />} />
@@ -107,15 +109,12 @@ function App () {
               <Route path="/account" element={<Account />} />
               <Route path="/about" element={<About />} />
               <Route path="/location" element={<Location />} />
-
-              <Route path="/orders/:idOrder" element={<UserOrderDetail />} />
+              <Route path="/developers" element={<Developers />} />
 
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/:idBlog" element={<BlogDetail />} />
               <Route path="/blog/create" element={<BlogCreate />} />
               <Route path="/blog/edit/:id" element={<EditBlog />} />
-
-              <Route path="/developers" element={<Developers />} />
 
               <Route path="*" element={<NotFound />} />
             </Routes>
