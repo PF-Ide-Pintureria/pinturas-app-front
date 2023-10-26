@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getProvidersActive } from '@redux/actions/Providers/getProvidersActive'
 import { formatAndPut } from './formatAndPut'
-import Swal from 'sweetalert2'
+// import Swal from 'sweetalert2'
 import { useNavigate } from 'react-router-dom'
 
 const UpdatePricesForm = () => {
@@ -11,6 +11,7 @@ const UpdatePricesForm = () => {
   const user = useSelector(state => state.user)
   const navigate = useNavigate()
 
+  const [loading, setLoading] = useState(true)
   const [isLoading, setIsLoading] = useState(false)
   const [inputsForm, setInputsForm] = useState({
     provider: '',
@@ -53,12 +54,18 @@ const UpdatePricesForm = () => {
     document.getElementById('excelFile').value = ''
   }
 
-  if (user?.rol !== 'admin') {
-    Swal.fire({
-      icon: 'error',
-      title: 'Oops...',
-      text: 'No tienes permisos para realizar esta acción.'
-    })
+  useEffect(() => {
+    // Simular una carga asincrónica de los datos del usuario
+    setTimeout(() => {
+      setLoading(false)
+    }, 100)
+  }, [])
+
+  if (loading) {
+    return <div>Cargando...</div>
+  }
+
+  if (user.rol !== 'admin') {
     navigate('/')
   } else {
     return (

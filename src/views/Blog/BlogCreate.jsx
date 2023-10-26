@@ -1,15 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import postPost from '@redux/actions/Blog/postPost'
 import Swal from 'sweetalert2'
-
 import img from '@img/blog.jpg'
 import { validationBlog } from './validationBlog'
-import Blog from './Blog'
+import { Navigate } from 'react-router-dom'
 
 const BlogCreate = () => {
   const dispatch = useDispatch()
+  // const navigate = useNavigate()
 
+  const [isLoading, setIsLoading] = useState(true)
   const user = useSelector(state => state.user)
   const idUser = user?.id
   const [errors, setErrors] = useState({})
@@ -19,6 +20,17 @@ const BlogCreate = () => {
     description: '',
     idUser
   })
+
+  useEffect(() => {
+    // Simular una carga asincrónica de los datos del usuario
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 100)
+  }, [])
+
+  if (isLoading) {
+    return <div>Cargando...</div>
+  }
 
   const handleChange = (event) => {
     const property = event.target.name
@@ -62,11 +74,7 @@ const BlogCreate = () => {
   }
 
   if (user.rol !== 'admin') {
-    Swal.fire({
-      icon: 'error',
-      text: 'Acceso denegado'
-    })
-    return <Blog/>
+    return <Navigate to='/blog' />
   } else {
     return (
             <div>

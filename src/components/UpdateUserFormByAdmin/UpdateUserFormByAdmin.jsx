@@ -9,6 +9,7 @@ const UpdateUserFormByAdmin = () => {
   const { idUser } = useParams()
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const user = useSelector((state) => state.user)
 
   useEffect(() => {
     getUserById(idUser)(dispatch)
@@ -59,8 +60,10 @@ const UpdateUserFormByAdmin = () => {
     }
     navigate('/admin')
   }
-
-  return (
+  if (user.rol !== 'admin') {
+    navigate('/')
+  } else {
+    return (
           <div className='flex self-center justify-around'>
           <form onSubmit={handleSubmit}>
               <div className=" flex m-8 mb-0">
@@ -202,7 +205,7 @@ const UpdateUserFormByAdmin = () => {
               </button>
           </form>
       </div>
-  )
+    )
+  }
 }
-
 export default UpdateUserFormByAdmin
