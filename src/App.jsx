@@ -8,11 +8,7 @@ import Detail from './views/Detail/Detail'
 import Footer from './components/Footer/Footer'
 import Cart from './views/Cart/Cart'
 import Blog from './views/Blog/Blog'
-// import Login from "./views/Login/Login";
 import Products from './views/Products/Products'
-import AdminUsers from './views/Admin/AdminUsers/AdminUsers'
-import AdminProducts from './views/Admin/AdminProducts/AdminProducts'
-import AdminBlog from './views/Admin/AdminBlog/AdminBlog'
 import Account from './views/Account/Account'
 import UpdateProduct from './views/UpdateProduct/UpdateProduct'
 import CreateProduct from './views/CreateProduct/CreateProduct'
@@ -46,7 +42,6 @@ import UpdatePrices from './views/UpdatePrices/UpdatePrices'
 import CreateProvider from './views/Providers/CreateProvider'
 import EditProvider from './views/Providers/EditProvider'
 import ScrollToTop from './hooks/ScrollToTop'
-// import AdminProviders from './views/Admin/AdminProviders/AdminProviders'
 
 function App () {
   const dispatch = useDispatch()
@@ -88,18 +83,13 @@ function App () {
 
               <Route path="/products" element={<Products />} />
               <Route path="/products/:idProduct" element={<Detail />} />
-              <Route path="/products/edit/:idProduct" element={<UpdateProduct />}
+              <Route path="/products/edit/:idProduct" element={<UpdateProduct/>}
               />
 
               <Route path="/login" element={<Login />} />
               <Route path="/login/register" element={<Register />} />
 
               <Route path="/admin" element={<Dashboard />} />
-              <Route path="/admin/users" element={<AdminUsers />} />
-              <Route path="/admin/products" element={<AdminProducts />} />
-              <Route path="/admin/blog" element={<AdminBlog />} />
-              {/* <Route path="/admin/providers" element={<AdminProviders />} /> */}
-
               <Route path="/admin/create" element={<CreateProduct />} />
               <Route path="/admin/edit/:idUser" element={<UpdateUserFormByAdmin />} />
               <Route path="/admin/products/update/prices" element={<UpdatePrices />} />

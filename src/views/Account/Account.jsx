@@ -14,7 +14,7 @@ import Orders from '@components/Account/Orders'
 import ProductsDash from '@components/Account/ProductsDash'
 // import UpdateUserForm from "@components/Account/UpdateUserForm";
 import LoginForm from '@components/LoginForm/LoginForm'
-import UsersDash from '@components/Account/UserDash'
+import UsersDash from '@components/Account/UsersDash'
 import SalesDash from '@components/Account/SalesDash'
 import { getFavorites } from '@redux/actions/Favorites/getFavorites'
 import getOrdersUser from '@redux/actions/Orders/getOrdersUser'
