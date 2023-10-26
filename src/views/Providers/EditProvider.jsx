@@ -1,5 +1,5 @@
 import React from 'react'
-import ProviderEditForm from '../../components/ProviderEditForm/ProviderEditForm'
+import ProviderEditForm from '@components/ProviderEditForm/ProviderEditForm'
 
 const EditProvider = () => {
   return (

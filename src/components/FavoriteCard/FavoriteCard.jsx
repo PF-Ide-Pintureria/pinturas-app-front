@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { deleteFavorites } from '../../redux/actions/Favorites/deleteFavorite'
+import { deleteFavorites } from '@redux/actions/Favorites/deleteFavorite'
 import Swal from 'sweetalert2'
 
 const FavoriteCard = ({ id, image, name, stock, active, price }) => {

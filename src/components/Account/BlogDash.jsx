@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import getPosts from '../../redux/actions/Blog/getPosts'
+import getPosts from '@redux/actions/Blog/getPosts'
 import EditBlogButton from './Blog/EditBlogButton'
 import DeleteBlogButton from './Blog/DeleteBlogButton'
 import { DataGrid, GridToolbar } from '@mui/x-data-grid'

@@ -1,6 +1,6 @@
 import React from 'react'
-import CreateForm from '../../../components/CreateForm/CreateForm'
-import NavbarAdmin from '../../../components/NavbarAdmin/NavbarAdmin'
+import CreateForm from '@components/CreateForm/CreateForm'
+import NavbarAdmin from '@components/NavbarAdmin/NavbarAdmin'
 
 const AdminProducts = () => {
   return (

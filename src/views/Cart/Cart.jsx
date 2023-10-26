@@ -1,11 +1,11 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import ProductCart from '../../components/ProductCart/ProductCart'
-import { postCart } from '../../redux/actions/Cart/postCart'
-import { setCart } from '../../redux/actions/Cart/setCart'
-import { postOrderByCart } from '../../redux/actions/Orders/postOrderByCart'
-import { postOrderPayment } from '../../redux/actions/Orders/postOrderPayment'
+import ProductCart from '@components/ProductCart/ProductCart'
+import { postCart } from '@redux/actions/Cart/postCart'
+import { setCart } from '@redux/actions/Cart/setCart'
+import { postOrderByCart } from '@redux/actions/Orders/postOrderByCart'
+import { postOrderPayment } from '@redux/actions/Orders/postOrderPayment'
 import Swal from 'sweetalert2'
 
 const Cart = () => {

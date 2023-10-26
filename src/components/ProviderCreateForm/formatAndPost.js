@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { BASE_URL } from '../../redux/action-type'
+import { BASE_URL } from '@redux/action-type'
 import Swal from 'sweetalert2'
 
 export const formatAndPost = async (inputsForm) => {

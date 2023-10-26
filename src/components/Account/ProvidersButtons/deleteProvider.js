@@ -1,5 +1,5 @@
 import Swal from 'sweetalert2'
-import { BASE_URL } from '../../../redux/action-type'
+import { BASE_URL } from '@redux/action-type'
 import axios from 'axios'
 
 export const deleteProvider = async (providerId) => {

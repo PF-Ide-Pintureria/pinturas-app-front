@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { getProvidersActive } from '../../redux/actions/Providers/getProvidersActive'
+import { getProvidersActive } from '@redux/actions/Providers/getProvidersActive'
 import { formatAndPut } from './formatAndPut'
 // import Swal from 'sweetalert2'
 import { useNavigate } from 'react-router-dom'

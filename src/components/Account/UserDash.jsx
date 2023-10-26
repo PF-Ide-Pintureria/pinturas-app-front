@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { DataGrid, GridToolbar } from '@mui/x-data-grid'
 import { useDispatch, useSelector } from 'react-redux'
-import { getAllUsers } from '../../redux/actions/User/getAllUsers'
-import UpdateUserButton from '../../components/UpdateButton/UpdateUserButton'
+import { getAllUsers } from '@redux/actions/User/getAllUsers'
+import UpdateUserButton from '@components/UpdateButton/UpdateUserButton'
 
 const UsersDash = () => {
   const dispatch = useDispatch()

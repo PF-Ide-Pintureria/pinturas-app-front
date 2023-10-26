@@ -1,5 +1,5 @@
 import React from 'react'
-import deletePost from '../../../redux/actions/Blog/deletePost'
+import deletePost from '@redux/actions/Blog/deletePost'
 import { useDispatch } from 'react-redux'
 
 const DeleteBlogButton = ({ idBlog }) => {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams, useNavigate } from 'react-router-dom'
-import getUserById from '../../redux/actions/User/getUserById'
+import getUserById from '@redux/actions/User/getUserById'
 import { updateUserValidation } from './updateUserValidation'
 import { putUser } from './putUser'
 
