@@ -14,7 +14,6 @@ import UpdateProduct from './views/UpdateProduct/UpdateProduct'
 import CreateProduct from './views/CreateProduct/CreateProduct'
 import Developers from './views/Developers/Developers'
 import Location from './views/Location/Location'
-import Favorite from './views/Profile/Favorite/Favorite'
 import Register from './views/Register/Register'
 import Purchases from './views/Purchases/Purchases'
 import NotFound from './views/NotFound/NotFound'
@@ -105,7 +104,6 @@ function App () {
               <Route path="/payment/pending" element={<PendingPayment />} />
 
               <Route path="/reviews/:orderId" element={<ReviewsPage />} />
-              <Route path="/favorite" element={<Favorite />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/account" element={<Account />} />
               <Route path="/about" element={<About />} />
