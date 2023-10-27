@@ -8,17 +8,12 @@ import Detail from './views/Detail/Detail'
 import Footer from './components/Footer/Footer'
 import Cart from './views/Cart/Cart'
 import Blog from './views/Blog/Blog'
-// import Login from "./views/Login/Login";
 import Products from './views/Products/Products'
-import AdminUsers from './views/Admin/AdminUsers/AdminUsers'
-import AdminProducts from './views/Admin/AdminProducts/AdminProducts'
-import AdminBlog from './views/Admin/AdminBlog/AdminBlog'
 import Account from './views/Account/Account'
 import UpdateProduct from './views/UpdateProduct/UpdateProduct'
 import CreateProduct from './views/CreateProduct/CreateProduct'
 import Developers from './views/Developers/Developers'
 import Location from './views/Location/Location'
-import Favorite from './views/Profile/Favorite/Favorite'
 import Register from './views/Register/Register'
 import Purchases from './views/Purchases/Purchases'
 import NotFound from './views/NotFound/NotFound'
@@ -31,7 +26,6 @@ import { useCart } from './hooks/useCart'
 import { useDispatch, useSelector } from 'react-redux'
 import { setUser } from './redux/actions/User/setUser'
 import { allProducts } from './redux/actions/Products/allProducts'
-import TestTable from './TestTable'
 import UpdateUserFormByAdmin from '@components/UpdateUserFormByAdmin/UpdateUserFormByAdmin'
 import { getCart } from './redux/actions/Cart/getCart'
 import OrderDetail from './views/OrderDetail/OrderDetail'
@@ -46,7 +40,6 @@ import UpdatePrices from './views/UpdatePrices/UpdatePrices'
 import CreateProvider from './views/Providers/CreateProvider'
 import EditProvider from './views/Providers/EditProvider'
 import ScrollToTop from './hooks/ScrollToTop'
-// import AdminProviders from './views/Admin/AdminProviders/AdminProviders'
 
 function App () {
   const dispatch = useDispatch()
@@ -88,18 +81,13 @@ function App () {
 
               <Route path="/products" element={<Products />} />
               <Route path="/products/:idProduct" element={<Detail />} />
-              <Route path="/products/edit/:idProduct" element={<UpdateProduct />}
+              <Route path="/products/edit/:idProduct" element={<UpdateProduct/>}
               />
 
               <Route path="/login" element={<Login />} />
               <Route path="/login/register" element={<Register />} />
 
               <Route path="/admin" element={<Dashboard />} />
-              <Route path="/admin/users" element={<AdminUsers />} />
-              <Route path="/admin/products" element={<AdminProducts />} />
-              <Route path="/admin/blog" element={<AdminBlog />} />
-              {/* <Route path="/admin/providers" element={<AdminProviders />} /> */}
-
               <Route path="/admin/create" element={<CreateProduct />} />
               <Route path="/admin/edit/:idUser" element={<UpdateUserFormByAdmin />} />
               <Route path="/admin/products/update/prices" element={<UpdatePrices />} />
@@ -110,27 +98,23 @@ function App () {
               <Route path="/cart/buying" element={<Purchases />} />
               <Route path="/cart/detail" element={<OrderDetail />} />
 
+              <Route path="/orders/:idOrder" element={<UserOrderDetail />} />
+
               <Route path="/payment/successful" element={<SuccessfulPayment />} />
               <Route path="/payment/failure" element={<FailurePayment />} />
               <Route path="/payment/pending" element={<PendingPayment />} />
 
               <Route path="/reviews/:orderId" element={<ReviewsPage />} />
-              <Route path="/favorite" element={<Favorite />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/account" element={<Account />} />
               <Route path="/about" element={<About />} />
               <Route path="/location" element={<Location />} />
-
-              <Route path="/orders/:idOrder" element={<UserOrderDetail />} />
+              <Route path="/developers" element={<Developers />} />
 
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/:idBlog" element={<BlogDetail />} />
               <Route path="/blog/create" element={<BlogCreate />} />
               <Route path="/blog/edit/:id" element={<EditBlog />} />
-
-              <Route path="/developers" element={<Developers />} />
-
-              <Route path="/testing" element={<TestTable />} />
 
               <Route path="*" element={<NotFound />} />
             </Routes>
