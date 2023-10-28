@@ -44,19 +44,19 @@ const CategoryContainer = () => {
   ]
 
   return (
-    <section className="grid grid-cols-2 gap-6 m-[50px] w-[90%]">
+    <section className="relative z-10 grid grid-cols-2 gap-6 my-[50px] w-[93%]">
       {
-        CATEGORIES.map((category) => (
+        CATEGORIES.map((category, idx) => (
           <Link
+            key={idx}
             to={`/products?category=${encodeURIComponent(category.searchQuery)}`}
             onClick={() => handleCategory(category.searchQuery)}
           >
             <img
               src={category.image}
               alt={category.searchQuery}
-              className="h-auto object-cover cursor-pointer rounded-3xl transition-all hover:outline hover:outline-4 hover:outline-orange"
-            >
-            </img>
+              className="h-auto object-cover cursor-pointer rounded-3xl transition-all hover:outline hover:outline-4 hover:outline-orange hover:opacity-90"
+            />
           </Link>
         ))
       }

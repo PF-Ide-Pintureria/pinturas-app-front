@@ -3,7 +3,7 @@ import React from 'react'
 
 const AboutCard = () => {
   return (
-    <div className="cursor-pointer my-10 transition-transform duration-300 ease-in-out hover:scale-105">
+    <div className="cursor-pointer p-10 bg-turquoise">
       <Link to="/about">
         <div className="mt-15 mb-15">
           <div className="flex w-full justify-center mt-3 ">

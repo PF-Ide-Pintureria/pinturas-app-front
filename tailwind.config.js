@@ -14,6 +14,7 @@ export default {
         quaternary: '#F0CF5D',
         formBg: '#D9D9D9',
         warning: '#ff0f0f',
+        white: '#f1f1f1'
       },
       padding: {
         // Debe ser usado en cada component "main" para dar espacio al header principal.

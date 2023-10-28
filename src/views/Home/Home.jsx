@@ -8,6 +8,7 @@ import BannerBlog from '../../components/BannerBlog/BannerBlog'
 import { bestSellers } from '../../redux/actions/Products/bestSellers'
 
 const Home = () => {
+
   const dispatch = useDispatch()
 
   useEffect(() => {

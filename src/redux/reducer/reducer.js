@@ -96,6 +96,7 @@ const initialState = {
   products: [],
   detail: {},
   allProducts: [],
+  bestSell: [],
 
   // CATEGORIES
   categories: [],
@@ -107,7 +108,6 @@ const initialState = {
   userId: {},
 
   // FILTERS
-  bestSell: [],
   filterCategory: '',
   price: {
     high: 0,
@@ -159,6 +159,8 @@ const reducer = (state = initialState, { type, payload }) => {
       return { ...state, products: payload }
     case GET_PRODUCT_BY_ID:
       return { ...state, detail: payload }
+    case GET_BEST_SELL:
+      return { ...state, bestSell: payload }
     case GET_PRODUCT_BY_NAME:
       return { ...state, products: payload }
     case GET_ALL_PRODUCTS_NO_FILTER:
@@ -193,8 +195,6 @@ const reducer = (state = initialState, { type, payload }) => {
     // FILTERS
     case GET_PRODUCT_FILTER:
       return { ...state, products: payload }
-    case GET_BEST_SELL:
-      return { ...state, bestSell: payload }
     case SET_CATEGORY:
       return { ...state, filterCategory: payload }
     case SET_HIGH_PRICE:

@@ -40,7 +40,7 @@ const BannerCarousel = () => {
   }
 
   return (
-    <section className="hidden sm:block w-[90%]">
+    <section className="hidden sm:block w-full">
       <div className="relative flex justify-center items-center">
         {
           images.map((image, index) => (
