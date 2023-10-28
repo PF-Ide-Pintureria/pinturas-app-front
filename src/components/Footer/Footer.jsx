@@ -37,10 +37,9 @@ const Footer = () => {
           <ul className="flex items-center p-5">
             {
               SOCIAL_MEDIA.map((item, idx) => (
-                <li>
+                <li key={idx}>
                   <a
                     href={item.link}
-                    key={idx}
                     className="w-8 h-8 mx-2 flex items-center justify-center bg-white bg-opacity-20 rounded-md cursor-pointer"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -66,7 +65,6 @@ const Footer = () => {
                   </li>
                 ))
               }
-
             </ul>
           </nav>
         </div>
@@ -77,7 +75,7 @@ const Footer = () => {
       </div>
 
       <p className="font-sans text-white mb-6">
-        Team:&nbsp;
+        ©Copyright 2023. Todos los derechos reservados a&nbsp;
         <NavLink
           to="/developers"
           className="font-sans font-bold text-white cursor-pointer"
