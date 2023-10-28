@@ -5,7 +5,7 @@ import mercadopago from '../../img/mercadopago.png'
 
 const Footer = () => {
   return (
-    <div className="w-full h-56 flex flex-col items-center justify-evenly bg-purple-800">
+    <div className="w-full h-56 flex flex-col items-center justify-evenly bg-primary">
       <div className="w-full h-56 flex items-center justify-evenly">
         <div className="hidden sm:block">
           <NavLink to="/">

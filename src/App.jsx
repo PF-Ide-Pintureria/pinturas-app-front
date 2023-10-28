@@ -156,9 +156,9 @@ function App() {
               <Route path="*" element={<NotFound />} />
             </Routes>
           </div>
-          <footer className="flex">
-            <Footer />
-          </footer>
+          {/* <footer className="flex"> */}
+          <Footer />
+          {/* </footer> */}
         </div>
       </BrowserRouter>
       <ThemeProvider theme={theme}>

@@ -17,7 +17,7 @@ const Home = () => {
 
   return (
     <main className="flex flex-col items-center w-full h-full p-whiteSpaceTop bg-gradient-to-bl from-[#E9682799] to-[#00A49199]">
-      <Banner />
+      {/* <Banner /> */}
       <CategoryContainer />
       <FeaturedContainer />
       <AboutCard />
