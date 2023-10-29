@@ -2,6 +2,7 @@ import React from 'react'
 import Banner5 from '@img/pet.png'
 import Local from '@img/location.png'
 import Map from '@img/map.png'
+import ContactForm from '../../components/ContactForm/ContactForm'
 
 const Location = () => {
   return (
@@ -21,19 +22,7 @@ const Location = () => {
             <img src={Map} alt="Map" className="rounded-lg" />
           </a>
           <div className="flex-initial lg:w-1/2 mb-6 md:mb-0 lg:-ml-12 max-w-200">
-            <div className="bg-blue-600 h-full rounded-lg p-6 lg:pl-12 text-white flex items-center py-12 lg:py-0 p-15">
-              <div className="lg:pl-12">
-                <h3 className="text-2xl font-semibold uppercase mb-6 pb-2">
-                  Contáctenos
-                </h3>
-                <h5 className="text-xl font-semibold mb-2">Dirección:</h5>
-                <p className="mb-6">
-                  Ruta 5 - Esquina La Isla <br />
-                  Anisacate, Córdoba
-                </p>
-                <p>+54 351 306 1350</p>
-              </div>
-            </div>
+            <ContactForm></ContactForm>
           </div>
         </div>
       </div>
