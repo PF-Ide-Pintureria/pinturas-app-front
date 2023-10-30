@@ -165,13 +165,25 @@ const Contact = () => {
                         </form>
                         <div className="ml-6 grow">
                                         <p className="mb-2 font-bold dark:text-balck">
-                                            Contacto
+                                            Dirección:
                                         </p>
                                         <p className="text-neutral-500 dark:text-black-200">
-                                            info@idepinturerias.com
+                                            RP5 - Esquina La Isla
                                         </p>
-                                        <p className="text-neutral-500 dark:text-black-200">
-                                            +54 351 306 1350
+                                        <p className=" mb-2 text-neutral-500 dark:text-black-200">
+                                            Anisacate - Córdoba
+                                        </p>
+                                        <p className="mb-2 font-bold dark:text-balck">
+                                            Teléfono:
+                                        </p>
+                                        <p className="mb-2 text-neutral-500 dark:text-black-200">
+                                        +54 351 306 1350
+                                        </p>
+                                        <p className="mb-2 font-bold dark:text-balck">
+                                            Correo:
+                                        </p>
+                                        <p className="mb-2 text-neutral-500 dark:text-black-200">
+                                        idepintureria@gmail.com
                                         </p>
                         </div>
                 </div>
