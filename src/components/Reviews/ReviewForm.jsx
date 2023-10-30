@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { saveReview } from '@redux/actions/Review/postSaveReview'
 import Rating from '../Reviews/Rating'
-import './Rating.css'
 import Swal from 'sweetalert2'
 import { useParams } from 'react-router-dom'
 import { getOrderById } from '@redux/actions/Orders/getOrderById'
@@ -55,7 +54,6 @@ const ReviewForm = () => {
     setRatingProduct(productsArray)
   }
 
-  console.log('Products fuera del submit', productsArray)
   const handleSaveChanges = async (event) => {
     event.preventDefault()
     const filteredReviews = []
@@ -77,7 +75,6 @@ const ReviewForm = () => {
         productsReviews: filteredReviewsJson
       }
       try {
-        console.log('productsReview', userReviewData.productsReviews)
         await dispatch(saveReview(userReviewData, orderId))
 
         await Swal.fire('Éxito', '¡Datos enviados con éxito!', 'success')
@@ -94,7 +91,7 @@ const ReviewForm = () => {
 
   return (
         <div>
-            <div className="rating">
+            <div className="relative bg-gray-100 mt-4 rounded-lg p-4 w-[600px]">
                 <div className="flex flex-col items-center pb-10">
                     <img
                         className="w-24 h-24 mb-3 rounded-full shadow-lg"

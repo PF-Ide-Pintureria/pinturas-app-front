@@ -17,5 +17,7 @@ export default {
       abc: ['Urbanist', 'sans-serif']
     }
   },
-  plugins: []
+  plugins: [
+    require('tailwindcss-debug-screens')
+  ]
 }

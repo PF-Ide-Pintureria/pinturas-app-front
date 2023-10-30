@@ -1,20 +1,19 @@
-import '../About/About.css'
 import imgAbout2 from '@img/about2.png'
 import imgAbout from '@img/about.png'
 import React from 'react'
 
 const About = () => {
   return (
-    <div className="centered-container mb-20">
+    <div className="mb-20 flex flex-col items-center">
       <img src={imgAbout} alt="Descripción de la imagen" className="banner" />
 
-      <div className="centered">
+      <div className="flex flex-col items-center my-5 mx-0 text-center">
         <div>
-          <p className="title-text mb-8">¡Bienvenidos a ide Pinturerias!</p>
+          <p className="text-2xl font-bold mb-2.5">¡Bienvenidos a ide Pinturerias!</p>
         </div>
 
-        <div>
-          <p className="long-text  mb-4 text-justify">
+        <div className="max-w-xl text-[#888]">
+          <p className="text-base leading-normal mb-4 text-justify">
             Nuestra historia comenzó como un emprendimiento familiar, impulsado
             por la visión y pasión de Rodolfo Miguel Guercio. Inicialmente
             ubicada en la pintoresca localidad de Alta Gracia – Córdoba, pronto
@@ -22,7 +21,7 @@ const About = () => {
             para obras industriales y proyectos particulares en la próspera
             Villa Anisacate.
           </p>
-          <p className="long-text  mb-4 text-justify">
+          <p className="text-base leading-normal mb-4 text-justify">
             Con astucia y determinación, nos trasladamos estratégicamente a
             Villa Anisacate, donde encontramos nuestro hogar en una localidad en
             pleno desarrollo y expansión. Desde entonces, hemos trabajado
@@ -30,7 +29,7 @@ const About = () => {
             ofreciendo una amplia gama de pinturas FADEPA, accesorios para
             pintores y herramientas de ferretería de las principales marcas.
           </p>
-          <p className="long-text  mb-4 text-justify">
+          <p className="text-base leading-normal mb-4 text-justify">
             En ide Pinturerias, creemos en la excelencia y el servicio
             personalizado. Nuestro equipo dedicado está aquí para asesorarte en
             cada paso de tu proyecto, desde grandes obras hasta pequeños
@@ -42,8 +41,8 @@ const About = () => {
         </div>
       </div>
       <div className="flex justify-between">
-        <div className="centered-container-icons grid grid-cols-2 gap-14">
-          <div className="centered">
+        <div className="grid grid-cols-2 gap-14">
+          <div className="flex flex-col items-center my-5 mx-0 text-center">
             <div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -87,8 +86,8 @@ const About = () => {
             </div>
 
             <div>
-              <p className="rocket-title">Misión</p>
-              <p className="rocket-long-text  mb-4 text-justify">
+              <p className="text-xl font-bold mt-2.5">Misión</p>
+              <p className="text-sm max-w-[180px] text-[#888]  mb-4 text-justify">
                 Ser el líder indiscutible en el rubro de pinturas y ferretería
                 en Villa Anisacate y alrededores, brindando productos y
                 servicios excepcionales para satisfacer las necesidades de
@@ -97,7 +96,7 @@ const About = () => {
             </div>
           </div>
 
-          <div className="centered">
+          <div className="flex flex-col items-center my-5 mx-0 text-center">
             <div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -152,8 +151,8 @@ const About = () => {
             </div>
 
             <div>
-              <p className="light-bulb-title">Visión</p>
-              <p className="light-bulb-long-text  mb-4 text-justify">
+              <p className="text-xl font-bold mt-2.5">Visión</p>
+              <p className="text-sm max-w-[180px] text-[#888] mb-4 text-justify">
                 Convertirnos en la primera opción para proyectos de
                 construcción, decoración y mantenimiento en nuestra comunidad,
                 destacados por nuestra excelencia en productos y atención
@@ -163,44 +162,39 @@ const About = () => {
           </div>
         </div>
       </div>
-      <div className="general-card w-5/6 mb-11 grid grid-cols-2 gap-7">
+
+      <div className="flex justify-between max-w-3xl p-5 border-2 rounded my-5 mx-0 shadow-[0_2px_4px_rgba(0,0,0,0.1)] h-fit">
         <div>
-          <img src={imgAbout2} alt="img2" className="img2 w-2/6" />
+          <img src={imgAbout2} alt="img2" className="w-24 h-24 mr-4 rounded-md" />
         </div>
 
-        <div className="square w-3/5">
-          <div className="texts mb-11 pb-11">
-            <div>
-              <p className="blue-text">Como trabajamos en ide Pinturerias</p>
-            </div>
-
-            <div>
-              <p className="black-text">Valores:</p>
-            </div>
-
-            <div>
-              <p className="grey-text mb-4 text-justify">
+        <div className="grow w-3/5">
+          <div className="">
+              <p className="text-blue-700 text-xl">Como trabajamos en IDE Pinturerias</p>
+              <p className="text-black text-lg font-bold">Nuestros Valores</p>
+            <ul>
+              <li className="text-[#888] mb-4 text-justify">
                 Unión: Fomentamos un ambiente de trabajo basado en el respeto y
                 apoyo mutuo, creando una familia empresarial que se preocupa por
                 el bienestar de cada miembro.
-              </p>
-              <p className="grey-text mb-4 text-justify">
+              </li>
+              <li className="text-[#888] mb-4 text-justify">
                 Compromiso: Nos comprometemos a brindar un servicio excepcional
                 y a cumplir con las expectativas de nuestros clientes, buscando
                 siempre superar sus necesidades y deseos.
-              </p>
-              <p className="grey-text mb-4 text-justify">
+              </li>
+              <li className="text-[#888] mb-4 text-justify">
                 Superación: Buscamos el crecimiento constante y la mejora
                 continua en todo lo que hacemos, tanto a nivel individual como
                 colectivo, para alcanzar el máximo potencial.
-              </p>
-              <p className="grey-text mb-4 text-justify">
+              </li>
+              <li className="text-[#888] mb-4 text-justify">
                 Desarrollo personal: Valoramos y promovemos el desarrollo
                 profesional y personal de nuestro equipo, brindándoles
                 oportunidades de crecimiento y capacitación para alcanzar sus
                 metas y sueño
-              </p>
-            </div>
+              </li>
+            </ul>
           </div>
         </div>
       </div>

@@ -6,7 +6,6 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { productById } from '@redux/actions/Products/productById'
 import FeaturedContainer from '@components/FeaturedContainer/FeaturedContainer'
 import { bestSellers } from '@redux/actions/Products/bestSellers'
-import './Detail.Module.css'
 import { useCart } from '@hooks/useCart'
 import { setCart } from '@redux/actions/Cart/setCart'
 import Swal from 'sweetalert2'
@@ -99,7 +98,7 @@ const Detail = () => {
       stars.push(
         <svg
           key={`star-${i}`}
-          className="star"
+          className="mr-0 fill-[gold] w-[1em] h-[1em]"
           width="24"
           height="24"
           xmlns="http://www.w3.org/2000/svg"
@@ -109,7 +108,7 @@ const Detail = () => {
         </svg>
       )
     }
-    return <div className="stars-container">{stars}</div>
+    return <div className="inline-flex items-center">{stars}</div>
   }
 
   const shopCart = () => {
