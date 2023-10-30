@@ -113,14 +113,6 @@ const Footer = () => {
             </NavLink>
             <p className="text-white"> | </p>
             <NavLink
-              to="/location"
-              className="font-sans mx-2 text-white cursor-pointer transition-transform duration-300 ease-in-out hover:scale-125"
-            >
-              {' '}
-              UBICACION{' '}
-            </NavLink>
-            <p className="text-white"> | </p>
-            <NavLink
               to="/contact"
               className="font-sans mx-2 text-white cursor-pointer transition-transform duration-300 ease-in-out hover:scale-125"
             >
