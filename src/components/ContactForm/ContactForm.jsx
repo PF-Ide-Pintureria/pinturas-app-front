@@ -63,7 +63,7 @@ const Contact = () => {
   }
 
   return (
-        <div className="flex- justify-center items-center">
+        <div className="flex justify-center items-center">
             <div className="bg-contain rounded p-2">
                 <div
                     className="container mx-auto  flex flex-wrap  rounded-lg bg-formBg  px-6 py-12 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]   @media (prefers-color-scheme: dark) {
@@ -163,6 +163,17 @@ const Contact = () => {
                                 </h2>
                             </button>
                         </form>
+                        <div className="ml-6 grow">
+                                        <p className="mb-2 font-bold dark:text-balck">
+                                            Contacto
+                                        </p>
+                                        <p className="text-neutral-500 dark:text-black-200">
+                                            info@idepinturerias.com
+                                        </p>
+                                        <p className="text-neutral-500 dark:text-black-200">
+                                            +54 351 306 1350
+                                        </p>
+                        </div>
                 </div>
             </div>
         </div>
