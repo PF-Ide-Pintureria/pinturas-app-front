@@ -40,7 +40,7 @@ import CreateProvider from './views/Providers/CreateProvider'
 import EditProvider from './views/Providers/EditProvider'
 import ScrollToTop from './hooks/ScrollToTop'
 
-function App () {
+function App() {
   const dispatch = useDispatch()
 
   const userDb = useSelector((state) => state.user)
@@ -72,9 +72,7 @@ function App () {
         <ScrollToTop />
         <div className="h-full w-full">
           <div className="">
-            <header>
-              <NavBar />
-            </header>
+            <NavBar />
             <Routes>
               <Route exact path="/" element={<Home />} />
 
@@ -117,9 +115,9 @@ function App () {
               <Route path="*" element={<NotFound />} />
             </Routes>
           </div>
-          <footer className="flex">
-            <Footer />
-          </footer>
+          {/* <footer className="flex"> */}
+          <Footer />
+          {/* </footer> */}
         </div>
       </BrowserRouter>
       <ChatBotApp />

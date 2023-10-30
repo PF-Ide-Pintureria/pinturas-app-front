@@ -40,23 +40,23 @@ const BannerCarousel = () => {
   }
 
   return (
-    <div className="hidden sm:block">
-            <div className="relative w-full h-80 sm:h-96 md:h-120 flex justify-center items-center">
-        {images.map((image, index) => (
-          <Link
-            key={index}
-            to={image.link}
-            className={`absolute top-0 left-0 w-full h-full transition-opacity duration-500 ease-in-out ${
-              index === currentImage ? 'opacity-100' : 'opacity-0'
-            }`}
-          >
-            <img
-              src={image.src}
-              alt={`Image ${index + 1}`}
-              className="absolute w-full h-full object-scale-down mt-2"
-            />
-          </Link>
-        ))}
+    <section className="hidden sm:block w-full">
+      <div className="relative flex justify-center items-center">
+        {
+          images.map((image, index) => (
+            <Link
+              key={index}
+              to={image.link}
+              className={`top-0 left-0 w-full transition-opacity duration-500 ease-in-out ${index === currentImage ? 'relative opacity-100' : 'absolute opacity-0'}`}
+            >
+              <img
+                src={image.src}
+                alt={`Image ${index + 1}`}
+                className="w-full object-contain select-none"
+              />
+            </Link>
+          ))
+        }
         <div className="absolute left-8">
           <button
             className="w-8 h-8 p-1 bg-gray-800 bg-opacity-20 text-white rounded-full focus:outline-none"
@@ -74,7 +74,7 @@ const BannerCarousel = () => {
           </button>
         </div>
       </div>
-    </div>
+    </section>
   )
 }
 
