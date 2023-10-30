@@ -16,7 +16,6 @@ const Footer = () => {
   const NAV_LINKS = [
     { text: "productos", link: "/products" },
     { text: "empresa", link: "/about" },
-    { text: "ubicación", link: "/location" },
     { text: "contacto", link: "/contact" },
   ]
 
