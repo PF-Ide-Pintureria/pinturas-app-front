@@ -1,5 +1,5 @@
-import imgAbout2 from '../../img/about2.png'
-import imgAbout from '../../img/about.png'
+import imgAbout2 from '@img/about2.png'
+import imgAbout from '@img/about.png'
 import React from 'react'
 import { LightBulb, Rocket } from '../../components/SVG'
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import ReviewForm from '../../components/Reviews/ReviewForm'
+import ReviewForm from '@components/Reviews/ReviewForm'
 
 const ReviewsPage = () => {
   return (

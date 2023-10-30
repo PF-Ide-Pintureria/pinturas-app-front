@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import NavbarAdmin from '../../components/NavbarAdmin/NavbarAdmin'
-import UsersDash from '../../components/Account/UserDash'
-import SalesDash from '../../components/Account/SalesDash'
-import ProductsDash from '../../components/Account/ProductsDash'
-import BlogDash from '../../components/Account/BlogDash'
-import ProvidersDash from '../../components/Account/ProvidersDash'
+import NavbarAdmin from '@components/NavbarAdmin/NavbarAdmin'
+import UsersDash from '@components/Account/UsersDash'
+import SalesDash from '@components/Account/SalesDash'
+import ProductsDash from '@components/Account/ProductsDash'
+import BlogDash from '@components/Account/BlogDash'
+import ProvidersDash from '@components/Account/ProvidersDash'
+import Account from '../Account/Account'
 
 const Dashboard = () => {
   const user = useSelector(state => state.user)
@@ -60,7 +61,7 @@ const Dashboard = () => {
   }
 
   if (user.rol !== 'admin') {
-    navigate('/account')
+    return <Account/>
   } else {
     return (
             <div>

@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useDispatch } from 'react-redux'
-import { postLoginUser } from '../../redux/actions/User/postLoginUser'
-import { logoutUser } from '../../redux/actions/User/logoutUser'
+import { postLoginUser } from '@redux/actions/User/postLoginUser'
+import { logoutUser } from '@redux/actions/User/logoutUser'
 import Swal from 'sweetalert2'
 
 const LoginForm = () => {
@@ -88,8 +88,9 @@ const LoginForm = () => {
                                 type="email"
                                 placeholder="Correo electrónico"
                                 value={email}
+                                maxLength={40}
                                 onChange={(e) => setEmail(e.target.value)}
-                                className={`mt-1 pl-4 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${errors.email ? 'border-red-500' : 'border-gray-300'
+                                className={`mt-1 p-2 text-center block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${errors.email ? 'border-red-500' : 'border-gray-300'
                                     }`}
                             />
                             {errors.email && (
@@ -102,8 +103,9 @@ const LoginForm = () => {
                                 type="password"
                                 placeholder="Contraseña"
                                 value={password}
+                                maxLength={30}
                                 onChange={(e) => setPassword(e.target.value)}
-                                className={`mt-1 pl-4 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${errors.password ? 'border-red-500' : 'border-gray-300'
+                                className={`mt-1 p-2 text-center block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${errors.password ? 'border-red-500' : 'border-gray-300'
                                     }`}
                             />
                             {errors.password && (

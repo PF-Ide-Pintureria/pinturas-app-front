@@ -1,22 +1,17 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import getPostById from '../../redux/actions/Blog/getPostById'
+import getPostById from '@redux/actions/Blog/getPostById'
 import { useParams } from 'react-router-dom'
-import BlogBackground from '../../img/gradientBackground.png'
+import BlogBackground from '@img/gradientBackground.png'
 
 const BlogDetail = () => {
   const dispatch = useDispatch()
   const post = useSelector((state) => state.post)
-
   const { idBlog } = useParams()
 
   useEffect(() => {
     getPostById(idBlog)(dispatch)
-
-    // getUserById(author)(dispatch);
   }, [dispatch, idBlog])
-
-  // const creator = `${user.name} ${user.lastName}`;
 
   return (
         <div
@@ -36,13 +31,7 @@ const BlogDetail = () => {
                             className="w-full max-w-[500px] h-auto object-cover m-4 rounded-md"
                         />
                     </div>
-                    {/* <div className="text-center mt-4">
-            <h6 className="mt-2 mb-1 text-xs  text-gray-200">
-              Creado por: {creator}
-            </h6>
-            <h4 className="mt-1 text-xs text-center">{post.date}</h4>
-          </div> */}
-                    <div className="my-6 mx-auto max-w-[100%] lg:max-w-[800px] text-justify">
+                    <div className="font-abc my-6 mx-auto max-w-[100%] lg:max-w-[800px] text-justify">
                         {post.description}
                     </div>
                 </div>

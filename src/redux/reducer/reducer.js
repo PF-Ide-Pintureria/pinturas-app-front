@@ -1,7 +1,6 @@
 import {
   // PRODUCTS
   GET_ALL_PRODUCTS,
-  DELETE_PRODUCT,
   POST_PRODUCT,
   PUT_PRODUCT,
   GET_PRODUCT_BY_ID,
@@ -151,8 +150,6 @@ const reducer = (state = initialState, { type, payload }) => {
     // PRODUCTS
     case GET_ALL_PRODUCTS:
       return { ...state, products: payload }
-    case DELETE_PRODUCT:
-      return { ...state, products: payload }
     case POST_PRODUCT:
       return { ...state, products: payload }
     case PUT_PRODUCT:
@@ -182,7 +179,7 @@ const reducer = (state = initialState, { type, payload }) => {
     case DELETE_USER:
       return { ...state }
     case PUT_USER:
-      return { ...state }
+      return { ...state, user: payload }
     case LOGOUT_USER:
       return { ...state, user: payload }
     case ACCESS_TOKEN:
@@ -267,11 +264,11 @@ const reducer = (state = initialState, { type, payload }) => {
     case GET_POST_BY_ID:
       return { ...state, post: payload }
     case PUT_POST:
-      return { ...state, posts: payload }
+      return { ...state }
     case DELETE_POST:
-      return { ...state, posts: payload }
+      return { ...state }
     case POST_POST:
-      return { ...state, posts: payload }
+      return { ...state }
 
     // REVIEWS
     case SAVE_REVIEW:

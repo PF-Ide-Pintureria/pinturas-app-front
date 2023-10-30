@@ -4,12 +4,16 @@ import axios from 'axios'
 export const getAllUsers = () => {
   return async (dispatch) => {
     try {
-      const rawResponse = (await axios.get(`${BASE_URL}users/`)).data
-      const response = rawResponse?.users
+      const response = (await axios.get(`${BASE_URL}users/`, {
+        headers: {
+          Authorization: JSON.parse(localStorage.getItem('token'))
+        }
+      })).data
+      const users = response.users
 
-      return dispatch({ type: GET_ALL_USERS, payload: response })
+      return dispatch({ type: GET_ALL_USERS, payload: users })
     } catch (error) {
-      console.error(error)
+      console.error(error.response)
     }
   }
 }

@@ -1,15 +1,13 @@
 import React from 'react'
-import { deleteProduct } from '../../redux/actions/Products/deleteProduct'
-import { allProducts } from '../../redux/actions/Products/allProducts'
 import { useDispatch } from 'react-redux'
-import Swal from 'sweetalert2'
+import { allProducts } from '@redux/actions/Products/allProducts'
+import { deleteProduct } from './deleteProduct'
 
 const DeleteButton = ({ idProduct }) => {
   const dispatch = useDispatch()
 
   const handleClick = async () => {
-    dispatch(deleteProduct(idProduct))
-    Swal.fire('Borrado de producto:' + idProduct)
+    await deleteProduct(idProduct)
     dispatch(allProducts())
   }
 

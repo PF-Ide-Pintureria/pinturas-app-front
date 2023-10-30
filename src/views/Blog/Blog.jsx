@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
-import BlogBackground from '../../img/gradientBackground.png'
-import img from '../../img/blog.jpg'
-import BlogCard from '../../components/BlogCard/BlogCard'
+import BlogBackground from '@img/gradientBackground.png'
+import img from '@img/blog.jpg'
+import BlogCard from '@components/BlogCard/BlogCard'
 import { useDispatch, useSelector } from 'react-redux'
-import getPosts from '../../redux/actions/Blog/getPosts'
+import getPosts from '@redux/actions/Blog/getPosts'
 
 const Blog = () => {
   const dispatch = useDispatch()
@@ -29,7 +29,6 @@ const Blog = () => {
                             {posts.map((post) => {
                               if (post.active) {
                                 return (
-
                                         <BlogCard
                                             key={post.idBlog}
                                             id={post.idBlog}

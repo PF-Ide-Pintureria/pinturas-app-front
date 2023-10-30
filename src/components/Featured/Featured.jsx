@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { productById } from '../../redux/actions/Products/productById'
+import { productById } from '@redux/actions/Products/productById'
 
 const Featured = ({ id, name, image, price, prodpackage }) => {
   const dispatch = useDispatch()

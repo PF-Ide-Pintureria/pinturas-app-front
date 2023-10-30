@@ -1,4 +1,4 @@
-import { putProduct } from '../../redux/actions/Products/putProducts'
+import { putProduct } from '@redux/actions/Products/putProducts'
 import Swal from 'sweetalert2'
 
 export const formatAndEdit = async (inputsForm, idProduct, dispatch) => {

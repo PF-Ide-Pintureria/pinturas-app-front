@@ -1,4 +1,4 @@
-import { postProduct } from '../../redux/actions/Products/postProduct'
+import { postProduct } from '@redux/actions/Products/postProduct'
 import Swal from 'sweetalert2'
 
 export const formatAndPost = async (inputsForm, dispatch, navigate) => {

@@ -1,8 +1,7 @@
+import Featured from '../Featured/Featured'
+import featuredBanner from '@img/featured-banner.png'
 import React from 'react'
 import { useSelector } from 'react-redux'
-
-import Featured from '../Featured/Featured'
-import featuredBanner from '../../img/featured-banner.png'
 
 
 const FeaturedContainer = () => {

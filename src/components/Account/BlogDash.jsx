@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import getPosts from '../../redux/actions/Blog/getPosts'
+import getPosts from '@redux/actions/Blog/getPosts'
 import EditBlogButton from './Blog/EditBlogButton'
 import DeleteBlogButton from './Blog/DeleteBlogButton'
 import { DataGrid, GridToolbar } from '@mui/x-data-grid'
@@ -12,7 +12,7 @@ const BlogDash = () => {
 
   useEffect(() => {
     getPosts()(dispatch)
-  }, [dispatch, posts])
+  }, [dispatch])
 
   const columns = [
     {
@@ -38,7 +38,7 @@ const BlogDash = () => {
     {
       field: 'status',
       headerName: 'Status',
-      width: 150
+      width: 100
     },
     {
       field: 'date',
@@ -48,7 +48,7 @@ const BlogDash = () => {
     {
       field: 'edit',
       headerName: 'Editar',
-      width: 150,
+      width: 100,
       renderCell: (params) => (
         <EditBlogButton idBlog={params.row.id} />
       )
@@ -56,7 +56,7 @@ const BlogDash = () => {
     {
       field: 'delete',
       headerName: 'Eliminar',
-      width: 150,
+      width: 100,
       renderCell: (params) => (
         <DeleteBlogButton idBlog={params.row.id} />
       )

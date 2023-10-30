@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import putOrder from '../../redux/actions/Orders/putOrder'
+import putOrder from '@redux/actions/Orders/putOrder'
 import Swal from 'sweetalert2'
 
 const PendingButton = ({ idOrder }) => {

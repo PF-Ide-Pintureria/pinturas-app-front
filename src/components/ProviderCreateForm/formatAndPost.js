@@ -1,12 +1,13 @@
 import axios from 'axios'
-import { BASE_URL } from '../../redux/action-type'
+import { BASE_URL } from '@redux/action-type'
 import Swal from 'sweetalert2'
 
 export const formatAndPost = async (inputsForm) => {
   try {
     await axios.post(`${BASE_URL}providers`, inputsForm, {
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: JSON.parse(localStorage.getItem('token'))
       }
     })
     Swal.fire({
@@ -21,6 +22,6 @@ export const formatAndPost = async (inputsForm) => {
       text: 'Algo falló!',
       confirmButtonText: 'Ok'
     })
-    console.log(error.data)
+    console.log(error.response)
   }
 }

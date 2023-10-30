@@ -5,10 +5,9 @@ import Swal from 'sweetalert2'
 const deletePost = (idBlog) => {
   return async (dispatch) => {
     const token = localStorage.getItem('token')
-    const tokenLimpio = token.replace(/['"]+/g, '')
     const rawResponse = await axios.delete(`${BASE_URL}blogs/${idBlog}`, {
       headers: {
-        Authorization: tokenLimpio
+        Authorization: JSON.parse(token)
       }
     })
     const data = rawResponse?.data
@@ -25,10 +24,7 @@ const deletePost = (idBlog) => {
     }
     const response = data?.blog
     if (response) {
-      dispatch({
-        type: DELETE_POST,
-        payload: response
-      })
+      dispatch({ type: DELETE_POST })
       return data
     }
   }

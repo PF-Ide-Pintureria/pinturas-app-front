@@ -134,7 +134,7 @@ const NavbarAdmin = ({
                                 />
                             </svg>
                         </span>
-                        <span>Blog</span>
+                        <span>Blogs</span>
                     </a>
                 </li>
                 <li>

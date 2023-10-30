@@ -1,4 +1,4 @@
-import { postContactEmail } from '../../redux/actions/Mail/postContactEmail'
+import { postContactEmail } from '@redux/actions/Mail/postContactEmail'
 import Swal from 'sweetalert2'
 
 export const formatAndSend = async ({ name, email, message }, dispatch) => {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Home from './views/Home/Home'
 import About from './views/About/About'
@@ -8,17 +8,12 @@ import Detail from './views/Detail/Detail'
 import Footer from './components/Footer/Footer'
 import Cart from './views/Cart/Cart'
 import Blog from './views/Blog/Blog'
-// import Login from "./views/Login/Login";
 import Products from './views/Products/Products'
-import AdminUsers from './views/Admin/AdminUsers/AdminUsers'
-import AdminProducts from './views/Admin/AdminProducts/AdminProducts'
-import AdminBlog from './views/Admin/AdminBlog/AdminBlog'
 import Account from './views/Account/Account'
 import UpdateProduct from './views/UpdateProduct/UpdateProduct'
 import CreateProduct from './views/CreateProduct/CreateProduct'
 import Developers from './views/Developers/Developers'
 import Location from './views/Location/Location'
-import Favorite from './views/Profile/Favorite/Favorite'
 import Register from './views/Register/Register'
 import Purchases from './views/Purchases/Purchases'
 import NotFound from './views/NotFound/NotFound'
@@ -31,8 +26,7 @@ import { useCart } from './hooks/useCart'
 import { useDispatch, useSelector } from 'react-redux'
 import { setUser } from './redux/actions/User/setUser'
 import { allProducts } from './redux/actions/Products/allProducts'
-import TestTable from './TestTable'
-import UpdateUserForm from './components/UpdateForm/UpdateUserForm'
+import UpdateUserFormByAdmin from '@components/UpdateUserFormByAdmin/UpdateUserFormByAdmin'
 import { getCart } from './redux/actions/Cart/getCart'
 import OrderDetail from './views/OrderDetail/OrderDetail'
 import Dashboard from './views/Dashboard/Dashboard'
@@ -40,39 +34,20 @@ import BlogCreate from './views/Blog/BlogCreate'
 import EditBlog from './views/Blog/EditBlog'
 import BlogDetail from './views/Blog/BlogDetail'
 import UserOrderDetail from './views/UserOrderDetail/UserOrderDetail'
-import { ThemeProvider } from 'styled-components'
-import ChatBot from 'react-simple-chatbot'
-import { steps } from '../src/assets/steps'
-import { theme } from '../src/assets/theme'
-import { SiChatbot } from 'react-icons/si'
-import person from '../src/img/user.jpg'
+import ChatBotApp from './components/ChatBot/ChatBotApp'
 import { addCart } from './redux/actions/Cart/addCart'
 import UpdatePrices from './views/UpdatePrices/UpdatePrices'
 import CreateProvider from './views/Providers/CreateProvider'
 import EditProvider from './views/Providers/EditProvider'
 import ScrollToTop from './hooks/ScrollToTop'
-// import AdminProviders from './views/Admin/AdminProviders/AdminProviders'
 
 function App() {
   const dispatch = useDispatch()
-  const [showChatbot, setShowChatbot] = useState(false)
-  const [showButton, setShowButton] = useState(true)
+
   const userDb = useSelector((state) => state.user)
-  const {
-    addAllToCart
-  } = useCart()
+  const { addAllToCart } = useCart()
   const user = localStorage.getItem('user')
   const cartLocalS = localStorage.getItem('cart')
-
-  const toggleChatbot = () => {
-    setShowChatbot(!showChatbot)
-    setShowButton(false)
-  }
-
-  const hideChatbot = () => {
-    setShowChatbot(false)
-    setShowButton(true)
-  }
 
   useEffect(() => {
     if (cartLocalS) dispatch(addCart(JSON.parse(cartLocalS)))
@@ -104,22 +79,15 @@ function App() {
 
               <Route path="/products" element={<Products />} />
               <Route path="/products/:idProduct" element={<Detail />} />
-              <Route
-                path="/products/edit/:idProduct"
-                element={<UpdateProduct />}
+              <Route path="/products/edit/:idProduct" element={<UpdateProduct/>}
               />
 
               <Route path="/login" element={<Login />} />
               <Route path="/login/register" element={<Register />} />
 
               <Route path="/admin" element={<Dashboard />} />
-              <Route path="/admin/users" element={<AdminUsers />} />
-              <Route path="/admin/products" element={<AdminProducts />} />
-              <Route path="/admin/blog" element={<AdminBlog />} />
-              {/* <Route path="/admin/providers" element={<AdminProviders />} /> */}
-
               <Route path="/admin/create" element={<CreateProduct />} />
-              <Route path="/admin/edit/:idUser" element={<UpdateUserForm />} />
+              <Route path="/admin/edit/:idUser" element={<UpdateUserFormByAdmin />} />
               <Route path="/admin/products/update/prices" element={<UpdatePrices />} />
               <Route path="/admin/providers/create" element={<CreateProvider />} />
               <Route path="/admin/providers/edit/:id" element={<EditProvider />} />
@@ -128,30 +96,23 @@ function App() {
               <Route path="/cart/buying" element={<Purchases />} />
               <Route path="/cart/detail" element={<OrderDetail />} />
 
-              <Route
-                path="/payment/successful"
-                element={<SuccessfulPayment />}
-              />
+              <Route path="/orders/:idOrder" element={<UserOrderDetail />} />
+
+              <Route path="/payment/successful" element={<SuccessfulPayment />} />
               <Route path="/payment/failure" element={<FailurePayment />} />
               <Route path="/payment/pending" element={<PendingPayment />} />
 
               <Route path="/reviews/:orderId" element={<ReviewsPage />} />
-              <Route path="/favorite" element={<Favorite />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/account" element={<Account />} />
               <Route path="/about" element={<About />} />
               <Route path="/location" element={<Location />} />
-
-              <Route path="/orders/:idOrder" element={<UserOrderDetail />} />
+              <Route path="/developers" element={<Developers />} />
 
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/:idBlog" element={<BlogDetail />} />
               <Route path="/blog/create" element={<BlogCreate />} />
               <Route path="/blog/edit/:id" element={<EditBlog />} />
-
-              <Route path="/developers" element={<Developers />} />
-
-              <Route path="/testing" element={<TestTable />} />
 
               <Route path="*" element={<NotFound />} />
             </Routes>
@@ -161,50 +122,7 @@ function App() {
           {/* </footer> */}
         </div>
       </BrowserRouter>
-      <ThemeProvider theme={theme}>
-        <div
-          style={{
-            position: 'fixed',
-            bottom: '20px',
-            right: '20px',
-            zIndex: 9999
-          }}
-        >
-          {showButton && (
-            <button
-              className="bg-purple-100 text-primary text-3xl font-semibold mb-2 px-3 py-3 rounded-full mr-2 hover:scale-125"
-              onClick={toggleChatbot}
-            >
-              <SiChatbot />
-            </button>
-          )}
-          {showChatbot && (
-            <div style={{ position: 'relative' }}>
-              <ChatBot
-                steps={steps}
-                headerTitle="Chatbot"
-                userAvatar={person}
-              />
-              <button
-                className="text-white hover:text-white-900 text-m mr-5 mt-3"
-                onClick={hideChatbot}
-                style={{
-                  position: 'absolute',
-                  top: '5px',
-                  right: '5px',
-                  background: 'none',
-                  border: 'none',
-                  cursor: 'pointer',
-                  transition: 'right 1s ease-in-out',
-                  zIndex: 9999
-                }}
-              >
-                X
-              </button>
-            </div>
-          )}
-        </div>
-      </ThemeProvider>
+      <ChatBotApp />
     </div>
   )
 }

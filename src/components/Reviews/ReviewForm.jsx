@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { saveReview } from '../../redux/actions/Review/postSaveReview'
+import { saveReview } from '@redux/actions/Review/postSaveReview'
 import Rating from '../Reviews/Rating'
 import './Rating.css'
 import Swal from 'sweetalert2'
 import { useParams } from 'react-router-dom'
-import { getOrderById } from '../../redux/actions/Orders/getOrderById'
+import { getOrderById } from '@redux/actions/Orders/getOrderById'
 
 const ReviewForm = () => {
   const { orderId } = useParams()

@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { getProvidersActive } from '../../redux/actions/Providers/getProvidersActive'
+import { getProvidersActive } from '@redux/actions/Providers/getProvidersActive'
 import { formatAndPut } from './formatAndPut'
+// import Swal from 'sweetalert2'
+import { useNavigate } from 'react-router-dom'
 
 const UpdatePricesForm = () => {
   const dispatch = useDispatch()
   const providers = useSelector(state => state.providers)
+  const user = useSelector(state => state.user)
+  const navigate = useNavigate()
 
+  const [loading, setLoading] = useState(true)
   const [isLoading, setIsLoading] = useState(false)
   const [inputsForm, setInputsForm] = useState({
     provider: '',
@@ -49,7 +54,21 @@ const UpdatePricesForm = () => {
     document.getElementById('excelFile').value = ''
   }
 
-  return (
+  useEffect(() => {
+    // Simular una carga asincrónica de los datos del usuario
+    setTimeout(() => {
+      setLoading(false)
+    }, 100)
+  }, [])
+
+  if (loading) {
+    return <div>Cargando...</div>
+  }
+
+  if (user.rol !== 'admin') {
+    navigate('/')
+  } else {
+    return (
     <div className=" flex-column ">
       <h1 className="text-3xl text-primary mt-10 uppercase font-bold flex items-center justify-center">Actualizar Precios</h1>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
@@ -112,7 +131,8 @@ const UpdatePricesForm = () => {
         </div>
       </form>
     </div>
-  )
+    )
+  }
 }
 
 export default UpdatePricesForm

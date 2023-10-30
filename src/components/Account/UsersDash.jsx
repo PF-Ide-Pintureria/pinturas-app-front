@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react'
 import { DataGrid, GridToolbar } from '@mui/x-data-grid'
 import { useDispatch, useSelector } from 'react-redux'
-import { getAllUsers } from '../../redux/actions/User/getAllUsers'
-import DeleteUserButton from '../../components/DeleteButton/DeleteUserButton'
-import UpdateUserButton from '../../components/UpdateButton/UpdateUserButton'
-import BanUserButton from '../../components/DeleteButton/BanUserButton'
+import { getAllUsers } from '@redux/actions/User/getAllUsers'
+import UpdateUserButton from '@components/UpdateButton/UpdateUserButton'
 
 const UsersDash = () => {
   const dispatch = useDispatch()
@@ -57,29 +55,11 @@ const UsersDash = () => {
     },
     {
       field: 'edit',
-      headerName: 'Editar',
+      headerName: 'Admin',
       width: 120,
       sorteable: false,
       renderCell: (params) => (
                 <UpdateUserButton idUser={params.row.id} />
-      )
-    },
-    {
-      field: 'delete',
-      headerName: 'Eliminar',
-      width: 120,
-      sorteable: false,
-      renderCell: (params) => (
-                <DeleteUserButton idUser={params.row.id} />
-      )
-    },
-    {
-      field: 'ban',
-      headerName: 'Bloquear',
-      width: 120,
-      sorteable: false,
-      renderCell: (params) => (
-                <BanUserButton idUser={params.row.id} />
       )
     }
   ]

@@ -1,24 +1,24 @@
 import React, { useEffect, useState } from 'react'
-import SideBarAuth from '../../components/Account/SidebarAuth'
-import SideBarUser from '../../components/Account/SideBarUser'
-import LoadingScreen from '../../components/Account/LoadingScreen'
-// import Dashboard from "../../components/Account/Dashboard";
+import SideBarAuth from '@components/Account/SidebarAuth'
+import SideBarUser from '@components/Account/SideBarUser'
+import LoadingScreen from '@components/Account/LoadingScreen'
+// import Dashboard from "@components/Account/Dashboard";
 import { useAuth0 } from '@auth0/auth0-react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { logoutUser } from '../../redux/actions/User/logoutUser'
-import UpdateUserForm from '../../components/Account/UpdateUserForm'
-import Addresses from '../../components/Account/Addresses'
-import Favorities from '../../components/Account/Favorites'
-import Orders from '../../components/Account/Orders'
-import ProductsDash from '../../components/Account/ProductsDash'
-// import UpdateUserForm from "../../components/Account/UpdateUserForm";
-import LoginForm from '../../components/LoginForm/LoginForm'
-import UsersDash from '../../components/Account/UserDash'
-import SalesDash from '../../components/Account/SalesDash'
-import { getFavorites } from '../../redux/actions/Favorites/getFavorites'
-import getOrdersUser from '../../redux/actions/Orders/getOrdersUser'
-import { postAuthzeroUsers } from '../../redux/actions/User/postAuthzeroUsers'
+import { logoutUser } from '@redux/actions/User/logoutUser'
+import UpdateUserForm from '@components/Account/UpdateUserForm'
+import Addresses from '@components/Account/Addresses'
+import Favorities from '@components/Account/Favorites'
+import Orders from '@components/Account/Orders'
+import ProductsDash from '@components/Account/ProductsDash'
+// import UpdateUserForm from "@components/Account/UpdateUserForm";
+import LoginForm from '@components/LoginForm/LoginForm'
+import UsersDash from '@components/Account/UsersDash'
+import SalesDash from '@components/Account/SalesDash'
+import { getFavorites } from '@redux/actions/Favorites/getFavorites'
+import getOrdersUser from '@redux/actions/Orders/getOrdersUser'
+import { postAuthzeroUsers } from '@redux/actions/User/postAuthzeroUsers'
 
 const Account = () => {
   const { isAuthenticated, user, logout, isLoading } = useAuth0()

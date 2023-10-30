@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { postRegisterEmail } from '../../redux/actions/Mail/postRegisterEmail'
-import { postRegisterUser } from '../../redux/actions/User/postRegisterUser'
+import { postRegisterEmail } from '@redux/actions/Mail/postRegisterEmail'
+import { postRegisterUser } from '@redux/actions/User/postRegisterUser'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { welcomeMessage } from './welcomeMessage'
@@ -62,7 +62,7 @@ const RegisterForm = () => {
                             htmlFor=""
                             className="block text-base pt-2 pb-5 text-gray-700 text-center font-semibold"
                         >
-                            Registrate
+                            Regístrate
                         </label>
                         <form onSubmit={handleSubmit} className="w-60">
                             <div >
@@ -70,9 +70,10 @@ const RegisterForm = () => {
                                     type="text"
                                     placeholder="Nombres"
                                     name='name'
+                                    maxLength={40}
                                     value={inputsForm.name}
                                     onChange={handleInputChange}
-                                    className={`mt-1 pl-4 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${errors.name ? 'border-red-500' : 'border-gray-300'
+                                    className={`text-center mt-1 p-2 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${errors.name ? 'border-red-500' : 'border-gray-300'
                                         }`}
                                 />
                                 <div className="flex my-0 pt-2 pl-8 pl-2 justify-around">
@@ -86,10 +87,11 @@ const RegisterForm = () => {
                                 <input
                                     type="text"
                                     placeholder="Apellido"
+                                    maxLength={40}
                                     name="lastName"
                                     value={inputsForm.lastName}
                                     onChange={handleInputChange}
-                                    className={`mt-1 pl-4 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${errors.name ? 'border-red-500' : 'border-gray-300'
+                                    className={`text-center mt-1 p-2 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${errors.name ? 'border-red-500' : 'border-gray-300'
                                         }`}
                                 />
                                 <div className="flex my-0 pt-2 pl-8 pl-2 justify-around">
@@ -104,9 +106,10 @@ const RegisterForm = () => {
                                     type="email"
                                     placeholder="Correo electrónico"
                                     name="email"
+                                    maxLength={40}
                                     value={inputsForm.email}
                                     onChange={handleInputChange}
-                                    className={`mt-1 pl-4 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${errors.email ? 'border-red-500' : 'border-gray-300'
+                                    className={`text-center mt-1 p-2 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${errors.email ? 'border-red-500' : 'border-gray-300'
                                         }`}
                                 />
                                 <div className="flex my-0 pt-2 pl-8 pl-2 justify-around">
@@ -121,9 +124,10 @@ const RegisterForm = () => {
                                     type="password"
                                     placeholder="Contraseña"
                                     name="password"
+                                    maxLength={30}
                                     value={inputsForm.password}
                                     onChange={handleInputChange}
-                                    className={`mt-1 pl-4 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${errors.password ? 'border-red-500' : 'border-gray-300'
+                                    className={`text-center mt-1 p-2 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${errors.password ? 'border-red-500' : 'border-gray-300'
                                         }`}
                                 />
                                 <div className="flex my-0 pt-2 pl-8 pl-2 justify-around">
@@ -138,9 +142,10 @@ const RegisterForm = () => {
                                     type="password"
                                     placeholder="Confirmar contraseña"
                                     name="confirmPassword"
+                                    maxLength={30}
                                     value={inputsForm.confirmPassword}
                                     onChange={handleInputChange}
-                                    className={`mt-1 pl-4 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${errors.confirmPassword
+                                    className={`text-center mt-1 p-2 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${errors.confirmPassword
                                         ? 'border-red-500'
                                         : 'border-gray-300'
                                         }`}

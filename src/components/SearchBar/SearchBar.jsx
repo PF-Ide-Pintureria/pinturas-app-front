@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-
-import { productByName } from '../../redux/actions/Products/productByName'
-import { allProducts } from '../../redux/actions/Products/allProducts'
-import { setPage } from '../../redux/actions/Page/setPage'
+import { productByName } from '@redux/actions/Products/productByName'
+import { allProducts } from '@redux/actions/Products/allProducts'
+import { setPage } from '@redux/actions/Page/setPage'
 
 import { Magnifier } from '../SVG'
 

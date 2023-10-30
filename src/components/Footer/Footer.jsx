@@ -1,9 +1,8 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import logo from '../../img/logoIde.png'
-import mercadopago from '../../img/mercadopago.png'
 import { Facebook, Instagram, Linkedin, Twitter } from '../SVG'
-
+import logo from '@img/logoIde.png'
+import mercadopago from '@img/mercadopago.png'
 
 const Footer = () => {
 

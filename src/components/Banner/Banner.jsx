@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import banner1 from '../../img/banner1.png'
-import banner2 from '../../img/banner2.png'
-import banner3 from '../../img/banner3.png'
+import banner1 from '@img/banner1.png'
+import banner2 from '@img/banner2.png'
+import banner3 from '@img/banner3.png'
 
 const BannerCarousel = () => {
   const [currentImage, setCurrentImage] = useState(0)
