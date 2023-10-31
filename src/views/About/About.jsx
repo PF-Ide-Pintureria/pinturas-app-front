@@ -97,8 +97,8 @@ const About = () => {
                 profesional y personal de nuestro equipo, brindándoles
                 oportunidades de crecimiento y capacitación para alcanzar sus
                 metas y sueño
-              </p>
-            </div>
+              </li>
+            </ul>
           </div>
         </div>
       </div>

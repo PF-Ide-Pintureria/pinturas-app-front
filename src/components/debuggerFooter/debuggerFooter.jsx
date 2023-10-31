@@ -1,4 +1,3 @@
-import './debuggerFooter.css'
 import React from 'react'
 
 export default function DebuggerFooter ({ cart }) {

@@ -29,5 +29,7 @@ export default {
       primary: 'Gill Sans'
     },
   },
-  plugins: []
+  plugins: [
+    require('tailwindcss-debug-screens')
+  ]
 }

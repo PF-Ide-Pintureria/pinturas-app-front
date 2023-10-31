@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import './Rating.css'
 
 const Rating = ({ onRatingSelected, currentRating }) => {
   const [rating, setRating] = useState(currentRating)
@@ -23,7 +22,7 @@ const Rating = ({ onRatingSelected, currentRating }) => {
             {[1, 2, 3, 4, 5].map((value) => (
                 <label
                     key={value}
-                    className={`heart ${rating >= value ? 'active' : ''}`}
+                    className={`text-2xl cursor-pointer ${rating >= value ? 'text-green-500' : ''}`}
                     onClick={() => handleRatingChange(value)}
                 >
                     &#x2605;

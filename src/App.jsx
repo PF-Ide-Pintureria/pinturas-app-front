@@ -64,6 +64,9 @@ function App() {
         }
       })
     }
+    process.env.NODE_ENV === 'development' && (
+      document.body.classList.add('debug-screens')
+    )
   }, [user])
 
   return (

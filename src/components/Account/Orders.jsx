@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import './Account.css'
 import { DataGrid } from '@mui/x-data-grid'
 import { useSelector } from 'react-redux'
 import DetailButton from '../DetailButton/DetailButton'
@@ -82,7 +81,7 @@ const Orders = () => {
                 <p>
                     <p>Te invitamos a darnos tu opinión de tu compra</p>
                     <Link to="/reviews" className="underline">
-                        <span className="custom-link">Da click aquí</span>
+                        <span className="underline text-pink-800">Da click aquí</span>
                     </Link>
                 </p>
             </div>
