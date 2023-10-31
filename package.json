@@ -55,7 +55,7 @@
   "scripts": {
     "build": "vite build",
     "dev": "vite",
-    "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "lint": "eslint --fix src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
   "type": "module",

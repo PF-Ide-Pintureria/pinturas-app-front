@@ -40,7 +40,7 @@ import CreateProvider from './views/Providers/CreateProvider'
 import EditProvider from './views/Providers/EditProvider'
 import ScrollToTop from './hooks/ScrollToTop'
 
-function App() {
+function App () {
   const dispatch = useDispatch()
 
   const userDb = useSelector((state) => state.user)

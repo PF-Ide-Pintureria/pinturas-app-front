@@ -6,9 +6,7 @@ import { setPage } from '@redux/actions/Page/setPage'
 
 import { Magnifier } from '../SVG'
 
-
 const SearchBar = () => {
-
   const thisPage = useSelector((state) => state.thisPage)
   const filterCategory = useSelector((state) => state.filterCategory)
   const { high, low } = useSelector((state) => state.price)
@@ -43,7 +41,7 @@ const SearchBar = () => {
         onFocus={() => setMagnifierFocus(true)}
         onBlur={() => setMagnifierFocus(false)}
       >
-        <div className={`h-5 fill-black hover:fill-orange ${magnifierFocus ? "fill-orange" : ""}`}>
+        <div className={`h-5 fill-black hover:fill-orange ${magnifierFocus ? 'fill-orange' : ''}`}>
           <Magnifier />
         </div>
       </button>

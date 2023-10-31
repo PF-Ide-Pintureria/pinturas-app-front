@@ -29,7 +29,7 @@ const Featured = ({ id, name, image, price, prodpackage }) => {
           <h4 className="">{prodpackage}</h4>
         </div>
       </div>
-      <p className={`relative z-20 inline-flex items-center justify-center mt-4 p-4 w-full max-h-12 h-12 overflow-hidden text-sm uppercase font-medium focus:ring-4 focus:outline-none after:-z-10 after:absolute after:content[''] after:left-0 after:bg-orange after:h-full after:w-full after:transition-all ${isHovered ? "after:top-0 text-white" : "after:top-full text-black"}`}>
+      <p className={`relative z-20 inline-flex items-center justify-center mt-4 p-4 w-full max-h-12 h-12 overflow-hidden text-sm uppercase font-medium focus:ring-4 focus:outline-none after:-z-10 after:absolute after:content[''] after:left-0 after:bg-orange after:h-full after:w-full after:transition-all ${isHovered ? 'after:top-0 text-white' : 'after:top-full text-black'}`}>
         Ver producto
       </p>
     </div>

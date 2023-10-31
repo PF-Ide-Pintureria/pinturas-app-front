@@ -5,18 +5,17 @@ import logo from '@img/logoIde.png'
 import mercadopago from '@img/mercadopago.png'
 
 const Footer = () => {
-
   const SOCIAL_MEDIA = [
-    { icon: Facebook, link: "https://www.facebook.com/ide.pintureria/" },
-    { icon: Instagram, link: "https://www.instagram.com/ide.pintureria.ok/" },
-    { icon: Linkedin, link: "https://www.linkedin.com/ide.pintureria/" },
-    { icon: Twitter, link: "https://twitter.com/ide.pintureria/" }
+    { icon: Facebook, link: 'https://www.facebook.com/ide.pintureria/' },
+    { icon: Instagram, link: 'https://www.instagram.com/ide.pintureria.ok/' },
+    { icon: Linkedin, link: 'https://www.linkedin.com/ide.pintureria/' },
+    { icon: Twitter, link: 'https://twitter.com/ide.pintureria/' }
   ]
 
   const NAV_LINKS = [
-    { text: "productos", link: "/products" },
-    { text: "empresa", link: "/about" },
-    { text: "contacto", link: "/contact" },
+    { text: 'productos', link: '/products' },
+    { text: 'empresa', link: '/about' },
+    { text: 'contacto', link: '/contact' }
   ]
 
   return (

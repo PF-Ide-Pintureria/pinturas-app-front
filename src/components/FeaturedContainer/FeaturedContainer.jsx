@@ -1,11 +1,9 @@
 import Featured from '../Featured/Featured'
-import featuredBanner from '@img/featured-banner.png'
+// import featuredBanner from '@img/featured-banner.png'
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-
 const FeaturedContainer = () => {
-
   const bestSellers = useSelector((state) => state.bestSell)
 
   return (

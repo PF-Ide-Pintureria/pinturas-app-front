@@ -17,9 +17,7 @@ import category11 from '@img/fijadores.png'
 import category13 from '@img/auxiliares.png'
 import category14 from '@img/madera.png'
 
-
 const CategoryContainer = () => {
-
   const dispatch = useDispatch()
 
   const handleCategory = (category) => {
@@ -28,19 +26,19 @@ const CategoryContainer = () => {
   }
 
   const CATEGORIES = [
-    { image: category14, searchQuery: "Linea Maderas" },
-    { image: category3, searchQuery: "Linea Esmaltes" },
-    { image: category4, searchQuery: "Linea Pinturas a la Cal" },
-    { image: category5, searchQuery: "Linea Fondos" },
-    { image: category6, searchQuery: "Linea Entonadores y Tintas" },
-    { image: category7, searchQuery: "Linea Ecologica" },
-    { image: category8, searchQuery: "Linea Esmaltes Industriales" },
-    { image: category2, searchQuery: "Linea Productos Especiales" },
-    { image: category10, searchQuery: "Linea Impermeabilizantes" },
-    { image: category11, searchQuery: "Linea Fijadores - Aditivos -" },
-    { image: category9, searchQuery: "Linea Latex" },
+    { image: category14, searchQuery: 'Linea Maderas' },
+    { image: category3, searchQuery: 'Linea Esmaltes' },
+    { image: category4, searchQuery: 'Linea Pinturas a la Cal' },
+    { image: category5, searchQuery: 'Linea Fondos' },
+    { image: category6, searchQuery: 'Linea Entonadores y Tintas' },
+    { image: category7, searchQuery: 'Linea Ecologica' },
+    { image: category8, searchQuery: 'Linea Esmaltes Industriales' },
+    { image: category2, searchQuery: 'Linea Productos Especiales' },
+    { image: category10, searchQuery: 'Linea Impermeabilizantes' },
+    { image: category11, searchQuery: 'Linea Fijadores - Aditivos -' },
+    { image: category9, searchQuery: 'Linea Latex' },
     // { image: category12, searchQuery: "Linea" },
-    { image: category13, searchQuery: "Linea Productos Auxiliares" },
+    { image: category13, searchQuery: 'Linea Productos Auxiliares' }
   ]
 
   return (

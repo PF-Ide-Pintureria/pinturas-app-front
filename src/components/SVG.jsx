@@ -1,6 +1,6 @@
 import React from 'react'
 
-function UserIcon() {
+function UserIcon () {
   return (
     // <svg
     //   xmlns="http://www.w3.org/2000/svg"
@@ -19,7 +19,7 @@ function UserIcon() {
   )
 };
 
-function Cart() {
+function Cart () {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -33,7 +33,7 @@ function Cart() {
   )
 };
 
-function Magnifier() {
+function Magnifier () {
   return (
     // <svg
     //   xmlns="http://www.w3.org/2000/svg"
@@ -63,7 +63,7 @@ function Magnifier() {
   )
 }
 
-function Facebook() {
+function Facebook () {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -80,7 +80,7 @@ function Facebook() {
   )
 }
 
-function Instagram() {
+function Instagram () {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -97,7 +97,7 @@ function Instagram() {
   )
 }
 
-function Linkedin() {
+function Linkedin () {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -114,7 +114,7 @@ function Linkedin() {
   )
 }
 
-function Twitter() {
+function Twitter () {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -131,7 +131,7 @@ function Twitter() {
   )
 }
 
-function Rocket({ width }) {
+function Rocket ({ width }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -151,7 +151,7 @@ function Rocket({ width }) {
   )
 }
 
-function LightBulb({ width }) {
+function LightBulb ({ width }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

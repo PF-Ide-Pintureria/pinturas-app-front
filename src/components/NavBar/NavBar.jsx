@@ -3,12 +3,11 @@ import { NavLink } from 'react-router-dom'
 import logo from '@img/logo.png'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useSelector } from 'react-redux'
-import SearchBar from '@components/SearchBar/SearchBar';
+import SearchBar from '@components/SearchBar/SearchBar'
 
 import { Cart, UserIcon } from '../SVG'
 
 const Nav = () => {
-
   const userBd = useSelector((state) => state.user)
 
   const { isAuthenticated, user } = useAuth0()
@@ -16,7 +15,7 @@ const Nav = () => {
   // Menu para las opciones: INICIAR SESION, REGISTRARSE
   const [credentialsMenu, setCredentialsMenu] = useState(false)
 
-  const linkStl = "relative cursor-pointer hover:text-white transition-colors before:-z-10 before:absolute before:left-1/2 before:top-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:w-[calc(100%+1vw+0.25rem)] before:h-[125%] before:bg-primary before:rounded-[15px] before:opacity-0 hover:before:opacity-100 before:transition-opacity"
+  const linkStl = 'relative cursor-pointer hover:text-white transition-colors before:-z-10 before:absolute before:left-1/2 before:top-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:w-[calc(100%+1vw+0.25rem)] before:h-[125%] before:bg-primary before:rounded-[15px] before:opacity-0 hover:before:opacity-100 before:transition-opacity'
 
   // Detectar click fuera del menu.
   const credentialsMenuRef = useRef(null)
@@ -31,7 +30,6 @@ const Nav = () => {
       document.removeEventListener('click', handleOutsideClick)
     }
   }, [credentialsMenu])
-
 
   return (
     <header className="z-50 fixed flex justify-center items-center w-[85%] mx-[7.5%] my-4 h-16 rounded-[50px] bg-[#f1f1f190] border backdrop-blur-md">
@@ -76,7 +74,8 @@ const Nav = () => {
           onClick={(e) => { setCredentialsMenu(true); e.stopPropagation() }}
         >
           {
-            (!userBd.id && !isAuthenticated) ? (
+            (!userBd.id && !isAuthenticated)
+              ? (
               <NavLink
                 // to="/account"
                 className="h-6 hidden sm:block cursor-pointer"
@@ -84,8 +83,10 @@ const Nav = () => {
                 <UserIcon />
               </NavLink>
 
-              // Existe ID en redux
-            ) : userBd.id ? (
+            // Existe ID en redux
+                )
+              : userBd.id
+                ? (
               <NavLink
                 to="/account"
                 className="h-6 hidden sm:block cursor-pointer"
@@ -95,7 +96,9 @@ const Nav = () => {
               </NavLink>
 
               // El usuario esta autenticado
-            ) : isAuthenticated ? (
+                  )
+                : isAuthenticated
+                  ? (
               <NavLink
                 to="/account"
                 className="h-6 hidden sm:block cursor-pointer"
@@ -103,11 +106,12 @@ const Nav = () => {
                 <UserIcon />
                 {user.name} {user.lastName}
               </NavLink>
-            ) : null
+                    )
+                  : null
           }
-          <div ref={credentialsMenuRef} className={`${credentialsMenu ? "opacity-100 visible transition-all" : "opacity-0 invisible transition-all"} absolute top-[110%] right-0 flex flex-col gap-2 items-start p-4 bg-primary rounded-lg shadow-credentialsMenu`}>
-            <button className={`py-[0.2rem] px-2 w-full rounded-[5px] hover:bg-turquoise text-white text-start whitespace-nowrap transition-colors`}>INICIAR SESIÓN</button>
-            <button className={`py-[0.2rem] px-2 w-full rounded-[5px] hover:bg-turquoise text-white text-start whitespace-nowrap transition-colors`}>REGISTRARSE</button>
+          <div ref={credentialsMenuRef} className={`${credentialsMenu ? 'opacity-100 visible transition-all' : 'opacity-0 invisible transition-all'} absolute top-[110%] right-0 flex flex-col gap-2 items-start p-4 bg-primary rounded-lg shadow-credentialsMenu`}>
+            <button className={'py-[0.2rem] px-2 w-full rounded-[5px] hover:bg-turquoise text-white text-start whitespace-nowrap transition-colors'}>INICIAR SESIÓN</button>
+            <button className={'py-[0.2rem] px-2 w-full rounded-[5px] hover:bg-turquoise text-white text-start whitespace-nowrap transition-colors'}>REGISTRARSE</button>
           </div>
         </div>
       </nav>
