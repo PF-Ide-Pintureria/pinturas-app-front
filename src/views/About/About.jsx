@@ -3,12 +3,10 @@ import imgAbout from '@img/about.png'
 import React from 'react'
 import { LightBulb, Rocket } from '../../components/SVG'
 
-
 const About = () => {
-
-  const PARRAGRAPH_1 = "Nuestra historia comenzó como un emprendimiento familiar, impulsado por la visión y pasión de Rodolfo Miguel Guercio. Inicialmente ubicada en la pintoresca localidad de Alta Gracia – Córdoba, pronto nos dimos cuenta de la creciente demanda de pinturas de alta calidad para obras industriales y proyectos particulares en la próspera Villa Anisacate."
-  const PARRAGRAPH_2 = "Con astucia y determinación, nos trasladamos estratégicamente a Villa Anisacate, donde encontramos nuestro hogar en una localidad en pleno desarrollo y expansión. Desde entonces, hemos trabajado incansablemente para consolidarnos como líderes en la industria, ofreciendo una amplia gama de pinturas FADEPA, accesorios para pintores y herramientas de ferretería de las principales marcas."
-  const PARRAGRAPH_3 = "En ide Pinturerias, creemos en la excelencia y el servicio personalizado. Nuestro equipo dedicado está aquí para asesorarte en cada paso de tu proyecto, desde grandes obras hasta pequeños proyectos de decoración. Nuestra pasión por la calidad y la satisfacción del cliente nos impulsa a superar las expectativas y a ser tu socio confiable en todas tus necesidades relacionadas con pinturas y ferretería."
+  const PARRAGRAPH_1 = 'Nuestra historia comenzó como un emprendimiento familiar, impulsado por la visión y pasión de Rodolfo Miguel Guercio. Inicialmente ubicada en la pintoresca localidad de Alta Gracia – Córdoba, pronto nos dimos cuenta de la creciente demanda de pinturas de alta calidad para obras industriales y proyectos particulares en la próspera Villa Anisacate.'
+  const PARRAGRAPH_2 = 'Con astucia y determinación, nos trasladamos estratégicamente a Villa Anisacate, donde encontramos nuestro hogar en una localidad en pleno desarrollo y expansión. Desde entonces, hemos trabajado incansablemente para consolidarnos como líderes en la industria, ofreciendo una amplia gama de pinturas FADEPA, accesorios para pintores y herramientas de ferretería de las principales marcas.'
+  const PARRAGRAPH_3 = 'En ide Pinturerias, creemos en la excelencia y el servicio personalizado. Nuestro equipo dedicado está aquí para asesorarte en cada paso de tu proyecto, desde grandes obras hasta pequeños proyectos de decoración. Nuestra pasión por la calidad y la satisfacción del cliente nos impulsa a superar las expectativas y a ser tu socio confiable en todas tus necesidades relacionadas con pinturas y ferretería.'
 
   return (
     <main className="flex flex-col items-center mb-20 p-whiteSpaceTop">
@@ -33,7 +31,7 @@ const About = () => {
       <div className="flex justify-between">
         <div className="flex items-center gap-14  max-w-[800px]">
           <div className="flex flex-col items-center my-[20px] text-center">
-            <Rocket width={"8rem"} />
+            <Rocket width={'8rem'} />
 
             <div>
               <p className="text-[20px] font-bold mt-[10px]">Misión</p>
@@ -47,7 +45,7 @@ const About = () => {
           </div>
 
           <div className="flex flex-col items-center my-[20px] text-center">
-            <LightBulb width={"8rem"} />
+            <LightBulb width={'8rem'} />
 
             <div>
               <p className="text-[20px] font-bold mt-[10px]">Visión</p>
@@ -97,11 +95,11 @@ const About = () => {
                 profesional y personal de nuestro equipo, brindándoles
                 oportunidades de crecimiento y capacitación para alcanzar sus
                 metas y sueño
-              </li>
-            </ul>
+                </p>
           </div>
         </div>
       </div>
+    </div>
     </main>
   )
 }
