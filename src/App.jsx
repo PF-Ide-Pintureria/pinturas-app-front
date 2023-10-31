@@ -13,7 +13,6 @@ import Account from './views/Account/Account'
 import UpdateProduct from './views/UpdateProduct/UpdateProduct'
 import CreateProduct from './views/CreateProduct/CreateProduct'
 import Developers from './views/Developers/Developers'
-import Location from './views/Location/Location'
 import Register from './views/Register/Register'
 import Purchases from './views/Purchases/Purchases'
 import NotFound from './views/NotFound/NotFound'
@@ -41,7 +40,7 @@ import CreateProvider from './views/Providers/CreateProvider'
 import EditProvider from './views/Providers/EditProvider'
 import ScrollToTop from './hooks/ScrollToTop'
 
-function App () {
+function App() {
   const dispatch = useDispatch()
 
   const userDb = useSelector((state) => state.user)
@@ -76,9 +75,7 @@ function App () {
         <ScrollToTop />
         <div className="h-full w-full">
           <div className="">
-            <header>
-              <NavBar />
-            </header>
+            <NavBar />
             <Routes>
               <Route exact path="/" element={<Home />} />
 
@@ -111,7 +108,6 @@ function App () {
               <Route path="/contact" element={<Contact />} />
               <Route path="/account" element={<Account />} />
               <Route path="/about" element={<About />} />
-              <Route path="/location" element={<Location />} />
               <Route path="/developers" element={<Developers />} />
 
               <Route path="/blog" element={<Blog />} />
@@ -122,9 +118,9 @@ function App () {
               <Route path="*" element={<NotFound />} />
             </Routes>
           </div>
-          <footer className="flex">
-            <Footer />
-          </footer>
+          {/* <footer className="flex"> */}
+          <Footer />
+          {/* </footer> */}
         </div>
       </BrowserRouter>
       <ChatBotApp />

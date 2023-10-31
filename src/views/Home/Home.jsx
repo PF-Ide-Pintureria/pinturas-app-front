@@ -8,6 +8,7 @@ import BannerBlog from '@components/BannerBlog/BannerBlog'
 import { bestSellers } from '@redux/actions/Products/bestSellers'
 
 const Home = () => {
+
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -15,15 +16,13 @@ const Home = () => {
   }, [dispatch])
 
   return (
-    <div className="w-full h-full">
-      <main className="w-full h-full">
-        <Banner />
-        <CategoryContainer />
-        <FeaturedContainer />
-        <AboutCard />
-        <BannerBlog />
-      </main>
-    </div>
+    <main className="flex flex-col items-center w-full h-full p-whiteSpaceTop bg-gradient-to-bl from-[#E9682799] to-[#00A49199]">
+      {/* <Banner /> */}
+      <CategoryContainer />
+      <FeaturedContainer />
+      <AboutCard />
+      <BannerBlog />
+    </main>
   )
 }
 
